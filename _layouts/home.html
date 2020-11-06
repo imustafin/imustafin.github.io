@@ -1,13 +1,25 @@
 ---
-layout: default
+layout: bare
 ---
 
-<div>
-  {{ content }}
+<section class="page-header-home">
+  <h1 class="project-name">{{ site.title }}</h1>
+  <h2 class="project-tagline">{{ site.description }}</h2>
+</section>
 
-  <h2>Latest Posts</h2>
+<section class="home-personal">
+  <figure class="photo">
+    <img src="/assets/ilgiz_in_topkapi.jpg" alt="Ilgiz in Topkapı Palace, Istanbul, Turkey" />
+    <figcaption>Ilgiz in Topkapı Palace, Istanbul, Turkey</figcaption>
+  </figure>
 
-  <div>&nbsp;</div>
+  <div class="home-content">
+    {{ content }}
+  </div>
+</section>
+
+<section class="main-content">
+  <h1>Latest Posts</h1>
 
   <ul class="post-list">
   {% for post in site.posts %}
@@ -28,4 +40,4 @@ layout: default
     </li>
     {% endfor %}
   </ul>
-</div>
+</section>
