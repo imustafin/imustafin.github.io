@@ -26,7 +26,8 @@ google_analytics: false
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-cayman
-plugins: []
+plugins:
+  - jemoji
 
 liquid:
   error_mode: strict
