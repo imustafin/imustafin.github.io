@@ -8,8 +8,6 @@
 .home-personal {
   @extend .main-content;
 
-  min-width: 100%;
-
   display: flex;
   flex-direction: row;
 
@@ -23,7 +21,8 @@
   }
 
   @include large {
-    padding: 2rem 4rem;
+    padding: 2rem 1rem;
+    max-width: 72rem;
   }
 
 
