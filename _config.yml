@@ -19,7 +19,6 @@ description: >- # this means to ignore newlines until "baseurl:"
   The personal page of Ilgiz Mustafin, a Software Engineer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://imustafin.tatar" # the base hostname & protocol for your site, e.g. http://example.com
-lang: "en-US"
 show_downloads: false
 google_analytics: false
 
@@ -43,3 +42,17 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
+
+defaults:
+  - scope:
+      path: en
+    values:
+      lang: en
+  - scope:
+      path: ru
+    values:
+      lang: ru
+  - scope:
+      path: tt
+    values:
+      lang: tt
