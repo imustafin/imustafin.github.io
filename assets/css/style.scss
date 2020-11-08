@@ -6,6 +6,9 @@
 @import 'home';
 @import 'footer';
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap');
+
 html, body {
   height: 100%;
+  font-family: 'Roboto Slab', serif;
 }
