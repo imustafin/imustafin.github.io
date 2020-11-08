@@ -1,0 +1,2 @@
+{% assign m = include.date | date: "%-m" | minus: 1 %}
+{{ include.date | date: "%-d" }} {{ site.data.i18n.months[m][page.lang] }}, {{ include.date | date: "%Y" }}

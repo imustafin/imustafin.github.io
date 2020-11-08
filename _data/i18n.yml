@@ -23,3 +23,41 @@ languages:
   en: English
   ru: Русский
   tt: Татарча
+
+months:
+  - en: January
+    ru: январь
+    tt: гыйнвар
+  - en: February
+    ru: февраль
+    tt: февраль
+  - en: March
+    ru: март
+    tt: март
+  - en: April
+    ru: апрель
+    tt: апрель
+  - en: May
+    ru: май
+    tt: май
+  - en: June
+    ru: июнь
+    tt: июнь
+  - en: Jule
+    ru: июль
+    tt: июль
+  - en: August
+    ru: август
+    tt: август
+  - en: September
+    ru: сентябрь
+    tt: сентябрь
+  - en: October
+    ru: октябрь
+    tt: октябрь
+  - en: November
+    ru: ноябрь
+    tt: ноябрь
+  - en: December
+    ru: декабрь
+    tt: декабрь

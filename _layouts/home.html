@@ -44,8 +44,7 @@ layout: bare
   <ul class="post-list">
   {% for post in site.posts %}
     <li>
-      {% assign date_format = "%b %-d, %Y" %}
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
+      <span class="post-meta">{% include date.html date=post.date %}</span>
 
       <h2>
         <a
