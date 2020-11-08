@@ -13,6 +13,11 @@ site:
     en: Ilgiz Mustafin's personal website
     ru: Личный сайт Мустафина Ильгиза
     tt: Мустафин Ильгизнең шәхси сайты
+  navigation:
+    home:
+      en: Main Page
+      ru: Главная страница
+      tt: Баш бит
   
 languages:
   en: English
