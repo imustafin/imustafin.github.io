@@ -3,14 +3,13 @@ layout: bare
 ---
 
 <section class="page-header-home">
-  <h1 class="project-name">{{ site.title }}</h1>
-  <h2 class="project-tagline">{{ site.description }}</h2>
+  <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
 </section>
 
 <section class="home-personal">
   <figure class="photo">
-    <img src="/assets/ilgiz_in_topkapi.jpg" alt="Ilgiz in Topkapı Palace, Istanbul, Turkey" />
-    <figcaption>Ilgiz in Topkapı Palace, Istanbul, Turkey</figcaption>
+    <img src="/assets/ilgiz_in_topkapi.jpg" alt="{{ site.data.i18n.home.photo-caption[page.lang] }}" />
+    <figcaption>{{ site.data.i18n.home.photo-caption[page.lang] }}</figcaption>
   </figure>
 
   <div class="home-content">
@@ -25,7 +24,7 @@ layout: bare
 </section>
 
 <section class="main-content">
-  <h1>Latest Posts</h1>
+  <h1>{{ site.data.i18n.home.latest-posts[page.lang] }}</h1>
 
   <ul class="post-list">
   {% for post in site.posts %}
