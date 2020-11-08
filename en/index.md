@@ -1,5 +1,6 @@
 ---
 layout: home
+ref: home
 ---
 # Hello!
 

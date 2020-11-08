@@ -4,6 +4,12 @@ layout: bare
 
 <section class="page-header-home">
   <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
+  {% assign pages=site.pages | where: "ref", page.ref | sort: "lang" %}
+  {% for translation in pages %}
+    {% if page.lang != translation.lang %}
+      <a href="{{ translation.url }}" class="btn">{{ site.data.i18n.languages[translation.lang] }}</a>
+    {% endif %}
+  {% endfor %}
 </section>
 
 <section class="home-personal">
