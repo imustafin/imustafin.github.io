@@ -24,18 +24,24 @@ layout: with-header-footer
   <ul class="post-list">
   {% for post in site.posts %}
     <li>
-      <h2>
-        <a
-          class="post-link"
-          href="{{ post.url | absolute_url }}"
-          title="{{ post.title }}"
-        >
-          {{ post.title | escape }}
-        </a>
-      </h2>
-      <span class="post-meta">{% include date.html date=post.date %}</span>
+      <article>
+        <h2>
+          <a
+            class="post-link"
+            href="{{ post.url | absolute_url }}"
+            title="{{ post.title }}"
+          >
+            {{ post.title | escape }}
+          </a>
+        </h2>
+        <span class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+            {% include date.html date=post.date %}
+          </time>
+        </span>
 
-      {{ post.excerpt | markdownify }}
+        {{ post.excerpt | markdownify }}
+      </article>
     </li>
     {% endfor %}
   </ul>
