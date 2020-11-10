@@ -1,26 +1,6 @@
 ---
-layout: bare
+layout: with-header-footer
 ---
-
-<section class="page-header-home">
-  <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
-
-  <ul class="navigation">
-
-    {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
-    <li><a href="{{ home.url }}" class="btn">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
-    <li class="divider"></li>
-
-    {% assign pages=site.pages | where: "ref", page.ref | sort: "lang" %}
-    {% for translation in pages %}
-      {% if page.lang != translation.lang %}
-        <li><a href="{{ translation.url }}" class="btn">{{ site.data.i18n.languages[translation.lang] }}</a></li>
-      {% endif %}
-    {% endfor %}
-
-  </ul>
-</section>
-
 <section class="home-personal">
   <figure class="photo">
     <img src="/assets/ilgiz_in_topkapi.jpg" alt="{{ site.data.i18n.home.photo-caption[page.lang] }}" />
@@ -44,8 +24,6 @@ layout: bare
   <ul class="post-list">
   {% for post in site.posts %}
     <li>
-      <span class="post-meta">{% include date.html date=post.date %}</span>
-
       <h2>
         <a
           class="post-link"
@@ -54,11 +32,11 @@ layout: bare
         >
           {{ post.title | escape }}
         </a>
+      </h2>
+      <span class="post-meta">{% include date.html date=post.date %}</span>
 
-        {{ post.excerpt | markdownify | truncatewords: 30 }}
+      {{ post.excerpt | markdownify }}
     </li>
     {% endfor %}
   </ul>
 </section>
-
-{% include footer.html %}

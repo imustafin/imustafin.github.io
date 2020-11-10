@@ -2,6 +2,7 @@
 layout: post
 title: "React Ant Design Direct File Upload to Active Storage with GraphQL in Ruby on Rails"
 date: 2020-11-09
+ref: ant-active-storage-upload
 ---
 In this blog post I want to tell you how we implemented direct file uploads
 to Ruby on Rails Active Storage from a React TypeScript application using

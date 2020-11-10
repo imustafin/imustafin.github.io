@@ -1,0 +1,31 @@
+---
+layout: bare
+---
+<section class="page-header-home">
+  <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
+
+  <ul class="navigation">
+
+    {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
+    <li><a href="{{ home.url }}" class="btn">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
+    <li class="divider"></li>
+
+    {% assign pages=site.pages | where: "ref", page.ref | sort: "lang" %}
+    {% for translation in pages %}
+      {% if page.lang != translation.lang %}
+        <li><a href="{{ translation.url }}" class="btn">{{ site.data.i18n.languages[translation.lang] }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+</section>
+
+{{ content }}
+
+<footer class="site-footer">
+  <div id="footer-contacts">
+    <a href="https://t.me/imustafin">Telegram</a>
+    <a href="https://github.com/imustafin">GitHub</a>
+    <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178">LinkedIn</a>
+  </div>
+</footer>
