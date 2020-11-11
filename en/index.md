@@ -6,6 +6,7 @@ seo:
   links:
     - https://github.com/imustafin
     - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
+description: Ilgiz Mustafin's personal website and blog
 ---
 # Hello!
 
