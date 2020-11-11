@@ -12,7 +12,9 @@ layout: bare
     {% assign divider-printed = false %}
 
     {% assign pages=site.pages | where: "ref", page.ref | sort: "lang" %}
-    {% for translation in pages %}
+    {% assign posts=site.posts | where: "ref", page.ref | sort: "lang" %}
+    {% assign everything=pages | concat: posts %}
+    {% for translation in everything %}
       {% if page.lang != translation.lang %}
         {% if divider-printed != true %}
           <li class="divider"></li>
