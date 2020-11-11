@@ -22,7 +22,13 @@ layout: with-header-footer
   <h1>{{ site.data.i18n.home.latest-posts[page.lang] }}</h1>
 
   <ul class="post-list">
-  {% for post in site.posts %}
+  {% assign refs=site.posts | sort: "date" | map: "ref" | uniq %}
+  {% for ref in refs %}
+    {% assign translations=site.posts | where: "ref", ref | sort: "lang" %}
+    {% assign post=translations | where: "lang", page.lang | first %}
+    {% unless post %}
+      {% assign post=translations | first %}
+    {% endunless %}
     <li>
       <article>
         <h2>
@@ -35,7 +41,7 @@ layout: with-header-footer
           </a>
         </h2>
         <span class="post-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+          <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
             {% include date.html date=post.date %}
           </time>
           {% if post.last_modified %}
@@ -46,6 +52,18 @@ layout: with-header-footer
             </time>
           </span>
           {% endif %}
+          <ul class="post-translations">
+            {% for translation in translations %}
+              <li>
+                <a
+                  href="{{ translation.url | absolute_url }}"
+                  title="{{ translation.title }}"
+                >
+                  {{ site.data.i18n.languages[translation.lang] }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
         </span>
 
         {{ post.excerpt | markdownify }}

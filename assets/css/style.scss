@@ -21,6 +21,23 @@ html, body {
   list-style-type: none;
 }
 
+.post-date {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
 .post-last-modified {
-  margin-left: 2rem;
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.post-translations {
+  list-style-type: none;
+  padding-left: 0;
+  display: inline-block;
+
+  li {
+    display: inline;
+    margin-right: 2rem;
+  }
 }
