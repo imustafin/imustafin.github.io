@@ -7,7 +7,7 @@ layout: bare
   <ul class="navigation">
 
     {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
-    <li><a href="{{ home.url }}" class="btn">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
+    <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
 
     {% assign divider-printed = false %}
 
@@ -21,7 +21,7 @@ layout: bare
           {% assign divider-printed = true %}
         {% endif %}
 
-        <li><a href="{{ translation.url }}" class="btn">{{ site.data.i18n.languages[translation.lang] }}</a></li>
+        <li><a lang="{{ translation.lang }}" href="{{ translation.url }}">{{ site.data.i18n.languages[translation.lang] }}</a></li>
       {% endif %}
     {% endfor %}
 
