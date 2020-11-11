@@ -1,7 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang }}">
+{% if page.lang %}
+  <html lang="{{ page.lang }}">
+{% else %}
+  <html>
+{% endif %}
   <head>
     <meta charset="UTF-8">
+
+    {% assign pages=site.pages | where:"ref", page.ref | sort: "lang" %}
+    {% assign posts=site.posts | where:"ref", page.ref | sort: "lang" %}
+    {% assign everything=pages | concat: posts %}
+    {% for page in everything %}
+      {% if page.lang %}
+        {% assign lang=page.lang %}
+      {% else %}
+        {% assign lang="x-default" %}
+      {% endif %}
+      <link rel="alternate" hreflang="{{ lang }}" href="{{ page.url | absolute_url }}" />
+    {% endfor %}
 
     {% seo %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
