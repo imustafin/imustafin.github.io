@@ -1,6 +1,11 @@
 ---
 layout: home
 ref: home
+seo:
+  type: WebSite
+  links:
+    - https://github.com/imustafin
+    - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 ---
 # Здравствуйте!
 

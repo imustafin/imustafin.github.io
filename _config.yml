@@ -2,6 +2,11 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://imustafin.tatar" # the base hostname & protocol for your site, e.g. http://example.com
 show_downloads: false
 google_analytics: false
+title: imustafin.tatar
+social:
+  links:
+    - https://github.com/imustafin
+    - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 
 # Build settings
 markdown: kramdown
