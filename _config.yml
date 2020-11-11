@@ -24,6 +24,8 @@ exclude:
   - vendor/ruby/
   - README.md
 
+permalink: none
+
 defaults:
   - scope:
       path: ""
