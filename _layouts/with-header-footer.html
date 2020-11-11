@@ -9,18 +9,11 @@ layout: bare
     {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
     <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
 
-    {% assign divider-printed = false %}
-
     {% assign pages=site.pages | where: "ref", page.ref | sort: "lang" %}
     {% assign posts=site.posts | where: "ref", page.ref | sort: "lang" %}
     {% assign everything=pages | concat: posts %}
     {% for translation in everything %}
       {% if page.lang != translation.lang %}
-        {% if divider-printed != true %}
-          <li class="divider"></li>
-          {% assign divider-printed = true %}
-        {% endif %}
-
         <li><a lang="{{ translation.lang }}" href="{{ translation.url }}">{{ site.data.i18n.languages[translation.lang] }}</a></li>
       {% endif %}
     {% endfor %}
