@@ -26,6 +26,10 @@ exclude:
 
 defaults:
   - scope:
+      path: ""
+    values:
+      last_modified: false
+  - scope:
       path: en
     values:
       lang: en

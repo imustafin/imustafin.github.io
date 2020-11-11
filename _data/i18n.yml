@@ -18,6 +18,13 @@ site:
       en: Main Page
       ru: Главная страница
       tt: Баш бит
+
+posts:
+  last_modified:
+    en: Last modified
+    ru: Последнее обновление
+    tt: Соңгы үзгәреш
+
   
 languages:
   en: English
@@ -26,38 +33,38 @@ languages:
 
 months:
   - en: January
-    ru: январь
+    ru: января
     tt: гыйнвар
   - en: February
-    ru: февраль
+    ru: февраля
     tt: февраль
   - en: March
-    ru: март
+    ru: марта
     tt: март
   - en: April
-    ru: апрель
+    ru: апреля
     tt: апрель
   - en: May
-    ru: май
+    ru: мая
     tt: май
   - en: June
-    ru: июнь
+    ru: июня
     tt: июнь
   - en: Jule
-    ru: июль
+    ru: июля
     tt: июль
   - en: August
-    ru: август
+    ru: августа
     tt: август
   - en: September
-    ru: сентябрь
+    ru: сентября
     tt: сентябрь
   - en: October
-    ru: октябрь
+    ru: октября
     tt: октябрь
   - en: November
-    ru: ноябрь
+    ru: ноября
     tt: ноябрь
   - en: December
-    ru: декабрь
+    ru: декабря
     tt: декабрь

@@ -38,6 +38,14 @@ layout: with-header-footer
           <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
             {% include date.html date=post.date %}
           </time>
+          {% if post.last_modified %}
+          <span class="post-last-modified">
+            {{ site.data.i18n.posts.last_modified[page.lang] }}:
+            <time datetime="{{ post.last_modified | date_to_xmlschema }}" itemprop="dateModified">
+              {% include date.html date=post.last_modified %}
+            </time>
+          </span>
+          {% endif %}
         </span>
 
         {{ post.excerpt | markdownify }}
