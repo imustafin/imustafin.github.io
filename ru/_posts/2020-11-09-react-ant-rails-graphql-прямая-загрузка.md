@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Прямая загрузка файлов из React Ant Design в Active Storage через GraphQL в Ruby on Rails"
+title: "Прямая загрузка файлов из React и Ant Design в Active Storage через GraphQL в Ruby on Rails"
 date: 2020-11-09
+last_modified_at: 2020-11-15
 ref: ant-active-storage-upload
 ---
 В этом посте я хочу рассказать о том, как мы реализовали прямую загрузку
@@ -21,7 +22,7 @@ const Test = () => (
     name='avatar'
     action='https://example.com/avatar'
   >
-    <Button>Нажмите чтобы загрузить файл</Button>
+    <Button>Click to Upload</Button>
   </Upload>
 );
 ```
@@ -32,7 +33,7 @@ const Test = () => (
 ```
 
 В нашем проекте мы использовали представления Rails, а вся разметка создавалась
-только внутри React. Поэтому представления Rails нам не подходили.
+только внутри React. Поэтому нам нужно было найти другой способ для загрузки файлов.
 
 ## Решение
 Наше решение основано на статьях
@@ -43,7 +44,7 @@ const Test = () => (
 Прямая загрузка в Acitve Storage происходит в несколько этапов:
 1. Клиент извлекает метаданные файла
 2. Клиент отправляет метаданные на Сервер
-3. Сервер подготавливает загрзку вместе с Сервисом
+3. Сервер подготавливает загрузку вместе с Сервисом
 4. Сервер отправляет URL для загрузки и необходимые заголовки Клиенту
 5. Клиент загружает файл на Сервис, используя URL и заголовки, полученные с Сервера
 
@@ -117,6 +118,8 @@ end
 [пакете `@types/rails__activestorage`](https://www.npmjs.com/package/@types/rails__activestorage).
 
 ```ts
+import { FileChecksum } from '@rails/activestorage/src/file_checksum';
+
 const calculateChecksum = (file: File): Promise<string> => (
   new Promise((resolve, reject) => (
     FileChecksum.create(file, (error, checksum) => {
@@ -156,6 +159,7 @@ class Test extends React.Component {
 Сейчас мы можем реализовать функцию, которая выполнит XHR для прямой загрузки:
 ```ts
 import { RcCustomRequestOptions } from 'antd/lib/upload/interface';
+import { BlobUpload } from '@rails/activestorage/src/blob_upload';
 
 class Test extends React.Component {
   customRequest(options: RcCustomRequestOptions): void {
@@ -185,7 +189,7 @@ class Test extends React.Component {
 }
 ```
 
-Сейчас, когда у нас есть функции `beforeUpload` и `customRequest`, мы
+Далее, когда у нас есть функции `beforeUpload` и `customRequest`, мы
 можем использовать их в хуках компонента Upload:
 ```tsx
 class Test extends React.Component {
@@ -206,7 +210,7 @@ class Test extends React.Component {
 ```
 
 Не забудьтье обновить маршруты Rails. Если вы перенаправляете все запросы
-реакту:
+в React:
 ```ruby
 match '*path', to: 'react#index', via: :all
 ```

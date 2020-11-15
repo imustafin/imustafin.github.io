@@ -2,7 +2,7 @@
 layout: post
 title: "React Ant Design Direct File Upload to Active Storage with GraphQL in Ruby on Rails"
 date: 2020-11-09
-last_modified_at: 2020-11-11
+last_modified_at: 2020-11-15
 ref: ant-active-storage-upload
 ---
 In this blog post I want to tell you how we implemented direct file uploads
@@ -34,8 +34,8 @@ handle the uploaded file.
 <%= form.file_field :avatar %>
 ```
 
-In our project we were not using Rails views and the layout was rendered
-only by React, because of this Rails views did not suit our case.
+We were not using Rails views in this project before and the layout was rendered
+only by React, because of this we needed some other way to upload files.
 
 ## Solution
 The solution is based on articles
@@ -124,6 +124,8 @@ provided in the [`@rails/activestorage` package](https://www.npmjs.com/package/@
 the [`@types/rails__activestorage` package](https://www.npmjs.com/package/@types/rails__activestorage).
 
 ```ts
+import { FileChecksum } from '@rails/activestorage/src/file_checksum';
+
 const calculateChecksum = (file: File): Promise<string> => (
   new Promise((resolve, reject) => (
     FileChecksum.create(file, (error, checksum) => {
@@ -164,6 +166,7 @@ class Test extends React.Component {
 Now we are ready to implement a function which will do the direct upload XHR:
 ```ts
 import { RcCustomRequestOptions } from 'antd/lib/upload/interface';
+import { BlobUpload } from '@rails/activestorage/src/blob_upload';
 
 class Test extends React.Component {
   customRequest(options: RcCustomRequestOptions): void {
