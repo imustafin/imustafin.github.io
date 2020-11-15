@@ -4,9 +4,9 @@ title: "React һәм Ant Design-дан Active Storage-га GraphQL аша тур
 date: 2020-11-15
 ref: ant-active-storage-upload
 ---
-Бу блог постта без ничек файлларны Ruby on Rails (Rails) һәм Active Storage
+Бу блог постта Ruby on Rails (Rails) һәм Active Storage
 серверга React TypeScript кушымтадан Ant Design һәм GraphQL API кулланып
-туры файл йөкләүне ясадык турында язасым килә.
+туры файл йөкләүне ничек ясадык турында язасым килә.
 
 ## Проблема
 Бер яктан, Ant Design библиотекасының Upload компоненты файл сайлау һәм
