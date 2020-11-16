@@ -2,6 +2,7 @@
 layout: post
 title: "React һәм Ant Design-дан Active Storage-га GraphQL аша туры файл йөкләү"
 date: 2020-11-15
+last_modified_at: 2020-11-17
 ref: ant-active-storage-upload
 ---
 Бу блог постта Ruby on Rails (Rails) һәм Active Storage
@@ -204,7 +205,7 @@ class Test extends React.Component {
 }
 ```
 
-Rails-ның юлларны яңартырга онытмагыз. Әгәр сез бөтен таләплерне
+Rails-ның юлларны яңартырга онытмагыз. Әгәр сез бөтен таләпләрне
 React-ка юнәлешәсез:
 ```ruby
 match '*path', to: 'react#index', via: :all
