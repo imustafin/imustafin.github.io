@@ -3,7 +3,7 @@ layout: null
 include_in_sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {% assign everything = site.posts | concat: site.pages | where: "include_in_sitemap", true %}
   {% for page in everything %}
     <url>
@@ -13,6 +13,18 @@ include_in_sitemap: false
       {% else %}
         <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
       {% endif %}
+      {% assign translations = everything | where: "ref", page.ref %}
+      {% for translation in translations %}
+        <xhtml:link
+            rel="alternate"
+            {% if translation.lang %}
+              hreflang="{{ translation.lang }}"
+            {% else %}
+              hreflang="x-default"
+            {% endif %}
+            href="{{ translation.url | absolute_url }}"
+        />
+      {% endfor %}
     </url>
   {% endfor %}
 </urlset>
