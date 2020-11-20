@@ -1,0 +1,18 @@
+---
+layout: null
+include_in_sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% assign everything = site.posts | concat: site.pages | where: "include_in_sitemap", true %}
+  {% for page in everything %}
+    <url>
+      <loc>{{ page.url | absolute_url }}</loc>
+      {% if page.last_modified_at %}
+        <lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
+      {% endif %}
+    </url>
+  {% endfor %}
+</urlset>

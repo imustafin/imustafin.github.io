@@ -36,6 +36,7 @@ defaults:
       path: ""
     values:
       last_modified_at: false
+      include_in_sitemap: true
   - scope:
       path: en
     values:

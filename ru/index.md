@@ -7,6 +7,7 @@ seo:
     - https://github.com/imustafin
     - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 description: Личный сайт и блог Мустафина Ильгиза
+date: 2020-11-06
 ---
 # Здравствуйте!
 
