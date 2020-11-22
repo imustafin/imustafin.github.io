@@ -3,7 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: index
-lang: false
-ref: index
+lang: null
+ref: home
 date: 2020-11-05
 ---

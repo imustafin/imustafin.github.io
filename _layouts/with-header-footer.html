@@ -9,8 +9,8 @@ layout: bare
     {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
     <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
 
-    {% assign pages=site.pages | where: "ref", page.ref | sort: "lang" %}
-    {% assign posts=site.posts | where: "ref", page.ref | sort: "lang" %}
+    {% assign pages=site.pages | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
+    {% assign posts=site.posts | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
     {% assign everything=pages | concat: posts %}
     {% for translation in everything %}
       {% if page.lang != translation.lang %}
