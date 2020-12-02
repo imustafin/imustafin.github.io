@@ -22,7 +22,7 @@ layout: with-header-footer
   <h1>{{ site.data.i18n.home.latest-posts[page.lang] }}</h1>
 
   <ul class="post-list">
-  {% assign refs=site.posts | sort: "date" | map: "ref" | uniq %}
+  {% assign refs=site.posts | sort: "date" | reverse | map: "ref" | uniq %}
   {% for ref in refs %}
     {% assign translations=site.posts | where: "ref", ref | sort: "lang" %}
     {% assign post=translations | where: "lang", page.lang | first %}
