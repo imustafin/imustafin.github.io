@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Прямая загрузка файлов из React и Ant Design в Active Storage через GraphQL в Ruby on Rails"
+title: "Прямая загрузка файлов в Rails React Ant через GraphQL"
 date: 2020-11-09
-last_modified_at: 2020-11-15
+last_modified_at: 2020-12-03
 ref: ant-active-storage-upload
 ---
-В этом посте я хочу рассказать о том, как мы реализовали прямую загрузку
-файлов на Ruby on Rails (Rails) сервер с Active Storage из React TypeScript приложения,
+Реализация прямой загрузки
+файлов в Ruby on Rails Active Storage из React TypeScript приложения,
 используя Ant Design и GraphQL API.
 
 ## Проблема
