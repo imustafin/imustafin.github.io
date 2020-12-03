@@ -12,13 +12,8 @@ internationalization to the frontend. There are several options for this.
 You can implement the internationalization code yourself or you can pick
 something already implemented.
 
-While we talk about [the `i18next` package][i18next], the 
-general idea of using the Asset Pipeline
-should be applicable to other libraries or even to your own implementation
-of the internationalization code.
-
 While we talk about specific libraries, the mentioned problems and solutions
-should apply to any tools you might use.
+should apply to other tools you might use.
 
 We will start by adding `react-i18next` to a `react-rails` application with
 translation files located in the `public` directory, then we will
