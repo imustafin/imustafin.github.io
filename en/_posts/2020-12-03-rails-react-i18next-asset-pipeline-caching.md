@@ -2,6 +2,7 @@
 layout: post
 title: "React i18next with Rails Asset Pipeline and efficient caching"
 date: 2020-12-03
+last_modified_at: 2020-12-04
 ref: rails-react-asset-pipeline-caching
 ---
 How to use Ruby on Rails Asset Pipeline to serve and efficiently cache translation files.
@@ -99,14 +100,14 @@ for the Tatar version. We can put these files in the `public` directory and
 they will be available at the required paths.
 
 The English translations will be located in `public/locales/en/translation.json`:
-```
+```json
 {
   "helloWorld": "Hello, world!"
 }
 ```
 
 The Tatar translations will be located in `public/locales/tt/translation.json`:
-```
+```json
 {
   "helloWorld": "Сәлам, дөнья!"
 }
@@ -173,7 +174,7 @@ these should result in two files located in these locations:
 * `app/assets/locales/tt/translation.json`
 
 You can check that the translation files are recognized by the Asset Pipeline
-in the Rails console (`rails c`):
+in the Rails console (`bundle exec rails c`):
 ```console?lang=ruby
 > ActionController::Base.helpers.asset_path('en/translation.json')
 "/assets/en/translation-6804b48978898b3301e60a2df30ae539fcf7d2370c47fe9ca3f440879163a0f9.json"
