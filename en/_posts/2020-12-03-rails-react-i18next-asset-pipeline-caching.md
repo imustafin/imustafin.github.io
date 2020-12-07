@@ -1,36 +1,28 @@
 ---
 layout: post
-title: "React i18next with Rails Asset Pipeline and efficient caching"
+title: "React-i18next in Rails: caching with Asset Pipeline"
 date: 2020-12-03
-last_modified_at: 2020-12-04
+last_modified_at: 2020-12-07
 ref: rails-react-asset-pipeline-caching
 ---
-How to use Ruby on Rails Asset Pipeline to serve and efficiently cache translation files.
+How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.
 
-Suppose you have a Ruby on Rails (Rails) application with frontend using React
-(for example, with the [`react-rails` gem][react-rails]) and you want to add
-internationalization to the frontend. There are several options for this.
-You can implement the internationalization code yourself or you can pick
-something already implemented.
+Here we will cover the simplest way of internationalizing
+a `react-rails` application, then we will
+discuss the caching problem of this approach,
+and finally we will use the Asset Pipeline to achieve efficient caching
+of the translation files.
 
-While we talk about specific libraries, the mentioned problems and solutions
-should apply to other tools you might use.
+## Adding react-i18next
+In this section we will add `react-i18next` and serve
+the translation files from the `public` directory.
 
-We will start by adding `react-i18next` to a `react-rails` application with
-translation files located in the `public` directory, then we will
-see the problems with caching of this approach, and finally we will move the translation
-files to the Asset Pipeline to solve the problems of caching.
-
-## Adding react-i18next to the application
-In this section we will add `react-i18next` to the application and serve
-the translation files as raw files from the `public` directory.
-
-To start using i18next we need to add some dependencies:
+First, let's add the required dependencies:
 ```shell
 yarn add i18next i18next-http-backend react-i18next
 ```
 
-Initialize i18next in the pack files (e.g. `app/javascript/packs/application.js`):
+Initialize `i18next` in the required pack files (e.g. `app/javascript/packs/application.js`):
 ```js
 import i18n from 'i18next';
 import I18nextHttpBackend from 'i18next-http-backend';
@@ -44,10 +36,10 @@ i18n
 
 [The `i18next-http-backend` plugin][i18next-http-backend] is responsible
 for downloading the needed translation files for the current language and
-`react-i18next` integrates `i18next` into the Rails world.
+`react-i18next` makes `i18next` available to the React application itself.
 
-Now we can implement a basic demo with an internationalized "Hello, world!"
-example:
+Now we can implement an internationalized version of a "Hello, world!"
+page with an option to switch the language:
 ```jsx
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -79,24 +71,20 @@ const HelloWorld = () => (
 export default HelloWorld;
 ```
 
-If you render this component, you will see the string "helloWorld". This
-is because we have not yet provided the translated version for this key and
+If you look at the resulting page, you will see the string "helloWorld"
+because we have not yet provided the translations for the `helloWorld` key and
 `i18next` falls back to the key if the translation is not found.
-
-Clicking on one of the two buttons should switch the language of the message.
-Currently we will get the same fallback message because the translations are not
-defined yet. Let's fix this problem.
 
 By default, `i18next-http-backend` expects translation files to be available
 at {% raw %}`/locales/{{lng}}/{{ns}}.json`{% endraw %} path
 (see [the `loadPath` option][i18next-http-backend-options]),
 where {% raw %}`{{lng}}`{% endraw %} is the language code
-and {% raw %}`{{ns}}`{% endraw %} is the namespace (not covered in this post). The default namespace
+and {% raw %}`{{ns}}`{% endraw %} is the namespace. The default namespace
 is called `translation` (see [the `defaultNS` option][i18next-options-languages-namespaces-resources]).
 
-In our case the server needs to provide two paths:
+So, in our case the server needs to provide two paths:
 `/locales/en/translation.json` for the English version and `/locales/tt/translation.json`
-for the Tatar version. We can put these files in the `public` directory and
+for the Tatar version. We can create the translation JSON files in the `public` directory and
 they will be available at the required paths.
 
 The English translations will be located in `public/locales/en/translation.json`:
