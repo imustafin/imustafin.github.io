@@ -2,7 +2,7 @@
 layout: post
 title: "React-i18next in Rails: caching with Asset Pipeline"
 date: 2020-12-03
-last_modified_at: 2020-12-07
+last_modified_at: 2020-12-09
 ref: rails-react-asset-pipeline-caching
 ---
 How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.
@@ -104,19 +104,18 @@ The Tatar translations will be located in `public/locales/tt/translation.json`:
 With these files in place, you can refresh the page and observe the buttons working.
 But there is a catch! Read further to see where this solution can break.
 
-## The caching problem
-When serving the translation files directly (like when serving from `public` in Rails), the clients
-can have the newer version of the frontend code while still using the older version of the
-translations from the cache. If the new code is deployed, it can reference the
-new translations not present in the old translation files and by default `i18next`
-will fall back to displaying the translation keys by default.
+## Problems due to caching
+You may notice that if you deploy a new version of your application,
+browser runs the new version of your code, but sometimes
+the old version of the translations are used, which results in
+displaying the translation keys instead of the translations themselves.
 
-While there are ways to configure caching with the `requestOptions`
-option of `i18next-http-backend`, it becomes your responsibility to
-configure caching correctly.
+This can be because of the old version of translation files being
+cached.
 
 One solution to this problem is disabling caching completely with server configurations,
-or appending the current date to the download url like
+disabling caching with the `requestOptions` option of `i18next-http-backend`,
+or even appending the current date to the download URL like
 [in this StackOverflow answer][stackoverflow-cb] (adapted to `i18next-http-backend`):
 {% raw %}
 ```js
@@ -125,37 +124,29 @@ or appending the current date to the download url like
 }
 ```
 {% endraw %}
-It is not optimal as on each refresh the translation files will be downloaded
-once again.
 
-Another approach is to use something like
-[the `i18next-localstorage-backend` plugin][i18next-localstorage-backend]
-and configuring a small enough expiration time so that the stale translations
-are not used for long. However, with this approach there is still a possibility
-that the old translations have not yet expired but the code is already updated.
+However, it is not optimal to disable caching
+as on each refresh the translation files will be downloaded once again.
 
-We can also use the `versions` option of `i18next-localstorage-backend` to
-update the translation files when the new version is released, but you
-would need to bump the version on each change of the translations.
+A better approach is to properly configure caching for the translation files.
+This can be done in several ways and here we will talk about using
+the default approach used in Rails for such tasks, the Asset Pipeline.
 
-As an alternative, we can use a hash of the translation file as its version
-so that the version will change each time there is a change in the translation
-file. This approach is very similar to how digests work in the Asset Pipeline,
-so read further to see this solution in action.
+## Using Asset Pipeline for caching i18next translation files
+In this section we will see how to use Rails Asset Pipeline to [rev][sauders-rev] the
+translation file paths.
 
-## Using Asset Pipeline to efficiently cache translations
-In this post, we will use the Rails Asset Pipeline to [rev][sauders-rev] the
-translation file paths. These days, Asset Pipeline
-[appends][asset-pipeline-fingerprinting] a hash (fingerprint) of the file
-contents to the file name. This way the clients can cache forever the current
-version and they will download the new version if the new code which uses the new
-hash of the translation files is deployed.
+Asset Pipeline
+[appends][asset-pipeline-fingerprinting] a hash of the file
+contents to the file name, this way clients can cache such files forever and
+when the new version will be released, it will have a different name and
+clients will be able to download the new version by its new name.
 
-We will include the translation files in the Asset Pipeline and
-use the `asset_path` Ruby helper to write the custom `loadPath` function in JavaScript.
+Now we will pipe the translation files through the Asset Pipeline
+and then configure `i18next-http-backend` to load files from the Asset Pipeline.
 
 ### Including the translation files in the Asset Pipeline
-To include the translations json files in the Asset Pipeline we just need
+For translations JSON files to appear in the Asset Pipeline we just need
 to move them from the `public` directory to `app/assets`. In our example,
 these should result in two files located in these locations:
 * `app/assets/locales/en/translation.json`
@@ -202,7 +193,7 @@ This is a change [introduced in Sprockets 4][sprockets-4-migration-guide] (empha
 > If you are using Sprockets 4, Rails changes its default logic for determining top-level targets.
 > It will now use **only** a file at `./app/assets/config/manifest.js` for specifying top-level targets;
 
-### Using assets in JavaScript
+### Getting Asset Pipeline paths in JavaScript
 After moving the translations to Asset Pipeline, they are not available by
 their original filenames like `/locales/en/translation.json` but should be
 accessed by their new names which include hashes like `/assets/en/translations-680...0f9.json`.
