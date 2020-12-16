@@ -2,7 +2,7 @@
 layout: post
 title: "React-i18next in Rails: caching with Asset Pipeline"
 date: 2020-12-03
-last_modified_at: 2020-12-09
+last_modified_at: 2020-12-16
 ref: rails-react-asset-pipeline-caching
 ---
 How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.
@@ -171,8 +171,8 @@ Then maybe you are using Sprockets 4, in this case you need to update
 the manifest file.
 
 #### Updating the asset manifest file for Sprockets 4
-Depending on the `sprockets` gem version you might or might not to do the
-following step. You can check the version by running:
+Depending on the `sprockets` gem version you might or might not
+need to update the assets manifest file. You can check the version by running:
 ```shell
 bundle info sprockets
 ```
@@ -199,7 +199,7 @@ their original filenames like `/locales/en/translation.json` but should be
 accessed by their new names which include hashes like `/assets/en/translations-680...0f9.json`.
 
 These new file names are available in Ruby using the `asset_path` helper
-but they are not available directly in JavaScript. However, we can use Erb templates
+but they are not available directly in JavaScript. Instead, we can use Erb templates
 to substitute values computed by Ruby into JavaScript code.
 
 Add Erb support to `webpacker` by following the [official instructions][webpacker-erb].
