@@ -11,4 +11,5 @@
 [sprockets-4-migration-guide]: https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs
 [webpacker-erb]: https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb
 [i18next-http-backend-lngs-nss]: https://github.com/i18next/i18next-http-backend/pull/35
+[mdn-ru-revved-resources]: https://developer.mozilla.org/ru/docs/Web/HTTP/Кэширование#Обновление_статических_ресурсов_Revved_resources
 
