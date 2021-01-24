@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "React-i18next в Rails: кеширование через файлопровод"
-date: 2020-12-16
+date: 2021-01-25
 ref: rails-react-asset-pipeline-caching
 ---
 Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного
@@ -9,9 +9,9 @@ ref: rails-react-asset-pipeline-caching
 
 Здесь мы рассмотрим простейший способ интернационализации `react-rails` приложения,
 потом мы обсудим проблемы с кешированием этого подхода, и, наконец,
-мы подключим файлопровод (Asset Pipeline) для эффективного кеширования файлов перевода.
+мы подключим файлопровод (Asset Pipeline) решения этих проблем.
 
-## Добавление react-i18next
+## Использование react-i18next
 В этой секции мы добавим `react-i18next` в приложение и сделаем файлы переводов
 доступными из папки `public`.
 
@@ -143,7 +143,7 @@ export default HelloWorld;
 Сейчас мы рассмотрим как пустить файлы переводов по файлопроводу, а затем
 настроим `i18next-http-backend` чтобы он брал файлы из файлопровода.
 
-### Перемешение файлов переводов в файлопровод
+### Перемещение файлов переводов в файлопровод
 Чтобы файлы переводов оказались в файлопроводе, нам нужно всего лишь
 переместить их из директории `public` в директорию `app/assets`. В нашем случае
 у нас получится два файла:
@@ -161,7 +161,7 @@ export default HelloWorld;
 > ActionController::Base.helpers.asset_path('ru/translation.json')
 Traceback (most recent call last):
         1: from (irb):1
-Sprockets::Rails::Helper::AssetNotPrecompiled (en/translation.json)
+Sprockets::Rails::Helper::AssetNotPrecompiled (ru/translation.json)
 ```
 
 То, возможно, вы используете Sprockets 4. В таком случае вам нужно
@@ -195,7 +195,7 @@ bundle info sprockets
 
 ### Получение путей файлов после файлопровода из JavaScript
 После перемещения файлов переводов в файлопровод, их больше нельзя получить
-просто по их именам (`/locales/en/translation.json`). Теперь в их именах
+просто по их именам (`/locales/ru/translation.json`). Теперь в их именах
 должны присутствовать хеши (`/assets/ru/translations-151...d14.json`).
 
 Эти новые имена можно получить в Ruby из помощника `asset_path`, но их
