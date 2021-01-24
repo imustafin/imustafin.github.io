@@ -2,7 +2,7 @@
 layout: post
 title: "Rails React Ant-та GraphQL аша туры файл йөкләү"
 date: 2020-11-15
-last_modified_at: 2020-12-03
+last_modified_at: 2021-01-25
 ref: ant-active-storage-upload
 ---
 Ruby on Rails һәм Active Storage
@@ -12,7 +12,7 @@ Ruby on Rails һәм Active Storage
 ## Проблема
 Бер яктан, Ant Design библиотекасының Upload компоненты файл сайлау һәм
 серверга йөкләү өчен кулланыла ала. Гадәттә, бу компонентны куллану бик
-җиңел: компонентка йөкләү URL-ны бирсәгез, Ant үзе файл кушып POST таләбе ясачак.
+җиңел: компонентка йөкләү URL-ны бирсәгез, Ant үзе файл кушып POST таләбе ясаячак.
 
 ```jsx
 import { Upload, Button } from 'antd';
@@ -32,7 +32,7 @@ const Test = () => (
 <%= form.file_field :avatar, direct_upload: true %>
 ```
 
-Проектыбызда без Rails күрсәтелешләрне кулланмадык һәм бөтен разметкасыны React-та
+Проектыбызда без Rails күрсәтелешләрне кулланмадык һәм бөтен разметканы React-та
 гына ясадык. Шуңа күрә, безгә башка файл йөкләү ысулы кирәк.
 
 ## Чишелеш
@@ -103,11 +103,11 @@ module Mutations
 end
 ```
 
-Хәзер клиент бу мутация кулланып туры йөкләүне әзерленә ала.
+Хәзер клиент бу мутацияне кулланып туры йөкләүне әзерли ала.
 
 ### Клиент ягы
-Мутациянең `checksum`-дан бөтен параметрларның мәгънәсе ачык күрәнелә.
-Контроль сумма юлы махсус ысулда төзәлергә тиеш. Бу ысулы [`@rails/activestorage`
+Мутациянең `checksum`-дан бөтен параметрларның мәгънәсе ачык күренелә.
+Контроль сумма юлы махсус ысулда төзеләргә тиеш. Бу ысул [`@rails/activestorage`
 пакетында](https://www.npmjs.com/package/@rails/activestorage) урнашкан.
 
 **Бонус!** TypeScript өчен тип билгеләмәләр
@@ -132,7 +132,7 @@ const calculateChecksum = (file: File): Promise<string> => (
 ```
 
 Ant библиотекасындагы Upload компоненты `beforeUpload` функцияне ала, һәм без
-шу функциядә сервердан йөкләү көйләүләрне алачакбыз. Бу үрнәктә без бер файл гына
+бу функциядә сервердан йөкләү көйләүләрне алачакбыз. Бу үрнәктә без бер файл гына
 йөклибез һәм көйләүләрне компонентның халәттә саклыйбыз.
 ```ts
 import { RcFile } from 'antd/lib/upload';
@@ -152,7 +152,7 @@ class Test extends React.Component {
 }
 ```
 
-Хәзер без туры йөкләү XHR таләп итү торган функцияне ясый алабыз:
+Хәзер без туры йөкләү XHR таләп итә торган функцияне ясый алабыз:
 ```ts
 import { RcCustomRequestOptions } from 'antd/lib/upload/interface';
 import { BlobUpload } from '@rails/activestorage/src/blob_upload';
@@ -186,7 +186,7 @@ class Test extends React.Component {
 ```
 
 Аннары без `beforeUpload` һәм `customRequest` функцияләрне Upload компонентның
-һукларда куллана алабыз:
+һукларында куллана алабыз:
 ```tsx
 class Test extends React.Component {
   render() {
@@ -205,8 +205,8 @@ class Test extends React.Component {
 }
 ```
 
-Rails-ның юлларны яңартырга онытмагыз. Әгәр сез бөтен таләпләрне
-React-ка юнәлешәсез:
+Rails-ның юлларын яңартырга онытмагыз. Әгәр сез бөтен таләпләрне
+React-ка юнәлешсәгез:
 ```ruby
 match '*path', to: 'react#index', via: :all
 ```
@@ -217,4 +217,4 @@ match '*path', to: 'react#index', via: :all,
   constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
 ```
 
-Нәкъ менә шулай. Туры йөкләүләрегездә бәхетле булуы телим :relaxed:
+Нәкъ менә шулай. Туры йөкләүләрегездә бәхетле булуыгызны телим :relaxed:
