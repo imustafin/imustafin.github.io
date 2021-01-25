@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "React-i18next Rails-та: файлүткәргеч аша кәшләү"
-date: 2021-01-10
+date: 2021-01-25
 ref: rails-react-asset-pipeline-caching
 ---
 
