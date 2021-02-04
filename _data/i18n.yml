@@ -18,6 +18,10 @@ site:
       en: Main Page
       ru: Главная страница
       tt: Баш бит
+    dictionary:
+      en: Dictionary
+      ru: Словарь
+      tt: Сүзлек
 
 posts:
   last_modified:
