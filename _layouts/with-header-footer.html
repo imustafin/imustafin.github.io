@@ -5,24 +5,26 @@ layout: bare
   <section class="page-header-home">
     <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
 
-    <ul class="navigation">
+    <div class="navigation-wrapper">
+      <div></div>
 
-      {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
-      <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
+      <ul class="links menu-links">
+        {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
+        <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
 
-      {% assign dictionary=site.pages | where: "ref", "dictionary" | where: "lang", page.lang | first %}
-      <li><a href="{{ dictionary.url }}">{{ site.data.i18n.site.navigation.dictionary[page.lang] }}</a></li>
+        {% assign dictionary=site.pages | where: "ref", "dictionary" | where: "lang", page.lang | first %}
+        <li><a href="{{ dictionary.url }}">{{ site.data.i18n.site.navigation.dictionary[page.lang] }}</a></li>
+      </ul>
 
-      {% assign pages=site.pages | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
-      {% assign posts=site.posts | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
-      {% assign everything=pages | concat: posts %}
-      {% for translation in everything %}
-        {% if page.lang != translation.lang %}
+      <ul class="links end-links navigation-first">
+        {% assign pages=site.pages | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
+        {% assign posts=site.posts | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
+        {% assign everything=pages | concat: posts %}
+        {% for translation in everything %}
           <li><a lang="{{ translation.lang }}" href="{{ translation.url }}">{{ site.data.i18n.languages[translation.lang] }}</a></li>
-        {% endif %}
-      {% endfor %}
-
-    </ul>
+        {% endfor %}
+      </ul>
+    </div>
   </section>
 
   <div class="content">

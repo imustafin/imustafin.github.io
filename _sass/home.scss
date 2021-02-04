@@ -4,17 +4,62 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+
   a {
     color: white;
   }
 
-  .navigation {
-    list-style-type: none;
-    padding-left: 0;
+  .navigation-wrapper {
+    display: flex;
+    flex-direction: row;
 
-    li {
-      display: inline;
-      margin-left: 1rem;
+    padding-bottom: 0.5rem;
+
+    @include small {
+      flex-direction: column;
+    }
+
+    @include medium {
+      flex-direction: column;
+    }
+
+    > * {
+      flex: 1;
+    }
+
+    .links {
+      margin: 0;
+
+      flex: 1;
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        display: inline;
+        margin-left: 1rem;
+      }
+    }
+
+    .menu-links {
+      flex: 2;
+      font-weight: bold;
+
+      padding-bottom: 1rem;
+
+      @include large {
+        padding-bottom: inherit;
+      }
+    }
+
+    .end-links {
+      @include large {
+        display: flex;
+        justify-content: end;
+      }
     }
   }
 }
