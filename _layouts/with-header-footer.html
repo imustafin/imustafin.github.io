@@ -1,32 +1,36 @@
 ---
 layout: bare
 ---
-<section class="page-header-home">
-  <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
+<div class="with-header-footer">
+  <section class="page-header-home">
+    <h1 class="project-name">{{ site.data.i18n.site.title[page.lang] }}</h1>
 
-  <ul class="navigation">
+    <ul class="navigation">
 
-    {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
-    <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
+      {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
+      <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
 
-    {% assign pages=site.pages | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
-    {% assign posts=site.posts | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
-    {% assign everything=pages | concat: posts %}
-    {% for translation in everything %}
-      {% if page.lang != translation.lang %}
-        <li><a lang="{{ translation.lang }}" href="{{ translation.url }}">{{ site.data.i18n.languages[translation.lang] }}</a></li>
-      {% endif %}
-    {% endfor %}
+      {% assign pages=site.pages | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
+      {% assign posts=site.posts | where: "ref", page.ref | where_exp: "x", "x.lang" | sort: "lang" %}
+      {% assign everything=pages | concat: posts %}
+      {% for translation in everything %}
+        {% if page.lang != translation.lang %}
+          <li><a lang="{{ translation.lang }}" href="{{ translation.url }}">{{ site.data.i18n.languages[translation.lang] }}</a></li>
+        {% endif %}
+      {% endfor %}
 
-  </ul>
-</section>
+    </ul>
+  </section>
 
-{{ content }}
-
-<footer class="site-footer">
-  <div id="footer-contacts">
-    <a href="https://t.me/imustafin">Telegram</a>
-    <a href="https://github.com/imustafin">GitHub</a>
-    <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178">LinkedIn</a>
+  <div class="content">
+    {{ content }}
   </div>
-</footer>
+
+  <footer class="site-footer">
+    <div id="footer-contacts">
+      <a href="https://t.me/imustafin">Telegram</a>
+      <a href="https://github.com/imustafin">GitHub</a>
+      <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178">LinkedIn</a>
+    </div>
+  </footer>
+</div>
