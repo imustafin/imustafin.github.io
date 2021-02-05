@@ -1,0 +1,5 @@
+---
+date: 2021-02-05
+ref: dictionary-hook
+---
+# Hook

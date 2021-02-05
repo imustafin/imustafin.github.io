@@ -1,6 +1,7 @@
 ---
 date: 2021-02-04
 ref: dictionary
+layout: dictionary_home
 ---
 # Dictionary
 This is the main page of my very subjective English-Russian-Tatar

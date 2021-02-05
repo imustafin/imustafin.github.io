@@ -35,6 +35,25 @@ languages:
   ru: Русский
   tt: Татарча
 
+dictionary:
+  language-names:
+    en:
+      en: 'English:'
+      ru: 'Russian:'
+      tt: 'Tatar:'
+    ru:
+      en: англ.
+      ru: рус.
+      tt: тат.
+    tt:
+      en: ингл.
+      ru: рус.
+      tt: тат.
+  words:
+    en: Words
+    ru: Слова
+    tt: Сүзләр
+
 months:
   - en: January
     ru: января

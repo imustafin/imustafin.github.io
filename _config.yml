@@ -48,3 +48,15 @@ defaults:
       path: tt
     values:
       lang: tt
+  - scope:
+      path: en/dictionary/word
+    values:
+      in_dictionary: true
+  - scope:
+      path: ru/словарь/слово
+    values:
+      in_dictionary: true
+  - scope:
+      path: tt/сүзлек/сүз
+    values:
+      in_dictionary: true
