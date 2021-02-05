@@ -11,7 +11,7 @@ layout: default
       {{ site.data.i18n.dictionary.translation.target-language[page.lang][tr.lang] }}:
     </h1>
 
-    <b>{{ tr.title }}</b> — {{ tr.definition }}
+    <b><a href="{{tr.url | absolute_url }}">{{ tr.title }}</a></b> — {{ tr.definition }}
   </section>
 {% endfor %}
 
