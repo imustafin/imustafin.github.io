@@ -38,21 +38,45 @@ languages:
 dictionary:
   language-names:
     en:
-      en: 'English:'
       ru: 'Russian:'
       tt: 'Tatar:'
     ru:
       en: англ.
-      ru: рус.
       tt: тат.
     tt:
       en: ингл.
       ru: рус.
-      tt: тат.
   words:
     en: Words
     ru: Слова
     tt: Сүзләр
+  translation:
+    pre-word:
+      en: Translation of the word
+      ru: Перевод слова
+      tt: ''
+    post-word:
+      en: from English to
+      ru: с русского на
+      tt: сүзенең татарчадан
+    target-language:
+      en:
+        ru: Russian
+        tt: Tatar
+      ru:
+        en: английский
+        tt: татарский
+      tt:
+        en: инглизчәгә тәрҗемәсе
+        ru: русчага тәрҗемәсе
+    pre-definition:
+      en: Definition of the word
+      ru: Определение слова
+      tt: ''
+    post-definition:
+      en: ''
+      ru: ''
+      tt: сүзенең билгелемәсе
 
 months:
   - en: January
