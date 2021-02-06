@@ -24,4 +24,20 @@ layout: default
   <b>{{ page.title }}</b> — {{ page.definition }}
 </section>
 
-{{ content }}
+{% if page.translation-etymology %}
+  <section class="translation-header">
+    <h1>
+      {{ site.data.i18n.dictionary.translation-etymology[page.lang] }}
+    </h1>
+    {{ page.translation-etymology | markdownify }}
+  </section>
+{% endif %}
+
+{% if page.translation-sources %}
+  <section class="translation-header">
+    <h1>
+      {{ site.data.i18n.dictionary.translation-sources[page.lang] }}
+    </h1>
+    {{ page.translation-sources | markdownify }}
+  </section>
+{% endif %}

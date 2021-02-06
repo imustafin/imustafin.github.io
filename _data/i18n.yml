@@ -77,6 +77,14 @@ dictionary:
       en: ''
       ru: ''
       tt: сүзенең билгелемәсе
+  translation-etymology:
+    en: Etymology of the Translation
+    ru: Этимология перевода
+    tt: Тәрҗемәнең этимологиясе
+  translation-sources:
+    en: Translation sources
+    ru: Источники перевода
+    tt: Тәрҗемәнең чыганаклары
 
 months:
   - en: January
