@@ -18,7 +18,7 @@ layout: default
           {{ p.title | escape }}
 
           {% assign trs=site.pages | where: "ref", p.ref | where_exp: "x", "x.lang != p.lang" | sort: "lang" %}
-          {% if trs %}
+          {% if trs.size > 0 %}
             (
               {%- assign first=true -%}
               {%- for tr in trs -%}
