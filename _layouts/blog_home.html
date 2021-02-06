@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+{{ content }}
+
+<section>
+  <h1>{{ site.data.i18n.blog.posts[page.lang] }}</h1>
+
+  <ul class="post-list">
+    {% include posts.html %}
+  </ul>
+</section>

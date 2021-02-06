@@ -9,11 +9,15 @@ layout: bare
       <div></div>
 
       <ul class="links menu-links">
-        {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
-        <li><a href="{{ home.url }}">{{ site.data.i18n.site.navigation.home[page.lang] }}</a></li>
+        {% assign sections="home,blog,dictionary" | split: "," %}
 
-        {% assign dictionary=site.pages | where: "ref", "dictionary" | where: "lang", page.lang | first %}
-        <li><a href="{{ dictionary.url }}">{{ site.data.i18n.site.navigation.dictionary[page.lang] }}</a></li>
+        {% for section in sections %}
+          {% assign sec=site.pages | where: "ref", section | where: "lang", page.lang | first %}
+
+          {% if sec %}
+            <li><a href="{{ sec.url }}">{{ site.data.i18n.site.navigation[section][page.lang] }}</a></li>
+          {% endif %}
+        {% endfor %}
       </ul>
 
       <ul class="links end-links navigation-first">

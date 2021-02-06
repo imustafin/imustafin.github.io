@@ -22,6 +22,10 @@ site:
       en: Dictionary
       ru: Словарь
       tt: Сүзлек
+    blog:
+      en: Blog
+      ru: Блог
+      tt: Блог
 
 posts:
   last_modified:
@@ -29,7 +33,12 @@ posts:
     ru: Последнее обновление
     tt: Соңгы үзгәреш
 
-  
+blog:
+  posts:
+    en: Posts
+    ru: Записи
+    tt: Язмалар
+
 languages:
   en: English
   ru: Русский

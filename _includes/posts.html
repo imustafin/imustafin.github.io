@@ -1,0 +1,48 @@
+{% assign refs=site.posts | sort: "date" | reverse | map: "ref" | uniq %}
+{% for ref in refs %}
+  {% assign translations=site.posts | where: "ref", ref | sort: "lang" %}
+  {% assign post=translations | where: "lang", page.lang | first %}
+  {% unless post %}
+    {% assign post=translations | first %}
+  {% endunless %}
+  <li>
+    <article>
+      <h2>
+        <a
+          class="post-link"
+          href="{{ post.url | absolute_url }}"
+          title="{{ post.title }}"
+        >
+          {{ post.title | escape }}
+        </a>
+      </h2>
+      <span class="post-meta">
+        <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+          {% include date.html date=post.date %}
+        </time>
+        {% if post.last_modified_at %}
+        <span class="post-last-modified">
+          {{ site.data.i18n.posts.last_modified[page.lang] }}:
+          <time datetime="{{ post.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">
+            {% include date.html date=post.last_modified_at %}
+          </time>
+        </span>
+        {% endif %}
+        <ul class="post-translations">
+          {% for translation in translations %}
+            <li>
+              <a
+                href="{{ translation.url | absolute_url }}"
+                title="{{ translation.title }}"
+              >
+                {{ site.data.i18n.languages[translation.lang] }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </span>
+
+      {{ post.excerpt | markdownify }}
+    </article>
+  </li>
+{% endfor %}
