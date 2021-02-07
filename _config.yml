@@ -27,6 +27,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
+  - favicon/
 
 permalink: none
 
