@@ -9,34 +9,7 @@ layout: default
   {% assign words=site.pages | where: "in_dictionary", true | where: "lang", page.lang | sort_natural: "title" %}
 
   <ul>
-    {% for p in words %}
-      <li>
-        <a
-          href="{{ p.url | absolute_url }}"
-          title="{{ p.title | escape }}"
-        >
-          {{ p.title | escape }}
-
-          {% assign trs=site.pages | where: "ref", p.ref | where_exp: "x", "x.lang != p.lang" | sort: "lang" %}
-          {% if trs.size > 0 %}
-            (
-              {%- assign first=true -%}
-              {%- for tr in trs -%}
-                {{ site.data.i18n.dictionary.language-names[page.lang][tr.lang] }}
-                {{ tr.title }}
-
-                {%- if first -%}
-                  ,
-                  {% assign first=false %}
-                {% endif %}
-              {%-  endfor -%}
-            )
-          {% endif %}
-        </a>
-        —
-        {{ p.definition }}
-      </li>
-    {% endfor %}
+    {% include words.html sort-by="title" reverse=false %}
   </ul>
 
 </section>

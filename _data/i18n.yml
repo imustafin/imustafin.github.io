@@ -4,9 +4,13 @@ home:
     ru: Ильгиз во дворце Топкапы, Стамбул, Турция
     tt: Ильгиз Топкапы сараенда, Истанбул, Төркия
   latest-posts:
-    en: Latest Posts
-    ru: Последние записи
-    tt: Соңгы язмалар
+    en: Latest Blog Posts
+    ru: Последние записи в блоге
+    tt: Соңгы блог язмалар
+  latest-dictionary:
+    en: Latest Dictionary Entries
+    ru: Последние статьи в словаре
+    tt: Соңгы сүзлек мәкаләләр
 
 site:
   title:
