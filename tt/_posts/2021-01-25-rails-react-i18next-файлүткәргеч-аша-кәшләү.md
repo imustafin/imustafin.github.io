@@ -2,6 +2,7 @@
 layout: post
 title: "React-i18next Rails-та: файлүткәргеч аша кәшләү"
 date: 2021-01-25
+last_modified_at: 2021-02-15
 ref: rails-react-asset-pipeline-caching
 ---
 
@@ -151,7 +152,7 @@ JavaScript эшли,  ләкин иске тәрҗемә файллар кула
 * `app/assets/locales/tt/translation.json`
 * `app/assets/locales/ru/translation.json`
 
-Файлүткәргеч файлларны күрәме, консольда тикшерегез (`bundle exec rails c`):
+Файлүткәргеч файлларны күрәме-юкмы икәнен, консольда тикшерегез (`bundle exec rails c`):
 ```console?lang=ruby
 > ActionController::Base.helpers.asset_path('tt/translation.json')
 "/assets/tt/translation-8abc3942c062c7f43a1409665fcea91711a8864e4c03adfbf28ccd4ded8d99f8.json"
