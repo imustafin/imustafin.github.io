@@ -2,8 +2,8 @@
 date: 2021-02-04
 ref: dictionary
 layout: dictionary_home
+title: Dictionary
 ---
-# Dictionary
 This is the main page of my very subjective English-Russian-Tatar
 dictionary of spoken language.
 
