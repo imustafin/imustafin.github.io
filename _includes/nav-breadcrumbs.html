@@ -1,0 +1,30 @@
+<nav>
+  <ol
+    class="breadcrumbs"
+    vocab="https://schema.org/"
+    typeof="BreadcrumbList"
+  >
+      {% for crumb in breadcrumbs %}
+        <li property="itemListElement" typeof="ListItem">
+          {% unless forloop.last %}
+            <a
+              property="item"
+              typeof="WebPage"
+              href="{{ crumb.url | absolute_url }}"
+            >
+              <span property="name">{{ crumb.title }}</span>
+            </a>
+          {% else %}
+            <span
+              property="item"
+              typeof="WebPage"
+              resource="{{ crumb.url | absolute_url }}"
+            >
+              <span property="name">{{ crumb.title }}</span>
+            </span>
+          {% endunless %}
+          <meta property="position" content="{{ crumb.position }}" />
+        </li>
+      {% endfor %}
+   </ol>
+</nav>
