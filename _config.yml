@@ -40,6 +40,8 @@ defaults:
     values:
       last_modified_at: false
       include_in_sitemap: true
+      author:
+        name: Ilgiz Mustafin
   - scope:
       path: en
     values:
@@ -48,10 +50,14 @@ defaults:
       path: ru
     values:
       lang: ru
+      author:
+        name: Ильгиз Мустафин
   - scope:
       path: tt
     values:
       lang: tt
+      author:
+        name: Ильгиз Мустафин
   - scope:
       path: en/dictionary/word
     values: &dictionary
