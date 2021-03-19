@@ -9,6 +9,7 @@ seo:
 description: Ilgiz Mustafin's personal website and blog
 date: 2020-11-06
 title: Hello!
+crumbtitle: Main Page
 ---
 My name is Ilgiz and I am a Software Engineer.
 

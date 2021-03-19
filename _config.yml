@@ -21,6 +21,11 @@ liquid:
   strict_variables: true
   strict_filters: true
 
+breadcrumbs:
+  root:
+    hide: true
+    image: false
+
 exclude:
   - Gemfile
   - Gemfile.lock

@@ -1,0 +1,14 @@
+ol.breadcrumbs {
+  list-style-type: none;
+
+  padding-left: 0;
+
+  li {
+    display: inline-block;
+  }
+
+  li+li:before {
+    content: '/';
+    color: #afbbc4;
+  }
+}
