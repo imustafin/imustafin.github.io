@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://imustafin.tatar/en/rails-react-i18next-asset-pipeline-caching.html"
+    />
+
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html"
+    />
+
+    <link
+      rel="alternate"
+      hreflang="tt"
+      href="https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html"
+    />
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+    <title>
+      React-i18next в Rails: кеширование через файлопровод | imustafin.tatar
+    </title>
+    <meta name="generator" content="Jekyll v4.2.0" />
+    <meta
+      property="og:title"
+      content="React-i18next в Rails: кеширование через файлопровод"
+    />
+    <meta name="author" content="Ильгиз Мустафин" />
+    <meta property="og:locale" content="ru" />
+    <meta
+      name="description"
+      content="Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного кеширования файлов перевода."
+    />
+    <meta
+      property="og:description"
+      content="Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного кеширования файлов перевода."
+    />
+    <link
+      rel="canonical"
+      href="https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html"
+    />
+    <meta
+      property="og:url"
+      content="https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html"
+    />
+    <meta property="og:site_name" content="imustafin.tatar" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2021-01-25T00:00:00+00:00"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      property="twitter:title"
+      content="React-i18next в Rails: кеширование через файлопровод"
+    />
+    <script type="application/ld+json">
+      {
+        "description": "Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного кеширования файлов перевода.",
+        "url": "https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html",
+        "@type": "BlogPosting",
+        "headline": "React-i18next в Rails: кеширование через файлопровод",
+        "dateModified": "2021-01-25T00:00:00+00:00",
+        "datePublished": "2021-01-25T00:00:00+00:00",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html"
+        },
+        "author": { "@type": "Person", "name": "Ильгиз Мустафин" },
+        "@context": "https://schema.org"
+      }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#157878" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <script
+      src="https://kit.fontawesome.com/e53ce92d09.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="apple-mobile-web-app-title" content="imustafin.tatar" />
+    <meta name="application-name" content="imustafin.tatar" />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div class="with-header-footer">
+      <section class="page-header-home">
+        <h1 class="project-name">Личный сайт Мустафина Ильгиза</h1>
+
+        <div class="navigation-wrapper">
+          <div></div>
+
+          <ul class="links menu-links">
+            <li><a href="/ru/">Главная страница</a></li>
+
+            <li><a href="/ru/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a></li>
+
+            <li>
+              <a href="/ru/%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C/"
+                >Словарь</a
+              >
+            </li>
+          </ul>
+
+          <ul class="links end-links navigation-first">
+            <li>
+              <a
+                lang="en"
+                href="/en/rails-react-i18next-asset-pipeline-caching.html"
+                >English</a
+              >
+            </li>
+
+            <li>
+              <a
+                lang="ru"
+                href="/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html"
+                >Русский</a
+              >
+            </li>
+
+            <li>
+              <a
+                lang="tt"
+                href="/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html"
+                >Татарча</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="main-content">
+          <nav>
+            <ol
+              class="breadcrumbs"
+              vocab="https://schema.org/"
+              typeof="BreadcrumbList"
+            >
+              <li property="itemListElement" typeof="ListItem">
+                <a
+                  property="item"
+                  typeof="WebPage"
+                  href="https://imustafin.tatar/ru/"
+                >
+                  <span property="name">Главная страница</span>
+                </a>
+
+                <meta property="position" content="1" />
+              </li>
+
+              <li property="itemListElement" typeof="ListItem">
+                <span
+                  property="item"
+                  typeof="WebPage"
+                  resource="https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html"
+                >
+                  <span property="name"
+                    >React-i18next в Rails: кеширование через файлопровод</span
+                  >
+                </span>
+
+                <meta property="position" content="2" />
+              </li>
+            </ol>
+          </nav>
+
+          <article itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header">
+              <h1 class="post-title" itemprop="name headline">
+                React-i18next в Rails: кеширование через файлопровод
+              </h1>
+              <p class="post-meta">
+                <time
+                  class="post-date"
+                  datetime="2021-01-25T00:00:00+00:00"
+                  itemprop="datePublished"
+                >
+                  25 января 2021
+                </time>
+              </p>
+            </header>
+
+            <div itemprop="articleBody">
+              <p>
+                Как использовать файлопровод (Asset Pipeline) в Ruby on Rails
+                для эффективного кеширования файлов перевода.
+              </p>
+
+              <p>
+                Здесь мы рассмотрим простейший способ интернационализации
+                <code class="language-plaintext highlighter-rouge"
+                  >react-rails</code
+                >
+                приложения, потом мы обсудим проблемы с кешированием этого
+                подхода, и, наконец, мы подключим файлопровод (Asset Pipeline)
+                решения этих проблем.
+              </p>
+
+              <h2 id="использование-react-i18next">
+                Использование react-i18next
+              </h2>
+              <p>
+                В этой секции мы добавим
+                <code class="language-plaintext highlighter-rouge"
+                  >react-i18next</code
+                >
+                в приложение и сделаем файлы переводов доступными из папки
+                <code class="language-plaintext highlighter-rouge">public</code
+                >.
+              </p>
+
+              <p>Сначала добавим необходимые зависимости</p>
+              <div class="language-shell highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Инициализируем
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next</code
+                >
+                в необходимых точках входа (например,
+                <code class="language-plaintext highlighter-rouge"
+                  >app/javascript/packs/application.js</code
+                >):
+              </p>
+              <div class="language-js highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                <a href="https://github.com/i18next/i18next-http-backend"
+                  >Плагин
+                  <code class="language-plaintext highlighter-rouge"
+                    >i18next-http-backend</code
+                  ></a
+                >
+                отвечает за скачивание необходимых файлов перевода для
+                выбранного языка, а
+                <code class="language-plaintext highlighter-rouge"
+                  >react-i18next</code
+                >
+                даёт доступ к
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next</code
+                >
+                из самого React приложения.
+              </p>
+
+              <p>
+                Сейчас мы можем реализовать интернационализированную версию
+                страницы «Здравствуй, мир!» с возможностью переключения языка:
+              </p>
+              <div class="language-jsx highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Русский
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Если вы посмотрите на получившуюся страничку, то вы увидите
+                строку «helloWorld» потому, что мы ещё не предоставили сами
+                переводы для ключа
+                <code class="language-plaintext highlighter-rouge"
+                  >helloWorld</code
+                >, а
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next</code
+                >
+                в таких случаях по умолчанию отображает сам ключ вместо
+                перевода.
+              </p>
+
+              <p>
+                По умолчанию
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next-http-backend</code
+                >
+                ожидает, что файлы переводов доступны по адресу
+                <code class="language-plaintext highlighter-rouge"
+                  >/locales/{{lng}}/{{ns}}.json</code
+                >
+                (см.
+                <a
+                  href="https://github.com/i18next/i18next-http-backend#backend-options"
+                  >опцию
+                  <code class="language-plaintext highlighter-rouge"
+                    >loadPath</code
+                  ></a
+                >), где
+                <code class="language-plaintext highlighter-rouge"
+                  >{{lng}}</code
+                >
+                — это код языка, а
+                <code class="language-plaintext highlighter-rouge">{{ns}}</code>
+                — это пространство имён. Стандартное пространство имён
+                называется
+                <code class="language-plaintext highlighter-rouge"
+                  >translation</code
+                >
+                (см.
+                <a
+                  href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources"
+                  >опцию
+                  <code class="language-plaintext highlighter-rouge"
+                    >defaultNS</code
+                  ></a
+                >).
+              </p>
+
+              <p>
+                Так, в нашем примере сервер должен обрабатывать два пути:
+                <code class="language-plaintext highlighter-rouge"
+                  >/locales/ru/translation.json</code
+                >
+                для русской версии и
+                <code class="language-plaintext highlighter-rouge"
+                  >/locales/tt/translation.json</code
+                >
+                для татарской. Мы можем создать JSON файлы переводов в папке
+                <code class="language-plaintext highlighter-rouge">public</code>
+                и они будут доступны по этим путям.
+              </p>
+
+              <p>
+                Файлы переводов для русского языка будут находится в файле
+                <code class="language-plaintext highlighter-rouge"
+                  >public/locales/ru/translation.json</code
+                >:
+              </p>
+              <div class="language-json highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+                </div>
+              </div>
+
+              <p>
+                Файлы переводов для татарского языка будут находиться в файле
+                <code class="language-plaintext highlighter-rouge"
+                  >public/locales/tt/translation.json</code
+                >:
+              </p>
+              <div class="language-json highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+                </div>
+              </div>
+
+              <p>
+                После создания этих файлов можно перезагрузить страницу и
+                убедиться, что переключение языков работает. Но у такого подхода
+                есть одна проблема, подробнее о ней в следующей секции.
+              </p>
+
+              <h2 id="проблемы-связанные-с-кешированием">
+                Проблемы, связанные с кешированием
+              </h2>
+              <p>
+                Вы можете заметить, что после развёртывания новой версии
+                приложения на сервере, в браузере выполняется свежая версия
+                JavaScript кода, но иногда всё ещё используются старые версии
+                файлов перевода, из-за чего отображаются ключи вместо самих
+                переводов.
+              </p>
+
+              <p>
+                Это может случаться потому, что старые версии файлов переводов
+                могут быть закешированы в браузере.
+              </p>
+
+              <p>
+                Как вариант, можно полностью отключить кеширование этих файлов
+                через настройки на сервере, или через опцию
+                <code class="language-plaintext highlighter-rouge"
+                  >requestOptions</code
+                >
+                в
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next-http-backend</code
+                >, или даже через дописывание текущего времени к URL-у для
+                загрузки файлов как в
+                <a href="https://stackoverflow.com/a/43499557/8559107"
+                  >этом ответе на StackOverflow</a
+                >
+                (адаптировано для
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next-http-backend</code
+                >):
+              </p>
+
+              <div class="language-js highlighter-rouge">
+                <div class="highlight">
+                  <pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Однако, отключать кеш — не оптимально потому, что с каждой
+                перезагрузкой страницы, файлы переводов будут скачаны снова.
+              </p>
+
+              <p>
+                Лучшим подходом будет правильная настройка кеширования для этих
+                файлов. Это можно сделать несколькими способами, здесь мы
+                рассмотрим способ, который обычно используется в Rails, а именно
+                — файлопровод.
+              </p>
+
+              <h2
+                id="использование-файлопровода-для-кеширования-файлов-перевода-i18next"
+              >
+                Использование файлопровода для кеширования файлов перевода
+                i18next
+              </h2>
+              <p>
+                В этой секции мы обсудим использование файлопровода Ruby on
+                Rails для
+                <a
+                  href="https://developer.mozilla.org/ru/docs/Web/HTTP/%D0%9A%D1%8D%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5#%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85_%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BE%D0%B2_Revved_resources"
+                  >оборачивания</a
+                >
+                имён файлов (<a
+                  href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/"
+                  >filename revving</a
+                >).
+              </p>
+
+              <p>
+                Файлопровод
+                <a
+                  href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark"
+                  >добавляет</a
+                >
+                хеш содержимого файла к его имени, поэтому клиенты могут
+                закешировать файл с таким именем навсегда, а если появится новая
+                версия этого файла, то у него уже будет другое имя и клиенты
+                смогут скачать новую версию по новому имени файла.
+              </p>
+
+              <p>
+                Сейчас мы рассмотрим как пустить файлы переводов по
+                файлопроводу, а затем настроим
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next-http-backend</code
+                >
+                чтобы он брал файлы из файлопровода.
+              </p>
+
+              <h3 id="перемещение-файлов-переводов-в-файлопровод">
+                Перемещение файлов переводов в файлопровод
+              </h3>
+              <p>
+                Чтобы файлы переводов оказались в файлопроводе, нам нужно всего
+                лишь переместить их из директории
+                <code class="language-plaintext highlighter-rouge">public</code>
+                в директорию
+                <code class="language-plaintext highlighter-rouge"
+                  >app/assets</code
+                >. В нашем случае у нас получится два файла:
+              </p>
+              <ul>
+                <li>
+                  <code class="language-plaintext highlighter-rouge"
+                    >app/assets/locales/ru/translation.json</code
+                  >
+                </li>
+                <li>
+                  <code class="language-plaintext highlighter-rouge"
+                    >app/assets/locales/tt/translation.json</code
+                  >
+                </li>
+              </ul>
+
+              <p>
+                Проверьте, что файлопровод увидел файлы переводов, используя
+                консоль (<code class="language-plaintext highlighter-rouge"
+                  >bundle exec rails c</code
+                >):
+              </p>
+              <div class="language-console highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'ru/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/ru/translation-1516916289b1be2609ec39a8f887f301260d6a7db6e5b39aa7da3b0f0ff2dd14.json" 
+</span></code></pre>
+                </div>
+              </div>
+
+              <p>
+                Если вместо этого вы получаете ошибку
+                <code class="language-plaintext highlighter-rouge"
+                  >Sprockets::Rails::Helper::AssetNotPrecompiled</code
+                >:
+              </p>
+              <div class="language-console highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'ru/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (ru/translation.json)
+</span></code></pre>
+                </div>
+              </div>
+
+              <p>
+                То, возможно, вы используете Sprockets 4. В таком случае вам
+                нужно обновить файл манифеста ассетов.
+              </p>
+
+              <h4 id="обновление-файлов-манифеста-для-sprockets-4">
+                Обновление файлов манифеста для Sprockets 4
+              </h4>
+              <p>
+                В зависимости от версии гема
+                <code class="language-plaintext highlighter-rouge"
+                  >sprockets</code
+                >
+                вам может быть нужно или не нужно обновлять файл манифеста
+                ассетов. Вы можете проверить версию командой:
+              </p>
+              <div class="language-shell highlighter-rouge">
+                <div class="highlight">
+                  <pre class="highlight"><code>bundle info sprockets
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Если у вас в проекте Sprockets версии 4, то вам нужно включить
+                директорию с локалям в файле
+                <code class="language-plaintext highlighter-rouge"
+                  >app/assets/config/manifest.js</code
+                >:
+              </p>
+              <div class="language-js highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="c1">//= link_tree ../locales</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Это требование было
+                <a
+                  href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs"
+                  >добавлено в Sprockets 4</a
+                >
+                (перевод и акцентирование — от меня):
+              </p>
+              <blockquote>
+                <p>
+                  Если вы используете sprockets старее, чем 4.0, то Rails будет
+                  компилировать
+                  <code class="language-plaintext highlighter-rouge"
+                    >application.css</code
+                  >,
+                  <code class="language-plaintext highlighter-rouge"
+                    >application.js</code
+                  >, и <strong>любые</strong> файлы в ваших директориях ассетов,
+                  которые не распознаны как JS или CSS, но у которых есть
+                  расширение в имени файла.
+                </p>
+
+                <p>…</p>
+
+                <p>
+                  Если вы используете Sprockets 4, то Rails будет использовать
+                  другую логику для определения входных точек компиляции: будет
+                  использоваться <strong>только</strong> файл
+                  <code class="language-plaintext highlighter-rouge"
+                    >./app/assets/config/manifest.js</code
+                  >
+                  для определения начальных файлов.
+                </p>
+              </blockquote>
+
+              <h3 id="получение-путей-файлов-после-файлопровода-из-javascript">
+                Получение путей файлов после файлопровода из JavaScript
+              </h3>
+              <p>
+                После перемещения файлов переводов в файлопровод, их больше
+                нельзя получить просто по их именам (<code
+                  class="language-plaintext highlighter-rouge"
+                  >/locales/ru/translation.json</code
+                >). Теперь в их именах должны присутствовать хеши (<code
+                  class="language-plaintext highlighter-rouge"
+                  >/assets/ru/translations-151...d14.json</code
+                >).
+              </p>
+
+              <p>
+                Эти новые имена можно получить в Ruby из помощника
+                <code class="language-plaintext highlighter-rouge"
+                  >asset_path</code
+                >, но их нельзя получить напрямую в JavaScript. Вместо этого, мы
+                можем использовать Erb шаблоны чтобы подставилять значения,
+                вычисленные в Ruby, в JavaScript код.
+              </p>
+
+              <p>
+                Добавьте поддержку Erb в
+                <code class="language-plaintext highlighter-rouge"
+                  >webpacker</code
+                >
+                по
+                <a
+                  href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb"
+                  >оффициальным инструкциям</a
+                >.
+              </p>
+
+              <p>
+                Опция
+                <code class="language-plaintext highlighter-rouge"
+                  >loadPath</code
+                >
+                библиотеки
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next-http-backend</code
+                >
+                может принимать и функцию
+                <code class="language-plaintext highlighter-rouge"
+                  >(languages, namespaces) =&gt; loadPath</code
+                >. Хоть аргументы
+                <code class="language-plaintext highlighter-rouge"
+                  >languages</code
+                >
+                и
+                <code class="language-plaintext highlighter-rouge"
+                  >namespaces</code
+                >
+                должны быть массивами, они
+                <a
+                  href="https://github.com/i18next/i18next-http-backend/pull/35"
+                  >будут содержать по одному элементу</a
+                >
+                если опция
+                <code class="language-plaintext highlighter-rouge"
+                  >allowMultiLoading</code
+                >
+                выставлена в значение
+                <code class="language-plaintext highlighter-rouge">false</code>
+                (по умолчанию это так).
+              </p>
+
+              <p>
+                Напишем нашу функцию
+                <code class="language-plaintext highlighter-rouge"
+                  >loadPath</code
+                >
+                в файле
+                <code class="language-plaintext highlighter-rouge"
+                  >app/javascript/loadPath.js.erb</code
+                >:
+              </p>
+              <div class="language-erb highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                И передадим её в
+                <code class="language-plaintext highlighter-rouge"
+                  >i18next</code
+                >
+                в файле
+                <code class="language-plaintext highlighter-rouge"
+                  >app/javascript/packs/application.js</code
+                >:
+              </p>
+              <div class="language-js highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Сейчас вы можете обновить страницу и увидеть, что кнопки снова
+                работают.
+              </p>
+
+              <p>
+                Вот и всё. Желаю вам счастливой интернационализации
+                <img
+                  class="emoji"
+                  title=":relaxed:"
+                  alt=":relaxed:"
+                  src="https://github.githubassets.com/images/icons/emoji/unicode/263a.png"
+                  height="20"
+                  width="20"
+                />
+              </p>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <footer class="site-footer">
+        <div id="footer-contacts">
+          <a href="https://t.me/imustafin">Telegram</a>
+          <a href="https://github.com/imustafin">GitHub</a>
+          <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178"
+            >LinkedIn</a
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

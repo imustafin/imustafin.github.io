@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+  <html lang="tt">
+
+  <head>
+    <meta charset="UTF-8">
+
+    
+    
+    
+    
+      
+      <link rel="alternate" hreflang="en" href="https://imustafin.tatar/en/rails-react-i18next-asset-pipeline-caching.html" />
+    
+      
+      <link rel="alternate" hreflang="ru" href="https://imustafin.tatar/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html" />
+    
+      
+      <link rel="alternate" hreflang="tt" href="https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html" />
+    
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>React-i18next Rails-та: файлүткәргеч аша кәшләү | imustafin.tatar</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="React-i18next Rails-та: файлүткәргеч аша кәшләү" />
+<meta name="author" content="Ильгиз Мустафин" />
+<meta property="og:locale" content="tt" />
+<meta name="description" content="Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү." />
+<meta property="og:description" content="Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү." />
+<link rel="canonical" href="https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html" />
+<meta property="og:url" content="https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html" />
+<meta property="og:site_name" content="imustafin.tatar" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="React-i18next Rails-та: файлүткәргеч аша кәшләү" />
+<script type="application/ld+json">
+{"description":"Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.","url":"https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html","@type":"BlogPosting","headline":"React-i18next Rails-та: файлүткәргеч аша кәшләү","dateModified":"2021-02-15T00:00:00+00:00","datePublished":"2021-01-25T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html"},"author":{"@type":"Person","name":"Ильгиз Мустафин"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <script src="https://kit.fontawesome.com/e53ce92d09.js" crossorigin="anonymous"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="imustafin.tatar">
+    <meta name="application-name" content="imustafin.tatar">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <div class="with-header-footer">
+  <section class="page-header-home">
+    <h1 class="project-name">Мустафин Ильгизнең шәхси сайты</h1>
+
+    <div class="navigation-wrapper">
+      <div></div>
+
+      <ul class="links menu-links">
+        
+
+        
+          
+
+          
+            <li><a href="/tt/">Баш бит</a></li>
+          
+        
+          
+
+          
+            <li><a href="/tt/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a></li>
+          
+        
+          
+
+          
+            <li><a href="/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/">Сүзлек</a></li>
+          
+        
+      </ul>
+
+      <ul class="links end-links navigation-first">
+        
+        
+        
+        
+          <li><a lang="en" href="/en/rails-react-i18next-asset-pipeline-caching.html">English</a></li>
+        
+          <li><a lang="ru" href="/ru/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4.html">Русский</a></li>
+        
+          <li><a lang="tt" href="/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html">Татарча</a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+  <div class="content">
+    <section class="main-content">
+  <nav>
+  <ol class="breadcrumbs" vocab="https://schema.org/" typeof="BreadcrumbList">
+      
+        <li property="itemListElement" typeof="ListItem">
+          
+            <a property="item" typeof="WebPage" href="https://imustafin.tatar/tt/">
+              <span property="name">Баш бит</span>
+            </a>
+          
+          <meta property="position" content="1">
+        </li>
+      
+        <li property="itemListElement" typeof="ListItem">
+          
+            <span property="item" typeof="WebPage" resource="https://imustafin.tatar/tt/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF.html">
+              <span property="name">React-i18next Rails-та: файлүткәргеч аша кәшләү</span>
+            </span>
+          
+          <meta property="position" content="2">
+        </li>
+      
+   </ol>
+</nav>
+
+
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">React-i18next Rails-та: файлүткәргеч аша кәшләү</h1>
+    <p class="post-meta">
+      <time class="post-date" datetime="2021-01-25T00:00:00+00:00" itemprop="datePublished">
+        25 гыйнвар 2021
+
+      </time>
+      
+        <span class="post-last-modified">
+          Соңгы үзгәреш:
+          <time datetime="2021-02-15T00:00:00+00:00" itemprop="dateModified">
+            15 февраль 2021
+
+          </time>
+        </span>
+      
+  </p></header>
+
+  <div itemprop="articleBody">
+    <p>Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.</p>
+
+<p>Монда без <code class="language-plaintext highlighter-rouge">react-rails</code> кушымтаны иң җиңел интернациональләштерү ысулыны
+карап чыгарарбыз, аннары без бу ысулын кәш белән бәйләнгән проблемнарны
+күрербез, һәм ахырда без бу проблемнарны файлүткәргеч (Asset Pipeline) белән
+чишәрбез.</p>
+
+<h2 id="react-i18next-ны-куллану">React-i18next-ны куллану</h2>
+<p>Бу бүлектә без кушымтабызга <code class="language-plaintext highlighter-rouge">react-i18next</code>-ны өстибез һәм тәрҗемә файлларны
+<code class="language-plaintext highlighter-rouge">public</code> директорийдан укуга мөмкин ясыйбыз.</p>
+
+<p>Баштан без кирәкле пакетларны өстибез.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">i18next</code>-ны кирәкле керү нокталарда (мәсәлән, <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>)
+инициализациялибез:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend"><code class="language-plaintext highlighter-rouge">i18next-http-backend</code> плагины</a> сайланган телнең
+тәрҗемә файлларны йөкли, ә <code class="language-plaintext highlighter-rouge">react-i18next</code> React кушымтаны <code class="language-plaintext highlighter-rouge">i18next</code> белән
+бәйләнә.</p>
+
+<p>Хәзер без «Сәлам, дөнья!» битне тел сайлау төймәләр белән ясый алабыз.</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Русский
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Хәзер бу биткә карасагыз сез «helloWorld» юлны гына күрә аласыз чөнки без <code class="language-plaintext highlighter-rouge">helloWorld</code>
+ачкыч өчен бернинди тәрҗемәне бирмәдек әле һәм шундый вакыйгаларда <code class="language-plaintext highlighter-rouge">i18next</code>
+тәрҗемәнең урында ачкычны күрсәтә.</p>
+
+<p>Килешенгәнчә <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> тәрҗемә файлларны
+<code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> адрестан ала
+(<a href="https://github.com/i18next/i18next-http-backend#backend-options"><code class="language-plaintext highlighter-rouge">loadPath</code> көйләүне</a> кара). Адреста
+<code class="language-plaintext highlighter-rouge">{{lng}}</code> — тел коды, ә <code class="language-plaintext highlighter-rouge">{{ns}}</code> —
+исемнәр киңлеге. Килешенгән исемнәр киңлеге <code class="language-plaintext highlighter-rouge">translation</code> дип аталган
+(<a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources"><code class="language-plaintext highlighter-rouge">defaultNS</code> көйләүне</a> кара).</p>
+
+<p>Шулай, сервер бу ике юлны тәэмин итергә тиеш: берсе — <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
+татарча тәрҗемә бирергә тиеш, икенчесе — <code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>
+русча тәрҗемә бирергә тиеш. Бу JSON тәрҗемә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийга
+куйсабыз, Rails шундый кирәкле юлларны тәэмин ителер.</p>
+
+<p>Татарча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code> файлга язабыз:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Русча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/ru/translation.json</code> файлга язабыз:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Тәрҗемә файлларны ясагач соң без битне браузерда яңарта алабыз. Шуннан соң
+биттә тел сайлавы эшләргә тиеш. Ләкин, бу ысулда бер проблем бар, бу проблем
+турында — киләсе бүлектә.</p>
+
+<h2 id="кәшкә-бәйле-проблемнар">Кәшкә бәйле проблемнар</h2>
+<p>Әйтик, без кушымтаның яңа версияне серверга урнаштык һәм браузерда яңа
+JavaScript эшли,  ләкин иске тәрҗемә файллар куланыла (шуңа күрә
+иске тәрҗемәләр яисә тәрҗемә ачкычлары күрәнелә).</p>
+
+<p>Моның бер сәбәбе кәш булырга мөмкин: иске тәрҗемә файллар браузерда кәшләнгән
+булсалар, браузер иске файлларны кулланырга мөмкин.</p>
+
+<p>Бер чишелеш буларак без тәрҗемә файллар кәшләүне тулысынча тыерга алабыз.
+Моны сервер көйләүләр белән дә, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">requestOptions</code>
+көйләве белән дә, хәтта хәзерге вакытны тәрҗемә файлның йөкләү URL-га
+кушып та була. Соңгы ысулны <a href="https://stackoverflow.com/a/43499557/8559107">бу StackOverflow җаваптан</a> алып
+<code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-та шулай ясап була:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ләкин, кәшләүне тыю — яхшы бер чишелеш түгел чөнки битнең һәр йөкләве
+белән тәрҗемә файллар яңадан йөклиячәкләр.</p>
+
+<p>Иң яхшы чишелеш ул кәшләүне дөрес көйләргә. Моны да берничә рәвештә
+дә ясап була һәм бу язмышта без Rails-ның гадәти коралны кулланачакбыз.
+Аның исеме файлүткәргеч.</p>
+
+<h2 id="файлүткәргечне-i18next-тәрҗемә-файллар-кәшләү-өчен-куллану">Файлүткәргечне <code class="language-plaintext highlighter-rouge">i18next</code> тәрҗемә файллар кәшләү өчен куллану</h2>
+<p>Бу бүлектә Ruby on Rails-ның файлүткәргеч белән файл исемнәрне әйләндерү
+(<a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">filename revving</a>) каралачак.</p>
+
+<p>Файлүткәргеч файл исемгә аның эчтәлекнең һәшне <a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">куша</a>,
+шуңа күрә клиентлар шундый һәшле исемле файлларны мәңгегә кәшли алалар.
+Әгәр файлның яңа бер версия килеп чыгачак, аның башка исеме булачак һәм
+клиентлар бу башка исеме белән яңа версияне йөклиячәкләр.</p>
+
+<p>Хәзер без файлларны ничек файлүткәргечкә җибәрергә һәм аларны ничек
+<code class="language-plaintext highlighter-rouge">i18next-http-backend</code> белән файлүткәргечтән алырга карачакбыз.</p>
+
+<h3 id="файлларны-файлүткәргечке-җибәрү">Файлларны файлүткәргечке җибәрү</h3>
+<p>Файлүткәргеч файлларны <code class="language-plaintext highlighter-rouge">app/assets</code> директорийдан ала, шуңа күрә
+безгә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийдан <code class="language-plaintext highlighter-rouge">app/assets/</code> директорийга күчерергә
+кирәк. Ягъни безнең бу ике файл булачак:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/ru/translation.json</code></li>
+</ul>
+
+<p>Файлүткәргеч файлларны күрәме-юкмы икәнен, консольда тикшерегез (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/tt/translation-8abc3942c062c7f43a1409665fcea91711a8864e4c03adfbf28ccd4ded8d99f8.json"
+</span></code></pre></div></div>
+
+<p>Әгәр сез файл исемен урында <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code> хатаны күрсәгез:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (tt/translation.json)
+</span></code></pre></div></div>
+
+<p>Алайса бәлки сез Sprockets 4-ны кулланасыз һәм сезгә әссет манифест файлны
+үзгәртергә кирәк.</p>
+
+<h4 id="sprockets-4-өчен-әссет-манифест-файлны-үзгәртү">Sprockets 4 өчен әссет манифест файлны үзгәртү</h4>
+<p><code class="language-plaintext highlighter-rouge">sprockets</code> гемнең версиягә карап, сезгә киләсе адымны ясарга кирәк яки кирәкми.
+Гемнең версияне бу боерык белән карап була:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>Проектыгызда Sprockets-ның 4-нче версиясе булса, сезгә локаль директорийны
+<code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> манифест файлга кушырга кирәк:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>Бу <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">Sprockets 4-тән башлап</a> кирәк
+(тәрҗемәсе һәм басымнар — миннән):</p>
+<blockquote>
+  <p>Әгәр сез sprockets 4.0-дан искерәк версияне куллансагыз, Rails
+<code class="language-plaintext highlighter-rouge">applications.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>, һәм әссет директорийдагы <strong>һәр</strong> 
+JS я CSS булмаган, файл исеме өстәмәле файлларны компиляцияләчәк.</p>
+
+  <p>…</p>
+
+  <p>Әгәр сез Sprockets 4 куллансагыз, Rails башка компиляцияләү керү нокталар
+табу алгоритмны кулланачак: <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> файлдагы <strong>гына</strong>
+керү нокталар кулланачаклар.</p>
+</blockquote>
+
+<h3 id="javascript-та-файлүткәргечтән-файлларны-алу">JavaScript-та файлүткәргечтән файлларны алу</h3>
+<p>Тәрҗемә файлларны файлүткәргечкә күчерүдән соң аларны төп исемнәр белән
+(<code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>) ала булмый. Күчерүдән соң аларның исемләргә
+һәшне кушырга кирәк (<code class="language-plaintext highlighter-rouge">/assets/tt/translations-8ab...9f8.json</code>).</p>
+
+<p>Шундый һәшле исемнәрне Ruby-да <code class="language-plaintext highlighter-rouge">asset_path</code> ярдәмче белән алырга мөмкин, ләкин
+JavaScript-та аларны турыдан-туры алырга мөмкин түгел. Шулай ук, без Erb
+өлгеләрне кулланып Ruby-да саналган кыйммәтләрне JavaScript кодка кыстыра алабыз.</p>
+
+<p>Erb куллану тәэмин итү <code class="language-plaintext highlighter-rouge">webpacker</code>-га <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">рәсми күрсәтмәләр буенча</a> өстәгез.</p>
+
+<p><code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">loadPath</code> көйләү кыйммәте <code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>
+функция дә булырга мөмкин. Шундый функциянең <code class="language-plaintext highlighter-rouge">languages</code> һәм <code class="language-plaintext highlighter-rouge">namespaces</code> көйләүләре
+массивлар булса да, <a href="https://github.com/i18next/i18next-http-backend/pull/35">аларның берәр элемент гына булачак</a>
+(<code class="language-plaintext highlighter-rouge">allowMultiLoading</code> көйләве <code class="language-plaintext highlighter-rouge">false</code> булса, килешекәнчә ул шулай).</p>
+
+<p>Үзебезнең <code class="language-plaintext highlighter-rouge">loadPath</code> функцияне <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code> файлда языйк:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Һәм функцияне <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code> файлда <code class="language-plaintext highlighter-rouge">i18next</code>-ка бирик:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Хәзер сез браузерда битне яңадан яңарттыра аласыз һәм тел сайлау төймәләрне
+куллана аласыз.</p>
+
+<p>Нәкъ менә шулай. Интернациональләштерүдә бәхетле булуы телим <img class="emoji" title=":relaxed:" alt=":relaxed:" src="https://github.githubassets.com/images/icons/emoji/unicode/263a.png" height="20" width="20"></p>
+
+
+  </div>
+</article>
+
+</section>
+
+  </div>
+
+  <footer class="site-footer">
+    <div id="footer-contacts">
+      <a href="https://t.me/imustafin">Telegram</a>
+      <a href="https://github.com/imustafin">GitHub</a>
+      <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178">LinkedIn</a>
+    </div>
+  </footer>
+</div>
+
+  </body>
+</html>
