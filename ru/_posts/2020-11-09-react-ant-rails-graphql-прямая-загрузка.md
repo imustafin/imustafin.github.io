@@ -4,6 +4,8 @@ title: "Прямая загрузка файлов в Rails React Ant через
 date: 2020-11-09
 last_modified_at: 2020-12-03
 ref: ant-active-storage-upload
+redirect_from:
+  - /ru/react-ant-rails-graphql-прямая-загрузка.html
 ---
 Реализация прямой загрузки
 файлов в Ruby on Rails Active Storage из React TypeScript приложения,

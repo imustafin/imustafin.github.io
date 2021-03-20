@@ -4,7 +4,13 @@ include_in_sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  {% assign everything = site.posts | concat: site.pages | where: "include_in_sitemap", true %}
+  {%
+    assign everything = site.posts
+      | concat: site.pages
+      | where: "include_in_sitemap", true
+      | where: "redirect", false
+  %}
+
   {% for page in everything %}
     <url>
       <loc>{{ page.url | absolute_url }}</loc>

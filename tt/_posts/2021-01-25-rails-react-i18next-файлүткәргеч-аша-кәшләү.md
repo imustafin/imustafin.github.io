@@ -4,6 +4,8 @@ title: "React-i18next Rails-та: файлүткәргеч аша кәшләү"
 date: 2021-01-25
 last_modified_at: 2021-02-15
 ref: rails-react-asset-pipeline-caching
+redirect_from:
+  - /tt/rails-react-i18next-файлүткәргеч-аша-кәшләү.html
 ---
 
 Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.
