@@ -3,6 +3,8 @@ layout: post
 title: "React-i18next в Rails: кеширование через файлопровод"
 date: 2021-01-25
 ref: rails-react-asset-pipeline-caching
+redirect_from:
+  - /ru/rails-react-i18next-кеширование-через-файлопровод.html
 ---
 Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного
 кеширования файлов перевода.

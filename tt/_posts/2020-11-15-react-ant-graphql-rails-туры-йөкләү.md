@@ -4,6 +4,8 @@ title: "Rails React Ant-та GraphQL аша туры файл йөкләү"
 date: 2020-11-15
 last_modified_at: 2021-01-25
 ref: ant-active-storage-upload
+redirect_from:
+  - /tt/react-ant-graphql-rails-туры-йөкләү.html
 ---
 Ruby on Rails һәм Active Storage
 серверга React TypeScript кушымтадан Ant Design һәм GraphQL API кулланып

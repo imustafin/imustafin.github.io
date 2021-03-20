@@ -13,6 +13,10 @@ markdown: kramdown
 plugins:
   - jemoji
   - jekyll-remote-theme
+  - jekyll-redirect-from
+
+redirect_from:
+  json: false
 
 remote_theme: pages-themes/cayman
 
@@ -37,14 +41,13 @@ exclude:
   - README.md
   - favicon/
 
-permalink: none
-
 defaults:
   - scope:
       path: ""
     values:
       last_modified_at: false
       include_in_sitemap: true
+      redirect: false
       author:
         name: Ilgiz Mustafin
   - scope:
@@ -52,17 +55,32 @@ defaults:
     values:
       lang: en
   - scope:
+      path: en
+      type: posts
+    values:
+      permalink: /en/blog/:title
+  - scope:
       path: ru
     values:
       lang: ru
       author:
         name: Ильгиз Мустафин
   - scope:
+      path: ru
+      type: posts
+    values:
+      permalink: /ru/%D0%B1%D0%BB%D0%BE%D0%B3/:title
+  - scope:
       path: tt
     values:
       lang: tt
       author:
         name: Ильгиз Мустафин
+  - scope:
+      path: tt
+      type: posts
+    values:
+      permalink: /tt/%D0%B1%D0%BB%D0%BE%D0%B3/:title
   - scope:
       path: en/dictionary/word
     values: &dictionary
