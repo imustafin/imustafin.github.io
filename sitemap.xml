@@ -301,40 +301,7 @@
     </url>
   
     <url>
-      <loc>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/</loc>
-      
-        <lastmod>2021-02-07T00:00:00+00:00</lastmod>
-      
-      
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="tt"
-            
-            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
-        />
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="ru"
-            
-            href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/"
-        />
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="en"
-            
-            href="https://imustafin.tatar/en/blog/"
-        />
-      
-    </url>
-  
-    <url>
-      <loc>https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/</loc>
+      <loc>https://imustafin.tatar/en/dictionary/</loc>
       
         <lastmod>2021-02-04T00:00:00+00:00</lastmod>
       
@@ -343,9 +310,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/"
+            href="https://imustafin.tatar/en/dictionary/"
         />
       
         <xhtml:link
@@ -359,26 +326,59 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/dictionary/"
+            href="https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/"
         />
       
     </url>
   
     <url>
-      <loc>https://imustafin.tatar/tt/</loc>
+      <loc>https://imustafin.tatar/en/blog/</loc>
       
-        <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+        <lastmod>2021-02-07T00:00:00+00:00</lastmod>
       
       
       
         <xhtml:link
             rel="alternate"
             
+              hreflang="en"
+            
+            href="https://imustafin.tatar/en/blog/"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="ru"
+            
+            href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
               hreflang="tt"
             
-            href="https://imustafin.tatar/tt/"
+            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
+        />
+      
+    </url>
+  
+    <url>
+      <loc>https://imustafin.tatar/en/</loc>
+      
+        <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+      
+      
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="en"
+            
+            href="https://imustafin.tatar/en/"
         />
       
         <xhtml:link
@@ -392,9 +392,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/"
+            href="https://imustafin.tatar/tt/"
         />
       
         <xhtml:link
@@ -417,9 +417,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
+            href="https://imustafin.tatar/en/blog/"
         />
       
         <xhtml:link
@@ -433,9 +433,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/blog/"
+            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
         />
       
     </url>
@@ -450,9 +450,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/"
+            href="https://imustafin.tatar/en/dictionary/"
         />
       
         <xhtml:link
@@ -466,9 +466,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/dictionary/"
+            href="https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/"
         />
       
     </url>
@@ -483,9 +483,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/"
+            href="https://imustafin.tatar/en/"
         />
       
         <xhtml:link
@@ -499,9 +499,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/"
+            href="https://imustafin.tatar/tt/"
         />
       
         <xhtml:link
@@ -515,40 +515,7 @@
     </url>
   
     <url>
-      <loc>https://imustafin.tatar/en/blog/</loc>
-      
-        <lastmod>2021-02-07T00:00:00+00:00</lastmod>
-      
-      
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="tt"
-            
-            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
-        />
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="ru"
-            
-            href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/"
-        />
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="en"
-            
-            href="https://imustafin.tatar/en/blog/"
-        />
-      
-    </url>
-  
-    <url>
-      <loc>https://imustafin.tatar/en/dictionary/</loc>
+      <loc>https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/</loc>
       
         <lastmod>2021-02-04T00:00:00+00:00</lastmod>
       
@@ -557,9 +524,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/"
+            href="https://imustafin.tatar/en/dictionary/"
         />
       
         <xhtml:link
@@ -573,26 +540,59 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/dictionary/"
+            href="https://imustafin.tatar/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/"
         />
       
     </url>
   
     <url>
-      <loc>https://imustafin.tatar/en/</loc>
+      <loc>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/</loc>
       
-        <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+        <lastmod>2021-02-07T00:00:00+00:00</lastmod>
       
       
       
         <xhtml:link
             rel="alternate"
             
+              hreflang="en"
+            
+            href="https://imustafin.tatar/en/blog/"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="ru"
+            
+            href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
               hreflang="tt"
             
-            href="https://imustafin.tatar/tt/"
+            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
+        />
+      
+    </url>
+  
+    <url>
+      <loc>https://imustafin.tatar/tt/</loc>
+      
+        <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+      
+      
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="en"
+            
+            href="https://imustafin.tatar/en/"
         />
       
         <xhtml:link
@@ -606,9 +606,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/"
+            href="https://imustafin.tatar/tt/"
         />
       
         <xhtml:link
@@ -631,9 +631,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/"
+            href="https://imustafin.tatar/en/"
         />
       
         <xhtml:link
@@ -647,9 +647,9 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/en/"
+            href="https://imustafin.tatar/tt/"
         />
       
         <xhtml:link
