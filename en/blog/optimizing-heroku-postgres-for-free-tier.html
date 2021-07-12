@@ -183,30 +183,37 @@
               </p>
 
               <p>
-                <a href="sibrowser">SIBrowser</a> is a website for browsing
-                <a href="sigame">SIGame</a> packages. It is a project I’ve been
-                working on recently. Me and my friends play SIGame from time to
-                time and we frequently need to find good packages to play. To
-                simplify this task for us I’ve made a website which collects
-                packages from the internet and displays the detailed information
-                about the packages.
+                <a href="https://www.sibrowser.ru">SIBrowser</a> is a website
+                for browsing
+                <a href="https://vladimirkhil.com/si/game">SIGame</a> packages.
+                It is a project I’ve been working on recently. Me and my friends
+                play SIGame from time to time and we frequently need to find
+                good packages to play. To simplify this task for us I’ve made a
+                website which collects packages from the internet and displays
+                different statistic for them.
               </p>
 
               <p>
-                The website is built using <a href="ror">Ruby on Rails</a> and
-                deployed on Heroku. To optimize the costs, I am using
-                <a href="heroku-postgres">Heroku Postgres</a> which gives 10k
-                rows and 1GB storage for free and
-                <a href="heroku-redis">Heroku Redis</a> which gives 25MB storage
-                for free.
+                The website is built using
+                <a href="https://rubyonrails.org/">Ruby on Rails</a> and
+                deployed on <a href="https://heroku.com">Heroku</a>. To optimize
+                the costs, I am using
+                <a href="https://elements.heroku.com/addons/heroku-postgresql"
+                  >Heroku Postgres</a
+                >
+                which gives 10k rows and 1GB storage for free and
+                <a href="https://elements.heroku.com/addons/heroku-redis"
+                  >Heroku Redis</a
+                >
+                which gives 25MB storage for free.
               </p>
 
               <p>
-                I am using <a href="sidekiq">Sidekiq</a> for scraping and
-                parsing packages in background with Heroku Redis as the queue
-                storage. Heroku Redis’s free tier is enough for the current
-                workload with &lt; 1MB used out of 25MB provided in the free
-                tier.
+                I am using <a href="https://sidekiq.org/">Sidekiq</a> for
+                scraping and parsing packages in background with Heroku Redis as
+                the queue storage. Heroku Redis’s free tier is enough for the
+                current workload with &lt; 1MB used out of 25MB provided in the
+                free tier.
               </p>
 
               <p>
@@ -271,8 +278,11 @@
 
               <p>
                 Storing objects in a database can be done using ActiveRecord’s
-                <a href="serialize">serialize</a> method. The underlying fields
-                in the table should be
+                <a
+                  href="https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html"
+                  >serialize</a
+                >
+                method. The underlying fields in the table should be
                 <code class="language-plaintext highlighter-rouge">text</code>
                 or
                 <code class="language-plaintext highlighter-rouge">string</code>
@@ -431,11 +441,13 @@
               </h2>
               <p>
                 Additionally, we can do a full text on JSONB columns. There is
-                <a href="pganalyze-fulltext"
+                <a
+                  href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres"
                   >a good article by Leigh Halliday</a
                 >
                 which describes implementing a full text search using the
-                <a href="pg_search">pg_search</a> gem using Postgres
+                <a href="https://rubygems.org/gems/pg_search">pg_search</a> gem
+                using Postgres
                 <code class="language-plaintext highlighter-rouge"
                   >ts_vector</code
                 >
