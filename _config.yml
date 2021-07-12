@@ -14,6 +14,7 @@ plugins:
   - jemoji
   - jekyll-remote-theme
   - jekyll-redirect-from
+  - jekyll-plantuml
 
 redirect_from:
   json: false

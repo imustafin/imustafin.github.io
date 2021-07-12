@@ -1,0 +1,10 @@
+[sibrowser]: https://www.sibrowser.ru
+[sigame]: https://vladimirkhil.com/si/game
+[ror]: https://rubyonrails.org/
+[heroku]: https://heroku.com
+[heroku-postgres]: https://elements.heroku.com/addons/heroku-postgresql
+[heroku-redis]: https://elements.heroku.com/addons/heroku-redis
+[sidekiq]: https://sidekiq.org/
+[serialize]: https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html
+[pganalyze-fulltext]: https://pganalyze.com/blog/full-text-search-ruby-rails-postgres
+[pg_search]: https://rubygems.org/gems/pg_search
