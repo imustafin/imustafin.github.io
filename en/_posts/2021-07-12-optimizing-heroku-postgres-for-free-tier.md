@@ -178,7 +178,7 @@ ADD COLUMN searchable tsvector GENERATED ALWAYS AS (
   -- Round names
   setweight(to_tsvector('russian', coalesce(jsonb_path_query_array(structure, '$[*].name'), '{}')), 'B') ||
   -- Theme names
-  setweight(to_tsvector('russian', coalesce(jsonb_path_query_array(structure, '$[*].themes[*].name'), '{}')), 'B') ||
+  setweight(to_tsvector('russian', coalesce(jsonb_path_query_array(structure, '$[*].themes[*].name'), '{}')), 'B')
 ) STORED;
 ```
 
