@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="210px" preserveAspectRatio="none" style="width:338px;height:210px;" version="1.1" viewBox="0 0 338 210" width="338px" zoomAndPan="magnify"><defs><filter height="300%" id="f1h7ul7euufyqx" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class Package--><rect fill="#FEFECE" filter="url(#f1h7ul7euufyqx)" height="23.9688" id="Package" style="stroke: #A80036; stroke-width: 1.5;" width="60" x="6" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="54" x="9" y="108.1387">Package</text><!--class Author--><rect fill="#FEFECE" filter="url(#f1h7ul7euufyqx)" height="23.9688" id="Author" style="stroke: #A80036; stroke-width: 1.5;" width="48" x="12" y="8"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="42" x="15" y="24.1387">Author</text><!--class Tag--><rect fill="#FEFECE" filter="url(#f1h7ul7euufyqx)" height="23.9688" id="Tag" style="stroke: #A80036; stroke-width: 1.5;" width="29" x="21.5" y="176"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="23" x="24.5" y="192.1387">Tag</text><!--class Round--><rect fill="#FEFECE" filter="url(#f1h7ul7euufyqx)" height="23.9688" id="Round" style="stroke: #A80036; stroke-width: 1.5;" width="46" x="101" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="40" x="104" y="108.1387">Round</text><!--class Theme--><rect fill="#FEFECE" filter="url(#f1h7ul7euufyqx)" height="23.9688" id="Theme" style="stroke: #A80036; stroke-width: 1.5;" width="48" x="182" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="42" x="185" y="108.1387">Theme</text><!--class Question--><rect fill="#FEFECE" filter="url(#f1h7ul7euufyqx)" height="23.9688" id="Question" style="stroke: #A80036; stroke-width: 1.5;" width="62" x="265" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="56" x="268" y="108.1387">Question</text><!--link Author to Package--><path d="M36,40.0352 C36,40.0352 36,83.9872 36,83.9872 " fill="none" id="Author-Package" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="42" y1="83.9872" y2="91.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="30" y1="83.9872" y2="91.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="36" y1="83.9872" y2="91.9872"/><ellipse cx="36" cy="77.9872" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="30" y1="40.0352" y2="32.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="42" y1="40.0352" y2="32.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="36" y1="40.0352" y2="32.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="40" y1="42.0352" y2="42.0352"/><!--link Package to Tag--><path d="M36,124.0352 C36,124.0352 36,167.9872 36,167.9872 " fill="none" id="Package-Tag" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="42" y1="167.9872" y2="175.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="30" y1="167.9872" y2="175.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="36" y1="167.9872" y2="175.9872"/><ellipse cx="36" cy="161.9872" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="30" y1="124.0352" y2="116.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="42" y1="124.0352" y2="116.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36" x2="36" y1="124.0352" y2="116.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="32" x2="40" y1="126.0352" y2="126.0352"/><!--link Package to Round--><path d="M74.2846,104 C74.2846,104 92.8898,104 92.8898,104 " fill="none" id="Package-Round" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="92.8898" x2="100.8898" y1="104" y2="98"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="92.8898" x2="100.8898" y1="104" y2="110"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="92.8898" x2="100.8898" y1="104" y2="104"/><ellipse cx="86.8898" cy="104" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="70.2846" x2="70.2846" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="73.2846" x2="73.2846" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="74.2846" x2="66.2846" y1="104" y2="104"/><!--link Round to Theme--><path d="M155.2786,104 C155.2786,104 173.8062,104 173.8062,104 " fill="none" id="Round-Theme" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="173.8062" x2="181.8062" y1="104" y2="98"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="173.8062" x2="181.8062" y1="104" y2="110"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="173.8062" x2="181.8062" y1="104" y2="104"/><ellipse cx="167.8062" cy="104" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="151.2786" x2="151.2786" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="154.2786" x2="154.2786" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="155.2786" x2="147.2786" y1="104" y2="104"/><!--link Theme to Question--><path d="M238.1183,104 C238.1183,104 256.6921,104 256.6921,104 " fill="none" id="Theme-Question" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="256.6921" x2="264.6921" y1="104" y2="98"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="256.6921" x2="264.6921" y1="104" y2="110"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="256.6921" x2="264.6921" y1="104" y2="104"/><ellipse cx="250.6921" cy="104" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="234.1183" x2="234.1183" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="237.1183" x2="237.1183" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="238.1183" x2="230.1183" y1="104" y2="104"/><!--
+@startuml
+
+hide methods
+hide stereotypes
+hide circle
+hide empty members
+skinparam linetype ortho
+
+class Package as "Package" 
+
+class Author as "Author"
+
+class Tag as "Tag"
+
+class Round as "Round"
+
+class Theme as "Theme"
+
+class Question as "Question"
+
+Author }|- -o{ Package
+Package }|- -o{ Tag
+Package ||-r-o{ Round
+Round ||-r-o{ Theme
+Theme ||-r-o{ Question
+
+@enduml
+
+PlantUML version 1.2017.15(Mon Jul 03 16:45:34 UTC 2017)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_292-b10
+Operating System: Linux
+OS Version: 5.4.0-1051-azure
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>
