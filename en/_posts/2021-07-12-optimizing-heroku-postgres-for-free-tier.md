@@ -8,19 +8,19 @@ How to optimize a relational database schema to fit
 Heroku Postgres free tier limitations with a real-world
 example of SIBrowser.
 
-[SIBrowser](sibrowser) is a website for browsing [SIGame](sigame)
+[SIBrowser][sibrowser] is a website for browsing [SIGame][sigame]
 packages. It is a project I've been working on recently.
 Me and my friends play SIGame from time
 to time and we frequently need to find good packages to play. To simplify this
 task for us I've made a website which collects packages from the internet
-and displays the detailed information about the packages.
+and displays different statistic for them.
 
-The website is built using [Ruby on Rails](ror) and deployed on Heroku.
-To optimize the costs, I am using [Heroku Postgres](heroku-postgres)
-which gives 10k rows and 1GB storage for free and [Heroku Redis](heroku-redis)
+The website is built using [Ruby on Rails][ror] and deployed on [Heroku][heroku].
+To optimize the costs, I am using [Heroku Postgres][heroku-postgres]
+which gives 10k rows and 1GB storage for free and [Heroku Redis][heroku-redis]
 which gives 25MB storage for free.
 
-I am using [Sidekiq](sidekiq) for scraping and parsing packages in background
+I am using [Sidekiq][sidekiq] for scraping and parsing packages in background
 with Heroku Redis as the queue storage. Heroku Redis's free tier
 is enough for the current workload with < 1MB used out of 25MB
 provided in the free tier.
@@ -84,7 +84,7 @@ round-theme-question, called collectively as `structure`,
 can be also modeled using nested arrays or
 hashes.
 
-Storing objects in a database can be done using ActiveRecord's [serialize](serialize) method.
+Storing objects in a database can be done using ActiveRecord's [serialize][serialize] method.
 The underlying fields in the table should be `text` or `string` type.
 
 ```ruby
@@ -161,8 +161,8 @@ and the respective author page is
 
 ## Step 3: Full Text Search on JSONB columns
 Additionally, we can do a full text on JSONB columns. There is [a good article
-by Leigh Halliday](pganalyze-fulltext) which describes implementing
-a full text search using the [pg_search](pg_search) gem using Postgres `ts_vector`
+by Leigh Halliday][pganalyze-fulltext] which describes implementing
+a full text search using the [pg_search][pg_search] gem using Postgres `ts_vector`
 type.
 
 Here I will show how to use the same approach for searching in JSONB columns.
