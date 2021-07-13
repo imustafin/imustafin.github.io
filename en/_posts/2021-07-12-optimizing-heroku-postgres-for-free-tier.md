@@ -2,6 +2,7 @@
 layout: post
 title: "Optimizing Heroku Postgres for Free Tier"
 date: 2021-07-12
+last_modified_at: 2021-07-13
 ref: sibrowser
 ---
 How to optimize a relational database schema to fit
@@ -96,7 +97,8 @@ end
 ```
 
 This approach allows us to compress the whole ER model to just one table. However,
-the database is now in an unnormalized form but at least we have the primary key `id`.
+the database is now in an unnormalized form but at least we have the primary key `id`
+for packages.
 
 In fact, this structure allows us to do several types of queries. We can show
 a list of packages, retrieve information about a specific package by id. We can
@@ -112,7 +114,7 @@ After the columns are converted to JSONB, we don't need to explicitly tell AR
 to `serialize` the fields. They will be automatically converted to and from JSONB
 on access.
 
-When will use case insensitive search for searching packages by authors
+We will use case insensitive search for searching packages by authors
 because often author names are using inconsistent capitalization in packages.
 
 First, we need to create the index:
@@ -160,7 +162,7 @@ and the respective author page is
 [http://www.sibrowser.ru/packages/authors/https://vk.com/sigamepack](http://www.sibrowser.ru/packages/authors/https:%2F%2Fvk.com%2Fsigamepack).
 
 ## Step 3: Full Text Search on JSONB columns
-Additionally, we can do a full text on JSONB columns. There is [a good article
+Additionally, we can do a full text search on JSONB columns. There is [a good article
 by Leigh Halliday][pganalyze-fulltext] which describes implementing
 a full text search using the [pg_search][pg_search] gem using Postgres `ts_vector`
 type.
@@ -182,7 +184,7 @@ ADD COLUMN searchable tsvector GENERATED ALWAYS AS (
 ) STORED;
 ```
 
-Notably, this example shows how to add deeply nested values to the index
+This example shows how to add deeply nested values to the index
 by using JSON paths.
 
 And the `pg_search` config stays the same:
