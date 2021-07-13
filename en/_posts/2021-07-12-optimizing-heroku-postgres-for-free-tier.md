@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Optimizing Heroku Postgres for Free Tier"
+title: "Optimizing Heroku Postgres for the Free Tier"
 date: 2021-07-12
 last_modified_at: 2021-07-13
 ref: sibrowser
@@ -200,6 +200,7 @@ class Package < ApplicationRecord
         tsvector_column: 'searchable'
       }
     }
+end
 ```
 
 And that's it. Happy low-cost Herokuing :relaxed:

@@ -204,6 +204,7 @@ class Package < ApplicationRecord
         tsvector_column: 'searchable'
       }
     }
+end
 ```
 
 Вот и всё. Желаю вам счастливого и бюджетного использования Heroku :relaxed:
