@@ -2,7 +2,7 @@
 layout: post
 title: "Optimizing Heroku Postgres for the Free Tier"
 date: 2021-07-12
-last_modified_at: 2021-07-13
+last_modified_at: 2021-08-29
 ref: sibrowser
 ---
 How to optimize a relational database schema to fit
@@ -159,7 +159,7 @@ resources :authors, only: [:show], constraints: { id: /.+/ }
 The `constraints` parameter will allow Rails to understand author names with
 spaces and slashes in the name. For example, there is an author named `https://vk.com/sigamepack`
 and the respective author page is
-[http://www.sibrowser.ru/packages/authors/https://vk.com/sigamepack](http://www.sibrowser.ru/packages/authors/https:%2F%2Fvk.com%2Fsigamepack).
+[https://www.sibrowser.ru/authors/https://vk.com/sigamepack](https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack).
 
 ## Step 3: Full Text Search on JSONB columns
 Additionally, we can do a full text search on JSONB columns. There is [a good article

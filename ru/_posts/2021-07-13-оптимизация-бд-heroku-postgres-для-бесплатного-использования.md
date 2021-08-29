@@ -2,6 +2,7 @@
 layout: post
 title: "Оптимизация БД Heroku Postgres для бесплатного использования"
 date: 2021-07-13
+last_modified_at: 2021-08-29
 ref: sibrowser
 ---
 Оптимизация схемы реляционной базы данных для соответствия
@@ -161,11 +162,11 @@ resources :authors, only: [:show], constraints: { id: /.+/ }
 Параметр `constraints` позволит Rails понимать авторов с пробелами и
 косыми чертами в имени. Например, в системе есть автор `https://vk.com/sigamepack`,
 а страница этого автора доступна по адресу
-[http://www.sibrowser.ru/packages/authors/https://vk.com/sigamepack](http://www.sibrowser.ru/packages/authors/https:%2F%2Fvk.com%2Fsigamepack).
+[https://www.sibrowser.ru/authors/https://vk.com/sigamepack](https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack).
 
 ## Шаг 3: Полнотекстовый поиск по JSONB столбцам 
 Также мы можем производить полнотекстовый поиск по столбцам с типом JSONB.
-Есть [хорошая статья Ли Халидея][pganlyze-fulltext], которая описывает реализацию
+Есть [хорошая статья Ли Халидея][pganalyze-fulltext], которая описывает реализацию
 полнотекстового поиска с использованием гема [pg_search][pg_search] и типа `ts_vector`
 в Postgres.
 
