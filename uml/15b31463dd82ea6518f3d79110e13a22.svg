@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="210px" preserveAspectRatio="none" style="width:298px;height:210px;" version="1.1" viewBox="0 0 298 210" width="298px" zoomAndPan="magnify"><defs><filter height="300%" id="f1i43ncarb3d89" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class Пакет--><rect fill="#FEFECE" filter="url(#f1i43ncarb3d89)" height="23.9688" id="Пакет" style="stroke: #A80036; stroke-width: 1.5;" width="47" x="8" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="41" x="11" y="108.1387">Пакет</text><!--class Ясаучы--><rect fill="#FEFECE" filter="url(#f1i43ncarb3d89)" height="23.9688" id="Ясаучы" style="stroke: #A80036; stroke-width: 1.5;" width="51" x="6" y="8"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="45" x="9" y="24.1387">Ясаучы</text><!--class Тәг--><rect fill="#FEFECE" filter="url(#f1i43ncarb3d89)" height="23.9688" id="Тәг" style="stroke: #A80036; stroke-width: 1.5;" width="27" x="18" y="176"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="21" x="21" y="192.1387">Тәг</text><!--class Раунд--><rect fill="#FEFECE" filter="url(#f1i43ncarb3d89)" height="23.9688" id="Раунд" style="stroke: #A80036; stroke-width: 1.5;" width="45" x="90" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="39" x="93" y="108.1387">Раунд</text><!--class Тема--><rect fill="#FEFECE" filter="url(#f1i43ncarb3d89)" height="23.9688" id="Тема" style="stroke: #A80036; stroke-width: 1.5;" width="38" x="170.5" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="32" x="173.5" y="108.1387">Тема</text><!--class Сорау--><rect fill="#FEFECE" filter="url(#f1i43ncarb3d89)" height="23.9688" id="Сорау" style="stroke: #A80036; stroke-width: 1.5;" width="44" x="243.5" y="92"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="38" x="246.5" y="108.1387">Сорау</text><!--link Ясаучы to Пакет--><path d="M31.5,40.0352 C31.5,40.0352 31.5,83.9872 31.5,83.9872 " fill="none" id="Ясаучы-Пакет" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="37.5" y1="83.9872" y2="91.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="25.5" y1="83.9872" y2="91.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="31.5" y1="83.9872" y2="91.9872"/><ellipse cx="31.5" cy="77.9872" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="25.5" y1="40.0352" y2="32.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="37.5" y1="40.0352" y2="32.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="31.5" y1="40.0352" y2="32.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27.5" x2="35.5" y1="42.0352" y2="42.0352"/><!--link Пакет to Тәг--><path d="M31.5,124.0352 C31.5,124.0352 31.5,167.9872 31.5,167.9872 " fill="none" id="Пакет-Тәг" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="37.5" y1="167.9872" y2="175.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="25.5" y1="167.9872" y2="175.9872"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="31.5" y1="167.9872" y2="175.9872"/><ellipse cx="31.5" cy="161.9872" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="25.5" y1="124.0352" y2="116.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="37.5" y1="124.0352" y2="116.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="31.5" y1="124.0352" y2="116.0352"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="27.5" x2="35.5" y1="126.0352" y2="126.0352"/><!--link Пакет to Раунд--><path d="M63.3646,104 C63.3646,104 81.9168,104 81.9168,104 " fill="none" id="Пакет-Раунд" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="81.9168" x2="89.9168" y1="104" y2="98"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="81.9168" x2="89.9168" y1="104" y2="110"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="81.9168" x2="89.9168" y1="104" y2="104"/><ellipse cx="75.9168" cy="104" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="59.3646" x2="59.3646" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="62.3646" x2="62.3646" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="63.3646" x2="55.3646" y1="104" y2="104"/><!--link Раунд to Тема--><path d="M143.1861,104 C143.1861,104 162.355,104 162.355,104 " fill="none" id="Раунд-Тема" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="162.355" x2="170.355" y1="104" y2="98"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="162.355" x2="170.355" y1="104" y2="110"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="162.355" x2="170.355" y1="104" y2="104"/><ellipse cx="156.355" cy="104" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="139.1861" x2="139.1861" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="142.1861" x2="142.1861" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="143.1861" x2="135.1861" y1="104" y2="104"/><!--link Тема to Сорау--><path d="M216.678,104 C216.678,104 235.3645,104 235.3645,104 " fill="none" id="Тема-Сорау" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="235.3645" x2="243.3645" y1="104" y2="98"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="235.3645" x2="243.3645" y1="104" y2="110"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="235.3645" x2="243.3645" y1="104" y2="104"/><ellipse cx="229.3645" cy="104" fill="none" rx="4" ry="4" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="212.678" x2="212.678" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="215.678" x2="215.678" y1="108" y2="100"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="216.678" x2="208.678" y1="104" y2="104"/><!--
+@startuml
+
+hide methods
+hide stereotypes
+hide circle
+hide empty members
+skinparam linetype ortho
+
+class Пакет as "Пакет" 
+
+class Ясаучы as "Ясаучы"
+
+class Тәг as "Тәг"
+
+class Раунд as "Раунд"
+
+class Тема as "Тема"
+
+class Сорау as "Сорау"
+
+Ясаучы }|- -o{ Пакет
+Пакет }|- -o{ Тәг
+Пакет ||-r-o{ Раунд
+Раунд ||-r-o{ Тема
+Тема ||-r-o{ Сорау
+
+@enduml
+
+PlantUML version 1.2017.15(Mon Jul 03 16:45:34 UTC 2017)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_292-b10
+Operating System: Linux
+OS Version: 5.4.0-1055-azure
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

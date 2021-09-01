@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ru">
+<html lang="tt">
   <head>
     <meta charset="UTF-8" />
 
@@ -24,55 +24,54 @@
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
     <title>
-      Оптимизация БД Heroku Postgres для бесплатного использования |
-      imustafin.tatar
+      Heroku Postgres БН бушлай куллану өчен оптимальләштерү | imustafin.tatar
     </title>
     <meta name="generator" content="Jekyll v4.2.0" />
     <meta
       property="og:title"
-      content="Оптимизация БД Heroku Postgres для бесплатного использования"
+      content="Heroku Postgres БН бушлай куллану өчен оптимальләштерү"
     />
     <meta name="author" content="Ильгиз Мустафин" />
-    <meta property="og:locale" content="ru" />
+    <meta property="og:locale" content="tt" />
     <meta
       name="description"
-      content="Оптимизация схемы реляционной базы данных для соответствия бесплатному уровню Heroku Postgres на примере приложения SIBrowser."
+      content="Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү."
     />
     <meta
       property="og:description"
-      content="Оптимизация схемы реляционной базы данных для соответствия бесплатному уровню Heroku Postgres на примере приложения SIBrowser."
+      content="Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү."
     />
     <link
       rel="canonical"
-      href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F"
+      href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
     />
     <meta
       property="og:url"
-      content="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F"
+      content="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
     />
     <meta property="og:site_name" content="imustafin.tatar" />
     <meta property="og:type" content="article" />
     <meta
       property="article:published_time"
-      content="2021-07-13T00:00:00+00:00"
+      content="2021-09-01T00:00:00+00:00"
     />
     <meta name="twitter:card" content="summary" />
     <meta
       property="twitter:title"
-      content="Оптимизация БД Heroku Postgres для бесплатного использования"
+      content="Heroku Postgres БН бушлай куллану өчен оптимальләштерү"
     />
     <script type="application/ld+json">
       {
         "author": { "@type": "Person", "name": "Ильгиз Мустафин" },
-        "description": "Оптимизация схемы реляционной базы данных для соответствия бесплатному уровню Heroku Postgres на примере приложения SIBrowser.",
-        "url": "https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+        "description": "Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.",
+        "url": "https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF",
         "@type": "BlogPosting",
-        "headline": "Оптимизация БД Heroku Postgres для бесплатного использования",
+        "headline": "Heroku Postgres БН бушлай куллану өчен оптимальләштерү",
         "dateModified": "2021-09-01T00:00:00+00:00",
-        "datePublished": "2021-07-13T00:00:00+00:00",
+        "datePublished": "2021-09-01T00:00:00+00:00",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F"
+          "@id": "https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
         },
         "@context": "https://schema.org"
       }
@@ -101,20 +100,18 @@
   <body>
     <div class="with-header-footer">
       <section class="page-header-home">
-        <h1 class="project-name">Личный сайт Мустафина Ильгиза</h1>
+        <h1 class="project-name">Мустафин Ильгизнең шәхси сайты</h1>
 
         <div class="navigation-wrapper">
           <div></div>
 
           <ul class="links menu-links">
-            <li><a href="/ru/">Главная страница</a></li>
+            <li><a href="/tt/">Баш бит</a></li>
 
-            <li><a href="/ru/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a></li>
+            <li><a href="/tt/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a></li>
 
             <li>
-              <a href="/ru/%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C/"
-                >Словарь</a
-              >
+              <a href="/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/">Сүзлек</a>
             </li>
           </ul>
 
@@ -158,9 +155,9 @@
                 <a
                   property="item"
                   typeof="WebPage"
-                  href="https://imustafin.tatar/ru/"
+                  href="https://imustafin.tatar/tt/"
                 >
-                  <span property="name">Главная страница</span>
+                  <span property="name">Баш бит</span>
                 </a>
 
                 <meta property="position" content="1" />
@@ -170,7 +167,7 @@
                 <a
                   property="item"
                   typeof="WebPage"
-                  href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/"
+                  href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/"
                 >
                   <span property="name">Блог</span>
                 </a>
@@ -182,11 +179,11 @@
                 <span
                   property="item"
                   typeof="WebPage"
-                  resource="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F"
+                  resource="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
                 >
                   <span property="name"
-                    >Оптимизация БД Heroku Postgres для бесплатного
-                    использования</span
+                    >Heroku Postgres БН бушлай куллану өчен
+                    оптимальләштерү</span
                   >
                 </span>
 
@@ -198,134 +195,122 @@
           <article itemscope itemtype="http://schema.org/BlogPosting">
             <header class="post-header">
               <h1 class="post-title" itemprop="name headline">
-                Оптимизация БД Heroku Postgres для бесплатного использования
+                Heroku Postgres БН бушлай куллану өчен оптимальләштерү
               </h1>
               <p class="post-meta">
                 <time
                   class="post-date"
-                  datetime="2021-07-13T00:00:00+00:00"
+                  datetime="2021-09-01T00:00:00+00:00"
                   itemprop="datePublished"
                 >
-                  13 июля 2021
+                  1 сентябрь 2021
                 </time>
-
-                <span class="post-last-modified">
-                  Последнее обновление:
-                  <time
-                    datetime="2021-09-01T00:00:00+00:00"
-                    itemprop="dateModified"
-                  >
-                    1 сентября 2021
-                  </time>
-                </span>
               </p>
             </header>
 
             <div itemprop="articleBody">
               <p>
-                Оптимизация схемы реляционной базы данных для соответствия
-                бесплатному уровню Heroku Postgres на примере приложения
-                SIBrowser.
+                Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә
+                куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.
               </p>
 
               <p>
-                <a href="https://www.sibrowser.ru">SIBrowser</a> — это сайт, на
-                котором можно удобно искать пакеты для
+                <a href="https://www.sibrowser.ru">SIBrowser</a> —
                 <a href="https://vladimirkhil.com/si/game"
-                  >Своей игры (SIGame)</a
-                >. В последнее время я работал над этим проектом. Мы с друзьями
-                часто играем в свою игру, и нам постоянно надо находить хорошие
-                пакеты для вечера. Чтобы упростить эту задачу, я решил сделать
-                сайт, который собирает пакеты из интернета и показывает
-                различную статистику.
+                  >Своя игра (SIGame)</a
+                >
+                пакетлар эзләү сайты. Соңгы вакытта мин бу сайтны ясый идем. Без
+                дуслар белән еш уйныйбыз һәм безгә һәрвакыт яхшы пактларны
+                эзләргә кирәк. Эзләүне гадиләштерү өчен мин интернеттан пакет
+                җыю һәм пакет статистика күрсәтү системаны төзи башладым.
               </p>
 
               <p>
-                Сайт сделан на
-                <a href="https://rubyonrails.org/">Ruby on Rails</a> и
-                разворачивается на <a href="https://heroku.com">Heroku</a>.
-                Чтобы сэкономить, я использую бесплатный уровень
+                Сайт
+                <a href="https://rubyonrails.org/">Ruby on Rails</a> нигезендә
+                төзелгән һәм
+                <a href="https://heroku.com">Heroku</a> платформасында җәелә.
+                Акча саклану өчен Heroku-ның бушлай БН дәрәҗәләрне кулланам.
                 <a href="https://elements.heroku.com/addons/heroku-postgresql"
                   >Heroku Postgres</a
-                >, который даёт 10к строчек и 1ГБ хранилища и бесплатный уровень
+                >
+                бушлай дәрәҗәдә 1ГБ саклагыч урыны һәм 10к БН рәт бирелә.
                 <a href="https://elements.heroku.com/addons/heroku-redis"
                   >Heroku Redis</a
-                >, который даёт 25МБ хранилища.
+                >
+                бушлай дәрәҗәдә 25МБ хәтер бирелә.
               </p>
 
               <p>
-                Для фонового сбора пакетов я использую
-                <a href="https://sidekiq.org/">Sidekiq</a> с Heroku Redis-ом как
-                хранилище состояния очереди. Для этой задачи пока вполне хватает
-                бесплатного уровня Heroku Redis: сейчас используется &lt; 1МБ из
-                25МБ бесплатных.
+                Фонда пакет җыю өчкн мин
+                <a href="https://sidekiq.org/">Sidekiq</a>-ны кулланам. Sidekiq
+                бирем чиратны Heroku Redis-та саклый. Моның өчен Heroku
+                Redis-ның бушлай дәрәҗәсе җитә: хәзер 25МБ-тан &lt; 1МБ
+                кулланыла.
               </p>
 
               <p>
-                Однако, ограничение бесплатного уровня Heroku Postgres в 10к
-                строк очень заметно в этом проекте.
+                Ләкин, Heroku Postgres-ның рәт чикләмәләре бу проектта зур
+                йогынты ясый.
               </p>
 
-              <h2 id="оптимизация-базы-данных-по-стоимости">
-                Оптимизация базы данных по стоимости
+              <h2 id="бирелмәләр-нигезне-акча-саклау-өчен-оптимальләштерү">
+                Бирелмәләр нигезне акча саклау өчен оптимальләштерү
               </h2>
               <p>
-                Чтобы уместить приложение в ограничения бесплатного уровня
-                Heroku Postgres, можно произвести несколько изменений в
-                архитектуру базы данных. Взглянем на высокоуровневую ER-модель
-                проекта.
+                Heroku Postgres бушлай дәрәҗәдә куллану өчен, без БН
+                архитектурада берничә үзгәреш ясый алабыз. Проектның ER-модельгә
+                карыйк:
               </p>
 
               <p>
                 <object
-                  data="/uml/d9e5df1a93b34793c2c9489f1f85282f.svg"
+                  data="/uml/15b31463dd82ea6518f3d79110e13a22.svg"
                   type="image/svg+xml"
                   class="plantuml"
                 ></object>
               </p>
 
               <p>
-                Эта диаграмма более или менее представляет предметную область
-                приложения. Автор имеет ноль или больше пакетов. Пакет может
-                иметь ноль или больше тегов и раундов. Раунд может иметь ноль
-                или больше тем. Тема может иметь ноль или больше вопросов.
+                Ясаучының ноль я күбрәк пакет бар. Пакетның ноль я күбрәк тәг
+                һәм раунд бар. Раундның ноль я күбрәк тема бар. Теманың ноль я
+                күбрәк сорау бар.
               </p>
 
               <p>
-                В идеале нам бы хотелось иметь нормализованную базу данных в
-                третьей или четвёртой нормальной форме. Однако, каждый шаг
-                нормализации будет пораждать всё больше и больше строк.
+                Өченче я дүртенче нормаль формага нормальләшкән БН белән эшләргә
+                яхшы булыр иде. Ләкин, һәр нормальләштерү адымы рәт саны
+                күбәйәчәк.
               </p>
 
               <p>
-                В зависимости от того, какие запросы мы хотим поддерживать в
-                нашей БД, мы можем денормализовать некоторые сущности.
+                Системада кирәкле БН таләпләргә карап, без кайбер объектларны
+                денормальләштерергә алабыз.
               </p>
 
-              <h2 id="шаг-1-главная-таблица">Шаг 1: главная таблица</h2>
+              <h2 id="адым-1-төп-таблица">Адым 1: төп таблица</h2>
               <p>
-                Из ER-диаграммы мы видим, что
+                ER-диаграммага караганда,
                 <code class="language-plaintext highlighter-rouge">Пакет</code>
-                является центральной сущностью. В самом деле, мы можем
-                попробовать сделать все остальные сущности аттрибутами сущности
-                <code class="language-plaintext highlighter-rouge">Пакет</code>.
+                төп объект булуны күрәбез. Чыннан да, башка объектларны
+                <code class="language-plaintext highlighter-rouge">Пакет</code
+                >-ның атрибутлары кебек сакла алабыз.
               </p>
 
               <p>
-                Мы можем хранить теги и авторов просто как массивы строк.
-                Цепочка раунды-темы-вопросы, которую мы будем просто называть
-                <em>структурой</em>, может быть представлена как вложенные
-                массивы или хеши.
+                Тәгләр һәм ясаучылар юл массивы формасында сакла алабыз.
+                Раунд-тема-сорау чылбырны <em>структура</em> дип атыйк һәм
+                кертелгән массивлар я һәшләр формасында сакла алабыз да.
               </p>
 
               <p>
-                Для сохранения объектов в базе данных мы можем использовать
-                метод <a href="serialize">serialize</a> из Active Record. В этом
-                случае типы полей в БД должны быть
+                Шундый объект саклау өчен, Active Record-ның
+                <a href="serialize">serialize</a> ысулы белән саклаячакбыз.
+                Моның өчен БН кырлары
                 <code class="language-plaintext highlighter-rouge">text</code>
-                или
-                <code class="language-plaintext highlighter-rouge">string</code
-                >.
+                яисә
+                <code class="language-plaintext highlighter-rouge">string</code>
+                типлы булырга тиеш.
               </p>
 
               <div class="language-ruby highlighter-rouge">
@@ -342,50 +327,43 @@
               </div>
 
               <p>
-                Такой подход позволяет сжать всю ER-модель всего в одну таблицу.
-                Однако, база данных становится ненормализованной, у нас остаётся
-                только первичный ключ
-                <code class="language-plaintext highlighter-rouge">id</code> для
-                пакетов.
+                Шулай итеп, барлык ER-модельне бер генә таблицада сакланыла,
+                әмма БН нормаль формасыны югалта. Пакетлар гына үзе санлы
+                беренчел ачкычы бар.
               </p>
 
               <p>
-                Далее мы покажем, что это не страшно и мы можем реализовать
-                несколько видов запросов. Мы всё ещё можем получить список всех
-                пакетов или информацию о конкретном пакете по его ключу. Мы даже
-                можем упорядочивать пакеты по авторам, если массив авторов
-                всегда будет сортироваться перед записью в БД.
+                Соңрак без моның бик начар булмавыны күрсәтәчәкбез. БН-дән без
+                берничә таләп ясый алабыз әле: барлык пакет исемлекне укый
+                алабыз, кирәкле пакетның мәгълүматны ачкыч белән укый алабыз да.
               </p>
 
-              <h2 id="шаг-2-поиск-по-авторам-используя-индексы-по-jsonb">
-                Шаг 2: Поиск по авторам, используя индексы по JSONB
+              <h2 id="адым-2-jsonb-индекс-белән-ясаучы-буенча-эзләү">
+                Адым 2: JSONB индекс белән ясаучы буенча эзләү
               </h2>
               <p>
-                Так как бесплатный уровень Heroku Postgres не ограничивает
-                количество индексов, мы можем построить инвертированный индекс
-                по столбцы
-                <code class="language-plaintext highlighter-rouge"
-                  >authors</code
-                >
-                для эффективного поиска, но сначала нам нужно изменить тип
-                столбца на JSONB.
+                Heroku Postgres бушлай дәрәҗәдә индекс саны чикләнмәгән һәм без
+                берничә индекс ясачакбыз. Ясаучы буенча эзләү тизләтү өчен,
+                <code class="language-plaintext highlighter-rouge">author</code>
+                атрибуты нигезендә инвертләнгән индекс төзи алабыз, әмма баштан
+                безгә бу атрибутның тибы JSONB-га өйләнергә кирәк.
               </p>
 
               <p>
-                После того, как столбцы были превращены в JSONB, нам не нужно
-                явно указывать AR, что эти поля нужно сериализовывать методом
+                JSONB өйләнүдән соң,
                 <code class="language-plaintext highlighter-rouge"
                   >serialize</code
-                >. Значения и так будут автоматически превращаться в и из JSONB.
+                >
+                ысулы безгә кирәкми чөнки кыйммәтләр автоматик рәвештә JSONB-дан
+                һәм JSONB-га өйләнәчәкләр.
               </p>
 
               <p>
-                Мы будем делать регистронезависимый поиск по авторам, потому что
-                авторы часто используют заглавные буквы по-разному в разных
-                пакетах.
+                Без хәреф регистр бәйләнмәгән эзләүне ясаячакбыз, чөнки ясаучы
+                исемнәре төрле пакетларда төрлечә язылалар.
               </p>
 
-              <p>Сначала нам нужно построить индекс:</p>
+              <p>Баштан индексны төзибез:</p>
 
               <div class="language-sql highlighter-rouge">
                 <div class="highlight">
@@ -399,8 +377,8 @@
               </div>
 
               <p>
-                Чтобы этот индекс использовался, запросы должны использовать
-                точно такое же выражение:
+                Эзләүдә индекс кулланыр өчен, нәкъ шундый таләпне кулланырга
+                кирәк:
               </p>
 
               <div class="language-ruby highlighter-rouge">
@@ -417,9 +395,9 @@
               </div>
 
               <p>
-                Мы можем проверить, что индекс используется с помощью
+                Индекс кулланувын
                 <code class="language-plaintext highlighter-rouge">EXPLAIN</code
-                >:
+                >-да күрәбез:
               </p>
               <div class="language-sql highlighter-rouge">
                 <div class="highlight">
@@ -439,11 +417,9 @@
               </div>
 
               <p>
-                Однако, у нас нет численного первичного ключа для автора. Авторы
-                определяются только по их имени в нижнем регистре. В таком
-                случае, чтобы реализовать страницу автора, на которой будут
-                отображаться пакеты этого автора, мы можем вставить имя автора
-                прямо в путь к странице.
+                Ләкин, ясаучының санлы беренчел ачкычы юк. Ясаучыларны аларның
+                аскы регистрлы исемләре нигезендә аңлыйбыз. Бу очракта,
+                ясаучының исеме адрес эчендә булырга тиеш:
               </p>
 
               <div class="language-ruby highlighter-rouge">
@@ -457,55 +433,56 @@
               </div>
 
               <p>
-                Параметр
+                Шундый
                 <code class="language-plaintext highlighter-rouge"
                   >constraints</code
                 >
-                позволит Rails понимать авторов с пробелами и косыми чертами в
-                имени. Например, в системе есть автор
+                көйләве Rails-ка буш аралы һәм авыш сызыклы исемнәрне аңларга
+                әйтә. Мәсәлән, системада
                 <code class="language-plaintext highlighter-rouge"
                   >https://vk.com/sigamepack</code
-                >, а страница этого автора доступна по адресу
+                >
+                исемле ясаучы бар һәм аның бите
                 <a
                   href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack"
                   >https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a
-                >.
+                >
+                адреста урнашкан.
               </p>
 
-              <h2 id="шаг-3-полнотекстовый-поиск-по-jsonb-столбцам">
-                Шаг 3: Полнотекстовый поиск по JSONB столбцам
+              <h2 id="адым-3-jsonb-атрибут-бунча-тулы-текст-эзләү">
+                Адым 3: JSONB атрибут бунча тулы текст эзләү
               </h2>
+              <p>JSONB атрбутларда тулы текст эзләүне ясый алабыз да.</p>
+
               <p>
-                Также мы можем производить полнотекстовый поиск по столбцам с
-                типом JSONB. Есть
                 <a
                   href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres"
-                  >хорошая статья Ли Халлидея</a
-                >, которая описывает реализацию полнотекстового поиска с
-                использованием гема
-                <a href="https://rubygems.org/gems/pg_search">pg_search</a> и
-                типа
+                  >Ли Һаллидейнның мәкәләсе</a
+                >
+                тулы текст эзләүне
+                <a href="https://rubygems.org/gems/pg_search">pg_search</a> гемы
+                һәм
                 <code class="language-plaintext highlighter-rouge"
                   >ts_vector</code
                 >
-                в Postgres.
+                тибы нигезендә төзүне тасвирлый.
               </p>
 
               <p>
-                Здесь я покажу как можно использовать такой же подход для поиска
-                по JSONB столбцам.
+                Монда мин JSONB атрибут өчендә эзләү өчен охшаш ысулы күрсәтәм.
               </p>
 
               <p>
-                Генерируемый столбец
+                Исәпләнүче
                 <code class="language-plaintext highlighter-rouge"
                   >searchable</code
                 >
-                может давать веса значениям типа JSONB. Функция
+                баганасы JSONB элементларга үзе дәрәҗәләрне бирә ала.
                 <code class="language-plaintext highlighter-rouge"
                   >to_tsvector</code
                 >
-                может принимать JSONB объект:
+                функциясе икенче аргумент урында JSONB типны да аңлый.
               </p>
 
               <div class="language-sql highlighter-rouge">
@@ -517,9 +494,9 @@
   <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
   <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
   <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
-  <span class="c1">-- Названия раундов</span>
+  <span class="c1">-- Раунд исемләре</span>
   <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
-  <span class="c1">-- Названия тем</span>
+  <span class="c1">-- Тема исемләре</span>
   <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
 </code></pre>
@@ -527,16 +504,15 @@
               </div>
 
               <p>
-                Этот пример показывает как добавить глубоко вложенные значения в
-                индекс, используя JSON пути.
+                Бу үрнәктә JSONB-да ерак кертелгән кыйммәтне, JSON юллары
+                кулланып, индекска кую күрсәтелгән.
               </p>
 
               <p>
-                Настройки
                 <code class="language-plaintext highlighter-rouge"
                   >pg_search</code
                 >
-                остаются такими же:
+                көйләве шундый ук кала:
               </p>
               <div class="language-ruby highlighter-rouge">
                 <div class="highlight">
@@ -546,7 +522,7 @@
   <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
   
   <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
-    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># не используется если указан tsvector_column</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># tsvector_column булганда куллынмый</span>
     <span class="ss">using: </span><span class="p">{</span>
       <span class="ss">tsearch: </span><span class="p">{</span>
         <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
@@ -558,18 +534,16 @@
                 </div>
               </div>
 
-              <h2 id="заключение">Заключение</h2>
-              <p>В этой статье мы рассмотрели такие темы:</p>
+              <h2 id="йомгаклау">Йомгаклау</h2>
+              <p>Бу мәкаләдә без берничә мәсьәлә карап чыктык:</p>
               <ul>
                 <li>
-                  Ограничения в бесплатном уровне Heroku Postgres и как c ними
-                  работать
+                  Heroku Postgres бушлай дәрәҗәнең чикләмәләр һәм алар белән
+                  эшләү
                 </li>
-                <li>Денормализация БД c помощью JSONB</li>
-                <li>Построение инвертированного индекса по значениям JSONB</li>
-                <li>
-                  Полнотекстовый поиск по строкам, вложенным в JSONB объекты
-                </li>
+                <li>JSONB белән БН денормальләштерү</li>
+                <li>JSONB өчен инвертләштереләгән индекс төзү</li>
+                <li>JSONB объектларга кертелгән юлларда тулы текст эзләү</li>
               </ul>
             </div>
           </article>

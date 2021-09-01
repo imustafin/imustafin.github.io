@@ -4,11 +4,52 @@
 
   
     <url>
+      <loc>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF</loc>
+      
+        <lastmod>2021-09-01T00:00:00+00:00</lastmod>
+      
+      
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="tt"
+            
+            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="ru"
+            
+            href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="en"
+            
+            href="https://imustafin.tatar/en/blog/optimizing-heroku-postgres-for-free-tier"
+        />
+      
+    </url>
+  
+    <url>
       <loc>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F</loc>
       
-        <lastmod>2021-08-29T00:00:00+00:00</lastmod>
+        <lastmod>2021-09-01T00:00:00+00:00</lastmod>
       
       
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="tt"
+            
+            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
+        />
       
         <xhtml:link
             rel="alternate"
@@ -31,9 +72,17 @@
     <url>
       <loc>https://imustafin.tatar/en/blog/optimizing-heroku-postgres-for-free-tier</loc>
       
-        <lastmod>2021-08-29T00:00:00+00:00</lastmod>
+        <lastmod>2021-09-01T00:00:00+00:00</lastmod>
       
       
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="tt"
+            
+            href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
+        />
       
         <xhtml:link
             rel="alternate"
