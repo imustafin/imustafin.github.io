@@ -2,7 +2,7 @@
 layout: post
 title: "Optimizing Heroku Postgres for the Free Tier"
 date: 2021-07-12
-last_modified_at: 2021-08-29
+last_modified_at: 2021-09-01
 ref: sibrowser
 ---
 How to optimize a relational database schema to fit
@@ -203,6 +203,11 @@ class Package < ApplicationRecord
 end
 ```
 
-And that's it. Happy low-cost Herokuing :relaxed:
+## Conclusion
+In this article we discussed such topics as:
+* Heroku Postgres free tier limitations and how to overcome them
+* Denormalizing a DB using JSONB
+* Building an inverted index based on JSONB values
+* Implementing full-text search for strings stored in JSONB objects
 
 {% include refs/sibrowser.md %}
