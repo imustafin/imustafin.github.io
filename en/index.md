@@ -5,7 +5,6 @@ seo:
   type: WebSite
   links:
     - https://github.com/imustafin
-    - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 description: Ilgiz Mustafin's personal website and blog
 date: 2020-11-06
 title: Hello!

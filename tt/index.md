@@ -5,7 +5,6 @@ seo:
   type: WebSite
   links:
     - https://github.com/imustafin
-    - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 description: Мустафин Ильгизнең шәхси сайты һәм блогы
 date: 2021-01-25
 title: Исәнмесез!

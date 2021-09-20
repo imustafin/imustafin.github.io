@@ -7,4 +7,9 @@ lang: null
 ref: home
 date: 2020-11-05
 title: imustafin.tatar
+seo:
+  type: Person
+  name: Ilgiz Mustafin
+  links:
+    - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 ---
