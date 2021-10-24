@@ -1,0 +1,36 @@
+$table-header-bg: #becee4;
+$table-odd-bg: #f4f7fa;
+$table-even-bg: #e2e9f3;
+.main-content {
+  table {
+    thead {
+      background-color: $table-header-bg;
+
+      tr {
+        th {
+          border-color: grey;
+        }
+      }
+    }
+
+    tbody {
+
+      tr:nth-child(even) {
+        background-color: $table-even-bg;
+      }
+
+      tr:nth-child(odd) {
+        background-color: $table-odd-bg;
+      }
+
+      tr {
+        td {
+          border-color: grey;
+        }
+      }
+    }
+
+  }
+
+}
+
