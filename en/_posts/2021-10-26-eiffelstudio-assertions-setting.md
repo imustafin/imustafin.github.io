@@ -134,7 +134,7 @@ namespace main #becee4 {
   }
 }
 
-namespace "<&book> other_library" as other_library{
+namespace "<&book> other_library" as other_library {
   class OTHER_LIBRARY_DEMO
 }
 
