@@ -484,7 +484,7 @@ a:hover { text-decoration: underline; }
 
 #footer-contacts { display: flex; flex-direction: row; justify-content: center; padding-bottom: 2rem; }
 
-#footer-contacts a { color: white; margin: 0 1rem; }
+#footer-contacts a { color: white; margin: 0 1rem; font-weight: bold; }
 
 .translation-header { margin-bottom: 1.5rem; }
 
@@ -495,6 +495,16 @@ ol.breadcrumbs { list-style-type: none; padding-left: 0; }
 ol.breadcrumbs li { display: inline-block; }
 
 ol.breadcrumbs li + li:before { content: '/'; color: #afbbc4; }
+
+.main-content table thead, .home table thead { background-color: #becee4; }
+
+.main-content table thead tr th, .home table thead tr th { border-color: grey; }
+
+.main-content table tbody tr:nth-child(even), .home table tbody tr:nth-child(even) { background-color: #e2e9f3; }
+
+.main-content table tbody tr:nth-child(odd), .home table tbody tr:nth-child(odd) { background-color: #f4f7fa; }
+
+.main-content table tbody tr td, .home table tbody tr td { border-color: grey; }
 
 html, body { height: 100%; min-height: 100vh; font-family: 'Roboto Slab', serif; }
 
