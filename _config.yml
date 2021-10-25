@@ -7,6 +7,9 @@ social:
     - https://github.com/imustafin
     - https://www.linkedin.com/in/ilgiz-mustafin-288b99178
 
+# Render posts with time in the future
+future: true
+
 # Build settings
 markdown: kramdown
 # theme: jekyll-theme-cayman
