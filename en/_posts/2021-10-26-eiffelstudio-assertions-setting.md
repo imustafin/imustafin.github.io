@@ -80,7 +80,7 @@ We will use this in the experiment
 for automated testing of the
 program with different assertion levels.
 
-The `.ecf` file is an XML file inside. Each `target`, `cluster` and `cluster`
+The `.ecf` file is an XML file inside. Each `target`, `cluster` and `library`
 element can have the `option/assertions` element which can set or override
 the assertion levels:
 
