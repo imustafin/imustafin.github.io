@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'jekyll', '~> 4.2'
+gem 'jekyll', '~> 4.3'
 gem 'jekyll-remote-theme', '~> 0.4.3'
 gem 'jemoji', '~> 0.12.0'
 gem 'jekyll-seo-tag'
