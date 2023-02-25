@@ -4,6 +4,8 @@ title: "Optimizing Heroku Postgres for the Free Tier"
 date: 2021-07-12
 last_modified_at: 2021-09-01
 ref: sibrowser
+redirect_from:
+  - /en/blog/optimizing-heroku-postgres-for-free-tier
 ---
 How to optimize a relational database schema to fit
 Heroku Postgres free tier limitations with a real-world

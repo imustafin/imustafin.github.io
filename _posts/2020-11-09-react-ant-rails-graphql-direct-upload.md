@@ -6,6 +6,7 @@ last_modified_at: 2020-12-03
 ref: ant-active-storage-upload
 redirect_from:
   - /en/react-ant-rails-graphql-direct-upload.html
+  - /en/blog/react-ant-rails-graphql-direct-upload
 ---
 An implementation of direct file uploads
 to Ruby on Rails Active Storage from a React TypeScript application using

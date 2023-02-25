@@ -5,4 +5,6 @@ definition: |
   An auxillary memory which from which data can be read faster than
   from the main data source
 title: Cache
+redirect_from:
+  - /en/dictionary/word/cache.html
 ---

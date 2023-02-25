@@ -3,6 +3,8 @@ layout: post
 title: "EiffelStudio Assertions Setting"
 date: 2021-10-26
 ref: eiffel-assertions-setting
+redirect_from:
+  - /en/blog/eiffelstudio-assertions-setting
 ---
 EiffelStudio allows to control which assertions will be evaluated.
 We build a cheatshseet listing

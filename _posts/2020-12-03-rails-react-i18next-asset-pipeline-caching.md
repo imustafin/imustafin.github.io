@@ -6,6 +6,7 @@ last_modified_at: 2020-12-16
 ref: rails-react-asset-pipeline-caching
 redirect_from:
   - /en/rails-react-i18next-asset-pipeline-caching.html
+  - /en/blog/rails-react-i18next-asset-pipeline-caching
 ---
 How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.
 

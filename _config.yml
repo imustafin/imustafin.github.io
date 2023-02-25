@@ -12,17 +12,17 @@ future: true
 
 # Build settings
 markdown: kramdown
-# theme: jekyll-theme-cayman
 plugins:
   - jemoji
-  - jekyll-remote-theme
   - jekyll-redirect-from
   - jekyll-plantuml
+  - jekyll-postcss
+
+postcss:
+  cache: false
 
 redirect_from:
   json: false
-
-remote_theme: pages-themes/cayman
 
 liquid:
   error_mode: strict
@@ -56,14 +56,14 @@ defaults:
         name: Ilgiz Mustafin
         url: https://imustafin.tatar
   - scope:
-      path: en
+      path: ''
     values:
       lang: en
   - scope:
-      path: en
+      path: ''
       type: posts
     values:
-      permalink: /en/blog/:title
+      permalink: /blog/:title
   - scope:
       path: ru
     values:
@@ -89,17 +89,20 @@ defaults:
     values:
       permalink: /tt/%D0%B1%D0%BB%D0%BE%D0%B3/:title
   - scope:
-      path: en/dictionary/word
+      path: dictionary/word
     values: &dictionary
       in_dictionary: true
       layout: dictionary_word
       translation-sources: null
       translation-etymology: null
+      permalink: /dicationary/word/:basename
   - scope:
       path: ru/словарь/слово
     values:
       <<: *dictionary
+      permalink: /ru/словарь/слово/:basename
   - scope:
       path: tt/сүзлек/сүз
     values:
       <<: *dictionary
+      permalink: /tt/сүзлек/сүз/:basename

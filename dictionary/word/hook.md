@@ -5,4 +5,6 @@ definition: |
   Code which alters or augments the behaviour of a program
   by intercepting messages or events
 title: Hook
+redirect_from:
+  - /en/dictionary/word/hook.html
 ---
