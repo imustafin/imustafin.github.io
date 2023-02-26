@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+    />
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <title>EiffelStudio Assertions Setting | imustafin.tatar</title>
+    <meta name="generator" content="Jekyll v4.3.2" />
+    <meta property="og:title" content="EiffelStudio Assertions Setting" />
+    <meta name="author" content="Ilgiz Mustafin" />
+    <meta property="og:locale" content="en" />
+    <meta
+      name="description"
+      content="EiffelStudio allows to control which assertions will be evaluated. We build a cheatshseet listing which contracts are checked for each setting."
+    />
+    <meta
+      property="og:description"
+      content="EiffelStudio allows to control which assertions will be evaluated. We build a cheatshseet listing which contracts are checked for each setting."
+    />
+    <link
+      rel="canonical"
+      href="https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+    />
+    <meta
+      property="og:url"
+      content="https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+    />
+    <meta property="og:site_name" content="imustafin.tatar" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2021-10-26T00:00:00+00:00"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="EiffelStudio Assertions Setting" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+          "@type": "Person",
+          "name": "Ilgiz Mustafin",
+          "url": "https://imustafin.tatar"
+        },
+        "dateModified": "2021-10-26T00:00:00+00:00",
+        "datePublished": "2021-10-26T00:00:00+00:00",
+        "description": "EiffelStudio allows to control which assertions will be evaluated. We build a cheatshseet listing which contracts are checked for each setting.",
+        "headline": "EiffelStudio Assertions Setting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+        },
+        "url": "https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+      }
+    </script>
+    <!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#157878" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/old.css" />
+
+    <script
+      src="https://kit.fontawesome.com/e53ce92d09.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="apple-mobile-web-app-title" content="imustafin.tatar" />
+    <meta name="application-name" content="imustafin.tatar" />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div class="with-header-footer">
+      <section class="page-header-home">
+        <h1 class="project-name">Ilgiz Mustafin's personal website</h1>
+
+        <div class="navigation-wrapper">
+          <div></div>
+
+          <ul class="links menu-links">
+            <li><a href="/">Main Page</a></li>
+
+            <li><a href="/blog/">Blog</a></li>
+
+            <li><a href="/dictionary/">Dictionary</a></li>
+          </ul>
+
+          <ul class="links end-links navigation-first">
+            <li>
+              <a lang="en" href="/blog/eiffelstudio-assertions-setting"
+                >English</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="main-content">
+          <nav>
+            <ol
+              class="breadcrumbs"
+              vocab="https://schema.org/"
+              typeof="BreadcrumbList"
+            >
+              <li property="itemListElement" typeof="ListItem">
+                <a
+                  property="item"
+                  typeof="WebPage"
+                  href="https://imustafin.tatar/blog/"
+                >
+                  <span property="name">Blog</span>
+                </a>
+
+                <meta property="position" content="1" />
+              </li>
+
+              <li property="itemListElement" typeof="ListItem">
+                <span
+                  property="item"
+                  typeof="WebPage"
+                  resource="https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+                >
+                  <span property="name">EiffelStudio Assertions Setting</span>
+                </span>
+
+                <meta property="position" content="2" />
+              </li>
+            </ol>
+          </nav>
+
+          <article itemscope itemtype="http://schema.org/BlogPosting">
+            <header class="post-header">
+              <h1 class="post-title" itemprop="name headline">
+                EiffelStudio Assertions Setting
+              </h1>
+              <p class="post-meta">
+                <time
+                  class="post-date"
+                  datetime="2021-10-26T00:00:00+00:00"
+                  itemprop="datePublished"
+                >
+                  26 October 2021
+                </time>
+              </p>
+            </header>
+
+            <div itemprop="articleBody">
+              <p>
+                EiffelStudio allows to control which assertions will be
+                evaluated. We build a cheatshseet listing which contracts are
+                checked for each setting.
+              </p>
+
+              <h2 id="tldr">TLDR</h2>
+              <p>Here is the cheatsheet:</p>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th> </th>
+                    <th style="text-align: center">require</th>
+                    <th style="text-align: center">check</th>
+                    <th style="text-align: center">loop_invariant</th>
+                    <th style="text-align: center">loop_variant</th>
+                    <th style="text-align: center">ensure</th>
+                    <th style="text-align: center">invariant</th>
+                    <th style="text-align: center">other_library pre</th>
+                    <th style="text-align: center">other_library check</th>
+                    <th style="text-align: center">subcluster require</th>
+                    <th style="text-align: center">subcluster check</th>
+                    <th style="text-align: center">other_cluster pre</th>
+                    <th style="text-align: center">other_cluster check</th>
+                    <th style="text-align: center">indirect_cluster pre</th>
+                    <th style="text-align: center">indirect_cluster check</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>All</strong></td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Require</strong></td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ensure</strong></td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Check</strong></td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Invariant</strong></td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Loop</strong></td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Supplier Precondition</strong></td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center">X</td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                    <td style="text-align: center"> </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                Rows represent the types of assertions enabled. <em>All</em> has
+                all assertions enabled. Other examples enable only one
+                respective assertion.
+              </p>
+
+              <p>
+                Columns represent different types of contracts added in
+                different groups (clusters and libraries). The exact meanings of
+                the column prefixes are described
+                <a href="#class-diagram">in the following section</a>.
+              </p>
+
+              <p>
+                <code class="language-plaintext highlighter-rouge">X</code> in a
+                cell means that the respective assertion is evaluated.
+              </p>
+
+              <h2 id="discussion">Discussion</h2>
+
+              <p>
+                To me personally, the only surprising fact is that in the
+                <em>Supplier Precondition</em> example, feature preconditions
+                (<code class="language-plaintext highlighter-rouge"
+                  >require</code
+                >) are checked not only for methods from other groups, but also
+                for features of the cluster itself.
+              </p>
+
+              <p>Other than that, everything seems to be clear.</p>
+              <ul>
+                <li><strong>Require</strong> evaluates the preconditions</li>
+                <li><strong>Ensure</strong> evaluates the postconditions</li>
+                <li>
+                  <strong>Check</strong> evaluates the
+                  <code class="language-plaintext highlighter-rouge"
+                    >check ... end</code
+                  >
+                  instructions
+                </li>
+                <li>
+                  <strong>Invariant</strong> evaluates the class invariants
+                </li>
+                <li>
+                  <strong>Loop</strong> evaluates the loop variants and
+                  invariants
+                </li>
+                <li>
+                  <strong>Supplier Precondition</strong> evaluates the
+                  preconditions of features used directly by this cluster. That
+                  is:
+                  <ul>
+                    <li>Features of libraries (<em>other_library pre</em>)</li>
+                    <li>
+                      Features of other clusters (<em>other_cluster pre</em>)
+                    </li>
+                    <li>Features of this cluster (<em>require</em>)</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h2 id="setting-assertion-levels">Setting Assertion Levels</h2>
+              <p>
+                Assertion levels can be configured for each <em>target</em> and
+                <em>clusters</em> and <em>libraries</em> can override the
+                assertion levels set by their target.
+              </p>
+
+              <p>
+                This can be done in the EiffelStudio GUI and through the
+                <code class="language-plaintext highlighter-rouge">.ecf</code>
+                file.
+              </p>
+
+              <h3 id="setting-assertions-manually-in-eiffelstudio">
+                Setting Assertions Manually in EiffelStudio
+              </h3>
+              <p>
+                Assertion levels can be configured in EiffelStudio GUI. The
+                process is already documented on eiffel.org. There is a
+                <a
+                  href="https://www.eiffel.org/doc/eiffelstudio/Setting_the_assertion_level"
+                  >very short How To</a
+                >. Basically, you need to:
+              </p>
+              <ol>
+                <li>
+                  Open the Project Settings dialog (<strong
+                    >Project &gt; Project Settings</strong
+                  >)
+                </li>
+                <li>
+                  Set the default assertion level for a <em>target</em> in the
+                  <strong>Target &gt; Assertions</strong> section. This section
+                  is
+                  <a
+                    href="https://www.eiffel.org/doc/eiffelstudio/Assertion_Options"
+                    >described separately on eiffel.org</a
+                  >.
+                </li>
+                <li>
+                  Assertion levels can be overriden per cluster or library.
+                  <ol>
+                    <li>
+                      Navigate to the needed group
+                      <ul>
+                        <li>
+                          <strong
+                            >Target &gt; Groups &gt; Clusters &gt; …</strong
+                          >
+                          for clusters
+                        </li>
+                        <li>
+                          <strong
+                            >Target &gt; Groups &gt; Libraries &gt; …</strong
+                          >
+                          for libraries
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      Set the required assertion levels in the
+                      <strong>Assertions</strong> expandable section.
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  After changing assertions settings you
+                  <em>must recompile</em> the system for settings to take
+                  effect.
+                </li>
+              </ol>
+
+              <h3 id="setting-assertions-in-the-ecf-file">
+                Setting Assertions in the ECF File
+              </h3>
+              <p>
+                Assertion levels can be configured in the
+                <code class="language-plaintext highlighter-rouge">.ecf</code>
+                file as well. We will use this in the experiment
+                <a href="#compiling-for-different-assertion-levels">later</a>
+                for automated testing of the program with different assertion
+                levels.
+              </p>
+
+              <p>
+                The
+                <code class="language-plaintext highlighter-rouge">.ecf</code>
+                file is an XML file inside. Each
+                <code class="language-plaintext highlighter-rouge">target</code
+                >,
+                <code class="language-plaintext highlighter-rouge"
+                  >cluster</code
+                >
+                and
+                <code class="language-plaintext highlighter-rouge"
+                  >library</code
+                >
+                element can have the
+                <code class="language-plaintext highlighter-rouge"
+                  >option/assertions</code
+                >
+                element which can set or override the assertion levels:
+              </p>
+
+              <div class="language-xml highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="nt">&lt;cluster</span> <span class="na">name=</span><span class="s">"other_cluster"</span> <span class="na">location=</span><span class="s">".\other_cluster\"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option&gt;</span>
+        <span class="nt">&lt;assertions</span>
+          <span class="na">postcondition=</span><span class="s">"true"</span>
+          <span class="na">check=</span><span class="s">"true"</span>
+          <span class="na">invariant=</span><span class="s">"true"</span>
+          <span class="na">loop=</span><span class="s">"true"</span>
+          <span class="na">supplier_precondition=</span><span class="s">"true"</span>
+        <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/cluster&gt;</span>
+</code></pre>
+                </div>
+              </div>
+
+              <h2 id="the-experiment">The Experiment</h2>
+              <p>
+                To check which contracts are checked for each assertion level we
+                can write a simple program which includes different types of
+                contracts. Then we can switch different levels and observe which
+                contracts are in fact evaluated.
+              </p>
+
+              <p>
+                To speed up the process and because of the high number of
+                possible settings combinations and types of contracts, we can
+                write a program which runs the Eiffel program with different
+                assertion levels. This program is
+                <a href="https://github.com/imustafin/eiffel-studio-assertions"
+                  >available on GitHub</a
+                >.
+              </p>
+
+              <h3 id="class-diagram">Class Diagram</h3>
+              <p>
+                While one cluster and one class is enough to show the effects of
+                the most of the settings, we need several clusters and a library
+                to show the effects of the Supplier Precondition setting.
+              </p>
+
+              <p>The UML diagram shows the setup of the demo program.</p>
+
+              <p>
+                <object
+                  data="/uml/da99e19edb91a78a523ff1efbe08428c.svg"
+                  type="image/svg+xml"
+                  class="plantuml"
+                ></object>
+              </p>
+
+              <p>
+                Here,
+                <code class="language-plaintext highlighter-rouge"
+                  >APPLICATION</code
+                >
+                is the root class (depicted by the
+                <code class="language-plaintext highlighter-rouge"
+                  >&lt;&lt;root&gt;&gt;</code
+                >
+                stereotype). All types of contracts are implemented in the
+                <code class="language-plaintext highlighter-rouge">DEMO</code>
+                class.
+                <code class="language-plaintext highlighter-rouge"
+                  >APPLICATION</code
+                >
+                and
+                <code class="language-plaintext highlighter-rouge">DEMO</code>
+                are part of the
+                <code class="language-plaintext highlighter-rouge">main</code>
+                cluster which will have the assertions checking enabled
+                (depicted by the blue color of the cluster). Additionally,
+                <code class="language-plaintext highlighter-rouge">DEMO</code>
+                uses classes from different clusters and libraries:
+              </p>
+              <ul>
+                <li>
+                  <code class="language-plaintext highlighter-rouge"
+                    >OTHER_LIBRARY_DEMO</code
+                  >
+                  is a part of the
+                  <code class="language-plaintext highlighter-rouge"
+                    >other_library</code
+                  >
+                  library (depicted by the <em>book</em> icon)
+                </li>
+                <li>
+                  <code class="language-plaintext highlighter-rouge"
+                    >SUBCLUSTER_DEMO</code
+                  >
+                  is a part of the
+                  <code class="language-plaintext highlighter-rouge"
+                    >subcluster</code
+                  >
+                  cluster.
+                  <code class="language-plaintext highlighter-rouge"
+                    >subcluster</code
+                  >
+                  is a child of the
+                  <code class="language-plaintext highlighter-rouge">main</code>
+                  cluster.
+                </li>
+                <li>
+                  <code class="language-plaintext highlighter-rouge"
+                    >OTHER_CLUSTER_DEMO</code
+                  >
+                  is a part of the
+                  <code class="language-plaintext highlighter-rouge"
+                    >other_cluster</code
+                  >
+                  cluster.
+                  <code class="language-plaintext highlighter-rouge"
+                    >other_cluster</code
+                  >
+                  is a sibling of the
+                  <code class="language-plaintext highlighter-rouge">main</code>
+                  cluster.
+                </li>
+              </ul>
+
+              <p>
+                <code class="language-plaintext highlighter-rouge"
+                  >OTHER_CLUSTER_DEMO</code
+                >
+                uses the
+                <code class="language-plaintext highlighter-rouge"
+                  >INDIRECT_CLUSTER_DEMO</code
+                >
+                class from the
+                <code class="language-plaintext highlighter-rouge"
+                  >indirect_cluster</code
+                >
+                cluster.
+              </p>
+
+              <p>
+                All subclusters except
+                <code class="language-plaintext highlighter-rouge">main</code>
+                have all assertions disabled (depicted by the white color of the
+                clusters).
+              </p>
+
+              <p>
+                All those
+                <code class="language-plaintext highlighter-rouge">*_DEMO</code>
+                classes have only a precondition and a check in them. This is to
+                check if preconditions and other contracts are checked.
+              </p>
+
+              <h3 id="listing-the-evaluated-contracts">
+                Listing the Evaluated Contracts
+              </h3>
+              <p>
+                We want the program to print a list of contracts it has checked.
+                One way to do it is to fail each contract once, print its tag
+                and then never fail it again. Contract violations raise an
+                exception. We can catch this exception and set some flag to pass
+                this contract next time, and then to retry the program to see if
+                any other contract fails. This solution is based on
+                <a href="https://stackoverflow.com/a/69351110"
+                  >this StackOverflow answer by Alexander Kogtenkov</a
+                >.
+              </p>
+
+              <p>
+                Each contract will have a unique tag. We will have a
+                <code class="language-plaintext highlighter-rouge"
+                  >HASH_TABLE [BOOLEAN, STRING]</code
+                >
+                which will tell if the contract should be satisfied by its tag.
+                The main algorithm is in the
+                <code class="language-plaintext highlighter-rouge"
+                  >APPLICATION</code
+                >
+                class:
+              </p>
+              <div class="language-eiffel highlighter-rouge">
+                <div class="highlight">
+                  <pre class="highlight"><code><span class="k">class</span>
+    <span class="nc">APPLICATION</span>
+
+<span class="k">create</span>
+    <span class="n">make</span>
+
+<span class="k">feature</span> <span class="pi">{</span><span class="nc">NONE</span><span class="pi">}</span> <span class="c1">-- Initialization</span>
+
+    <span class="n">make</span>
+        <span class="k">do</span>
+            <span class="n">run_demo</span> <span class="pi">(</span><span class="k">create</span> <span class="pi">{</span><span class="nc">HASH_TABLE</span> <span class="pi">[</span><span class="nc">BOOLEAN</span><span class="pi">,</span> <span class="nc">STRING</span><span class="pi">]}.</span><span class="n">make</span> <span class="pi">(</span><span class="mi">0</span><span class="pi">))</span>
+        <span class="k">end</span>
+
+    <span class="n">run_demo</span> <span class="pi">(</span><span class="n">satisfy</span><span class="pi">:</span> <span class="nc">HASH_TABLE</span> <span class="pi">[</span><span class="nc">BOOLEAN</span><span class="pi">,</span> <span class="nc">STRING</span><span class="pi">])</span>
+        <span class="k">local</span>
+            <span class="n">demo</span><span class="pi">:</span> <span class="nc">DEMO</span>
+        <span class="k">do</span>
+            <span class="k">create</span> <span class="n">demo</span><span class="pi">.</span><span class="n">make</span> <span class="pi">(</span><span class="n">satisfy</span><span class="pi">)</span>
+        <span class="k">rescue</span>
+            <span class="k">check</span> <span class="k">attached</span> <span class="pi">{</span><span class="nc">EXCEPTIONS</span><span class="pi">}.</span><span class="n">tag_name</span> <span class="k">as</span> <span class="n">tag</span> <span class="k">then</span>
+                <span class="n">print</span> <span class="pi">(</span><span class="n">tag</span> <span class="o">+</span> <span class="s2">"%N"</span><span class="pi">)</span>
+                <span class="n">satisfy</span> <span class="pi">[</span><span class="n">tag</span><span class="pi">]</span> <span class="pi">:=</span> <span class="kc">True</span>
+                <span class="k">retry</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>And each contract will have the form</p>
+              <div class="language-eiffel highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="n">tag_</span><span class="pi">:</span> <span class="n">satisfy</span> <span class="pi">[</span><span class="s2">"tag_"</span><span class="pi">]</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                When a contract is first met,
+                <code class="language-plaintext highlighter-rouge"
+                  >satisfy</code
+                >
+                will not have an entry for the tag and the
+                <code class="language-plaintext highlighter-rouge">[]</code>
+                feature will return
+                <code class="language-plaintext highlighter-rouge">False</code>,
+                failing the assertion. We will catch the exception, put a
+                <code class="language-plaintext highlighter-rouge">True</code>
+                for this tag and next time the contract will not fail.
+              </p>
+
+              <h3 id="compiling-for-different-assertion-levels">
+                Compiling for Different Assertion Levels
+              </h3>
+              <p>
+                As we
+                <a href="#setting-assertion-levels">discussed previously</a>, it
+                is possible to set the assertion levels both in the GUI and in
+                the
+                <code class="language-plaintext highlighter-rouge">.ecf</code>
+                file.
+              </p>
+
+              <p>
+                Trying to set many different combinations manually can take much
+                time and is error-prone. Because of this, we will write a
+                program which writes different settings into the
+                <code class="language-plaintext highlighter-rouge">.ecf</code>,
+                compile, run and collect the contracts checked.
+              </p>
+
+              <p>
+                Another benefit of having a program is that this experiment
+                becomes reproduceable.
+              </p>
+
+              <p>
+                This program is written in Ruby and uses
+                <a href="https://nokogiri.org/">Nokogiri</a> for working with
+                XML. The code is available in
+                <a href="https://github.com/imustafin/eiffel-studio-assertions"
+                  >the same repository</a
+                >, together with the demo Eiffel program.
+              </p>
+
+              <p>
+                The program reads the original
+                <code class="language-plaintext highlighter-rouge">.ecf</code>
+                file, explicitly disables all assertions in the
+                <code class="language-plaintext highlighter-rouge"
+                  >other_library</code
+                >
+                and all clusters. Then it enables some assertions in the
+                <code class="language-plaintext highlighter-rouge">main</code>
+                cluster. The resulting XML is written as another
+                <code class="language-plaintext highlighter-rouge">.ecf</code>
+                file which is then compiled and the result is executed.
+              </p>
+              <div class="language-ruby highlighter-rouge">
+                <div class="highlight">
+                  <pre
+                    class="highlight"
+                  ><code><span class="n">doc</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="no">ORIGINAL_ECF</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">XML</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="n">other_library</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">at_xpath</span><span class="p">(</span><span class="s1">'//xmlns:library[@name="other_library"]'</span><span class="p">)</span>
+<span class="n">all_clusters</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">xpath</span><span class="p">(</span><span class="s1">'//xmlns:cluster'</span><span class="p">)</span>
+<span class="n">main_cluster</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">at_xpath</span><span class="p">(</span><span class="s1">'//xmlns:cluster[@name="main"]'</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">other_library</span><span class="p">,</span> <span class="o">*</span><span class="n">all_clusters</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+  <span class="n">set_assertions</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">all_disabled</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">enabled_assertions</span><span class="p">.</span><span class="nf">to_h</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="kp">true</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">set_assertions</span><span class="p">(</span><span class="n">main_cluster</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+
+<span class="n">ecf_name</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="s2">/check_</span><span class="si">#{</span><span class="nb">name</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span><span class="si">}</span><span class="s2">.ecf"</span>
+
+<span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">ecf_name</span><span class="p">,</span> <span class="n">doc</span><span class="p">.</span><span class="nf">to_xml</span><span class="p">)</span>
+
+<span class="c1"># Compile</span>
+<span class="nb">system</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="sh">
+    ec
+      -project_path "</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="sh">"
+      -config </span><span class="si">#{</span><span class="n">ecf_name</span><span class="si">}</span><span class="sh">
+      -clean
+      -c_compile
+      &gt;&amp;2
+</span><span class="no">CMD</span>
+
+<span class="c1"># Run</span>
+<span class="n">out</span> <span class="o">=</span> <span class="sb">`./</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="sb">/EIFGENs/contract_variants/W_code/contract_variants`</span>
+
+<span class="c1"># Save results</span>
+<span class="n">results</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="p">.</span><span class="nf">strip</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</code></pre>
+                </div>
+              </div>
+
+              <p>
+                Then the results are printed as a nice Markdown table, ready to
+                be embedded into a blog-post
+                <img
+                  class="emoji"
+                  title=":smile:"
+                  alt=":smile:"
+                  src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png"
+                  height="20"
+                  width="20"
+                />
+              </p>
+
+              <p>
+                Note how we use the command line program
+                <code class="language-plaintext highlighter-rouge">ec</code> to
+                compile the workbench version of the executable. The
+                <a
+                  href="https://www.eiffel.org/doc/eiffelstudio/EiffelStudio-_Using_command_line_options"
+                  >documentation on eiffel.org</a
+                >
+                lists other command line options and usage examples.
+              </p>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <footer class="site-footer">
+        <div id="footer-contacts">
+          <a href="https://t.me/imustafin">Telegram</a>
+          <a href="https://github.com/imustafin">GitHub</a>
+          <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178"
+            >LinkedIn</a
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -7,7 +7,7 @@
     <link
       rel="alternate"
       hreflang="en"
-      href="https://imustafin.tatar/en/blog/react-ant-rails-graphql-direct-upload"
+      href="https://imustafin.tatar/blog/react-ant-rails-graphql-direct-upload"
     />
 
     <link
@@ -26,7 +26,7 @@
     <title>
       Прямая загрузка файлов в Rails React Ant через GraphQL | imustafin.tatar
     </title>
-    <meta name="generator" content="Jekyll v4.2.1" />
+    <meta name="generator" content="Jekyll v4.3.2" />
     <meta
       property="og:title"
       content="Прямая загрузка файлов в Rails React Ant через GraphQL"
@@ -84,7 +84,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#157878" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/old.css" />
 
     <script
       src="https://kit.fontawesome.com/e53ce92d09.js"
@@ -123,7 +124,7 @@
 
           <ul class="links end-links navigation-first">
             <li>
-              <a lang="en" href="/en/blog/react-ant-rails-graphql-direct-upload"
+              <a lang="en" href="/blog/react-ant-rails-graphql-direct-upload"
                 >English</a
               >
             </li>
@@ -451,14 +452,14 @@
                   ><code><span class="k">import</span> <span class="p">{</span> <span class="nx">FileChecksum</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/file_checksum</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">calculateChecksum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">File</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">(</span>
-  <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
-    <span class="nx">FileChecksum</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">checksum</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="nx">FileChecksum</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">checksum</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nf">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
       <span class="p">}</span>
 
-      <span class="nx">resolve</span><span class="p">(</span><span class="nx">checksum</span><span class="p">);</span>
+      <span class="nf">resolve</span><span class="p">(</span><span class="nx">checksum</span><span class="p">);</span>
     <span class="p">})</span>
   <span class="p">))</span>
 <span class="p">);</span>
@@ -481,17 +482,17 @@
                     class="highlight"
                   ><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcFile</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nx">Test</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-  <span class="k">async</span> <span class="nx">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">RcFile</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">RcFile</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="c1">// createDirectUploadMutation is a placeholder for your GraphQL request method</span>
-    <span class="kd">const</span> <span class="p">{</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">createDirectUploadMutation</span><span class="p">({</span>
-      <span class="na">checksum</span><span class="p">:</span> <span class="k">await</span> <span class="nx">calculateChecksum</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">createDirectUploadMutation</span><span class="p">({</span>
+      <span class="na">checksum</span><span class="p">:</span> <span class="k">await</span> <span class="nf">calculateChecksum</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
       <span class="na">filename</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span>
       <span class="na">contentType</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="kd">type</span><span class="p">,</span>
       <span class="na">byteSize</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">size</span>
     <span class="p">});</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">headers</span><span class="p">)</span> <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">headers</span><span class="p">)</span> <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -509,11 +510,11 @@
                   ><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcCustomRequestOptions</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload/interface</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">BlobUpload</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/blob_upload</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nx">Test</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">:</span> <span class="nx">RcCustomRequestOptions</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">:</span> <span class="nx">RcCustomRequestOptions</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="p">{</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
 
-    <span class="kd">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BlobUpload</span><span class="p">({</span>
+    <span class="kd">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BlobUpload</span><span class="p">({</span>
       <span class="nx">file</span><span class="p">,</span>
       <span class="na">directUploadData</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span> <span class="k">as</span> <span class="nb">Record</span><span class="o">&lt;</span><span class="kr">string</span><span class="p">,</span> <span class="kr">string</span><span class="o">&gt;</span><span class="p">;</span>
@@ -521,16 +522,16 @@
       <span class="p">}</span>
     <span class="p">});</span>
 
-    <span class="nx">upload</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">progress</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">upload</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">progress</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="kd">const</span> <span class="nx">percent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
-      <span class="nx">options</span><span class="p">.</span><span class="nx">onProgress</span><span class="p">({</span> <span class="nx">percent</span> <span class="p">},</span> <span class="nx">file</span><span class="p">);</span>
+      <span class="nx">options</span><span class="p">.</span><span class="nf">onProgress</span><span class="p">({</span> <span class="nx">percent</span> <span class="p">},</span> <span class="nx">file</span><span class="p">);</span>
     <span class="p">});</span>
 
-    <span class="nx">upload</span><span class="p">.</span><span class="nx">create</span><span class="p">((</span><span class="na">error</span><span class="p">:</span> <span class="nb">Error</span><span class="p">,</span> <span class="na">response</span><span class="p">:</span> <span class="nx">object</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">options</span><span class="p">.</span><span class="nx">onError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="nx">upload</span><span class="p">.</span><span class="nf">create</span><span class="p">((</span><span class="na">error</span><span class="p">:</span> <span class="nb">Error</span><span class="p">,</span> <span class="na">response</span><span class="p">:</span> <span class="nx">object</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nf">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">options</span><span class="p">.</span><span class="nx">onSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">file</span><span class="p">);</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">file</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">});</span>
   <span class="p">}</span>
@@ -553,15 +554,15 @@
                 <div class="highlight">
                   <pre
                     class="highlight"
-                  ><code><span class="kd">class</span> <span class="nx">Test</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
+                  ><code><span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">return </span><span class="p">(</span>
       <span class="p">&lt;</span><span class="nc">Upload</span>
         <span class="na">method</span><span class="p">=</span><span class="s">'put'</span> <span class="c1">// important!</span>
         <span class="na">multiple</span><span class="p">=</span><span class="si">{</span><span class="kc">false</span><span class="si">}</span>
-        <span class="na">beforeUpload</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">file</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">beforeUpload</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">file</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="si">}</span>
         <span class="na">action</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">url</span><span class="si">}</span>
-        <span class="na">customRequest</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">options</span><span class="p">):</span> <span class="k">void</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">customRequest</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">options</span><span class="p">):</span> <span class="k">void</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="si">}</span>
       <span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload!<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
       <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>

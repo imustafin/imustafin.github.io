@@ -7,7 +7,7 @@
     <link
       rel="alternate"
       hreflang="en"
-      href="https://imustafin.tatar/en/blog/rails-react-i18next-asset-pipeline-caching"
+      href="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching"
     />
 
     <link
@@ -26,7 +26,7 @@
     <title>
       React-i18next Rails-та: файлүткәргеч аша кәшләү | imustafin.tatar
     </title>
-    <meta name="generator" content="Jekyll v4.2.1" />
+    <meta name="generator" content="Jekyll v4.3.2" />
     <meta
       property="og:title"
       content="React-i18next Rails-та: файлүткәргеч аша кәшләү"
@@ -84,7 +84,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#157878" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/old.css" />
 
     <script
       src="https://kit.fontawesome.com/e53ce92d09.js"
@@ -123,7 +124,7 @@
             <li>
               <a
                 lang="en"
-                href="/en/blog/rails-react-i18next-asset-pipeline-caching"
+                href="/blog/rails-react-i18next-asset-pipeline-caching"
                 >English</a
               >
             </li>
@@ -274,9 +275,9 @@
 <span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="nx">i18n</span>
-  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
 </code></pre>
                 </div>
               </div>
@@ -311,17 +312,17 @@
 <span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useTranslation</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
   
-  <span class="k">return</span> <span class="p">(</span>
+  <span class="nf">return </span><span class="p">(</span>
     <span class="p">&lt;&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
         Татарча
       <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
         Русский
       <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
     <span class="p">&lt;/&gt;</span>
@@ -483,7 +484,7 @@
               <div class="language-js highlighter-rouge">
                 <div class="highlight">
                   <pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">(),</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
 <span class="p">}</span>
 </code></pre>
                 </div>
@@ -757,11 +758,11 @@ Sprockets::Rails::Helper::AssetNotPrecompiled (tt/translation.json)
                   <pre
                     class="highlight"
                   ><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
   
@@ -789,9 +790,9 @@ Sprockets::Rails::Helper::AssetNotPrecompiled (tt/translation.json)
                   ><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="nx">i18n</span>
-  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
     <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
       <span class="nx">loadPath</span><span class="p">,</span>
     <span class="p">},</span>
