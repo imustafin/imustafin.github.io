@@ -115,6 +115,8 @@
 
             <li><a href="/blog/">Blog</a></li>
 
+            <li><a href="/projects/">Projects</a></li>
+
             <li><a href="/dictionary/">Dictionary</a></li>
           </ul>
 
@@ -148,12 +150,24 @@
 
       <div class="content">
         <section class="main-content">
-          <nav>
+          <nav class="mb-4">
             <ol
               class="breadcrumbs"
               vocab="https://schema.org/"
               typeof="BreadcrumbList"
             >
+              <li property="itemListElement" typeof="ListItem">
+                <a
+                  property="item"
+                  typeof="WebPage"
+                  href="https://imustafin.tatar/"
+                >
+                  <span property="name">Main</span>
+                </a>
+
+                <meta property="position" content="0" />
+              </li>
+
               <li property="itemListElement" typeof="ListItem">
                 <a
                   property="item"
@@ -208,7 +222,10 @@
               </p>
             </header>
 
-            <div itemprop="articleBody">
+            <div
+              itemprop="articleBody"
+              class="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl max-w-none"
+            >
               <p>
                 How to use Ruby on Rails Asset Pipeline to efficiently cache
                 translation files.

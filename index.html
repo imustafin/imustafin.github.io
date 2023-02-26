@@ -87,6 +87,8 @@
 
             <li><a href="/blog/">Blog</a></li>
 
+            <li><a href="/projects/">Projects</a></li>
+
             <li><a href="/dictionary/">Dictionary</a></li>
           </ul>
 
@@ -106,9 +108,11 @@
             <figure class="photo">
               <img
                 src="/assets/ilgiz_in_topkapi.jpg"
-                alt="Ilgiz in Topkapı Palace, Instabul, Turkey"
+                alt="Ilgiz in Topkapı Palace, Istanbul, Türkiye"
               />
-              <figcaption>Ilgiz in Topkapı Palace, Instabul, Turkey</figcaption>
+              <figcaption>
+                Ilgiz in Topkapı Palace, Istanbul, Türkiye
+              </figcaption>
             </figure>
 
             <div class="home-content">
@@ -169,10 +173,65 @@
               <ul class="post-list">
                 <li>
                   <article>
-                    <h2>
+                    <h2 class="text-2xl !mb-0">
+                      <a href="/projects/pbdoom" title="PBDoom"> PBDoom </a>
+                    </h2>
+                    <span class="post-meta">
+                      <time
+                        class="post-date"
+                        datetime="2023-02-26T00:00:00+00:00"
+                        itemprop="datePublished"
+                      >
+                        26 February 2023
+                      </time>
+
+                      <ul class="post-translations">
+                        <li>
+                          <a
+                            href="https://imustafin.tatar/projects/pbdoom"
+                            title="PBDoom"
+                          >
+                            English
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom"
+                            title="PBDoom"
+                          >
+                            Русский
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom"
+                            title="PBDoom"
+                          >
+                            Татарча
+                          </a>
+                        </li>
+                      </ul>
+                    </span>
+
+                    <div class="mt-2">
+                      <p>
+                        PBDoom is a port of the Doom (1993) videogame for
+                        PocketBook eInk devices. Downloads are on
+                        <a href="https://pbdoom.imustafin.tatar"
+                          >the official website of PBDoom</a
+                        >.
+                      </p>
+                    </div>
+                  </article>
+                </li>
+
+                <li>
+                  <article>
+                    <h2 class="text-2xl !mb-0">
                       <a
-                        class="post-link"
-                        href="https://imustafin.tatar/blog/eiffelstudio-assertions-setting"
+                        href="/blog/eiffelstudio-assertions-setting"
                         title="EiffelStudio Assertions Setting"
                       >
                         EiffelStudio Assertions Setting
@@ -199,20 +258,21 @@
                       </ul>
                     </span>
 
-                    <p>
-                      EiffelStudio allows to control which assertions will be
-                      evaluated. We build a cheatshseet listing which contracts
-                      are checked for each setting.
-                    </p>
+                    <div class="mt-2">
+                      <p>
+                        EiffelStudio allows to control which assertions will be
+                        evaluated. We build a cheatshseet listing which
+                        contracts are checked for each setting.
+                      </p>
+                    </div>
                   </article>
                 </li>
 
                 <li>
                   <article>
-                    <h2>
+                    <h2 class="text-2xl !mb-0">
                       <a
-                        class="post-link"
-                        href="https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier"
+                        href="/blog/optimizing-heroku-postgres-for-free-tier"
                         title="Optimizing Heroku Postgres for the Free Tier"
                       >
                         Optimizing Heroku Postgres for the Free Tier
@@ -267,20 +327,21 @@
                       </ul>
                     </span>
 
-                    <p>
-                      How to optimize a relational database schema to fit Heroku
-                      Postgres free tier limitations with a real-world example
-                      of SIBrowser.
-                    </p>
+                    <div class="mt-2">
+                      <p>
+                        How to optimize a relational database schema to fit
+                        Heroku Postgres free tier limitations with a real-world
+                        example of SIBrowser.
+                      </p>
+                    </div>
                   </article>
                 </li>
 
                 <li>
                   <article>
-                    <h2>
+                    <h2 class="text-2xl !mb-0">
                       <a
-                        class="post-link"
-                        href="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching"
+                        href="/blog/rails-react-i18next-asset-pipeline-caching"
                         title="React-i18next in Rails: caching with Asset Pipeline"
                       >
                         React-i18next in Rails: caching with Asset Pipeline
@@ -335,19 +396,20 @@
                       </ul>
                     </span>
 
-                    <p>
-                      How to use Ruby on Rails Asset Pipeline to efficiently
-                      cache translation files.
-                    </p>
+                    <div class="mt-2">
+                      <p>
+                        How to use Ruby on Rails Asset Pipeline to efficiently
+                        cache translation files.
+                      </p>
+                    </div>
                   </article>
                 </li>
 
                 <li>
                   <article>
-                    <h2>
+                    <h2 class="text-2xl !mb-0">
                       <a
-                        class="post-link"
-                        href="https://imustafin.tatar/blog/react-ant-rails-graphql-direct-upload"
+                        href="/blog/react-ant-rails-graphql-direct-upload"
                         title="Rails React Ant Direct File Upload with GraphQL"
                       >
                         Rails React Ant Direct File Upload with GraphQL
@@ -402,61 +464,47 @@
                       </ul>
                     </span>
 
-                    <p>
-                      An implementation of direct file uploads to Ruby on Rails
-                      Active Storage from a React TypeScript application using
-                      Ant Design with a GraphQL API.
-                    </p>
+                    <div class="mt-2">
+                      <p>
+                        An implementation of direct file uploads to Ruby on
+                        Rails Active Storage from a React TypeScript application
+                        using Ant Design with a GraphQL API.
+                      </p>
+                    </div>
                   </article>
                 </li>
               </ul>
             </section>
 
             <section>
-              <h1>Latest Dictionary Entries</h1>
+              <h1>Latest Projects</h1>
 
-              <ul class="dictionary-list">
+              <ul>
                 <li>
-                  <a
-                    href="https://imustafin.tatar/dicationary/word/to-cache"
-                    title="To cache"
-                  >
-                    To cache (Russian: Кешировать, Tatar: Кәшләргә)
-                  </a>
-                  — To save data to cache
-                </li>
+                  <article>
+                    <h2 class="text-2xl !mb-0">
+                      <a href="/projects/pbdoom" title="PBDoom"> PBDoom </a>
+                    </h2>
+                    <span class="post-meta">
+                      <time
+                        class="post-date"
+                        datetime="2023-02-26T00:00:00+00:00"
+                        itemprop="datePublished"
+                      >
+                        26 February 2023
+                      </time>
+                    </span>
 
-                <li>
-                  <a
-                    href="https://imustafin.tatar/dicationary/word/cache"
-                    title="Cache"
-                  >
-                    Cache (Russian: Кеш, Tatar: Кәш)
-                  </a>
-                  — An auxillary memory which from which data can be read faster
-                  than from the main data source
-                </li>
-
-                <li>
-                  <a
-                    href="https://imustafin.tatar/dicationary/word/asset-pipeline"
-                    title="Asset Pipeline"
-                  >
-                    Asset Pipeline (Russian: Файлопровод, Tatar: Файлүткәргеч)
-                  </a>
-                  — Framework to concatenate and compress JS, CSS and other
-                  assets in Ruby on Rails
-                </li>
-
-                <li>
-                  <a
-                    href="https://imustafin.tatar/dicationary/word/hook"
-                    title="Hook"
-                  >
-                    Hook (Russian: Хук, Tatar: Һук)
-                  </a>
-                  — Code which alters or augments the behaviour of a program by
-                  intercepting messages or events
+                    <div class="mt-2">
+                      <p>
+                        PBDoom is a port of the Doom (1993) videogame for
+                        PocketBook eInk devices. Downloads are on
+                        <a href="https://pbdoom.imustafin.tatar"
+                          >the official website of PBDoom</a
+                        >.
+                      </p>
+                    </div>
+                  </article>
                 </li>
               </ul>
             </section>
