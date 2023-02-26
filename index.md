@@ -11,6 +11,7 @@ title: Hello!
 crumbtitle: Main Page
 redirect_from:
   - /en/
+crumbtitle: Main
 ---
 My name is Ilgiz and I am a Software Engineer.
 

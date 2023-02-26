@@ -31,10 +31,10 @@ layout: with-header-footer
     </section>
 
     <section>
-      <h1>{{ site.data.i18n.home.latest-dictionary[page.lang] }}</h1>
+      <h1>{{ site.data.i18n.home.latest-projects | t }}</h1>
 
-      <ul class="dictionary-list">
-        {% include words.html sort-by="date" reverse=true %}
+      <ul>
+        {% include projects.html %}
       </ul>
     </section>
   </div>

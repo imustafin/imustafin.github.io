@@ -1,6 +1,6 @@
 home:
   photo-caption:
-    en: Ilgiz in Topkapı Palace, Instabul, Turkey
+    en: Ilgiz in Topkapı Palace, Istanbul, Türkiye
     ru: Ильгиз во дворце Топкапы, Стамбул, Турция
     tt: Ильгиз Топкапы сараенда, Истанбул, Төркия
   latest-posts:
@@ -11,6 +11,10 @@ home:
     en: Latest Dictionary Entries
     ru: Последние статьи в словаре
     tt: Соңгы сүзлек мәкаләләр
+  latest-projects:
+    en: Latest Projects
+    ru: Последние проекты
+    tt: Соңгы проектлар
 
 site:
   title:
@@ -30,6 +34,10 @@ site:
       en: Blog
       ru: Блог
       tt: Блог
+    projects:
+      en: Projects
+      ru: Проекты
+      tt: Проектлар
 
 posts:
   last_modified:
@@ -42,6 +50,12 @@ blog:
     en: Posts
     ru: Записи
     tt: Язмалар
+
+projects:
+  projects:
+    en: Projects by post publication date
+    ru: Проекты по дате публикации записи
+    tt: Язма бастыру буенча проектлар
 
 languages:
   en: English

@@ -1,0 +1,33 @@
+{% assign refs=site.posts | where: "is_project", true | sort: "date" | reverse | map: "ref" | uniq %}
+{% for ref in refs %}
+  {% assign translations=site.posts | where: "ref", ref | sort: "lang" %}
+  {% assign p=translations | where: "lang", page.lang | first %}
+  {% unless p %}
+    {% assign p=translations | first %}
+  {% endunless %}
+  <li>
+    <article>
+      <h2 class="text-2xl !mb-0">
+        <a
+          href="{{ p.url | relative_url }}"
+          title="{{ p.title  }}"
+        >
+          {{ p.title | escape }}
+        </a>
+      </h2>
+      <span class="post-meta">
+        <time
+          class="post-date"
+          datetime="{{ p.date | date_to_xmlschema }}"
+          itemprop="datePublished"
+        >
+          {{ p.date | tdate }}
+        </time>
+      </span>
+
+      <div class="mt-2">
+        {{ p.excerpt | markdownify }}
+      </div>
+    </article>
+  </li>
+{% endfor %}

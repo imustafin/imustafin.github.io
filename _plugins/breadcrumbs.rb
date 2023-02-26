@@ -42,10 +42,18 @@ module Jekyll
       position = 0
 
       path = side.url.chomp("/").split(/(?=\/)/)
+
+      unless ['/ru', '/tt'].include?(path.first)
+        item = findAddressItem('/')
+        item[:position] = position
+        item[:root_image] = root_image
+        payload['breadcrumbs'] << drop.new(item)
+      end
+
       0.upto(path.size - 1) do |int|
          joined_path = int == -1 ? "" : path[0..int].join
          item = findAddressItem(joined_path)
-         if item 
+         if item
             position += 1
             item[:position] = position
             item[:root_image] = root_image

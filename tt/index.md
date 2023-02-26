@@ -8,7 +8,7 @@ seo:
 description: Мустафин Ильгизнең шәхси сайты һәм блогы
 date: 2021-01-25
 title: Исәнмесез!
-crumbtitle: Баш бит
+crumbtitle: Баш
 ---
 Минем исемем Ильгиз, һәм мин — программ инженеры. Software Engineer шулай бит тәрҗемә ителә? :thinking:
 

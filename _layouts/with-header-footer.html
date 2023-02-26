@@ -9,13 +9,13 @@ layout: bare
       <div></div>
 
       <ul class="links menu-links">
-        {% assign sections="home,blog,dictionary" | split: "," %}
+        {% assign sections="home,blog,projects,dictionary" | split: "," %}
 
         {% for section in sections %}
           {% assign sec=site.pages | where: "ref", section | where: "lang", page.lang | first %}
 
           {% if sec %}
-            <li><a href="{{ sec.url }}">{{ site.data.i18n.site.navigation[section][page.lang] }}</a></li>
+            <li><a href="{{ sec.url }}">{{ site.data.i18n.site.navigation[section] | t }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
