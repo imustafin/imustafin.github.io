@@ -30,11 +30,11 @@
     <meta property="og:locale" content="ru" />
     <meta
       name="description"
-      content="PBDoom — это порт видеоигры Doom для устройств PocketBook с электронной бумагой. Загрузки находятся на официальном сайте PBDoom."
+      content="PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге. Загрузки находятся на официальном сайте PBDoom."
     />
     <meta
       property="og:description"
-      content="PBDoom — это порт видеоигры Doom для устройств PocketBook с электронной бумагой. Загрузки находятся на официальном сайте PBDoom."
+      content="PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге. Загрузки находятся на официальном сайте PBDoom."
     />
     <link
       rel="canonical"
@@ -61,9 +61,9 @@
           "name": "Ильгиз Мустафин",
           "url": "https://imustafin.tatar"
         },
-        "dateModified": "2023-02-26T00:00:00+00:00",
+        "dateModified": "2023-02-28T00:00:00+00:00",
         "datePublished": "2023-02-26T00:00:00+00:00",
-        "description": "PBDoom — это порт видеоигры Doom для устройств PocketBook с электронной бумагой. Загрузки находятся на официальном сайте PBDoom.",
+        "description": "PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге. Загрузки находятся на официальном сайте PBDoom.",
         "headline": "PBDoom",
         "mainEntityOfPage": {
           "@type": "WebPage",
@@ -199,6 +199,16 @@
                 >
                   26 февраля 2023
                 </time>
+
+                <span class="post-last-modified">
+                  Последнее обновление:
+                  <time
+                    datetime="2023-02-28T00:00:00+00:00"
+                    itemprop="dateModified"
+                  >
+                    28 февраля 2023
+                  </time>
+                </span>
               </p>
             </header>
 
@@ -207,12 +217,203 @@
               class="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl max-w-none"
             >
               <p>
-                PBDoom — это порт видеоигры Doom для устройств PocketBook с
-                электронной бумагой. Загрузки находятся на
+                PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook
+                на электронной бумаге. Загрузки находятся на
                 <a href="https://pbdoom.imustafin.tatar"
                   >официальном сайте PBDoom</a
                 >.
               </p>
+
+              <figure class="max-w-xs mx-auto">
+                <img
+                  src="/assets/pbdoom_inch_6_display.png"
+                  alt="PBDoom на 6 дюймовом экране"
+                />
+                <figcaption class="text-center">PBDoom на 6" экране</figcaption>
+              </figure>
+
+              <p>
+                PBDoom основан на
+                <a href="https://www.libsdl.org/projects/doom/"
+                  >SDL Doom Сэма Лантинги</a
+                >. Функции SDL для отрисовки изображения на экране были заменены
+                функциями из библиотеки
+                <code class="language-plaintext highlighter-rouge"
+                  >inkview</code
+                >
+                для PocketBook. Функции SDL для проигрывания звука были
+                полностью удалены из кода на текущий момент (на многих
+                устройствах PocketBook текущей линейки отсутвуют динамики, хотя
+                всё ещё можно подключить наушники).
+              </p>
+
+              <p>
+                Разработка PBDoom началась в марте 2022. Первый публичный релиз
+                был опубликовна в январе 2023.
+              </p>
+
+              <p>
+                Исходный код
+                <a href="https://github.com/imustafin/pbdoom"
+                  >доступен на GitHub</a
+                >.
+              </p>
+
+              <h2 id="зачем">Зачем?</h2>
+              <p>Этот проект преследует несколько целей:</p>
+              <ol>
+                <li>
+                  Предоставить пример игры в жанре экшен для устройств с
+                  экранами на электронных чернилах
+                </li>
+                <li>Создать ещё одно приложение для PocketBook</li>
+                <li>
+                  Получить опыт работы с библиотекой
+                  <code class="language-plaintext highlighter-rouge"
+                    >inkview</code
+                  >
+                </li>
+              </ol>
+
+              <p>
+                Само портирование игры Doom не было большим проектом. SDL Doom
+                уже и так работает на Linux, и (некоторые) устройства PocketBook
+                работают на Linux. Было достаточно легко заменить запись
+                пикселей в область памяти поверхности SDL на вызовы функции
+                <code class="language-plaintext highlighter-rouge"
+                  >FillArea</code
+                >
+                из библиотеки
+                <code class="language-plaintext highlighter-rouge">inkview</code
+                >.
+              </p>
+
+              <p>
+                Однако, из-за ограничений технологии электронной бумаги (низкая
+                скорость обновления экрана, отсутвие цвета на некоторых
+                устройствах), приходится немного дорабатывать процедуру вывода
+                видео. В этом проекте мы исследуем что нужно сделать и что
+                возможно сделать для этого.
+              </p>
+
+              <p>
+                Также этот проект познакомил меня с
+                <a href="https://cmake.org/">CMake</a>.
+              </p>
+
+              <h2 id="можно-ли-запустить-doom-на-pocketbook">
+                Можно ли запустить Doom на PocketBook?
+              </h2>
+              <p>
+                Да, можно. Но это не будет чем-то новым. Разработчики,
+                работавшие над PocketBook, выпустили видео, где была показана
+                игра Doom на PocketBook 360 Plus ещё в 2011 году.
+              </p>
+              <figure class="mx-auto">
+                <iframe
+                  class="aspect-video mx-auto w-full md:w-[600px]"
+                  src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen=""
+                ></iframe>
+                <figcaption class="text-center">
+                  Doom 2 на PocketBook 360 Plus
+                </figcaption>
+              </figure>
+
+              <p>
+                Эту версию разработчики сделали «коротая время за обедом» (<a
+                  href="https://www.the-ebook.org/forum/viewtopic.php?p=639725"
+                  >оригинальное сообщение</a
+                >,
+                <a
+                  href="https://web.archive.org/web/20110811143945/https://www.the-ebook.org/forum/viewtopic.php?p=639725"
+                  >архив</a
+                >), но, насколько я знаю, так и не выпустили её в общий доступ.
+              </p>
+
+              <p>
+                Таким образом, PBDoom может стать той самой публичной версией
+                Doom для PocketBook, которой (кому-то) так не хватало.
+              </p>
+
+              <h2 id="дизеринг-изображений-оптимизация-для-электронной-бумаги">
+                Дизеринг изображений: оптимизация для электронной бумаги
+              </h2>
+              <p>
+                Как было отмечено выше, электронная бумага имеет низкую частоту
+                обновления. Поэтому нам нужны обходные пути для комфортной игры.
+              </p>
+
+              <p>
+                Некоторые дисплеи на электронной бумаге предоставляют несколько
+                режимов обновления изображения. В некоторых режимах скорость
+                обновления зависит от того, как именно изменяется изображение.
+                Например, заменить чёрный регион на белый может быть быстрее,
+                чем изменение региона с одного промежуточного оттенка серого на
+                другой.
+              </p>
+
+              <p>
+                Используя эту особенность, мы можем увеличить частоту обновления
+                игры, теряя в качестве картинки.
+              </p>
+
+              <p>
+                Официальная документация
+                <code class="language-plaintext highlighter-rouge"
+                  >inkview</code
+                >
+                рекомендует уменьшать количество цветов до двух для быстрых
+                обновлений (<a
+                  href="https://github.com/pocketbook-free/InkViewDoc/blob/master/PocketBookSDK.pdf"
+                  >страница 12</a
+                >):
+              </p>
+
+              <blockquote>
+                <p>
+                  Вызывайте [<code class="language-plaintext highlighter-rouge"
+                    >DitherArea</code
+                  >] с
+                  <code class="language-plaintext highlighter-rouge"
+                    >levels=2</code
+                  >
+                  и
+                  <code class="language-plaintext highlighter-rouge"
+                    >method=DITHER_THRESHOLD</code
+                  >
+                  для получения изображения, которое может быть быстро
+                  отображено (меню, списки и выделения)
+                </p>
+              </blockquote>
+
+              <p>Перевод и форматирование от меня.</p>
+
+              <p>
+                В библиотеке
+                <code class="language-plaintext highlighter-rouge"
+                  >inkview</code
+                >
+                есть несколько функций для дизеринга изображения на экране
+                (<code class="language-plaintext highlighter-rouge"
+                  >DitherArea</code
+                >
+                и другие).
+              </p>
+
+              <p>
+                Также мы можем поработать с цветом и изменить яркость, контраст
+                и провести гамма-коррекцию изображения перед дизерингом, чтобы
+                оптимизировать итоговую картинку.
+              </p>
+
+              <h2 id="история-изменений-записи">История изменений записи</h2>
+              <ul>
+                <li>28 февраля 2023 — добавлена основная часть текста</li>
+              </ul>
             </div>
           </article>
         </section>

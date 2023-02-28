@@ -55,7 +55,7 @@
           "name": "Ilgiz Mustafin",
           "url": "https://imustafin.tatar"
         },
-        "dateModified": "2023-02-26T00:00:00+00:00",
+        "dateModified": "2023-02-28T00:00:00+00:00",
         "datePublished": "2023-02-26T00:00:00+00:00",
         "description": "PBDoom is a port of the Doom (1993) videogame for PocketBook eInk devices. Downloads are on the official website of PBDoom.",
         "headline": "PBDoom",
@@ -185,6 +185,16 @@
                 >
                   26 February 2023
                 </time>
+
+                <span class="post-last-modified">
+                  Last modified:
+                  <time
+                    datetime="2023-02-28T00:00:00+00:00"
+                    itemprop="dateModified"
+                  >
+                    28 February 2023
+                  </time>
+                </span>
               </p>
             </header>
 
@@ -205,7 +215,9 @@
                   src="/assets/pbdoom_inch_6_display.png"
                   alt="PBDoom on a 6 inch display"
                 />
-                <figcaption>PBDoom on a 6" display</figcaption>
+                <figcaption class="text-center">
+                  PBDoom on a 6" display
+                </figcaption>
               </figure>
 
               <p>
@@ -280,14 +292,19 @@
                 PocketBook released a video of Doom running on a PocketBook 360
                 Plus back in 2011.
               </p>
-              <iframe
-                class="aspect-video mx-auto w-full md:w-[600px]"
-                src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen=""
-              ></iframe>
+              <figure class="mx-auto">
+                <iframe
+                  class="aspect-video mx-auto w-full md:w-[600px]"
+                  src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen=""
+                ></iframe>
+                <figcaption class="text-center">
+                  Doom 2 on PocketBook 360 Plus
+                </figcaption>
+              </figure>
 
               <p>
                 This version was produced “during a lunch break” (<a
@@ -297,12 +314,12 @@
                 <a
                   href="https://web.archive.org/web/20110811143945/https://www.the-ebook.org/forum/viewtopic.php?p=639725"
                   >archived message</a
-                >) and was (to my knowledge) released to the public.
+                >) and was (to my knowledge) never released to the public.
               </p>
 
               <p>
                 So, PBDoom can finally close the gap and serve as a publicly
-                available Doom for PocketBook.
+                available Doom for PocketBook, (some people) needed so much.
               </p>
 
               <h2 id="image-dithering-optimization-for-eink">
@@ -310,19 +327,52 @@
               </h2>
               <p>
                 As noted before, eInk displays have low refresh rate. This
-                requires some workarounds.
+                requires some workarounds for a comfortable playing experience.
               </p>
 
               <p>
-                eInk displays’s update time depends on the type of update
-                needed. For example, replacing a full-white region with a
-                full-black region is faster than working with shades of grey.
+                Some eInk displays have multiple update modes. In some modes the
+                update time depends on the required changes to the displayed
+                image. For example, replacing a full-white region with a
+                full-black region can be faster than working with shades of
+                grey.
               </p>
 
               <p>
-                Using this quality, we can increase the refresh rate while
+                Using this quality, we can increase the game refresh rate while
                 sacrificing some of the image quality.
               </p>
+
+              <p>
+                The official
+                <code class="language-plaintext highlighter-rouge"
+                  >inkview</code
+                >
+                documentation suggests dithering the image doen to only two
+                color levels for quick updates (<a
+                  href="https://github.com/pocketbook-free/InkViewDoc/blob/master/PocketBookSDK.pdf"
+                  >page 12</a
+                >):
+              </p>
+
+              <blockquote>
+                <p>
+                  Call [<code class="language-plaintext highlighter-rouge"
+                    >DitherArea</code
+                  >] with
+                  <code class="language-plaintext highlighter-rouge"
+                    >levels=2</code
+                  >
+                  and
+                  <code class="language-plaintext highlighter-rouge"
+                    >method=DITHER_THRESHOLD</code
+                  >
+                  to have image that can be quickly updated e.g. for menus,
+                  lists and selections.
+                </p>
+              </blockquote>
+
+              <p>Formatting by me.</p>
 
               <p>
                 The
@@ -337,9 +387,23 @@
               </p>
 
               <p>
-                We also can manipulate the colors to improve brightness,
-                contrast and do gamma correction to fine tune the output.
+                We also can manipulate the colors to change brightness, contrast
+                and do gamma correction to fine tune the output, before
+                dithering.
               </p>
+
+              <h2 id="post-changelog">Post changelog</h2>
+              <ul>
+                <li>
+                  28 February 2023 — add the missing word <em>never</em> to
+                  specify that the port by PocketBook was
+                  <em>never</em> released. Also cite
+                  <code class="language-plaintext highlighter-rouge"
+                    >inkview</code
+                  >
+                  documentation for dithering tips.
+                </li>
+              </ul>
             </div>
           </article>
         </section>
