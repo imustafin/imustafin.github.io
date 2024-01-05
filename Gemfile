@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'jekyll', '~> 4.3', '>= 4.3.2'
+gem 'jekyll', '~> 4.3'
 
 group :jekyll_plugins do
   gem 'jekyll-postcss', '~> 0.5.0'
