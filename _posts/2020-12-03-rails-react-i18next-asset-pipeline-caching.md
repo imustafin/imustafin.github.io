@@ -245,6 +245,6 @@ i18n
 
 Now you can refresh the page and observe that the buttons work once again.
 
-And that's it. Happy internationalization :relaxed:
+And that's it. Happy internationalization!
 
 {% include refs/rails-react-asset-pipeline-caching.md %}

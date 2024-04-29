@@ -223,4 +223,4 @@ match '*path', to: 'react#index', via: :all,
   constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
 ```
 
-Вот и всё. Желаю вам счастливых прямых загрузок :relaxed:
+Вот и всё. Желаю вам счастливых прямых загрузок!

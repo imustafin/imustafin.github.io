@@ -284,7 +284,7 @@ results[name] = out.strip.split("\n")
 ```
 
 Then the results are printed as a nice Markdown table, ready to be embedded
-into a blog-post :smile:
+into a blog-post.
 
 Note how we use the command line program `ec` to compile the workbench
 version of the executable. The [documentation on eiffel.org][eo-cli]

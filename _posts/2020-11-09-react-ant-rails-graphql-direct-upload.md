@@ -231,4 +231,4 @@ match '*path', to: 'react#index', via: :all,
   constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
 ```
 
-And that's it. Happy direct uploading :relaxed:
+And that's it. Happy direct uploading!

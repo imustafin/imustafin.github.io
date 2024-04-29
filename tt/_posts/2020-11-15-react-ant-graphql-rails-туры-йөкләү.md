@@ -219,4 +219,4 @@ match '*path', to: 'react#index', via: :all,
   constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
 ```
 
-Нәкъ менә шулай. Туры йөкләүләрегездә бәхетле булуыгызны телим :relaxed:
+Нәкъ менә шулай. Туры йөкләүләрегездә бәхетле булуыгызны телим!

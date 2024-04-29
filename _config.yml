@@ -12,7 +12,6 @@ future: true
 # Build settings
 markdown: kramdown
 plugins:
-  - jemoji
   - jekyll-redirect-from
   - jekyll-plantuml
   - jekyll-postcss
