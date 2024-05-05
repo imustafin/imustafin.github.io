@@ -1,41 +1,52 @@
 ---
 layout: with-header-footer
 ---
-<div class="home">
-  <section class="home-personal">
-    <figure class="photo">
-      <img src="/assets/ilgiz_in_topkapi.jpg" alt="{{ site.data.i18n.home.photo-caption[page.lang] }}" />
-      <figcaption>{{ site.data.i18n.home.photo-caption[page.lang] }}</figcaption>
+<div class="lg:max-w-[72rem] p-2 mx-auto flex flex-col">
+  <section class="flex flex-col sm:flex-row">
+    <figure class="flex-1 md:w-[100rem] lg:w-[150rem] sm:mr-4 mb-4">
+      <img
+        src="/assets/ilgiz_in_topkapi.jpg"
+        alt="{{ site.data.i18n.home.photo-alt[page.lang] }}"
+        class="w-full mx-auto"
+      />
+      <figcaption class="text-center">{{ site.data.i18n.home.photo-caption[page.lang] }}</figcaption>
     </figure>
 
-    <div class="home-content">
-      <h1>{{ page.title }}</h1>
+    <div class="flex-[2] mb-4">
+      <div class="prose prose-cman">
+        {{ content }}
+      </div>
 
-      {{ content }}
-
-      <ul class="social-links">
-        <li><a href="https://t.me/imustafin" target="_blank" title="Telegram"><i class="fa fa-telegram"></i></a></li>
-        <li><a href="https://github.com/imustafin" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+      <ul class="text-[2rem] space-x-2 text-clink">
+        <li class="inline"><a href="https://t.me/imustafin" target="_blank" title="Telegram"><i class="fa fa-telegram"></i></a></li>
+        <li class="inline"><a href="https://github.com/imustafin" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></li>
+        <li class="inline"><a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
       </ul>
     </div>
   </section>
 
-  <div class="lists">
-    <section>
-      <h1>{{ site.data.i18n.home.latest-posts[page.lang] }}</h1>
+  <div class="flex flex-col md:flex-row md:space-x-4">
+    <section class="flex-1 mb-4">
+      {% assign blog=site.pages | where: "ref", "blog" | where: "lang", page.lang | first %}
+      <h1 class="text-ghaze-600 text-center font-serif text-3xl font-semibold">
+        <a href="{{ blog.url }}">
+          {{ site.data.i18n.home.latest-posts[page.lang] }}
+        </a>
+      </h1>
 
-      <ul class="post-list">
-        {% include posts.html %}
-      </ul>
+      {% include posts.html limit=3 %}
+
+      <div class="mt-4">
+        <a href="{{ blog.url }}" class="text-clink text-xl font-semibold inline-block">
+          {{ site.data.i18n.home.all-posts[page.lang] }}
+        </a>
+      </div>
     </section>
 
-    <section>
-      <h1>{{ site.data.i18n.home.latest-projects | t }}</h1>
+    <section class="flex-1">
+      <h1 class="text-ghaze-600 font-serif text-center text-3xl font-semibold">{{ site.data.i18n.home.latest-projects | t }}</h1>
 
-      <ul>
-        {% include projects.html %}
-      </ul>
+      {% include projects.html %}
     </section>
   </div>
 

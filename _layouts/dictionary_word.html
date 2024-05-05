@@ -1,43 +1,47 @@
 ---
 layout: default
 ---
+<div class="prose">
+  <h1>{{ page.title }}</h1>
+</div>
+
 {% assign trs=site.pages | where: "ref", page.ref | where_exp: "x", "x.lang != page.lang" | sort: "lang" %}
 {% for tr in trs %}
-  <section class="translation-header">
-    <h1>
+  <section class="prose mt-8">
+    <h2>
       {{ site.data.i18n.dictionary.translation.pre-word[page.lang] }}
-      <b>{{ page.title }}</b>
+      {{ page.title }}
       {{ site.data.i18n.dictionary.translation.post-word[page.lang] }}
       {{ site.data.i18n.dictionary.translation.target-language[page.lang][tr.lang] }}:
-    </h1>
+    </h2>
 
-    <b><a href="{{tr.url | absolute_url }}">{{ tr.title }}</a></b> — {{ tr.definition }}
+    <a class="font-bold text-clink hover:underline" href="{{tr.url | absolute_url }}">{{ tr.title }}</a> — {{ tr.definition }}
   </section>
 {% endfor %}
 
-<section class="translation-header">
-  <h1>
+<section class="prose mt-8">
+  <h2>
     {{ site.data.i18n.dictionary.translation.pre-definition[page.lang] }}
-    <b>{{ page.title }}</b>
+    {{ page.title }}
     {{ site.data.i18n.dictionary.translation.post-definition[page.lang] }}
-  </h1>
+  </h2>
   <b>{{ page.title }}</b> — {{ page.definition }}
 </section>
 
 {% if page.translation-etymology %}
-  <section class="translation-header">
-    <h1>
+  <section class="prose mt-8">
+    <h2>
       {{ site.data.i18n.dictionary.translation-etymology[page.lang] }}
-    </h1>
+    </h2>
     {{ page.translation-etymology | markdownify }}
   </section>
 {% endif %}
 
 {% if page.translation-sources %}
-  <section class="translation-header">
-    <h1>
+  <section class="prose mt-8">
+    <h2>
       {{ site.data.i18n.dictionary.translation-sources[page.lang] }}
-    </h1>
+    </h2>
     {{ page.translation-sources | markdownify }}
   </section>
 {% endif %}

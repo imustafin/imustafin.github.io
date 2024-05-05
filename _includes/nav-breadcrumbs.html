@@ -10,7 +10,8 @@
             <a
               property="item"
               typeof="WebPage"
-              href="{{ crumb.url | absolute_url }}"
+              href="{{ crumb.url }}"
+              class="text-clink hover:underline"
             >
               <span property="name">{{ crumb.title }}</span>
             </a>
@@ -18,7 +19,7 @@
             <span
               property="item"
               typeof="WebPage"
-              resource="{{ crumb.url | absolute_url }}"
+              resource="{{ crumb.url }}"
             >
               <span property="name">{{ crumb.title }}</span>
             </span>

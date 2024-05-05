@@ -1,20 +1,28 @@
 home:
+  photo-alt:
+    en: Young man in glasses
+    ru: Молодой человек в очках
+    tt: Күзлекле яшь егет
   photo-caption:
-    en: Ilgiz in Topkapı Palace, Istanbul, Türkiye
-    ru: Ильгиз во дворце Топкапы, Стамбул, Турция
-    tt: Ильгиз Топкапы сараенда, Истанбул, Төркия
+    en: Ilgiz in the Topkapı Palace. Istanbul, Türkiye
+    ru: Ильгиз во дворце Топкапы. Стамбул, Турция
+    tt: Ильгиз Топкапы сараенда. Истанбул, Төркия
   latest-posts:
-    en: Latest Blog Posts
-    ru: Последние записи в блоге
-    tt: Соңгы блог язмалар
-  latest-dictionary:
-    en: Latest Dictionary Entries
-    ru: Последние статьи в словаре
-    tt: Соңгы сүзлек мәкаләләр
+    en: New blog posts
+    ru: Новые записи в блоге
+    tt: Яңа блог язмалар
+  all-posts:
+    en: All posts…
+    ru: Все записи…
+    tt: Барлык язмалар…
   latest-projects:
-    en: Latest Projects
-    ru: Последние проекты
-    tt: Соңгы проектлар
+    en: New projects
+    ru: Новые проекты
+    tt: Яңа проектлар
+  contacts:
+    en: "Contacts:"
+    ru: "Контакты:"
+    tt: "Контактлар:"
 
 site:
   title:
@@ -23,8 +31,8 @@ site:
     tt: Мустафин Ильгизнең шәхси сайты
   navigation:
     home:
-      en: Main Page
-      ru: Главная страница
+      en: Main page
+      ru: Главная
       tt: Баш бит
     dictionary:
       en: Dictionary
@@ -47,15 +55,15 @@ posts:
 
 blog:
   posts:
-    en: Posts
-    ru: Записи
-    tt: Язмалар
+    en: Blog posts
+    ru: Записи в блоге
+    tt: Блог язмалар
 
 projects:
   projects:
-    en: Projects by post publication date
-    ru: Проекты по дате публикации записи
-    tt: Язма бастыру буенча проектлар
+    en: Projects
+    ru: Проекты
+    tt: Проектлар
 
 languages:
   en: English

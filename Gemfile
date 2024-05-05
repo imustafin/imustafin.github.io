@@ -9,5 +9,6 @@ group :jekyll_plugins do
   gem 'jekyll-seo-tag', '~> 2.8'
   gem 'jekyll-redirect-from', '~> 0.16.0'
   gem 'jekyll-plantuml', '~> 1.4', '>= 1.4.2'
+  gem 'jekyll-node-module', '~> 0.1.3'
 end
 

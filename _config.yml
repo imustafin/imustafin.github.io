@@ -15,6 +15,14 @@ plugins:
   - jekyll-redirect-from
   - jekyll-plantuml
   - jekyll-postcss
+  - jekyll-node-module
+
+node_modules:
+  copy:
+    - source: '@fontsource-variable/golos-text/files'
+      target: 'assets/css/files'
+    - source: '@fontsource-variable/roboto-slab/files'
+      target: 'assets/css/files'
 
 postcss:
   cache: false

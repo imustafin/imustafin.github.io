@@ -6,8 +6,9 @@
 {% for word in words %}
   <li>
     <a
-      href="{{ word.url | absolute_url }}"
+      href="{{ word.url }}"
       title="{{ word.title | escape }}"
+      class="text-clink hover:underline"
     >
       {{ word.title | escape }}
 
