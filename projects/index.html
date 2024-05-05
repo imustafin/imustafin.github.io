@@ -24,7 +24,7 @@
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
     <title>Projects | imustafin.tatar</title>
-    <meta name="generator" content="Jekyll v4.3.2" />
+    <meta name="generator" content="Jekyll v4.3.3" />
     <meta property="og:title" content="Projects" />
     <meta name="author" content="Ilgiz Mustafin" />
     <meta property="og:locale" content="en" />
@@ -79,28 +79,32 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body>
-    <div class="with-header-footer">
-      <section class="page-header-home">
-        <h1 class="project-name">Ilgiz Mustafin's personal website</h1>
+  <body class="text-[#374151]">
+    <div class="min-h-svh flex flex-col">
+      <section
+        class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
+      >
+        <h1 class="text-xl font-serif font-semibold mt-2 mb-2 mx-2">
+          <a href="/"> Ilgiz Mustafin's personal website </a>
+        </h1>
 
-        <div class="navigation-wrapper">
-          <div></div>
+        <div class="flex flex-col lg:flex-row">
+          <div class="flex-1"></div>
 
-          <ul class="links menu-links">
-            <li><a href="/">Main Page</a></li>
+          <ul class="flex-[2] mb-2 space-x-2">
+            <li class="inline"><a href="/">Main page</a></li>
 
-            <li><a href="/blog/">Blog</a></li>
+            <li class="inline"><a href="/blog/">Blog</a></li>
 
-            <li><a href="/projects/">Projects</a></li>
+            <li class="inline"><a href="/projects/">Projects</a></li>
 
-            <li><a href="/dictionary/">Dictionary</a></li>
+            <li class="inline"><a href="/dictionary/">Dictionary</a></li>
           </ul>
 
-          <ul class="links end-links navigation-first">
-            <li><a lang="en" href="/projects/">English</a></li>
+          <ul class="flex-1 space-x-2 mb-2">
+            <li class="inline"><a lang="en" href="/projects/">English</a></li>
 
-            <li>
+            <li class="inline">
               <a
                 lang="ru"
                 href="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
@@ -108,7 +112,7 @@
               >
             </li>
 
-            <li>
+            <li class="inline">
               <a
                 lang="tt"
                 href="/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
@@ -119,8 +123,8 @@
         </div>
       </section>
 
-      <div class="content">
-        <section class="main-content">
+      <div class="content flex-1 p-2 md:pt-4">
+        <section class="max-w-prose mx-auto">
           <nav class="mb-4">
             <ol
               class="breadcrumbs"
@@ -131,7 +135,8 @@
                 <a
                   property="item"
                   typeof="WebPage"
-                  href="https://imustafin.tatar/"
+                  href="/"
+                  class="text-clink hover:underline"
                 >
                   <span property="name">Main</span>
                 </a>
@@ -140,11 +145,7 @@
               </li>
 
               <li property="itemListElement" typeof="ListItem">
-                <span
-                  property="item"
-                  typeof="WebPage"
-                  resource="https://imustafin.tatar/projects/"
-                >
+                <span property="item" typeof="WebPage" resource="/projects/">
                   <span property="name">Projects</span>
                 </span>
 
@@ -153,51 +154,68 @@
             </ol>
           </nav>
 
-          <h1 id="projects">Projects</h1>
+          <div class="prose">
+            <h1>Projects</h1>
+            <span></span>
+          </div>
 
-          <section>
-            <h1>Projects by post publication date</h1>
+          <ul>
+            <li>
+              <article>
+                <h2 class="text-2xl !mb-0">
+                  <a
+                    href="/projects/pbdoom"
+                    title="PBDoom"
+                    class="text-clink hover:underline"
+                  >
+                    PBDoom
+                  </a>
+                </h2>
+                <span class="italic">
+                  <time
+                    class="inline-block"
+                    datetime="2023-02-26T00:00:00+00:00"
+                    itemprop="datePublished"
+                  >
+                    26 February 2023
+                  </time>
+                </span>
 
-            <ul>
-              <li>
-                <article>
-                  <h2 class="text-2xl !mb-0">
-                    <a href="/projects/pbdoom" title="PBDoom"> PBDoom </a>
-                  </h2>
-                  <span class="post-meta">
-                    <time
-                      class="post-date"
-                      datetime="2023-02-26T00:00:00+00:00"
-                      itemprop="datePublished"
-                    >
-                      26 February 2023
-                    </time>
-                  </span>
-
-                  <div class="mt-2">
-                    <p>
-                      PBDoom is a port of the Doom (1993) videogame for
-                      PocketBook eInk devices. Downloads are on
-                      <a href="https://pbdoom.imustafin.tatar"
-                        >the official website of PBDoom</a
-                      >.
-                    </p>
-                  </div>
-                </article>
-              </li>
-            </ul>
-          </section>
+                <div class="mt-2">
+                  <p>
+                    PBDoom is a port of the Doom (1993) videogame for PocketBook
+                    eInk devices. Downloads are on
+                    <a href="https://pbdoom.imustafin.tatar"
+                      >the official website of PBDoom</a
+                    >.
+                  </p>
+                </div>
+              </article>
+            </li>
+          </ul>
         </section>
       </div>
 
-      <footer class="site-footer">
-        <div id="footer-contacts">
-          <a href="https://t.me/imustafin">Telegram</a>
-          <a href="https://github.com/imustafin">GitHub</a>
-          <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178"
-            >LinkedIn</a
-          >
-        </div>
+      <footer
+        class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white mt-4 pt-4 pb-4"
+      >
+        <ul class="space-x-4 flex justify-center">
+          <li class="inline"><a lang="en" href="/projects/">English</a></li>
+
+          <li class="inline">
+            <a lang="ru" href="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
+              >Русский</a
+            >
+          </li>
+
+          <li class="inline">
+            <a
+              lang="tt"
+              href="/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
+              >Татарча</a
+            >
+          </li>
+        </ul>
       </footer>
     </div>
   </body>

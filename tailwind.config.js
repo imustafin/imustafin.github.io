@@ -11,12 +11,53 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        clink: '#1e6bb8',
+        ghaze: {
+          50: '#f0fdf6',
+          100: '#dcfceb',
+          200: '#bbf7d8',
+          300: '#86efba',
+          400: '#4ade93',
+          500: '#22c573',
+          600: '#159957',
+          700: '#15804b',
+          800: '#16653e',
+          900: '#145335',
+          950: '#052e1b'
+        }
+      },
+      fontFamily: {
+        sans: ['"Golos Text Variable"', 'sans-serif'],
+        serif: ['"Roboto Slab Variable"', 'serif'],
+      },
       typography: {
         DEFAULT: {
           css: {
-            color:'#606c71',
-            a: {
-              color: '#1e6bb8',
+            '--tw-prose-headings': '#159957',
+            '--tw-prose-links': '#1e6bb8',
+            '--tw-prose-pre-code': '#567482',
+            '--tw-prose-pre-bg': '#f3f6fa',
+            'h1': {
+              fontFamily: '"Roboto Slab Variable", serif',
+            },
+            'h2': {
+              fontFamily: '"Roboto Slab Variable", serif',
+            },
+            'h3': {
+              fontFamily: '"Roboto Slab Variable", serif',
+            },
+            'h4': {
+              fontFamily: '"Roboto Slab Variable", serif',
+            },
+            'h5': {
+              fontFamily: '"Roboto Slab Variable", serif',
+            },
+            'h6': {
+              fontFamily: '"Roboto Slab Variable", serif',
+            },
+            'pre': {
+              lineHeight: '131%'
             },
             'code::before': {
               content: '""',
@@ -30,9 +71,8 @@ module.exports = {
             'blockquote p:first-of-type::after': {
               content: '""'
             },
-
           }
-        }
+        },
       }
     },
   },

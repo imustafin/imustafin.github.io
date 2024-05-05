@@ -24,7 +24,7 @@
 
     <!-- Begin Jekyll SEO tag v2.8.0 -->
     <title>PBDoom | imustafin.tatar</title>
-    <meta name="generator" content="Jekyll v4.3.2" />
+    <meta name="generator" content="Jekyll v4.3.3" />
     <meta property="og:title" content="PBDoom" />
     <meta name="author" content="Ильгиз Мустафин" />
     <meta property="og:locale" content="ru" />
@@ -94,36 +94,44 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body>
-    <div class="with-header-footer">
-      <section class="page-header-home">
-        <h1 class="project-name">Личный сайт Мустафина Ильгиза</h1>
+  <body class="text-[#374151]">
+    <div class="min-h-svh flex flex-col">
+      <section
+        class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
+      >
+        <h1 class="text-xl font-serif font-semibold mt-2 mb-2 mx-2">
+          <a href="/ru/"> Личный сайт Мустафина Ильгиза </a>
+        </h1>
 
-        <div class="navigation-wrapper">
-          <div></div>
+        <div class="flex flex-col lg:flex-row">
+          <div class="flex-1"></div>
 
-          <ul class="links menu-links">
-            <li><a href="/ru/">Главная страница</a></li>
+          <ul class="flex-[2] mb-2 space-x-2">
+            <li class="inline"><a href="/ru/">Главная</a></li>
 
-            <li><a href="/ru/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a></li>
+            <li class="inline">
+              <a href="/ru/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a>
+            </li>
 
-            <li>
+            <li class="inline">
               <a href="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
                 >Проекты</a
               >
             </li>
 
-            <li>
+            <li class="inline">
               <a href="/ru/%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C/"
                 >Словарь</a
               >
             </li>
           </ul>
 
-          <ul class="links end-links navigation-first">
-            <li><a lang="en" href="/projects/pbdoom">English</a></li>
+          <ul class="flex-1 space-x-2 mb-2">
+            <li class="inline">
+              <a lang="en" href="/projects/pbdoom">English</a>
+            </li>
 
-            <li>
+            <li class="inline">
               <a
                 lang="ru"
                 href="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom"
@@ -131,7 +139,7 @@
               >
             </li>
 
-            <li>
+            <li class="inline">
               <a
                 lang="tt"
                 href="/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom"
@@ -142,8 +150,8 @@
         </div>
       </section>
 
-      <div class="content">
-        <section class="main-content">
+      <div class="content flex-1 p-2 md:pt-4">
+        <section class="max-w-prose mx-auto">
           <nav class="mb-4">
             <ol
               class="breadcrumbs"
@@ -154,7 +162,8 @@
                 <a
                   property="item"
                   typeof="WebPage"
-                  href="https://imustafin.tatar/ru/"
+                  href="/ru/"
+                  class="text-clink hover:underline"
                 >
                   <span property="name">Главная</span>
                 </a>
@@ -166,7 +175,8 @@
                 <a
                   property="item"
                   typeof="WebPage"
-                  href="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
+                  href="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
+                  class="text-clink hover:underline"
                 >
                   <span property="name">Проекты</span>
                 </a>
@@ -178,7 +188,7 @@
                 <span
                   property="item"
                   typeof="WebPage"
-                  resource="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom"
+                  resource="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom"
                 >
                   <span property="name">PBDoom</span>
                 </span>
@@ -188,19 +198,25 @@
             </ol>
           </nav>
 
-          <article itemscope itemtype="http://schema.org/BlogPosting">
-            <header class="post-header">
-              <h1 class="post-title" itemprop="name headline">PBDoom</h1>
-              <p class="post-meta">
+          <article
+            class="max-w-prose"
+            itemscope
+            itemtype="http://schema.org/BlogPosting"
+          >
+            <header>
+              <div class="prose">
+                <h1 itemprop="name headline">PBDoom</h1>
+              </div>
+              <div class="italic">
                 <time
-                  class="post-date"
+                  class="inline-block mr-4"
                   datetime="2023-02-26T00:00:00+00:00"
                   itemprop="datePublished"
                 >
                   26 февраля 2023
                 </time>
 
-                <span class="post-last-modified">
+                <span class="inline-block">
                   Последнее обновление:
                   <time
                     datetime="2023-02-28T00:00:00+00:00"
@@ -209,13 +225,10 @@
                     28 февраля 2023
                   </time>
                 </span>
-              </p>
+              </div>
             </header>
 
-            <div
-              itemprop="articleBody"
-              class="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl max-w-none"
-            >
+            <div itemprop="articleBody" class="prose mt-4">
               <p>
                 PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook
                 на электронной бумаге. Загрузки находятся на
@@ -419,14 +432,30 @@
         </section>
       </div>
 
-      <footer class="site-footer">
-        <div id="footer-contacts">
-          <a href="https://t.me/imustafin">Telegram</a>
-          <a href="https://github.com/imustafin">GitHub</a>
-          <a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178"
-            >LinkedIn</a
-          >
-        </div>
+      <footer
+        class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white mt-4 pt-4 pb-4"
+      >
+        <ul class="space-x-4 flex justify-center">
+          <li class="inline">
+            <a lang="en" href="/projects/pbdoom">English</a>
+          </li>
+
+          <li class="inline">
+            <a
+              lang="ru"
+              href="/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom"
+              >Русский</a
+            >
+          </li>
+
+          <li class="inline">
+            <a
+              lang="tt"
+              href="/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom"
+              >Татарча</a
+            >
+          </li>
+        </ul>
       </footer>
     </div>
   </body>
