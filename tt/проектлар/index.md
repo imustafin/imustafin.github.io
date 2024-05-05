@@ -4,4 +4,3 @@ ref: projects
 layout: projects_home
 title: Проектлар
 ---
-# Проектлар

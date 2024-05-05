@@ -1,55 +1,7 @@
-@import 'jekyll-theme-cayman';
-@import 'header';
-@import 'home';
-@import 'footer';
-@import 'dictionary_word';
-@import 'breadcrumbs';
-@import 'table';
+@import "variables.scss";
+@import 'breadcrumbs.scss';
+@import 'table.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap');
-
-html, body {
-    height: 100%;
-    min-height: 100vh;
-    font-family: 'Roboto Slab', serif;
-}
-
-.with-header-footer {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .content {
-        flex-grow: 1;
-    }
-}
-
-.post-meta {
-    font-style: italic;
-}
-
-.post-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.post-date {
-    display: inline-block;
-    margin-right: 1rem;
-}
-
-.post-last-modified {
-    display: inline-block;
-    margin-right: 2rem;
-}
-
-.post-translations {
-    list-style-type: none;
-    padding-left: 0;
-    display: inline-block;
-
-    li {
-        display: inline;
-        margin-right: 2rem;
-    }
-}
+@import '@fontsource-variable/golos-text';
+@import '@fontsource-variable/roboto-slab';
+@import 'rouge-github.scss';

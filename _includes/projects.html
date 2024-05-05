@@ -1,4 +1,5 @@
 {% assign refs=site.posts | where: "is_project", true | sort: "date" | reverse | map: "ref" | uniq %}
+<ul>
 {% for ref in refs %}
   {% assign translations=site.posts | where: "ref", ref | sort: "lang" %}
   {% assign p=translations | where: "lang", page.lang | first %}
@@ -11,13 +12,14 @@
         <a
           href="{{ p.url | relative_url }}"
           title="{{ p.title  }}"
+          class="text-clink hover:underline"
         >
           {{ p.title | escape }}
         </a>
       </h2>
-      <span class="post-meta">
+      <span class="italic">
         <time
-          class="post-date"
+          class="inline-block"
           datetime="{{ p.date | date_to_xmlschema }}"
           itemprop="datePublished"
         >
@@ -31,3 +33,4 @@
     </article>
   </li>
 {% endfor %}
+</ul>

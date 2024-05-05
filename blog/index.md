@@ -6,4 +6,3 @@ title: Blog
 redirect_from:
   - /en/blog/
 ---
-# Blog

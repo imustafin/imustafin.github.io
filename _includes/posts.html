@@ -1,5 +1,6 @@
 {% assign refs=site.posts | sort: "date" | reverse | map: "ref" | uniq %}
-{% for ref in refs %}
+<ul class="space-y-4">
+{% for ref in refs  limit: include.limit %}
   {% assign translations=site.posts | where: "ref", ref | sort: "lang" %}
   {% assign post=translations | where: "lang", page.lang | first %}
   {% unless post %}
@@ -7,39 +8,20 @@
   {% endunless %}
   <li>
     <article>
-      <h2 class="text-2xl !mb-0">
+      <h2 class="text-2xl">
         <a
           href="{{ post.url | relative_url }}"
           title="{{ post.title }}"
+          class="text-clink hover:underline"
         >
           {{ post.title | escape }}
         </a>
       </h2>
-      <span class="post-meta">
-        <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+      <div class="italic space-x-4">
+        <time class="inline-block" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
           {% include date.html date=post.date %}
         </time>
-        {% if post.last_modified_at %}
-        <span class="post-last-modified">
-          {{ site.data.i18n.posts.last_modified[page.lang] }}:
-          <time datetime="{{ post.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">
-            {% include date.html date=post.last_modified_at %}
-          </time>
-        </span>
-        {% endif %}
-        <ul class="post-translations">
-          {% for translation in translations %}
-            <li>
-              <a
-                href="{{ translation.url | absolute_url }}"
-                title="{{ translation.title }}"
-              >
-                {{ site.data.i18n.languages[translation.lang] }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </span>
+      </div>
 
       <div class="mt-2">
         {{ post.excerpt | markdownify }}
@@ -47,3 +29,4 @@
     </article>
   </li>
 {% endfor %}
+</ul>

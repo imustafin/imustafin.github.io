@@ -2,12 +2,9 @@
 layout: default
 ---
 
-{{ content }}
-
-<section>
+<div class="prose">
   <h1>{{ site.data.i18n.projects.projects | t }}</h1>
+  <span></span>
+</div>
 
-  <ul>
-    {% include projects.html %}
-  </ul>
-</section>
+{% include projects.html %}

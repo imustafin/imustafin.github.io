@@ -7,19 +7,17 @@ seo:
     - https://github.com/imustafin
 description: Ilgiz Mustafin's personal website and blog
 date: 2020-11-06
-title: Hello!
-crumbtitle: Main Page
+title: "Ilgiz Mustafin: PhD Student in Software Engineering"
 redirect_from:
   - /en/
 crumbtitle: Main
 ---
-My name is Ilgiz and I am a Software Engineer.
+# Hi! My name is Ilgiz.
 
-I worked on a number of projects ranging from Android applications to social network and business network
-analysis tools.
+I am a PhD student in Software Engineering at
+Constructor Institute, Schaffhausen, Switzerland.
 
-Also, I do scientific research on the topic of Multilingual Entity Resolution.
-
-I speak English, Russian, Tatar and some Turkish, now learning Romanian.
+I do research in Software Verification. I work on AutoProof
+and other tools using formal methods for the Eiffel programming language.
 
 Find me on other websites:
