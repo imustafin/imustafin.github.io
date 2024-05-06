@@ -9,7 +9,7 @@ layout: bare
     text-white
     text-center
   ">
-    <h1 class="text-xl font-serif font-semibold mt-2 mb-2 mx-2">
+    <h1 class="text-l sm:text-xl font-serif font-semibold mt-2 mb-2 mx-2">
       {% assign home=site.pages | where: "ref", "home" | where: "lang", page.lang | first %}
       <a href="{{ home.url }}">
         {{ site.data.i18n.site.title[page.lang] }}
