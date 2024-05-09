@@ -117,21 +117,3 @@ defaults:
     values:
       <<: *project_defaults
       permalink: /tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/:title
-  - scope:
-      path: dictionary/word
-    values: &dictionary
-      in_dictionary: true
-      layout: dictionary_word
-      translation-sources: null
-      translation-etymology: null
-      permalink: /dicationary/word/:basename
-  - scope:
-      path: ru/словарь/слово
-    values:
-      <<: *dictionary
-      permalink: /ru/словарь/слово/:basename
-  - scope:
-      path: tt/сүзлек/сүз
-    values:
-      <<: *dictionary
-      permalink: /tt/сүзлек/сүз/:basename

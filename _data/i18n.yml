@@ -34,10 +34,6 @@ site:
       en: Main page
       ru: Главная
       tt: Баш бит
-    dictionary:
-      en: Dictionary
-      ru: Словарь
-      tt: Сүзлек
     blog:
       en: Blog
       ru: Блог
@@ -69,57 +65,6 @@ languages:
   en: English
   ru: Русский
   tt: Татарча
-
-dictionary:
-  language-names:
-    en:
-      ru: 'Russian:'
-      tt: 'Tatar:'
-    ru:
-      en: англ.
-      tt: тат.
-    tt:
-      en: ингл.
-      ru: рус.
-  words:
-    en: Words
-    ru: Слова
-    tt: Сүзләр
-  translation:
-    pre-word:
-      en: Translation of the word
-      ru: Перевод слова
-      tt: ''
-    post-word:
-      en: from English to
-      ru: с русского на
-      tt: сүзенең татарчадан
-    target-language:
-      en:
-        ru: Russian
-        tt: Tatar
-      ru:
-        en: английский
-        tt: татарский
-      tt:
-        en: инглизчәгә тәрҗемәсе
-        ru: русчага тәрҗемәсе
-    pre-definition:
-      en: Definition of the word
-      ru: Определение слова
-      tt: ''
-    post-definition:
-      en: ''
-      ru: ''
-      tt: сүзенең билгелемәсе
-  translation-etymology:
-    en: Etymology of the Translation
-    ru: Этимология перевода
-    tt: Тәрҗемәнең этимологиясе
-  translation-sources:
-    en: Translation sources
-    ru: Источники перевода
-    tt: Тәрҗемәнең чыганаклары
 
 months:
   - en: January
