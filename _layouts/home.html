@@ -9,35 +9,42 @@ layout: with-header-footer
         alt="{{ site.data.i18n.home.photo-alt[page.lang] }}"
         class="w-full mx-auto"
       />
-      <figcaption class="text-center">{{ site.data.i18n.home.photo-caption[page.lang] }}</figcaption>
+      <figcaption class="text-center">
+        {{ site.data.i18n.home.photo-caption[page.lang] }}
+      </figcaption>
     </figure>
 
     <div class="flex-[2] mb-4">
-      <div class="prose prose-cman">
+      <div class="prose">
         {{ content }}
       </div>
 
-      <ul class="text-[2rem] space-x-2 text-clink">
-        <li class="inline"><a href="https://t.me/imustafin" target="_blank" title="Telegram"><i class="fa fa-telegram"></i></a></li>
-        <li class="inline"><a href="https://github.com/imustafin" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></li>
-        <li class="inline"><a href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-      </ul>
+      {% assign about=site.pages | where: "ref", "about" | where: "lang", page.lang | first %}
+      <a
+        href="{{ about.url }}"
+        class="mt-4 hover:underline text-clink font-semibold inline-block"
+      >
+        {{ site.data.i18n.home.more-about[page.lang] }}
+      </a>
     </div>
   </section>
 
   <div class="flex flex-col md:flex-row md:space-x-4">
     <section class="flex-1 mb-4">
       {% assign blog=site.pages | where: "ref", "blog" | where: "lang", page.lang | first %}
-      <a href="{{ blog.url }}">
-        <h1 class="text-ghaze-600 text-center font-serif text-3xl font-semibold">
+      <h1 class="text-ghaze-600 text-center font-serif text-3xl font-semibold">
+        <a href="{{ blog.url }}" class="hover:underline">
           {{ site.data.i18n.home.latest-posts[page.lang] }}
-        </h1>
-      </a>
+        </a>
+      </h1>
 
       {% include posts.html limit=3 %}
 
       <div class="mt-4">
-        <a href="{{ blog.url }}" class="text-clink text-xl font-semibold inline-block">
+        <a
+          href="{{ blog.url }}"
+          class="hover:underline text-clink text-xl font-semibold inline-block"
+        >
           {{ site.data.i18n.home.all-posts[page.lang] }}
         </a>
       </div>
@@ -45,11 +52,11 @@ layout: with-header-footer
 
     <section class="flex-1">
       {% assign projects=site.pages | where: "ref", "projects" | where: "lang", page.lang | first %}
-      <a href="{{ projects.url }}">
-        <h1 class="text-ghaze-600 font-serif text-center text-3xl font-semibold">
+      <h1 class="text-ghaze-600 font-serif text-center text-3xl font-semibold">
+        <a href="{{ projects.url }}" class="hover:underline">
           {{ site.data.i18n.home.latest-projects | t }}
-        </h1>
-      </a>
+        </a>
+      </h1>
 
       {% include projects.html %}
     </section>

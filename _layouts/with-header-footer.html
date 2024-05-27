@@ -20,7 +20,7 @@ layout: bare
       <div class="flex-1"></div>
 
       <ul class="flex-[2] mb-2 space-x-2">
-        {% assign sections="home,blog,projects" | split: "," %}
+        {% assign sections="home,blog,projects,about" | split: "," %}
 
         {% for section in sections %}
           {% assign sec=site.pages | where: "ref", section | where: "lang", page.lang | first %}

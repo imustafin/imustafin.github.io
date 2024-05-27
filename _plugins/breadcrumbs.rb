@@ -15,14 +15,13 @@ module Jekyll
     def self.loadAddressCache(site)
       clearAddressCache
       (site.documents + site.pages + site.posts.docs).each do |x|
-        title = x.data['crumbtitle'] || x.data['title']
-        addAddressItem(x.url, title)
+        addAddressItem(x.url, x)
       end
     end
 
-    def self.addAddressItem(url, title)
+    def self.addAddressItem(url, page)
       key = createAddressCacheKey(url)
-      @@sideAddresses[key] = {:url => url, :title => title}
+      @@sideAddresses[key] = { page: }
     end
 
     def self.findAddressItem(path)

@@ -1,5 +1,6 @@
 <nav class="mb-4">
   <ol
+    property="breadcrumb"
     class="breadcrumbs"
     vocab="https://schema.org/"
     typeof="BreadcrumbList"
@@ -9,22 +10,32 @@
           {% unless forloop.last %}
             <a
               property="item"
-              typeof="WebPage"
-              href="{{ crumb.url }}"
+              typeof="{{ crumb.page.schema_type }}"
+              href="{{ crumb.page.url }}"
               class="text-clink hover:underline"
             >
-              <span property="name">{{ crumb.title }}</span>
+              {% if crumb.page.crumbtitle %}
+                <meta property="name" content="{{ crumb.page.title }}">
+                <span property="alternateName">{{ crumb.page.crumbtitle }}</span>
+              {% else %}
+                <span property="name">{{ crumb.page.title }}</span>
+              {% endif %}
             </a>
           {% else %}
             <span
               property="item"
-              typeof="WebPage"
-              resource="{{ crumb.url }}"
+              typeof="{{ crumb.page.schema_type }}"
+              resource="{{ crumb.page.url }}"
             >
-              <span property="name">{{ crumb.title }}</span>
+              {% if crumb.page.crumbtitle %}
+                <meta property="name" content="{{ crumb.page.title }}">
+                <span property="alternateName">{{ crumb.page.crumbtitle }}</span>
+              {% else %}
+                <span property="name">{{ crumb.page.title }}</span>
+              {% endif %}
             </span>
           {% endunless %}
-          <meta property="position" content="{{ crumb.position }}" />
+          <meta property="position" content="{{ crumb.position }}">
         </li>
       {% endfor %}
    </ol>

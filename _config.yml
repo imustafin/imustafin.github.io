@@ -55,14 +55,18 @@ exclude:
   - postcss.config.js
   - package.json
   - dev.sh
+  - test/
 
 defaults:
   - scope:
       path: ""
     values:
+      crumbtitle: false
+      no_json_ld: true
       last_modified_at: false
       include_in_sitemap: true
       redirect: false
+      schema_type: WebPage
       author:
         name: Ilgiz Mustafin
         url: https://imustafin.tatar

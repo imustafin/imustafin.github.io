@@ -10,19 +10,14 @@ module Jekyll
        def position
          @side[:position]
        end
- 
-       def title
-         @side[:title]
-       end
- 
-       def url
-         @side[:url]
-       end
 
        def rootimage
          @side[:root_image]
        end
-      
+
+       def page
+         @side[:page]
+       end
      end
    end
  end

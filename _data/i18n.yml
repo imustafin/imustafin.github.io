@@ -7,6 +7,10 @@ home:
     en: Ilgiz in the Topkapı Palace. Istanbul, Türkiye
     ru: Ильгиз во дворце Топкапы. Стамбул, Турция
     tt: Ильгиз Топкапы сараенда. Истанбул, Төркия
+  more-about:
+    en: Read more…
+    ru: Читать далее…
+    tt: Тулырак уку…
   latest-posts:
     en: New blog posts
     ru: Новые записи в блоге
@@ -19,10 +23,24 @@ home:
     en: New projects
     ru: Новые проекты
     tt: Яңа проектлар
-  contacts:
-    en: "Contacts:"
-    ru: "Контакты:"
-    tt: "Контактлар:"
+
+about:
+  links-and-contacts:
+    en: Links and contacts
+    ru: Ссылки и контакты
+    tt: Сылтамалар һәм контактлар
+  personal-website:
+    en: Personal website
+    ru: Личный сайт
+    tt: Шәхси сайты
+  github:
+    en: GitHub profile
+    ru: Профиль на GitHub
+    tt: GitHub профиле
+  linkedin:
+    en: LinkedIn profile
+    ru: Профиль на LinkedIn
+    tt: LinkedIn профиле
 
 site:
   title:
@@ -31,9 +49,9 @@ site:
     tt: Мустафин Ильгизнең шәхси сайты
   navigation:
     home:
-      en: Main page
+      en: Home
       ru: Главная
-      tt: Баш бит
+      tt: Баш
     blog:
       en: Blog
       ru: Блог
@@ -42,6 +60,10 @@ site:
       en: Projects
       ru: Проекты
       tt: Проектлар
+    about:
+      en: About
+      ru: Обо мне
+      tt: Минем турында
 
 posts:
   last_modified:

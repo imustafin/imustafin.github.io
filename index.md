@@ -19,5 +19,3 @@ Constructor Institute, Schaffhausen, Switzerland.
 
 I do research in Software Verification. I work on AutoProof
 and other tools using formal methods for the Eiffel programming language.
-
-Find me on other websites:

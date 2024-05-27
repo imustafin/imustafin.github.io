@@ -32,3 +32,6 @@ jobs:
         with:
           enable_cache: true
           format_output: true
+
+      - name: Run tests
+        run: bundle exec rake test
