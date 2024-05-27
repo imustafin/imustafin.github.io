@@ -32,11 +32,11 @@ layout: with-header-footer
   <div class="flex flex-col md:flex-row md:space-x-4">
     <section class="flex-1 mb-4">
       {% assign blog=site.pages | where: "ref", "blog" | where: "lang", page.lang | first %}
-      <h1 class="text-ghaze-600 text-center font-serif text-3xl font-semibold">
+      <h2 class="text-ghaze-600 text-center font-serif text-3xl font-semibold">
         <a href="{{ blog.url }}" class="hover:underline">
           {{ site.data.i18n.home.latest-posts[page.lang] }}
         </a>
-      </h1>
+      </h2>
 
       {% include posts.html limit=3 %}
 
@@ -52,11 +52,11 @@ layout: with-header-footer
 
     <section class="flex-1">
       {% assign projects=site.pages | where: "ref", "projects" | where: "lang", page.lang | first %}
-      <h1 class="text-ghaze-600 font-serif text-center text-3xl font-semibold">
+      <h2 class="text-ghaze-600 font-serif text-center text-3xl font-semibold">
         <a href="{{ projects.url }}" class="hover:underline">
           {{ site.data.i18n.home.latest-projects | t }}
         </a>
-      </h1>
+      </h2>
 
       {% include projects.html %}
     </section>
