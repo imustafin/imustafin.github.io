@@ -38,13 +38,14 @@ module Jekyll
       return if side.url == @@siteAddress && root_hide === true
 
       drop = Jekyll::Drops::BreadcrumbItem
-      position = 0
+      position = 1
 
       path = side.url.chomp("/").split(/(?=\/)/)
 
       unless ['/ru', '/tt'].include?(path.first)
         item = findAddressItem('/')
         item[:position] = position
+        position += 1
         item[:root_image] = root_image
         payload['breadcrumbs'] << drop.new(item)
       end
@@ -53,8 +54,8 @@ module Jekyll
          joined_path = int == -1 ? "" : path[0..int].join
          item = findAddressItem(joined_path)
          if item
-            position += 1
             item[:position] = position
+            position += 1
             item[:root_image] = root_image
             payload["breadcrumbs"] << drop.new(item)
          end
