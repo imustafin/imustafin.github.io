@@ -19,7 +19,7 @@ plugins:
 
 node_modules:
   copy:
-    - source: '@fontsource-variable/golos-text/files'
+    - source: '@fontsource-variable/noto-sans/files'
       target: 'assets/css/files'
     - source: '@fontsource-variable/roboto-slab/files'
       target: 'assets/css/files'

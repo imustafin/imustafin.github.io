@@ -28,8 +28,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['"Golos Text Variable"', 'sans-serif'],
-        serif: ['"Roboto Slab Variable"', 'serif'],
+        sans: ['"Noto Sans Variable"', '"Noto Sans"', 'sans-serif'],
+        serif: ['"Roboto Slab Variable"', '"Roboto Slab"', 'serif'],
       },
       typography: {
         DEFAULT: {
@@ -38,23 +38,29 @@ module.exports = {
             '--tw-prose-links': '#1e6bb8',
             '--tw-prose-pre-code': '#567482',
             '--tw-prose-pre-bg': '#f3f6fa',
+            'a': {
+              textDecoration: null,
+            },
+            'a:hover': {
+              textDecoration: 'underline',
+            },
             'h1': {
-              fontFamily: '"Roboto Slab Variable", serif',
+              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
             },
             'h2': {
-              fontFamily: '"Roboto Slab Variable", serif',
+              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
             },
             'h3': {
-              fontFamily: '"Roboto Slab Variable", serif',
+              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
             },
             'h4': {
-              fontFamily: '"Roboto Slab Variable", serif',
+              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
             },
             'h5': {
-              fontFamily: '"Roboto Slab Variable", serif',
+              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
             },
             'h6': {
-              fontFamily: '"Roboto Slab Variable", serif',
+              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
             },
             'pre': {
               lineHeight: '131%'
