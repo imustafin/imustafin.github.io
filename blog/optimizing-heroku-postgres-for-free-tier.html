@@ -41,6 +41,10 @@
       property="og:description"
       content="How to optimize a relational database schema to fit Heroku Postgres free tier limitations with a real-world example of SIBrowser."
     />
+    <meta
+      property="twitter:description"
+      content="How to optimize a relational database schema to fit Heroku Postgres free tier limitations with a real-world example of SIBrowser."
+    />
     <link
       rel="canonical"
       href="https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier"
@@ -60,26 +64,6 @@
       property="twitter:title"
       content="Optimizing Heroku Postgres for the Free Tier"
     />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-          "@type": "Person",
-          "name": "Ilgiz Mustafin",
-          "url": "https://imustafin.tatar"
-        },
-        "dateModified": "2021-09-01T00:00:00+00:00",
-        "datePublished": "2021-07-12T00:00:00+00:00",
-        "description": "How to optimize a relational database schema to fit Heroku Postgres free tier limitations with a real-world example of SIBrowser.",
-        "headline": "Optimizing Heroku Postgres for the Free Tier",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier"
-        },
-        "url": "https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier"
-      }
-    </script>
     <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,7 +86,7 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body class="text-[#374151]">
+  <body class="text-[#374151]" vocab="https://schema.org/" typeof="WebPage">
     <div class="min-h-svh flex flex-col">
       <section
         class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
@@ -115,13 +99,13 @@
           <div class="flex-1"></div>
 
           <ul class="flex-[2] mb-2 space-x-2">
-            <li class="inline"><a href="/">Main page</a></li>
+            <li class="inline"><a href="/">Home</a></li>
 
             <li class="inline"><a href="/blog/">Blog</a></li>
 
             <li class="inline"><a href="/projects/">Projects</a></li>
 
-            <li class="inline"><a href="/dictionary/">Dictionary</a></li>
+            <li class="inline"><a href="/ilgiz.html">About</a></li>
           </ul>
 
           <ul class="flex-1 space-x-2 mb-2">
@@ -154,6 +138,7 @@
         <section class="max-w-prose mx-auto">
           <nav class="mb-4">
             <ol
+              property="breadcrumb"
               class="breadcrumbs"
               vocab="https://schema.org/"
               typeof="BreadcrumbList"
@@ -165,7 +150,11 @@
                   href="/"
                   class="text-clink hover:underline"
                 >
-                  <span property="name">Main</span>
+                  <meta
+                    property="name"
+                    content="Ilgiz Mustafin: PhD Student in Software Engineering"
+                  />
+                  <span property="alternateName">Main</span>
                 </a>
 
                 <meta property="position" content="0" />

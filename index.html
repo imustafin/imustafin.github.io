@@ -29,6 +29,10 @@
       property="og:description"
       content="Ilgiz Mustafin’s personal website and blog"
     />
+    <meta
+      property="twitter:description"
+      content="Ilgiz Mustafin’s personal website and blog"
+    />
     <link rel="canonical" href="https://imustafin.tatar/" />
     <meta property="og:url" content="https://imustafin.tatar/" />
     <meta property="og:site_name" content="imustafin.tatar" />
@@ -42,24 +46,6 @@
       property="twitter:title"
       content="Ilgiz Mustafin: PhD Student in Software Engineering"
     />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "author": {
-          "@type": "Person",
-          "name": "Ilgiz Mustafin",
-          "url": "https://imustafin.tatar"
-        },
-        "dateModified": "2020-11-06T00:00:00+00:00",
-        "datePublished": "2020-11-06T00:00:00+00:00",
-        "description": "Ilgiz Mustafin’s personal website and blog",
-        "headline": "Ilgiz Mustafin: PhD Student in Software Engineering",
-        "name": "imustafin.tatar",
-        "sameAs": ["https://github.com/imustafin"],
-        "url": "https://imustafin.tatar/"
-      }
-    </script>
     <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -82,7 +68,7 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body class="text-[#374151]">
+  <body class="text-[#374151]" vocab="https://schema.org/" typeof="WebPage">
     <div class="min-h-svh flex flex-col">
       <section
         class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
@@ -95,13 +81,13 @@
           <div class="flex-1"></div>
 
           <ul class="flex-[2] mb-2 space-x-2">
-            <li class="inline"><a href="/">Main page</a></li>
+            <li class="inline"><a href="/">Home</a></li>
 
             <li class="inline"><a href="/blog/">Blog</a></li>
 
             <li class="inline"><a href="/projects/">Projects</a></li>
 
-            <li class="inline"><a href="/dictionary/">Dictionary</a></li>
+            <li class="inline"><a href="/ilgiz.html">About</a></li>
           </ul>
 
           <ul class="flex-1 space-x-2 mb-2">
@@ -129,7 +115,7 @@
             </figure>
 
             <div class="flex-[2] mb-4">
-              <div class="prose prose-cman">
+              <div class="prose">
                 <h1 id="hi-my-name-is-ilgiz">Hi! My name is Ilgiz.</h1>
 
                 <p>
@@ -142,47 +128,24 @@
                   and other tools using formal methods for the Eiffel
                   programming language.
                 </p>
-
-                <p>Find me on other websites:</p>
               </div>
 
-              <ul class="text-[2rem] space-x-2 text-clink">
-                <li class="inline">
-                  <a
-                    href="https://t.me/imustafin"
-                    target="_blank"
-                    title="Telegram"
-                    ><i class="fa fa-telegram"></i
-                  ></a>
-                </li>
-                <li class="inline">
-                  <a
-                    href="https://github.com/imustafin"
-                    target="_blank"
-                    title="GitHub"
-                    ><i class="fa fa-github"></i
-                  ></a>
-                </li>
-                <li class="inline">
-                  <a
-                    href="https://www.linkedin.com/in/ilgiz-mustafin-288b99178"
-                    title="LinkedIn"
-                    ><i class="fa fa-linkedin"></i
-                  ></a>
-                </li>
-              </ul>
+              <a
+                href="/ilgiz.html"
+                class="mt-4 hover:underline text-clink font-semibold inline-block"
+              >
+                Read more…
+              </a>
             </div>
           </section>
 
           <div class="flex flex-col md:flex-row md:space-x-4">
             <section class="flex-1 mb-4">
-              <a href="/blog/">
-                <h1
-                  class="text-ghaze-600 text-center font-serif text-3xl font-semibold"
-                >
-                  New blog posts
-                </h1>
-              </a>
+              <h1
+                class="text-ghaze-600 text-center font-serif text-3xl font-semibold"
+              >
+                <a href="/blog/" class="hover:underline"> New blog posts </a>
+              </h1>
 
               <ul class="space-y-4">
                 <li>
@@ -206,7 +169,7 @@
                       </time>
                     </div>
 
-                    <div class="mt-2">
+                    <div class="prose mt-2">
                       <p>
                         PBDoom is a port of the Doom (1993) videogame for
                         PocketBook eInk devices. Downloads are on
@@ -239,7 +202,7 @@
                       </time>
                     </div>
 
-                    <div class="mt-2">
+                    <div class="prose mt-2">
                       <p>
                         EiffelStudio allows to control which assertions will be
                         evaluated. We build a cheatshseet listing which
@@ -270,7 +233,7 @@
                       </time>
                     </div>
 
-                    <div class="mt-2">
+                    <div class="prose mt-2">
                       <p>
                         How to optimize a relational database schema to fit
                         Heroku Postgres free tier limitations with a real-world
@@ -284,7 +247,7 @@
               <div class="mt-4">
                 <a
                   href="/blog/"
-                  class="text-clink text-xl font-semibold inline-block"
+                  class="hover:underline text-clink text-xl font-semibold inline-block"
                 >
                   All posts…
                 </a>
@@ -292,13 +255,11 @@
             </section>
 
             <section class="flex-1">
-              <a href="/projects/">
-                <h1
-                  class="text-ghaze-600 font-serif text-center text-3xl font-semibold"
-                >
-                  New projects
-                </h1>
-              </a>
+              <h1
+                class="text-ghaze-600 font-serif text-center text-3xl font-semibold"
+              >
+                <a href="/projects/" class="hover:underline"> New projects </a>
+              </h1>
 
               <ul>
                 <li>
@@ -322,7 +283,7 @@
                       </time>
                     </span>
 
-                    <div class="mt-2">
+                    <div class="prose mt-2">
                       <p>
                         PBDoom is a port of the Doom (1993) videogame for
                         PocketBook eInk devices. Downloads are on

@@ -41,6 +41,10 @@
       property="og:description"
       content="Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү."
     />
+    <meta
+      property="twitter:description"
+      content="Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү."
+    />
     <link
       rel="canonical"
       href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
@@ -60,26 +64,6 @@
       property="twitter:title"
       content="Heroku Postgres БН бушлай куллану өчен оптимальләштерү"
     />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-          "@type": "Person",
-          "name": "Ильгиз Мустафин",
-          "url": "https://imustafin.tatar"
-        },
-        "dateModified": "2021-09-01T00:00:00+00:00",
-        "datePublished": "2021-09-01T00:00:00+00:00",
-        "description": "Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.",
-        "headline": "Heroku Postgres БН бушлай куллану өчен оптимальләштерү",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
-        },
-        "url": "https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF"
-      }
-    </script>
     <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,7 +86,7 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body class="text-[#374151]">
+  <body class="text-[#374151]" vocab="https://schema.org/" typeof="WebPage">
     <div class="min-h-svh flex flex-col">
       <section
         class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
@@ -115,7 +99,7 @@
           <div class="flex-1"></div>
 
           <ul class="flex-[2] mb-2 space-x-2">
-            <li class="inline"><a href="/tt/">Баш бит</a></li>
+            <li class="inline"><a href="/tt/">Баш</a></li>
 
             <li class="inline">
               <a href="/tt/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a>
@@ -129,7 +113,9 @@
             </li>
 
             <li class="inline">
-              <a href="/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/">Сүзлек</a>
+              <a href="/tt/%D0%B8%D0%BB%D1%8C%D0%B3%D0%B8%D0%B7.html"
+                >Минем турында</a
+              >
             </li>
           </ul>
 
@@ -163,6 +149,7 @@
         <section class="max-w-prose mx-auto">
           <nav class="mb-4">
             <ol
+              property="breadcrumb"
               class="breadcrumbs"
               vocab="https://schema.org/"
               typeof="BreadcrumbList"
@@ -174,7 +161,11 @@
                   href="/tt/"
                   class="text-clink hover:underline"
                 >
-                  <span property="name">Баш</span>
+                  <meta
+                    property="name"
+                    content="Мустафин Ильгиз: программ инженериясендә аспирант"
+                  />
+                  <span property="alternateName">Баш</span>
                 </a>
 
                 <meta property="position" content="1" />

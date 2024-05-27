@@ -44,25 +44,6 @@
     />
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="Проектлар" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "author": {
-          "@type": "Person",
-          "name": "Ильгиз Мустафин",
-          "url": "https://imustafin.tatar"
-        },
-        "dateModified": "2022-02-26T00:00:00+00:00",
-        "datePublished": "2022-02-26T00:00:00+00:00",
-        "headline": "Проектлар",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
-        },
-        "url": "https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
-      }
-    </script>
     <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -85,7 +66,7 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body class="text-[#374151]">
+  <body class="text-[#374151]" vocab="https://schema.org/" typeof="WebPage">
     <div class="min-h-svh flex flex-col">
       <section
         class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
@@ -98,7 +79,7 @@
           <div class="flex-1"></div>
 
           <ul class="flex-[2] mb-2 space-x-2">
-            <li class="inline"><a href="/tt/">Баш бит</a></li>
+            <li class="inline"><a href="/tt/">Баш</a></li>
 
             <li class="inline">
               <a href="/tt/%D0%B1%D0%BB%D0%BE%D0%B3/">Блог</a>
@@ -112,7 +93,9 @@
             </li>
 
             <li class="inline">
-              <a href="/tt/%D1%81%D2%AF%D0%B7%D0%BB%D0%B5%D0%BA/">Сүзлек</a>
+              <a href="/tt/%D0%B8%D0%BB%D1%8C%D0%B3%D0%B8%D0%B7.html"
+                >Минем турында</a
+              >
             </li>
           </ul>
 
@@ -142,6 +125,7 @@
         <section class="max-w-prose mx-auto">
           <nav class="mb-4">
             <ol
+              property="breadcrumb"
               class="breadcrumbs"
               vocab="https://schema.org/"
               typeof="BreadcrumbList"
@@ -153,7 +137,11 @@
                   href="/tt/"
                   class="text-clink hover:underline"
                 >
-                  <span property="name">Баш</span>
+                  <meta
+                    property="name"
+                    content="Мустафин Ильгиз: программ инженериясендә аспирант"
+                  />
+                  <span property="alternateName">Баш</span>
                 </a>
 
                 <meta property="position" content="1" />
@@ -200,7 +188,7 @@
                   </time>
                 </span>
 
-                <div class="mt-2">
+                <div class="prose mt-2">
                   <p>
                     PBDoom — PocketBook электрон кәгазьле җайланмалар өчен Doom
                     уеның порты. Йөкләүләр
