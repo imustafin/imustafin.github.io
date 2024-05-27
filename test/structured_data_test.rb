@@ -4,10 +4,11 @@ require 'rdf/vocab'
 
 module Minitest::Assertions
   def assert_triple(subject, predicate, object, msg = nil)
-    q = RDF::Query.new(subject => { predicate => :object })
+    q = RDF::Query.new(subject => { predicate => object })
     q.execute(@graph)
     assert_equal(1, q.solutions.count,
-      "Expected exactly one solution:\n" \
+      "Expected exactly one solution for query\n" \
+        "  #{q.patterns.first}:\n" \
         + q.solutions.map { |x| x[:object].inspect }.join("\n"))
   end
 end
@@ -39,6 +40,7 @@ class StructuredDataTest < Minitest::Test
     assert_triple(ILGIZ, Schema.name, str_en('Ilgiz Mustafin'))
     assert_triple(ILGIZ, Schema.givenName, str_en('Ilgiz'))
     assert_triple(ILGIZ, Schema.familyName, str_en('Mustafin'))
+    assert_triple(ILGIZ, Schema.url, RDF::URI.new('https://imustafin.tatar/'))
 
     q = RDF::Query.new(ILGIZ => { Schema.sameAs => :link })
     q.execute(@graph)

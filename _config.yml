@@ -69,7 +69,7 @@ defaults:
       schema_type: WebPage
       author:
         name: Ilgiz Mustafin
-        url: https://imustafin.tatar
+        url: https://imustafin.tatar/
   - scope:
       path: ''
     values:
@@ -91,7 +91,7 @@ defaults:
       lang: ru
       author:
         name: Ильгиз Мустафин
-        url: https://imustafin.tatar
+        url: https://imustafin.tatar/
   - scope:
       path: ru
       type: posts
@@ -109,7 +109,7 @@ defaults:
       lang: tt
       author:
         name: Ильгиз Мустафин
-        url: https://imustafin.tatar
+        url: https://imustafin.tatar/
   - scope:
       path: tt
       type: posts
