@@ -13,6 +13,8 @@ which contracts are checked for each setting.
 ## TLDR
 Here is the cheatsheet:
 
+
+<div class="overflow-x-auto" markdown="1">
 ||require|check|loop_invariant|loop_variant|ensure|invariant|other_library pre|other_library check|subcluster require|subcluster check|other_cluster pre|other_cluster check|indirect_cluster pre|indirect_cluster check|
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |__All__|X|X|X|X|X|X|X| |X| |X| | | |
@@ -22,6 +24,8 @@ Here is the cheatsheet:
 |__Invariant__| | | | | |X| | | | | | | | |
 |__Loop__| | |X|X| | | | | | | | | | |
 |__Supplier Precondition__|X| | | | | |X| |X| |X| | | |
+
+</div>
 
 Rows represent the types of assertions enabled. _All_ has all assertions
 enabled. Other examples enable only one respective assertion.
