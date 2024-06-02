@@ -105,15 +105,30 @@
         </div>
       </section>
 
-      <div class="content flex-1 p-2 md:pt-4">
+      <div class="flex-1 p-2 md:pt-4">
         <div class="lg:max-w-[72rem] p-2 mx-auto flex flex-col">
           <section class="flex flex-col sm:flex-row">
             <figure class="flex-1 md:w-[100rem] lg:w-[150rem] sm:mr-4 mb-4">
-              <img
-                src="/assets/ilgiz_in_topkapi.jpg"
-                alt="Күзлекле яшь егет"
-                class="w-full mx-auto"
-              />
+              <picture class="mx-auto"
+                ><source
+                  srcset="
+                    /generated/assets/ilgiz_in_topkapi-400-ff143dfc0.webp 400w,
+                    /generated/assets/ilgiz_in_topkapi-600-ff143dfc0.webp 600w
+                  "
+                  type="image/webp" />
+                <source
+                  srcset="
+                    /generated/assets/ilgiz_in_topkapi-400-14f9c2d8e.jpg 400w,
+                    /generated/assets/ilgiz_in_topkapi-600-14f9c2d8e.jpg 600w
+                  "
+                  type="image/jpeg" />
+                <img
+                  src="/generated/assets/ilgiz_in_topkapi-600-14f9c2d8e.jpg"
+                  alt="Күзлекле яшь егет"
+                  width="600"
+                  height="902"
+              /></picture>
+
               <figcaption class="text-center">
                 Ильгиз Топкапы сараенда. Истанбул, Төркия
               </figcaption>
