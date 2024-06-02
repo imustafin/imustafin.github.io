@@ -6,7 +6,16 @@
     typeof="BreadcrumbList"
   >
       {% for crumb in breadcrumbs %}
-        <li property="itemListElement" typeof="ListItem">
+        <li
+          class="inline-block
+                 {% unless forloop.first %}
+                    text-[#afbbc4]
+                    before:content-['/']
+                 {% endunless %}
+                 "
+          property="itemListElement"
+          typeof="ListItem"
+        >
           {% unless forloop.last %}
             <a
               property="item"
@@ -26,6 +35,7 @@
               property="item"
               typeof="{{ crumb.page.schema_type }}"
               resource="{{ crumb.page.url }}"
+              class="text-tcolor"
             >
               {% if crumb.page.crumbtitle %}
                 <meta property="name" content="{{ crumb.page.title }}">

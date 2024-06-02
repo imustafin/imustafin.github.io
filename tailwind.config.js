@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       colors: {
         clink: '#1e6bb8',
+        tcolor: '#374151',
         ghaze: {
           50: '#f0fdf6',
           100: '#dcfceb',

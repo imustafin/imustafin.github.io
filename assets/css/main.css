@@ -2,6 +2,10 @@
 include_in_sitemap: false
 ---
 
+@import '@fontsource-variable/noto-sans';
+@import '@fontsource-variable/roboto-slab';
+@import 'rouge-github.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
