@@ -185,148 +185,150 @@
               <h2 id="tldr">TLDR</h2>
               <p>Here is the cheatsheet:</p>
 
-              <table>
-                <thead>
-                  <tr>
-                    <th> </th>
-                    <th style="text-align: center">require</th>
-                    <th style="text-align: center">check</th>
-                    <th style="text-align: center">loop_invariant</th>
-                    <th style="text-align: center">loop_variant</th>
-                    <th style="text-align: center">ensure</th>
-                    <th style="text-align: center">invariant</th>
-                    <th style="text-align: center">other_library pre</th>
-                    <th style="text-align: center">other_library check</th>
-                    <th style="text-align: center">subcluster require</th>
-                    <th style="text-align: center">subcluster check</th>
-                    <th style="text-align: center">other_cluster pre</th>
-                    <th style="text-align: center">other_cluster check</th>
-                    <th style="text-align: center">indirect_cluster pre</th>
-                    <th style="text-align: center">indirect_cluster check</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>All</strong></td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Require</strong></td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Ensure</strong></td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Check</strong></td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Invariant</strong></td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Loop</strong></td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Supplier Precondition</strong></td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center">X</td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                    <td style="text-align: center"> </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="overflow-x-auto">
+                <table>
+                  <thead>
+                    <tr>
+                      <th> </th>
+                      <th style="text-align: center">require</th>
+                      <th style="text-align: center">check</th>
+                      <th style="text-align: center">loop_invariant</th>
+                      <th style="text-align: center">loop_variant</th>
+                      <th style="text-align: center">ensure</th>
+                      <th style="text-align: center">invariant</th>
+                      <th style="text-align: center">other_library pre</th>
+                      <th style="text-align: center">other_library check</th>
+                      <th style="text-align: center">subcluster require</th>
+                      <th style="text-align: center">subcluster check</th>
+                      <th style="text-align: center">other_cluster pre</th>
+                      <th style="text-align: center">other_cluster check</th>
+                      <th style="text-align: center">indirect_cluster pre</th>
+                      <th style="text-align: center">indirect_cluster check</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>All</strong></td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Require</strong></td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Ensure</strong></td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Check</strong></td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Invariant</strong></td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Loop</strong></td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Supplier Precondition</strong></td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center">X</td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                      <td style="text-align: center"> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <p>
                 Rows represent the types of assertions enabled. <em>All</em> has
