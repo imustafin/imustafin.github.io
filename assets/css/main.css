@@ -4,7 +4,7 @@ include_in_sitemap: false
 @import '@fontsource-variable/noto-sans';
 @import '@fontsource-variable/roboto-slab';
 
-// Same as img in preflight
+/* Same as img in preflight */
 object.plantuml {
 		@apply w-full;
 		@apply h-auto;
