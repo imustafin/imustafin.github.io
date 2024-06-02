@@ -2,27 +2,28 @@
 {% if page.lang %}
   <html lang="{{ page.lang }}">
 {% else %}
-  <html class="min-h-svh">
+    <html class="min-h-svh">
 {% endif %}
-  <head>
-    <meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
 
-    {% assign pages=site.pages | where:"ref", page.ref | sort: "lang" %}
-    {% assign posts=site.posts | where:"ref", page.ref | sort: "lang" %}
-    {% assign everything=pages | concat: posts %}
-    {% for page in everything %}
-      {% if page.lang %}
-        {% assign lang=page.lang %}
-      {% else %}
-        {% assign lang="x-default" %}
-      {% endif %}
-      <link rel="alternate" hreflang="{{ lang }}" href="{{ page.url | absolute_url }}" />
-    {% endfor %}
+  {% assign pages=site.pages | where:"ref", page.ref | sort: "lang" %}
+  {% assign posts=site.posts | where:"ref", page.ref | sort: "lang" %}
+  {% assign everything=pages | concat: posts %}
+  {% for page in everything %}
+    {% if page.lang %}
+      {% assign lang=page.lang %}
+    {% else %}
+      {% assign lang="x-default" %}
+    {% endif %}
+    <link rel="alternate" hreflang="{{ lang }}" href="{{ page.url | absolute_url }}" />
+  {% endfor %}
 
-    {% seo %}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {% seo %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/rouge-github.css' | relative_url }}">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
