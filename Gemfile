@@ -13,6 +13,7 @@ group :jekyll_plugins do
   gem 'jekyll-redirect-from', '~> 0.16.0'
   gem 'jekyll-plantuml', '~> 1.4', '>= 1.4.2'
   gem 'jekyll-node-module', '~> 0.1.3'
+  gem 'jekyll_picture_tag', '~> 2.1'
 end
 
 # Tests

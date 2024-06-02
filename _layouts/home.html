@@ -4,11 +4,10 @@ layout: with-header-footer
 <div class="lg:max-w-[72rem] p-2 mx-auto flex flex-col">
   <section class="flex flex-col sm:flex-row">
     <figure class="flex-1 md:w-[100rem] lg:w-[150rem] sm:mr-4 mb-4">
-      <img
-        src="/assets/ilgiz_in_topkapi.jpg"
-        alt="{{ site.data.i18n.home.photo-alt[page.lang] }}"
-        class="w-full mx-auto"
-      />
+      {% picture assets/ilgiz_in_topkapi.jpg
+        --alt {{ site.data.i18n.home.photo-alt[page.lang] }}
+        --parent class="mx-auto"
+      %}
       <figcaption class="text-center">
         {{ site.data.i18n.home.photo-caption[page.lang] }}
       </figcaption>
