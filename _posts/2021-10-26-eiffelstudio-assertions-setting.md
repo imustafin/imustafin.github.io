@@ -149,11 +149,11 @@ namespace indirect_cluster {
   class INDIRECT_CLUSTER_DEMO
 }
 
-main.DEMO .l.> other_library.OTHER_LIBRARY_DEMO
 main.APPLICATION .d.> main.DEMO
-main.DEMO .> main.subcluster.SUBCLUSTER_DEMO
 main.DEMO .d.> other_cluster.OTHER_CLUSTER_DEMO
 other_cluster.OTHER_CLUSTER_DEMO .r.> indirect_cluster.INDIRECT_CLUSTER_DEMO
+main.DEMO .r.> main.subcluster.SUBCLUSTER_DEMO
+main.DEMO .l.> other_library.OTHER_LIBRARY_DEMO
 {% endplantuml %}
 
 Here, `APPLICATION` is the root class (depicted by the `<<root>>` stereotype).
