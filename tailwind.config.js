@@ -1,3 +1,6 @@
+let fontsSans = '"Noto Sans", "Noto Sans Variable", sans-serif';
+let fontsSerif = '"Roboto Slab", "Roboto Slab Variable", serif';
+
 module.exports = {
   darkMode: 'class',
   content: [
@@ -29,8 +32,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['"Noto Sans Variable"', '"Noto Sans"', 'sans-serif'],
-        serif: ['"Roboto Slab Variable"', '"Roboto Slab"', 'serif'],
+        sans: fontsSans,
+        serif: fontsSerif,
       },
       typography: {
         DEFAULT: {
@@ -46,22 +49,22 @@ module.exports = {
               textDecoration: 'underline',
             },
             'h1': {
-              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
+              fontFamily: fontsSerif,
             },
             'h2': {
-              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
+              fontFamily: fontsSerif,
             },
             'h3': {
-              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
+              fontFamily: fontsSerif,
             },
             'h4': {
-              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
+              fontFamily: fontsSerif,
             },
             'h5': {
-              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
+              fontFamily: fontsSerif,
             },
             'h6': {
-              fontFamily: '"Roboto Slab Variable", "Roboto Slab", serif',
+              fontFamily: fontsSerif,
             },
             'pre': {
               lineHeight: '131%'
