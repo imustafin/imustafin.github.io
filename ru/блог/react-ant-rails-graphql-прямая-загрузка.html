@@ -69,7 +69,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#157878" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/old.css" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -81,7 +80,7 @@
     <meta name="msapplication-TileColor" content="#00aba9" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body class="text-[#374151]" vocab="https://schema.org/" typeof="WebPage">
+  <body class="text-tcolor" vocab="https://schema.org/" typeof="WebPage">
     <div class="min-h-svh flex flex-col">
       <section
         class="bg-[linear-gradient(120deg,var(--tw-gradient-stops))] from-[#155799] to-ghaze-600 text-white text-center"
@@ -146,7 +145,11 @@
               vocab="https://schema.org/"
               typeof="BreadcrumbList"
             >
-              <li property="itemListElement" typeof="ListItem">
+              <li
+                class="inline-block"
+                property="itemListElement"
+                typeof="ListItem"
+              >
                 <a
                   property="item"
                   typeof="WebPage"
@@ -163,7 +166,11 @@
                 <meta property="position" content="1" />
               </li>
 
-              <li property="itemListElement" typeof="ListItem">
+              <li
+                class="inline-block text-[#afbbc4] before:content-['/']"
+                property="itemListElement"
+                typeof="ListItem"
+              >
                 <a
                   property="item"
                   typeof="WebPage"
@@ -176,11 +183,16 @@
                 <meta property="position" content="2" />
               </li>
 
-              <li property="itemListElement" typeof="ListItem">
+              <li
+                class="inline-block text-[#afbbc4] before:content-['/']"
+                property="itemListElement"
+                typeof="ListItem"
+              >
                 <span
                   property="item"
                   typeof="WebPage"
                   resource="/ru/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-rails-graphql-%D0%BF%D1%80%D1%8F%D0%BC%D0%B0%D1%8F-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+                  class="text-tcolor"
                 >
                   <span property="name"
                     >Прямая загрузка файлов в Rails React Ant через
