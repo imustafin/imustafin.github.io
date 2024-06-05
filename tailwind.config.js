@@ -1,5 +1,5 @@
-let fontsSans = '"Noto Sans", "Noto Sans Variable", sans-serif';
-let fontsSerif = '"Roboto Slab", "Roboto Slab Variable", serif';
+let fontsSans = '"Noto Sans", Optima, Candara, source-sans-pro, sans-serif';
+let fontsSerif = '"Roboto Slab", Rockwell, "Rockwell Nova", "Roboto Slab Variable", serif';
 
 module.exports = {
   darkMode: 'class',
