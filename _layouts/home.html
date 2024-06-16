@@ -2,18 +2,8 @@
 layout: with-header-footer
 ---
 <div class="lg:max-w-[72rem] p-2 mx-auto flex flex-col">
-  <section class="flex flex-col sm:flex-row">
-    <figure class="flex-1 md:w-[100rem] lg:w-[150rem] sm:mr-4 mb-4">
-      {% picture assets/ilgiz_in_topkapi.jpg
-        --alt {{ site.data.i18n.home.photo-alt[page.lang] }}
-        --parent class="mx-auto"
-      %}
-      <figcaption class="text-center">
-        {{ site.data.i18n.home.photo-caption[page.lang] }}
-      </figcaption>
-    </figure>
-
-    <div class="flex-[2] mb-4">
+  <section class="flex flex-row flex-wrap gap-4 place-content-center">
+    <div class="flex-[2] max-w-prose min-w-[30ch]">
       <div class="prose">
         {{ content }}
       </div>
@@ -26,10 +16,20 @@ layout: with-header-footer
         {{ site.data.i18n.home.more-about[page.lang] }}
       </a>
     </div>
+
+    <figure class="flex-1 min-w-[200px] max-w-[300px]">
+      {% picture assets/ilgiz_in_topkapi.jpg
+        --alt {{ site.data.i18n.home.photo-alt[page.lang] }}
+        --parent class="mx-auto"
+      %}
+      <figcaption class="text-center">
+        {{ site.data.i18n.home.photo-caption[page.lang] }}
+      </figcaption>
+    </figure>
   </section>
 
-  <div class="flex flex-col md:flex-row md:space-x-4">
-    <section class="flex-1 mb-4">
+  <div class="flex flex-row flex-wrap gap-4">
+    <section class="flex-1 min-w-[30ch]">
       {% assign blog=site.pages | where: "ref", "blog" | where: "lang", page.lang | first %}
       <h2 class="text-ghaze-600 text-center font-serif text-3xl font-semibold">
         <a href="{{ blog.url }}" class="hover:underline">
@@ -49,7 +49,7 @@ layout: with-header-footer
       </div>
     </section>
 
-    <section class="flex-1">
+    <section class="flex-1 min-w-[30ch]">
       {% assign projects=site.pages | where: "ref", "projects" | where: "lang", page.lang | first %}
       <h2 class="text-ghaze-600 font-serif text-center text-3xl font-semibold">
         <a href="{{ projects.url }}" class="hover:underline">
