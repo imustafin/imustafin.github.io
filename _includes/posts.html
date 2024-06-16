@@ -7,26 +7,7 @@
     {% assign post=translations | first %}
   {% endunless %}
   <li>
-    <article>
-      <h2 class="text-2xl">
-        <a
-          href="{{ post.url | relative_url }}"
-          title="{{ post.title }}"
-          class="text-clink hover:underline"
-        >
-          {{ post.title | escape }}
-        </a>
-      </h2>
-      <div class="italic space-x-4">
-        <time class="inline-block" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-          {% include date.html date=post.date %}
-        </time>
-      </div>
-
-      <div class="prose mt-2">
-        {{ post.excerpt | markdownify }}
-      </div>
-    </article>
+    {% include post_card.html post=post hlevel=include.hlevel %}
   </li>
 {% endfor %}
 </ul>

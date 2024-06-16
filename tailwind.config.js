@@ -1,5 +1,6 @@
 let fontsSans = '"Noto Sans", Optima, Candara, source-sans-pro, sans-serif';
-let fontsSerif = '"Roboto Slab", Rockwell, "Rockwell Nova", "Roboto Slab Variable", serif';
+let fontsSerif = '"Roboto Slab", "Courier New", Rockwell, "Rockwell Nova", '
+    + '"Nimbus Mono PS", "Courier New", "Roboto Slab Variable", serif';
 
 module.exports = {
   darkMode: 'class',
@@ -42,11 +43,8 @@ module.exports = {
             '--tw-prose-links': '#1e6bb8',
             '--tw-prose-pre-code': '#567482',
             '--tw-prose-pre-bg': '#f3f6fa',
-            'a': {
-              textDecoration: null,
-            },
-            'a:hover': {
-              textDecoration: 'underline',
+            'a:visited': {
+              color: 'revert',
             },
             'h1': {
               fontFamily: fontsSerif,

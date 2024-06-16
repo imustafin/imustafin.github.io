@@ -11,7 +11,7 @@ layout: with-header-footer
       {% assign about=site.pages | where: "ref", "about" | where: "lang", page.lang | first %}
       <a
         href="{{ about.url }}"
-        class="mt-4 hover:underline text-clink font-semibold inline-block"
+        class="mt-4 vlink font-semibold inline-block"
       >
         {{ site.data.i18n.home.more-about[page.lang] }}
       </a>
@@ -37,12 +37,12 @@ layout: with-header-footer
         </a>
       </h2>
 
-      {% include posts.html limit=3 %}
+      {% include posts.html limit=3 hlevel=3 %}
 
       <div class="mt-4">
         <a
           href="{{ blog.url }}"
-          class="hover:underline text-clink text-xl font-semibold inline-block"
+          class="vlink font-semibold inline-block"
         >
           {{ site.data.i18n.home.all-posts[page.lang] }}
         </a>
@@ -57,7 +57,7 @@ layout: with-header-footer
         </a>
       </h2>
 
-      {% include projects.html %}
+      {% include projects.html hlevel=3 %}
     </section>
   </div>
 

@@ -14,3 +14,12 @@ object.plantuml {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .vlink {
+        @apply visited:text-[revert];
+        @apply underline;
+        @apply hover:underline;
+        @apply text-clink;
+    }
+}

@@ -1,0 +1,20 @@
+<article>
+  <h{{ include.hlevel }} class="text-2xl">
+    <a
+      href="{{ include.post.url | relative_url }}"
+      title="{{ include.post.title }}"
+      class="vlink no-underline"
+    >
+      {{ include.post.title | escape }}
+    </a>
+  </h{{ include.hlevel }}>
+  <div class="italic space-x-4">
+    <time class="inline-block" datetime="{{ include.post.date | date_to_xmlschema }}" itemprop="datePublished">
+      {% include date.html date=include.post.date %}
+    </time>
+  </div>
+
+  <div class="prose mt-2">
+    {{ include.post.excerpt | markdownify }}
+  </div>
+</article>
