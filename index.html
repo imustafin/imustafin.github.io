@@ -96,8 +96,29 @@
 
       <div class="flex-1 p-2 md:pt-4">
         <div class="lg:max-w-[72rem] p-2 mx-auto flex flex-col">
-          <section class="flex flex-col sm:flex-row">
-            <figure class="flex-1 md:w-[100rem] lg:w-[150rem] sm:mr-4 mb-4">
+          <section class="flex flex-row flex-wrap gap-4 place-content-center">
+            <div class="flex-[2] max-w-prose min-w-[30ch]">
+              <div class="prose">
+                <h1 id="hi-my-name-is-ilgiz">Hi! My name is Ilgiz.</h1>
+
+                <p>
+                  I am a PhD student in Software Engineering at Constructor
+                  Institute, Schaffhausen, Switzerland.
+                </p>
+
+                <p>
+                  I do research in Software Verification. I work on AutoProof
+                  and other tools using formal methods for the Eiffel
+                  programming language.
+                </p>
+              </div>
+
+              <a href="/ilgiz" class="mt-4 vlink font-semibold inline-block">
+                Read more…
+              </a>
+            </div>
+
+            <figure class="flex-1 min-w-[200px] max-w-[300px]">
               <picture class="mx-auto"
                 ><source
                   srcset="
@@ -122,34 +143,10 @@
                 Ilgiz in the Topkapı Palace. Istanbul, Türkiye
               </figcaption>
             </figure>
-
-            <div class="flex-[2] mb-4">
-              <div class="prose">
-                <h1 id="hi-my-name-is-ilgiz">Hi! My name is Ilgiz.</h1>
-
-                <p>
-                  I am a PhD student in Software Engineering at Constructor
-                  Institute, Schaffhausen, Switzerland.
-                </p>
-
-                <p>
-                  I do research in Software Verification. I work on AutoProof
-                  and other tools using formal methods for the Eiffel
-                  programming language.
-                </p>
-              </div>
-
-              <a
-                href="/ilgiz"
-                class="mt-4 hover:underline text-clink font-semibold inline-block"
-              >
-                Read more…
-              </a>
-            </div>
           </section>
 
-          <div class="flex flex-col md:flex-row md:space-x-4">
-            <section class="flex-1 mb-4">
+          <div class="flex flex-row flex-wrap gap-4">
+            <section class="flex-1 min-w-[30ch]">
               <h2
                 class="text-ghaze-600 text-center font-serif text-3xl font-semibold"
               >
@@ -159,15 +156,15 @@
               <ul class="space-y-4">
                 <li>
                   <article>
-                    <h2 class="text-2xl">
+                    <h3 class="text-2xl">
                       <a
                         href="/projects/pbdoom"
                         title="PBDoom"
-                        class="text-clink hover:underline"
+                        class="vlink no-underline"
                       >
                         PBDoom
                       </a>
-                    </h2>
+                    </h3>
                     <div class="italic space-x-4">
                       <time
                         class="inline-block"
@@ -192,15 +189,15 @@
 
                 <li>
                   <article>
-                    <h2 class="text-2xl">
+                    <h3 class="text-2xl">
                       <a
                         href="/blog/eiffelstudio-assertions-setting"
                         title="EiffelStudio Assertions Setting"
-                        class="text-clink hover:underline"
+                        class="vlink no-underline"
                       >
                         EiffelStudio Assertions Setting
                       </a>
-                    </h2>
+                    </h3>
                     <div class="italic space-x-4">
                       <time
                         class="inline-block"
@@ -223,15 +220,15 @@
 
                 <li>
                   <article>
-                    <h2 class="text-2xl">
+                    <h3 class="text-2xl">
                       <a
                         href="/blog/optimizing-heroku-postgres-for-free-tier"
                         title="Optimizing Heroku Postgres for the Free Tier"
-                        class="text-clink hover:underline"
+                        class="vlink no-underline"
                       >
                         Optimizing Heroku Postgres for the Free Tier
                       </a>
-                    </h2>
+                    </h3>
                     <div class="italic space-x-4">
                       <time
                         class="inline-block"
@@ -254,16 +251,13 @@
               </ul>
 
               <div class="mt-4">
-                <a
-                  href="/blog/"
-                  class="hover:underline text-clink text-xl font-semibold inline-block"
-                >
+                <a href="/blog/" class="vlink font-semibold inline-block">
                   All posts…
                 </a>
               </div>
             </section>
 
-            <section class="flex-1">
+            <section class="flex-1 min-w-[30ch]">
               <h2
                 class="text-ghaze-600 font-serif text-center text-3xl font-semibold"
               >
@@ -273,16 +267,16 @@
               <ul>
                 <li>
                   <article>
-                    <h2 class="text-2xl !mb-0">
+                    <h3 class="text-2xl">
                       <a
                         href="/projects/pbdoom"
                         title="PBDoom"
-                        class="text-clink hover:underline"
+                        class="vlink no-underline"
                       >
                         PBDoom
                       </a>
-                    </h2>
-                    <span class="italic">
+                    </h3>
+                    <div class="italic space-x-4">
                       <time
                         class="inline-block"
                         datetime="2023-02-26T00:00:00+00:00"
@@ -290,7 +284,7 @@
                       >
                         26 February 2023
                       </time>
-                    </span>
+                    </div>
 
                     <div class="prose mt-2">
                       <p>
