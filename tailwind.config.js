@@ -1,5 +1,5 @@
 let fontsSans = '"Noto Sans", Optima, Candara, source-sans-pro, sans-serif';
-let fontsSerif = '"Roboto Slab", "Courier New", Rockwell, "Rockwell Nova", '
+let fontsSerif = '"Roboto Slab", Rockwell, "Rockwell Nova", '
     + '"Nimbus Mono PS", "Courier New", "Roboto Slab Variable", serif';
 
 module.exports = {
