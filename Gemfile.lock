@@ -76,7 +76,7 @@ GEM
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0507)
-    minitest (5.23.1)
+    minitest (5.25.1)
     nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
     objective_elements (1.1.2)
@@ -140,7 +140,7 @@ DEPENDENCIES
   jekyll-redirect-from (~> 0.16.0)
   jekyll-seo-tag!
   jekyll_picture_tag (~> 2.1)
-  minitest (~> 5.23)
+  minitest (~> 5.25)
   rdf-microdata (~> 3.3)
   rdf-vocab (~> 3.3)
 
