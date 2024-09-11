@@ -6,7 +6,13 @@ This repository contains the source code of my personal website.
 
 See it live at <https://imustafin.tatar/>!
 
-## Installation
+
+## Development
+This is a normal Jekyll app. To start, run:
+```
+bundle exec jekyll serve
+```
+
 ### Info for `jekyll_picture_tag`
 Requires system `libvips`.
 
