@@ -1,0 +1,1984 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+	<title>Posts in all languages | imustafin.tatar</title>
+	<link href="https://imustafin.tatar/feed-multilang.xml" rel="self" type="application/atom+xml" />
+	<link href="https://imustafin.tatar" />
+	<id>https://imustafin.tatar/feed-multilang.xml</id>
+	<updated>2024-09-12T08:44:42+00:00</updated>
+
+  
+  
+  
+	  <entry xml:lang="en">
+      
+		  <title>PBDoom</title>
+		  <link href="https://imustafin.tatar/projects/pbdoom" rel="alternate" type="text/html" title="PBDoom"/>
+      <published>2023-02-26T00:00:00+00:00</published>
+      
+      <updated>2023-02-28T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/projects/pbdoom</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/projects/pbdoom">
+        <![CDATA[<p>PBDoom is a port of the Doom (1993) videogame for PocketBook eInk devices. Downloads
+are on <a href="https://pbdoom.imustafin.tatar/">the official website of PBDoom</a>.</p>
+
+<figure class="max-w-xs mx-auto">
+  <img src="/assets/pbdoom_inch_6_display.png" alt="PBDoom on a 6 inch display" />
+  <figcaption class="text-center">PBDoom on a 6" display</figcaption>
+</figure>
+
+<p>PBDoom is based on <a href="https://www.libsdl.org/projects/doom/">Sam Lantinga’s SDL Doom</a>. SDL drawing functions
+were replaced with PocketBook SDK’s <code class="language-plaintext highlighter-rouge">inkview</code> library functions. SDL sound functions
+were completely removed from the code for now (not many PocketBooks have speakers nowadays,
+headphones usually can be connected however).</p>
+
+<p>The development of PBDoom started in March of 2022. The first public release
+was published in January of 2023.</p>
+
+<p>Source code is <a href="https://github.com/imustafin/pbdoom">available on GitHub</a>.</p>
+
+<h2 id="why">Why?</h2>
+<p>This project serves several purposes:</p>
+<ol>
+  <li>Produce an example of an action game on an eInk reader device</li>
+  <li>One more custom application for PocketBook</li>
+  <li>Gather experience of using the <code class="language-plaintext highlighter-rouge">inkview</code> library</li>
+</ol>
+
+<p>Porting Doom was not a big project. SDL Doom runs on Linux and (some) PocketBooks
+run Linux. Reworking the main graphics output function to use <code class="language-plaintext highlighter-rouge">inkview</code>’s <code class="language-plaintext highlighter-rouge">FillArea</code>
+(fill a rectangle with a color) function instead of writing pixel data
+to an SDL surface is easy.</p>
+
+<p>However, due to some limitations of the eInk technology (low refresh rate,
+lack of color on some devices) some additional work needs to be done on the
+video output part. In this project we explore what needs to be done and what is possible.</p>
+
+<p>Also this project has introduced me to <a href="https://cmake.org/">CMake</a>.</p>
+
+<h2 id="can-pocketbook-run-doom">Can PocketBook run Doom?</h2>
+<p>Yes it can but this is not big news. The developers working on PocketBook
+released a video of Doom running on a PocketBook 360 Plus back in 2011.</p>
+<figure class="mx-auto">
+  <iframe class="aspect-video mx-auto w-full md:w-[600px]" src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+  <figcaption class="text-center">Doom 2 on PocketBook 360 Plus</figcaption>
+</figure>
+
+<p>This version was produced “during a lunch break” (<a href="https://www.the-ebook.org/forum/viewtopic.php?p=639725">original message</a>,
+<a href="https://web.archive.org/web/20110811143945/https://www.the-ebook.org/forum/viewtopic.php?p=639725">archived message</a>) and was (to my knowledge) never released to the public.</p>
+
+<p>So, PBDoom can finally close the gap and serve as a publicly available Doom
+for PocketBook, (some people) needed so much.</p>
+
+<h2 id="image-dithering-optimization-for-eink">Image dithering: optimization for eInk</h2>
+<p>As noted before, eInk displays have low refresh rate. This requires some workarounds
+for a comfortable playing experience.</p>
+
+<p>Some eInk displays have multiple update modes.
+In some modes the update time depends on the required changes to the
+displayed image. For example,
+replacing a full-white region with a full-black region can be faster than
+working with shades of grey.</p>
+
+<p>Using this quality, we can increase the game refresh rate while sacrificing some
+of the image quality.</p>
+
+<p>The official <code class="language-plaintext highlighter-rouge">inkview</code> documentation suggests dithering the image
+doen to only two color levels for quick updates (<a href="https://github.com/pocketbook-free/InkViewDoc/blob/master/PocketBookSDK.pdf">page 12</a>):</p>
+
+<blockquote>
+  <p>Call [<code class="language-plaintext highlighter-rouge">DitherArea</code>] with <code class="language-plaintext highlighter-rouge">levels=2</code> and <code class="language-plaintext highlighter-rouge">method=DITHER_THRESHOLD</code>
+to have image that can be quickly
+updated e.g. for menus, lists and selections.</p>
+</blockquote>
+
+<p>Formatting by me.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">inkview</code> library provides several functions to dither screen output
+(<code class="language-plaintext highlighter-rouge">DitherArea</code> and others).</p>
+
+<p>We also can manipulate the colors to change brightness, contrast and do
+gamma correction to fine tune the output, before dithering.</p>
+
+<h2 id="post-changelog">Post changelog</h2>
+<ul>
+  <li>28 February 2023 — add the missing word <em>never</em> to specify that
+the port by PocketBook was <em>never</em> released. Also cite <code class="language-plaintext highlighter-rouge">inkview</code> documentation
+for dithering tips.</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[PBDoom is a port of the Doom (1993) videogame for PocketBook eInk devices. Downloads are on the official website of PBDoom.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="ru">
+      
+		  <title>PBDoom</title>
+		  <link href="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom" rel="alternate" type="text/html" title="PBDoom"/>
+      <published>2023-02-26T00:00:00+00:00</published>
+      
+      <updated>2023-02-28T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom">
+        <![CDATA[<p>PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге.
+Загрузки находятся на <a href="https://pbdoom.imustafin.tatar/">официальном сайте PBDoom</a>.</p>
+
+<figure class="max-w-xs mx-auto">
+  <img src="/assets/pbdoom_inch_6_display.png" alt="PBDoom на 6 дюймовом экране" />
+  <figcaption class="text-center">PBDoom на 6" экране</figcaption>
+</figure>
+
+<p>PBDoom основан на <a href="https://www.libsdl.org/projects/doom/">SDL Doom Сэма Лантинги</a>. Функции SDL для отрисовки
+изображения на экране были заменены функциями из библиотеки <code class="language-plaintext highlighter-rouge">inkview</code> для PocketBook.
+Функции SDL для проигрывания звука были полностью удалены из кода на текущий момент
+(на многих устройствах PocketBook текущей линейки отсутвуют динамики,
+хотя всё ещё можно подключить наушники).</p>
+
+<p>Разработка PBDoom началась в марте 2022. Первый публичный релиз был опубликовна
+в январе 2023.</p>
+
+<p>Исходный код <a href="https://github.com/imustafin/pbdoom">доступен на GitHub</a>.</p>
+
+<h2 id="зачем">Зачем?</h2>
+<p>Этот проект преследует несколько целей:</p>
+<ol>
+  <li>Предоставить пример игры в жанре экшен для устройств с экранами на электронных чернилах</li>
+  <li>Создать ещё одно приложение для PocketBook</li>
+  <li>Получить опыт работы с библиотекой <code class="language-plaintext highlighter-rouge">inkview</code></li>
+</ol>
+
+<p>Само портирование игры Doom не было большим проектом. SDL Doom уже и так
+работает на Linux, и (некоторые) устройства PocketBook работают на Linux.
+Было достаточно легко заменить запись пикселей в область памяти поверхности SDL
+на вызовы функции <code class="language-plaintext highlighter-rouge">FillArea</code> из библиотеки <code class="language-plaintext highlighter-rouge">inkview</code>.</p>
+
+<p>Однако, из-за ограничений технологии электронной бумаги (низкая скорость обновления
+экрана, отсутвие цвета на некоторых устройствах), приходится немного дорабатывать
+процедуру вывода видео. В этом проекте мы исследуем что нужно сделать и что возможно
+сделать для этого.</p>
+
+<p>Также этот проект познакомил меня с <a href="https://cmake.org/">CMake</a>.</p>
+
+<h2 id="можно-ли-запустить-doom-на-pocketbook">Можно ли запустить Doom на PocketBook?</h2>
+<p>Да, можно. Но это не будет чем-то новым. Разработчики, работавшие над PocketBook,
+выпустили видео, где была показана игра Doom на PocketBook 360 Plus ещё в 2011 году.</p>
+<figure class="mx-auto">
+  <iframe class="aspect-video mx-auto w-full md:w-[600px]" src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+  <figcaption class="text-center">Doom 2 на PocketBook 360 Plus</figcaption>
+</figure>
+
+<p>Эту версию разработчики сделали «коротая время за обедом» (<a href="https://www.the-ebook.org/forum/viewtopic.php?p=639725">оригинальное сообщение</a>, <a href="https://web.archive.org/web/20110811143945/https://www.the-ebook.org/forum/viewtopic.php?p=639725">архив</a>), но, насколько я знаю, так и не выпустили её
+в общий доступ.</p>
+
+<p>Таким образом, PBDoom может стать той самой публичной версией Doom для PocketBook,
+которой (кому-то) так не хватало.</p>
+
+<h2 id="дизеринг-изображений-оптимизация-для-электронной-бумаги">Дизеринг изображений: оптимизация для электронной бумаги</h2>
+<p>Как было отмечено выше, электронная бумага имеет низкую частоту обновления. Поэтому
+нам нужны обходные пути для комфортной игры.</p>
+
+<p>Некоторые дисплеи на электронной бумаге предоставляют несколько режимов обновления
+изображения. В некоторых режимах скорость обновления зависит от того, как именно
+изменяется изображение. Например, заменить чёрный регион на белый может быть
+быстрее, чем изменение региона с одного промежуточного оттенка серого на другой.</p>
+
+<p>Используя эту особенность, мы можем увеличить частоту обновления игры,
+теряя в качестве картинки.</p>
+
+<p>Официальная документация <code class="language-plaintext highlighter-rouge">inkview</code> рекомендует уменьшать количество цветов
+до двух для быстрых обновлений (<a href="https://github.com/pocketbook-free/InkViewDoc/blob/master/PocketBookSDK.pdf">страница 12</a>):</p>
+
+<blockquote>
+  <p>Вызывайте [<code class="language-plaintext highlighter-rouge">DitherArea</code>] с <code class="language-plaintext highlighter-rouge">levels=2</code> и <code class="language-plaintext highlighter-rouge">method=DITHER_THRESHOLD</code>
+для получения изображения,
+которое может быть быстро отображено (меню, списки и выделения)</p>
+</blockquote>
+
+<p>Перевод и форматирование от меня.</p>
+
+<p>В библиотеке <code class="language-plaintext highlighter-rouge">inkview</code> есть несколько функций для дизеринга изображения на экране
+(<code class="language-plaintext highlighter-rouge">DitherArea</code> и другие).</p>
+
+<p>Также мы можем поработать с цветом и изменить яркость, контраст
+и провести гамма-коррекцию изображения перед дизерингом, чтобы оптимизировать
+итоговую картинку.</p>
+
+<h2 id="история-изменений-записи">История изменений записи</h2>
+<ul>
+  <li>28 февраля 2023 — добавлена основная часть текста</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге. Загрузки находятся на официальном сайте PBDoom.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="tt">
+      
+		  <title>PBDoom</title>
+		  <link href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom" rel="alternate" type="text/html" title="PBDoom"/>
+      <published>2023-02-26T00:00:00+00:00</published>
+      
+      <updated>2023-02-26T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom">
+        <![CDATA[<p>PBDoom — PocketBook электрон кәгазьле җайланмалар өчен Doom уеның порты.
+Йөкләүләр <a href="https://pbdoom.imustafin.tatar/">PBDoom рәсми сайтында</a> табыла.</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[PBDoom — PocketBook электрон кәгазьле җайланмалар өчен Doom уеның порты. Йөкләүләр PBDoom рәсми сайтында табыла.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>EiffelStudio Assertions Setting</title>
+		  <link href="https://imustafin.tatar/blog/eiffelstudio-assertions-setting" rel="alternate" type="text/html" title="EiffelStudio Assertions Setting"/>
+      <published>2021-10-26T00:00:00+00:00</published>
+      
+      <updated>2021-10-26T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/eiffelstudio-assertions-setting</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/eiffelstudio-assertions-setting">
+        <![CDATA[<p>EiffelStudio allows to control which assertions will be evaluated.
+We build a cheatshseet listing
+which contracts are checked for each setting.</p>
+
+<h2 id="tldr">TLDR</h2>
+<p>Here is the cheatsheet:</p>
+
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th> </th>
+        <th style="text-align: center">require</th>
+        <th style="text-align: center">check</th>
+        <th style="text-align: center">loop_invariant</th>
+        <th style="text-align: center">loop_variant</th>
+        <th style="text-align: center">ensure</th>
+        <th style="text-align: center">invariant</th>
+        <th style="text-align: center">other_library pre</th>
+        <th style="text-align: center">other_library check</th>
+        <th style="text-align: center">subcluster require</th>
+        <th style="text-align: center">subcluster check</th>
+        <th style="text-align: center">other_cluster pre</th>
+        <th style="text-align: center">other_cluster check</th>
+        <th style="text-align: center">indirect_cluster pre</th>
+        <th style="text-align: center">indirect_cluster check</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>All</strong></td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Require</strong></td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Ensure</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Check</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Invariant</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Loop</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Supplier Precondition</strong></td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<p>Rows represent the types of assertions enabled. <em>All</em> has all assertions
+enabled. Other examples enable only one respective assertion.</p>
+
+<p>Columns represent different types of contracts added in different
+groups (clusters and libraries). The exact meanings of the column prefixes
+are described <a href="#class-diagram">in the following section</a>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">X</code> in a cell means that the respective assertion is evaluated.</p>
+
+<h2 id="discussion">Discussion</h2>
+
+<p>To me personally, the only surprising fact is that in the <em>Supplier Precondition</em>
+example, feature preconditions (<code class="language-plaintext highlighter-rouge">require</code>) are checked not only for methods from
+other groups, but also for features of the cluster itself.</p>
+
+<p>Other than that, everything seems to be clear.</p>
+<ul>
+  <li><strong>Require</strong> evaluates the preconditions</li>
+  <li><strong>Ensure</strong> evaluates the postconditions</li>
+  <li><strong>Check</strong> evaluates the <code class="language-plaintext highlighter-rouge">check ... end</code> instructions</li>
+  <li><strong>Invariant</strong> evaluates the class invariants</li>
+  <li><strong>Loop</strong> evaluates the loop variants and invariants</li>
+  <li><strong>Supplier Precondition</strong> evaluates the preconditions of features used
+directly by this cluster. That is:
+    <ul>
+      <li>Features of libraries (<em>other_library pre</em>)</li>
+      <li>Features of other clusters (<em>other_cluster pre</em>)</li>
+      <li>Features of this cluster (<em>require</em>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="setting-assertion-levels">Setting Assertion Levels</h2>
+<p>Assertion levels can be configured for each <em>target</em> and
+<em>clusters</em> and <em>libraries</em> can override the assertion levels set by their
+target.</p>
+
+<p>This can be done in the EiffelStudio GUI and through the <code class="language-plaintext highlighter-rouge">.ecf</code> file.</p>
+
+<h3 id="setting-assertions-manually-in-eiffelstudio">Setting Assertions Manually in EiffelStudio</h3>
+<p>Assertion levels can be configured in EiffelStudio GUI. The process is
+already documented on eiffel.org. There is a <a href="https://www.eiffel.org/doc/eiffelstudio/Setting_the_assertion_level">very short How To</a>.
+Basically, you need to:</p>
+<ol>
+  <li>Open the Project Settings dialog (<strong>Project &gt; Project Settings</strong>)</li>
+  <li>Set the default assertion level for a <em>target</em>
+in the <strong>Target &gt; Assertions</strong> section. This section is <a href="https://www.eiffel.org/doc/eiffelstudio/Assertion_Options">described separately
+on eiffel.org</a>.</li>
+  <li>Assertion levels can be overriden per cluster or library.
+    <ol>
+      <li>Navigate to
+the needed group
+        <ul>
+          <li><strong>Target &gt; Groups &gt; Clusters &gt; …</strong> for clusters</li>
+          <li><strong>Target &gt; Groups &gt; Libraries &gt; …</strong> for libraries</li>
+        </ul>
+      </li>
+      <li>Set the required assertion levels
+in the <strong>Assertions</strong> expandable section.</li>
+    </ol>
+  </li>
+  <li>After changing assertions settings you <em>must recompile</em> the system
+for settings to take effect.</li>
+</ol>
+
+<h3 id="setting-assertions-in-the-ecf-file">Setting Assertions in the ECF File</h3>
+<p>Assertion levels can be configured in the <code class="language-plaintext highlighter-rouge">.ecf</code> file as well.
+We will use this in the experiment
+<a href="#compiling-for-different-assertion-levels">later</a>
+for automated testing of the
+program with different assertion levels.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">.ecf</code> file is an XML file inside. Each <code class="language-plaintext highlighter-rouge">target</code>, <code class="language-plaintext highlighter-rouge">cluster</code> and <code class="language-plaintext highlighter-rouge">library</code>
+element can have the <code class="language-plaintext highlighter-rouge">option/assertions</code> element which can set or override
+the assertion levels:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;cluster</span> <span class="na">name=</span><span class="s">"other_cluster"</span> <span class="na">location=</span><span class="s">".\other_cluster\"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option&gt;</span>
+        <span class="nt">&lt;assertions</span>
+          <span class="na">postcondition=</span><span class="s">"true"</span>
+          <span class="na">check=</span><span class="s">"true"</span>
+          <span class="na">invariant=</span><span class="s">"true"</span>
+          <span class="na">loop=</span><span class="s">"true"</span>
+          <span class="na">supplier_precondition=</span><span class="s">"true"</span>
+        <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/cluster&gt;</span>
+</code></pre></div></div>
+
+<h2 id="the-experiment">The Experiment</h2>
+<p>To check which contracts are checked for each assertion level we can
+write a simple program which includes different types of contracts. Then
+we can switch different levels and observe which contracts are in fact evaluated.</p>
+
+<p>To speed up the process and because of the high number of possible settings
+combinations and types of contracts,
+we can write a program which runs the Eiffel program with different assertion
+levels. This program is <a href="https://github.com/imustafin/eiffel-studio-assertions">available on GitHub</a>.</p>
+
+<h3 id="class-diagram">Class Diagram</h3>
+<p>While one cluster and one class is enough to show the effects of
+the most of the settings, we need several clusters and a library to show
+the effects of the Supplier Precondition setting.</p>
+
+<p>The UML diagram shows the setup of the demo program.</p>
+
+<p><object data="/uml/de37070b986df7da64ab56ce3b450deb.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">APPLICATION</code> is the root class (depicted by the <code class="language-plaintext highlighter-rouge">&lt;&lt;root&gt;&gt;</code> stereotype).
+All types of contracts are implemented
+in the <code class="language-plaintext highlighter-rouge">DEMO</code> class. <code class="language-plaintext highlighter-rouge">APPLICATION</code> and <code class="language-plaintext highlighter-rouge">DEMO</code> are part of the <code class="language-plaintext highlighter-rouge">main</code> cluster
+which will have the assertions checking enabled (depicted by the blue
+color of the cluster). Additionally, <code class="language-plaintext highlighter-rouge">DEMO</code> uses classes from different
+clusters and libraries:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">OTHER_LIBRARY_DEMO</code> is a part of the <code class="language-plaintext highlighter-rouge">other_library</code> library (depicted by
+the <em>book</em> icon)</li>
+  <li><code class="language-plaintext highlighter-rouge">SUBCLUSTER_DEMO</code> is a part of the <code class="language-plaintext highlighter-rouge">subcluster</code> cluster. <code class="language-plaintext highlighter-rouge">subcluster</code> is
+a child of the <code class="language-plaintext highlighter-rouge">main</code> cluster.</li>
+  <li><code class="language-plaintext highlighter-rouge">OTHER_CLUSTER_DEMO</code> is a part of the <code class="language-plaintext highlighter-rouge">other_cluster</code> cluster. <code class="language-plaintext highlighter-rouge">other_cluster</code>
+is a sibling of the <code class="language-plaintext highlighter-rouge">main</code> cluster.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">OTHER_CLUSTER_DEMO</code> uses the <code class="language-plaintext highlighter-rouge">INDIRECT_CLUSTER_DEMO</code> class from the
+<code class="language-plaintext highlighter-rouge">indirect_cluster</code> cluster.</p>
+
+<p>All subclusters except <code class="language-plaintext highlighter-rouge">main</code> have all assertions disabled (depicted
+by the white color of the clusters).</p>
+
+<p>All those <code class="language-plaintext highlighter-rouge">*_DEMO</code> classes have only a precondition and a check in them. This
+is to check if preconditions and other contracts are checked.</p>
+
+<h3 id="listing-the-evaluated-contracts">Listing the Evaluated Contracts</h3>
+<p>We want the program to print a list of contracts it has checked. One way
+to do it is to fail each contract once, print its tag and then never fail
+it again. Contract violations raise an exception. We can catch this exception
+and set some flag to pass this contract next time, and then to retry the
+program to see if any other contract fails. This solution is based
+on <a href="https://stackoverflow.com/a/69351110">this StackOverflow answer by Alexander Kogtenkov</a>.</p>
+
+<p>Each contract will have a unique tag. We will have
+a <code class="language-plaintext highlighter-rouge">HASH_TABLE [BOOLEAN, STRING]</code> which will tell if the contract should be
+satisfied by its tag. The main algorithm is in the <code class="language-plaintext highlighter-rouge">APPLICATION</code> class:</p>
+<div class="language-eiffel highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span>
+    <span class="nc">APPLICATION</span>
+
+<span class="k">create</span>
+    <span class="n">make</span>
+
+<span class="k">feature</span> <span class="pi">{</span><span class="nc">NONE</span><span class="pi">}</span> <span class="c1">-- Initialization</span>
+
+    <span class="n">make</span>
+        <span class="k">do</span>
+            <span class="n">run_demo</span> <span class="pi">(</span><span class="k">create</span> <span class="pi">{</span><span class="nc">HASH_TABLE</span> <span class="pi">[</span><span class="nc">BOOLEAN</span><span class="pi">,</span> <span class="nc">STRING</span><span class="pi">]}.</span><span class="n">make</span> <span class="pi">(</span><span class="mi">0</span><span class="pi">))</span>
+        <span class="k">end</span>
+
+    <span class="n">run_demo</span> <span class="pi">(</span><span class="n">satisfy</span><span class="pi">:</span> <span class="nc">HASH_TABLE</span> <span class="pi">[</span><span class="nc">BOOLEAN</span><span class="pi">,</span> <span class="nc">STRING</span><span class="pi">])</span>
+        <span class="k">local</span>
+            <span class="n">demo</span><span class="pi">:</span> <span class="nc">DEMO</span>
+        <span class="k">do</span>
+            <span class="k">create</span> <span class="n">demo</span><span class="pi">.</span><span class="n">make</span> <span class="pi">(</span><span class="n">satisfy</span><span class="pi">)</span>
+        <span class="k">rescue</span>
+            <span class="k">check</span> <span class="k">attached</span> <span class="pi">{</span><span class="nc">EXCEPTIONS</span><span class="pi">}.</span><span class="n">tag_name</span> <span class="k">as</span> <span class="n">tag</span> <span class="k">then</span>
+                <span class="n">print</span> <span class="pi">(</span><span class="n">tag</span> <span class="o">+</span> <span class="s2">"%N"</span><span class="pi">)</span>
+                <span class="n">satisfy</span> <span class="pi">[</span><span class="n">tag</span><span class="pi">]</span> <span class="pi">:=</span> <span class="kc">True</span>
+                <span class="k">retry</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>And each contract will have the form</p>
+<div class="language-eiffel highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tag_</span><span class="pi">:</span> <span class="n">satisfy</span> <span class="pi">[</span><span class="s2">"tag_"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>When a contract is first met, <code class="language-plaintext highlighter-rouge">satisfy</code> will not have an entry
+for the tag and the <code class="language-plaintext highlighter-rouge">[]</code> feature will return <code class="language-plaintext highlighter-rouge">False</code>, failing the assertion.
+We will catch the exception, put a <code class="language-plaintext highlighter-rouge">True</code> for this tag and next time the
+contract will not fail.</p>
+
+<h3 id="compiling-for-different-assertion-levels">Compiling for Different Assertion Levels</h3>
+<p>As we <a href="#setting-assertion-levels">discussed previously</a>, it is possible
+to set the assertion levels both in the GUI and in the <code class="language-plaintext highlighter-rouge">.ecf</code> file.</p>
+
+<p>Trying to set many different combinations manually can take much time and is
+error-prone. Because of this, we will write a program which writes different
+settings into the <code class="language-plaintext highlighter-rouge">.ecf</code>, compile, run and collect the contracts checked.</p>
+
+<p>Another benefit of having a program is that this experiment becomes
+reproduceable.</p>
+
+<p>This program is written in Ruby and uses <a href="https://nokogiri.org/">Nokogiri</a> for working
+with XML. The code is available in <a href="https://github.com/imustafin/eiffel-studio-assertions">the same repository</a>, together
+with the demo Eiffel program.</p>
+
+<p>The program reads the original <code class="language-plaintext highlighter-rouge">.ecf</code> file, explicitly disables
+all assertions in the <code class="language-plaintext highlighter-rouge">other_library</code> and all clusters. Then it
+enables some assertions in the <code class="language-plaintext highlighter-rouge">main</code> cluster. The resulting XML
+is written as another <code class="language-plaintext highlighter-rouge">.ecf</code> file which is then compiled and the
+result is executed.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">doc</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="no">ORIGINAL_ECF</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">XML</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="n">other_library</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">at_xpath</span><span class="p">(</span><span class="s1">'//xmlns:library[@name="other_library"]'</span><span class="p">)</span>
+<span class="n">all_clusters</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">xpath</span><span class="p">(</span><span class="s1">'//xmlns:cluster'</span><span class="p">)</span>
+<span class="n">main_cluster</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">at_xpath</span><span class="p">(</span><span class="s1">'//xmlns:cluster[@name="main"]'</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">other_library</span><span class="p">,</span> <span class="o">*</span><span class="n">all_clusters</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+  <span class="n">set_assertions</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">all_disabled</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">enabled_assertions</span><span class="p">.</span><span class="nf">to_h</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="kp">true</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">set_assertions</span><span class="p">(</span><span class="n">main_cluster</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+
+<span class="n">ecf_name</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="s2">/check_</span><span class="si">#{</span><span class="nb">name</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span><span class="si">}</span><span class="s2">.ecf"</span>
+
+<span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">ecf_name</span><span class="p">,</span> <span class="n">doc</span><span class="p">.</span><span class="nf">to_xml</span><span class="p">)</span>
+
+<span class="c1"># Compile</span>
+<span class="nb">system</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="sh">
+    ec
+      -project_path "</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="sh">"
+      -config </span><span class="si">#{</span><span class="n">ecf_name</span><span class="si">}</span><span class="sh">
+      -clean
+      -c_compile
+      &gt;&amp;2
+</span><span class="no">CMD</span>
+
+<span class="c1"># Run</span>
+<span class="n">out</span> <span class="o">=</span> <span class="sb">`./</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="sb">/EIFGENs/contract_variants/W_code/contract_variants`</span>
+
+<span class="c1"># Save results</span>
+<span class="n">results</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="p">.</span><span class="nf">strip</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Then the results are printed as a nice Markdown table, ready to be embedded
+into a blog-post.</p>
+
+<p>Note how we use the command line program <code class="language-plaintext highlighter-rouge">ec</code> to compile the workbench
+version of the executable. The <a href="https://www.eiffel.org/doc/eiffelstudio/EiffelStudio-_Using_command_line_options">documentation on eiffel.org</a>
+lists other command line options and usage examples.</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[EiffelStudio allows to control which assertions will be evaluated. We build a cheatshseet listing which contracts are checked for each setting.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="tt">
+      
+		  <title>Heroku Postgres БН бушлай куллану өчен оптимальләштерү</title>
+		  <link href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF" rel="alternate" type="text/html" title="Heroku Postgres БН бушлай куллану өчен оптимальләштерү"/>
+      <published>2021-09-01T00:00:00+00:00</published>
+      
+      <updated>2021-09-01T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF">
+        <![CDATA[<p>Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә
+куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.</p>
+
+<p><a href="https://www.sibrowser.ru">SIBrowser</a> — <a href="https://vladimirkhil.com/si/game">Своя игра (SIGame)</a> пакетлар эзләү сайты.
+Соңгы вакытта мин бу сайтны ясый идем.
+Без дуслар белән еш уйныйбыз һәм безгә һәрвакыт яхшы пактларны эзләргә кирәк.
+Эзләүне гадиләштерү өчен мин интернеттан пакет җыю һәм пакет статистика
+күрсәтү системаны төзи башладым.</p>
+
+<p>Сайт <a href="https://rubyonrails.org/">Ruby on Rails</a> нигезендә төзелгән һәм <a href="https://heroku.com">Heroku</a>
+платформасында җәелә. Акча саклану өчен Heroku-ның бушлай БН дәрәҗәләрне
+кулланам. <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a> бушлай дәрәҗәдә 
+1ГБ саклагыч урыны һәм 10к БН рәт бирелә. <a href="https://elements.heroku.com/addons/heroku-redis">Heroku Redis</a> бушлай
+дәрәҗәдә 25МБ хәтер бирелә.</p>
+
+<p>Фонда пакет җыю өчкн мин <a href="https://sidekiq.org/">Sidekiq</a>-ны кулланам. Sidekiq бирем чиратны
+Heroku Redis-та саклый. Моның өчен Heroku Redis-ның бушлай дәрәҗәсе җитә:
+хәзер 25МБ-тан &lt; 1МБ кулланыла.</p>
+
+<p>Ләкин, Heroku Postgres-ның рәт чикләмәләре бу проектта зур йогынты ясый.</p>
+
+<h2 id="бирелмәләр-нигезне-акча-саклау-өчен-оптимальләштерү">Бирелмәләр нигезне акча саклау өчен оптимальләштерү</h2>
+<p>Heroku Postgres бушлай дәрәҗәдә куллану өчен, без БН архитектурада берничә
+үзгәреш ясый алабыз. Проектның ER-модельгә карыйк:</p>
+
+<p><object data="/uml/15b31463dd82ea6518f3d79110e13a22.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>Ясаучының ноль я күбрәк пакет бар. Пакетның ноль я күбрәк тәг һәм раунд бар.
+Раундның ноль я күбрәк тема бар. Теманың ноль я күбрәк сорау бар.</p>
+
+<p>Өченче я дүртенче нормаль формага нормальләшкән БН белән эшләргә яхшы булыр иде.
+Ләкин, һәр нормальләштерү адымы рәт саны күбәйәчәк.</p>
+
+<p>Системада кирәкле БН таләпләргә карап, без кайбер объектларны
+денормальләштерергә
+алабыз.</p>
+
+<h2 id="адым-1-төп-таблица">Адым 1: төп таблица</h2>
+<p>ER-диаграммага караганда, <code class="language-plaintext highlighter-rouge">Пакет</code> төп объект булуны күрәбез.
+Чыннан да, башка объектларны <code class="language-plaintext highlighter-rouge">Пакет</code>-ның атрибутлары кебек сакла алабыз.</p>
+
+<p>Тәгләр һәм ясаучылар юл массивы формасында сакла алабыз. Раунд-тема-сорау
+чылбырны <em>структура</em> дип атыйк һәм кертелгән массивлар я һәшләр формасында
+сакла алабыз да.</p>
+
+<p>Шундый объект саклау өчен, Active Record-ның <a href="serialize">serialize</a> ысулы
+белән саклаячакбыз. Моның өчен БН кырлары <code class="language-plaintext highlighter-rouge">text</code> яисә <code class="language-plaintext highlighter-rouge">string</code> типлы булырга
+тиеш.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">serialize</span> <span class="ss">:authors</span><span class="p">,</span> <span class="no">Array</span>
+  <span class="n">serialize</span> <span class="ss">:structure</span><span class="p">,</span> <span class="no">Hash</span>
+  <span class="n">serialize</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Array</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Шулай итеп, барлык ER-модельне бер генә таблицада сакланыла, әмма БН
+нормаль формасыны югалта. Пакетлар гына үзе санлы беренчел ачкычы бар.</p>
+
+<p>Соңрак без моның бик начар булмавыны күрсәтәчәкбез. БН-дән без берничә
+таләп ясый алабыз әле: барлык пакет исемлекне укый алабыз, кирәкле
+пакетның мәгълүматны ачкыч белән укый алабыз да.</p>
+
+<h2 id="адым-2-jsonb-индекс-белән-ясаучы-буенча-эзләү">Адым 2: JSONB индекс белән ясаучы буенча эзләү</h2>
+<p>Heroku Postgres бушлай дәрәҗәдә индекс саны чикләнмәгән һәм без берничә
+индекс ясачакбыз. Ясаучы буенча эзләү тизләтү өчен, <code class="language-plaintext highlighter-rouge">author</code> атрибуты нигезендә
+инвертләнгән индекс төзи алабыз, әмма баштан безгә бу атрибутның тибы JSONB-га
+өйләнергә кирәк.</p>
+
+<p>JSONB өйләнүдән соң, <code class="language-plaintext highlighter-rouge">serialize</code> ысулы безгә кирәкми чөнки кыйммәтләр автоматик
+рәвештә JSONB-дан һәм JSONB-га өйләнәчәкләр.</p>
+
+<p>Без хәреф регистр бәйләнмәгән эзләүне ясаячакбыз, чөнки ясаучы исемнәре
+төрле пакетларда төрлечә язылалар.</p>
+
+<p>Баштан индексны төзибез:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">authors_icase_index</span>
+<span class="k">ON</span> <span class="n">packages</span>
+<span class="k">USING</span> <span class="n">gin</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Эзләүдә индекс кулланыр өчен, нәкъ шундый таләпне кулланырга кирәк:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'LOWER(authors::text)::jsonb @&gt; to_jsonb(LOWER(?)::text)'</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Индекс кулланувын <code class="language-plaintext highlighter-rouge">EXPLAIN</code>-да күрәбез:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="nv">"packages"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"packages"</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="s1">'Timur'</span><span class="p">)::</span><span class="nb">text</span><span class="p">));</span>
+
+                                    <span class="n">QUERY</span> <span class="n">PLAN</span>                                    
+<span class="c1">----------------------------------------------------------------------------------</span>
+ <span class="n">Bitmap</span> <span class="n">Heap</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">packages</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">8</span><span class="p">.</span><span class="mi">08</span><span class="p">..</span><span class="mi">36</span><span class="p">.</span><span class="mi">14</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">677</span><span class="p">)</span>
+   <span class="k">Recheck</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+   <span class="o">-&gt;</span>  <span class="n">Bitmap</span> <span class="k">Index</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">authors_icase_index</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">8</span><span class="p">.</span><span class="mi">07</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+         <span class="k">Index</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Ләкин, ясаучының санлы беренчел ачкычы юк. Ясаучыларны аларның аскы регистрлы
+исемләре нигезендә аңлыйбыз. Бу очракта, ясаучының исеме адрес эчендә булырга
+тиеш:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="n">resources</span> <span class="ss">:authors</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">],</span> <span class="ss">constraints: </span><span class="p">{</span> <span class="ss">id: </span><span class="sr">/.+/</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Шундый <code class="language-plaintext highlighter-rouge">constraints</code> көйләве Rails-ка буш аралы һәм авыш сызыклы исемнәрне
+аңларга әйтә. Мәсәлән, системада <code class="language-plaintext highlighter-rouge">https://vk.com/sigamepack</code> исемле
+ясаучы бар һәм аның бите 
+<a href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack">https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a>
+адреста урнашкан.</p>
+
+<h2 id="адым-3-jsonb-атрибут-бунча-тулы-текст-эзләү">Адым 3: JSONB атрибут бунча тулы текст эзләү</h2>
+<p>JSONB атрбутларда тулы текст эзләүне ясый алабыз да.</p>
+
+<p><a href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres">Ли Һаллидейнның мәкәләсе</a> тулы текст эзләүне
+<a href="https://rubygems.org/gems/pg_search">pg_search</a> гемы һәм <code class="language-plaintext highlighter-rouge">ts_vector</code> тибы нигезендә төзүне тасвирлый.</p>
+
+<p>Монда мин JSONB атрибут өчендә эзләү өчен охшаш ысулы күрсәтәм.</p>
+
+<p>Исәпләнүче <code class="language-plaintext highlighter-rouge">searchable</code> баганасы JSONB элементларга үзе дәрәҗәләрне бирә ала.
+<code class="language-plaintext highlighter-rouge">to_tsvector</code> функциясе икенче аргумент урында JSONB типны да аңлый.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">packages</span>
+<span class="k">ADD</span> <span class="k">COLUMN</span> <span class="n">searchable</span> <span class="n">tsvector</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Раунд исемләре</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Тема исемләре</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Бу үрнәктә JSONB-да ерак кертелгән кыйммәтне, JSON юллары кулланып, индекска кую
+күрсәтелгән.</p>
+
+<p><code class="language-plaintext highlighter-rouge">pg_search</code> көйләве шундый ук кала:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
+  
+  <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># tsvector_column булганда куллынмый</span>
+    <span class="ss">using: </span><span class="p">{</span>
+      <span class="ss">tsearch: </span><span class="p">{</span>
+        <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
+        <span class="ss">tsvector_column: </span><span class="s1">'searchable'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="йомгаклау">Йомгаклау</h2>
+<p>Бу мәкаләдә без берничә мәсьәлә карап чыктык:</p>
+<ul>
+  <li>Heroku Postgres бушлай дәрәҗәнең чикләмәләр һәм алар белән эшләү</li>
+  <li>JSONB белән БН денормальләштерү</li>
+  <li>JSONB өчен инвертләштереләгән индекс төзү</li>
+  <li>JSONB объектларга кертелгән юлларда тулы текст эзләү</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="ru">
+      
+		  <title>Оптимизация БД Heroku Postgres для бесплатного использования</title>
+		  <link href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" rel="alternate" type="text/html" title="Оптимизация БД Heroku Postgres для бесплатного использования"/>
+      <published>2021-07-13T00:00:00+00:00</published>
+      
+      <updated>2021-09-01T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F">
+        <![CDATA[<p>Оптимизация схемы реляционной базы данных для соответствия
+бесплатному уровню Heroku Postgres на примере приложения SIBrowser.</p>
+
+<p><a href="https://www.sibrowser.ru">SIBrowser</a> — это сайт, на котором можно удобно искать
+пакеты для <a href="https://vladimirkhil.com/si/game">Своей игры (SIGame)</a>.
+В последнее время я работал над этим проектом.
+Мы с друзьями часто играем в свою игру, и нам постоянно
+надо находить хорошие пакеты для вечера. Чтобы упростить эту задачу,
+я решил сделать сайт, который собирает пакеты из интернета и показывает
+различную статистику.</p>
+
+<p>Сайт сделан на <a href="https://rubyonrails.org/">Ruby on Rails</a> и разворачивается на <a href="https://heroku.com">Heroku</a>.
+Чтобы сэкономить, я использую бесплатный уровень <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a>,
+который даёт 10к строчек и 1ГБ хранилища и бесплатный уровень <a href="https://elements.heroku.com/addons/heroku-redis">Heroku Redis</a>,
+который даёт 25МБ хранилища.</p>
+
+<p>Для фонового сбора пакетов я использую <a href="https://sidekiq.org/">Sidekiq</a> с Heroku Redis-ом
+как хранилище состояния очереди. Для этой задачи пока вполне хватает
+бесплатного уровня Heroku Redis: сейчас используется &lt; 1МБ из 25МБ
+бесплатных.</p>
+
+<p>Однако, ограничение бесплатного уровня Heroku Postgres в 10к строк
+очень заметно в этом проекте.</p>
+
+<h2 id="оптимизация-базы-данных-по-стоимости">Оптимизация базы данных по стоимости</h2>
+<p>Чтобы уместить приложение в ограничения бесплатного уровня Heroku Postgres,
+можно произвести несколько изменений в архитектуру базы данных.
+Взглянем на высокоуровневую ER-модель проекта.</p>
+
+<p><object data="/uml/d9e5df1a93b34793c2c9489f1f85282f.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>Эта диаграмма более или менее представляет предметную область приложения.
+Автор имеет ноль или больше пакетов. Пакет может иметь ноль или больше тегов
+и раундов. Раунд может иметь ноль или больше тем. Тема может иметь ноль или
+больше вопросов.</p>
+
+<p>В идеале нам бы хотелось иметь нормализованную базу данных в третьей или
+четвёртой нормальной форме. Однако, каждый шаг нормализации будет пораждать
+всё больше и больше строк.</p>
+
+<p>В зависимости от того, какие запросы мы хотим поддерживать в нашей БД,
+мы можем денормализовать некоторые сущности.</p>
+
+<h2 id="шаг-1-главная-таблица">Шаг 1: главная таблица</h2>
+<p>Из ER-диаграммы мы видим, что <code class="language-plaintext highlighter-rouge">Пакет</code> является центральной сущностью.
+В самом деле, мы можем попробовать сделать все остальные сущности аттрибутами
+сущности <code class="language-plaintext highlighter-rouge">Пакет</code>.</p>
+
+<p>Мы можем хранить теги и авторов просто как массивы строк. Цепочка
+раунды-темы-вопросы, которую мы будем просто называть <em>структурой</em>, может
+быть представлена как вложенные массивы или хеши.</p>
+
+<p>Для сохранения объектов в базе данных мы можем использовать метод <a href="serialize">serialize</a>
+из Active Record. В этом случае типы полей в БД должны быть <code class="language-plaintext highlighter-rouge">text</code> или <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">serialize</span> <span class="ss">:authors</span><span class="p">,</span> <span class="no">Array</span>
+  <span class="n">serialize</span> <span class="ss">:structure</span><span class="p">,</span> <span class="no">Hash</span>
+  <span class="n">serialize</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Array</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Такой подход позволяет сжать всю ER-модель всего в одну таблицу. Однако,
+база данных становится ненормализованной, у нас остаётся только первичный
+ключ <code class="language-plaintext highlighter-rouge">id</code> для пакетов.</p>
+
+<p>Далее мы покажем, что это не страшно и мы можем реализовать несколько
+видов запросов. Мы всё ещё можем получить список всех пакетов или информацию
+о конкретном пакете по его ключу. Мы даже можем упорядочивать пакеты по авторам,
+если массив авторов всегда будет сортироваться перед записью в БД.</p>
+
+<h2 id="шаг-2-поиск-по-авторам-используя-индексы-по-jsonb">Шаг 2: Поиск по авторам, используя индексы по JSONB</h2>
+<p>Так как бесплатный уровень Heroku Postgres не ограничивает количество индексов,
+мы можем построить инвертированный индекс по столбцы <code class="language-plaintext highlighter-rouge">authors</code> для эффективного
+поиска, но сначала нам нужно изменить тип столбца на JSONB.</p>
+
+<p>После того, как столбцы были превращены в JSONB, нам не нужно явно указывать
+AR, что эти поля нужно сериализовывать методом <code class="language-plaintext highlighter-rouge">serialize</code>. Значения и так
+будут автоматически превращаться в и из JSONB.</p>
+
+<p>Мы будем делать регистронезависимый поиск по авторам, потому что 
+авторы часто используют заглавные буквы по-разному в разных пакетах.</p>
+
+<p>Сначала нам нужно построить индекс:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">authors_icase_index</span>
+<span class="k">ON</span> <span class="n">packages</span>
+<span class="k">USING</span> <span class="n">gin</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Чтобы этот индекс использовался, запросы должны использовать точно такое же
+выражение:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'LOWER(authors::text)::jsonb @&gt; to_jsonb(LOWER(?)::text)'</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Мы можем проверить, что индекс используется с помощью <code class="language-plaintext highlighter-rouge">EXPLAIN</code>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="nv">"packages"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"packages"</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="s1">'Timur'</span><span class="p">)::</span><span class="nb">text</span><span class="p">));</span>
+
+                                    <span class="n">QUERY</span> <span class="n">PLAN</span>                                    
+<span class="c1">----------------------------------------------------------------------------------</span>
+ <span class="n">Bitmap</span> <span class="n">Heap</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">packages</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">8</span><span class="p">.</span><span class="mi">08</span><span class="p">..</span><span class="mi">36</span><span class="p">.</span><span class="mi">14</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">677</span><span class="p">)</span>
+   <span class="k">Recheck</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+   <span class="o">-&gt;</span>  <span class="n">Bitmap</span> <span class="k">Index</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">authors_icase_index</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">8</span><span class="p">.</span><span class="mi">07</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+         <span class="k">Index</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Однако, у нас нет численного первичного ключа для автора. Авторы определяются
+только по их имени в нижнем регистре. В таком случае, чтобы реализовать страницу автора,
+на которой будут отображаться пакеты этого автора, мы можем вставить имя
+автора прямо в путь к странице.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="n">resources</span> <span class="ss">:authors</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">],</span> <span class="ss">constraints: </span><span class="p">{</span> <span class="ss">id: </span><span class="sr">/.+/</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Параметр <code class="language-plaintext highlighter-rouge">constraints</code> позволит Rails понимать авторов с пробелами и
+косыми чертами в имени. Например, в системе есть автор <code class="language-plaintext highlighter-rouge">https://vk.com/sigamepack</code>,
+а страница этого автора доступна по адресу
+<a href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack">https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a>.</p>
+
+<h2 id="шаг-3-полнотекстовый-поиск-по-jsonb-столбцам">Шаг 3: Полнотекстовый поиск по JSONB столбцам</h2>
+<p>Также мы можем производить полнотекстовый поиск по столбцам с типом JSONB.
+Есть <a href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres">хорошая статья Ли Халлидея</a>, которая описывает реализацию
+полнотекстового поиска с использованием гема <a href="https://rubygems.org/gems/pg_search">pg_search</a> и типа <code class="language-plaintext highlighter-rouge">ts_vector</code>
+в Postgres.</p>
+
+<p>Здесь я покажу как можно использовать такой же подход для поиска по JSONB столбцам.</p>
+
+<p>Генерируемый столбец <code class="language-plaintext highlighter-rouge">searchable</code> может давать веса значениям типа JSONB. Функция
+<code class="language-plaintext highlighter-rouge">to_tsvector</code> может принимать JSONB объект:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">packages</span>
+<span class="k">ADD</span> <span class="k">COLUMN</span> <span class="n">searchable</span> <span class="n">tsvector</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Названия раундов</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Названия тем</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Этот пример показывает как добавить глубоко вложенные значения в индекс, используя
+JSON пути.</p>
+
+<p>Настройки <code class="language-plaintext highlighter-rouge">pg_search</code> остаются такими же:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
+  
+  <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># не используется если указан tsvector_column</span>
+    <span class="ss">using: </span><span class="p">{</span>
+      <span class="ss">tsearch: </span><span class="p">{</span>
+        <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
+        <span class="ss">tsvector_column: </span><span class="s1">'searchable'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="заключение">Заключение</h2>
+<p>В этой статье мы рассмотрели такие темы, как:</p>
+<ul>
+  <li>Ограничения в бесплатном уровне Heroku Postgres и как c ними работать</li>
+  <li>Денормализация БД c помощью JSONB</li>
+  <li>Построение инвертированного индекса по значениям JSONB</li>
+  <li>Полнотекстовый поиск по строкам, вложенным в JSONB объекты</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Оптимизация схемы реляционной базы данных для соответствия бесплатному уровню Heroku Postgres на примере приложения SIBrowser.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>Optimizing Heroku Postgres for the Free Tier</title>
+		  <link href="https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier" rel="alternate" type="text/html" title="Optimizing Heroku Postgres for the Free Tier"/>
+      <published>2021-07-12T00:00:00+00:00</published>
+      
+      <updated>2021-09-01T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier">
+        <![CDATA[<p>How to optimize a relational database schema to fit
+Heroku Postgres free tier limitations with a real-world
+example of SIBrowser.</p>
+
+<p><a href="https://www.sibrowser.ru">SIBrowser</a> is a website for browsing <a href="https://vladimirkhil.com/si/game">SIGame</a>
+packages. It is a project I’ve been working on recently.
+Me and my friends play SIGame from time
+to time and we frequently need to find good packages to play. To simplify this
+task for us I’ve made a website which collects packages from the internet
+and displays different statistic for them.</p>
+
+<p>The website is built using <a href="https://rubyonrails.org/">Ruby on Rails</a> and deployed on <a href="https://heroku.com">Heroku</a>.
+To optimize the costs, I am using <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a>
+which gives 10k rows and 1GB storage for free and <a href="https://elements.heroku.com/addons/heroku-redis">Heroku Redis</a>
+which gives 25MB storage for free.</p>
+
+<p>I am using <a href="https://sidekiq.org/">Sidekiq</a> for scraping and parsing packages in background
+with Heroku Redis as the queue storage. Heroku Redis’s free tier
+is enough for the current workload with &lt; 1MB used out of 25MB
+provided in the free tier.</p>
+
+<p>However, Heroku Postgres’s free tier limit of 10k rows is very noticeable
+in this project.</p>
+
+<h2 id="optimizing-the-database-for-cost">Optimizing the database for cost</h2>
+<p>Trying to fit the application into Heroku Postgres’s free tier requires some
+considerations to the database architecture. Let’s look at a very high level
+ER model for the project.</p>
+
+<p><object data="/uml/1f9889803cf445eb9d8c718f10a641e0.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>This diagram more or less represents the business domain of the application.
+Author can have zero or more packages. Package can have zero or more tags
+and rounds. Rounds can have zero or more themes. Themes can have zero
+or more questions.</p>
+
+<p>Ideally, we might want to have our database normalized to the third or fourth
+normal form. However, each normalization step will generate more and more
+rows.</p>
+
+<p>Depending on the specific queries which we want to support, we can denormalize
+some entities.</p>
+
+<h2 id="step-1-the-main-table">Step 1: the Main Table</h2>
+<p>Examining the ER diagram we see that <code class="language-plaintext highlighter-rouge">Package</code> seems to be the central entity.
+In fact, we can try to make all of the other entites to be attributes of <code class="language-plaintext highlighter-rouge">Package</code>.</p>
+
+<p>We can store tags and authors of a package simply as string arrays. The
+round-theme-question, called collectively as <code class="language-plaintext highlighter-rouge">structure</code>,
+can be also modeled using nested arrays or
+hashes.</p>
+
+<p>Storing objects in a database can be done using ActiveRecord’s <a href="https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html">serialize</a> method.
+The underlying fields in the table should be <code class="language-plaintext highlighter-rouge">text</code> or <code class="language-plaintext highlighter-rouge">string</code> type.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">serialize</span> <span class="ss">:authors</span><span class="p">,</span> <span class="no">Array</span>
+  <span class="n">serialize</span> <span class="ss">:structure</span><span class="p">,</span> <span class="no">Hash</span>
+  <span class="n">serialize</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Array</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This approach allows us to compress the whole ER model to just one table. However,
+the database is now in an unnormalized form but at least we have the primary key <code class="language-plaintext highlighter-rouge">id</code>
+for packages.</p>
+
+<p>In fact, this structure allows us to do several types of queries. We can show
+a list of packages, retrieve information about a specific package by id. We can
+even sort packages by authors using indices, given we always sort <code class="language-plaintext highlighter-rouge">authors</code>
+before writing to the database.</p>
+
+<h2 id="step-2-searching-by-authors-using-jsonb-indices">Step 2: Searching by Authors using JSONB indices</h2>
+<p>Since Heroku Postgres’s free tier doesn’t have a limit on the amount of indices,
+we can make an inverted index on the <code class="language-plaintext highlighter-rouge">authors</code> column for efficient searching,
+but first we need to convert these columns to JSONB.</p>
+
+<p>After the columns are converted to JSONB, we don’t need to explicitly tell AR
+to <code class="language-plaintext highlighter-rouge">serialize</code> the fields. They will be automatically converted to and from JSONB
+on access.</p>
+
+<p>We will use case insensitive search for searching packages by authors
+because often author names are using inconsistent capitalization in packages.</p>
+
+<p>First, we need to create the index:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">authors_icase_index</span>
+<span class="k">ON</span> <span class="n">packages</span>
+<span class="k">USING</span> <span class="n">gin</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In order to utilize this index, the query should use the same expression exactly:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'LOWER(authors::text)::jsonb @&gt; to_jsonb(LOWER(?)::text)'</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>You can check that the index is used using <code class="language-plaintext highlighter-rouge">EXPLAIN</code>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="nv">"packages"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"packages"</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="s1">'Timur'</span><span class="p">)::</span><span class="nb">text</span><span class="p">));</span>
+
+                                    <span class="n">QUERY</span> <span class="n">PLAN</span>                                    
+<span class="c1">----------------------------------------------------------------------------------</span>
+ <span class="n">Bitmap</span> <span class="n">Heap</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">packages</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">8</span><span class="p">.</span><span class="mi">08</span><span class="p">..</span><span class="mi">36</span><span class="p">.</span><span class="mi">14</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">677</span><span class="p">)</span>
+   <span class="k">Recheck</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+   <span class="o">-&gt;</span>  <span class="n">Bitmap</span> <span class="k">Index</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">authors_icase_index</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">8</span><span class="p">.</span><span class="mi">07</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+         <span class="k">Index</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>However, we do not have a numeric id for the author. Authors are identified only
+by their lowercase names. In this case, to implement the author page with a list
+of packages authored by the specific author, we can put the author’s name
+directly in the path.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="n">resources</span> <span class="ss">:authors</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">],</span> <span class="ss">constraints: </span><span class="p">{</span> <span class="ss">id: </span><span class="sr">/.+/</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">constraints</code> parameter will allow Rails to understand author names with
+spaces and slashes in the name. For example, there is an author named <code class="language-plaintext highlighter-rouge">https://vk.com/sigamepack</code>
+and the respective author page is
+<a href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack">https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a>.</p>
+
+<h2 id="step-3-full-text-search-on-jsonb-columns">Step 3: Full Text Search on JSONB columns</h2>
+<p>Additionally, we can do a full text search on JSONB columns. There is <a href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres">a good article
+by Leigh Halliday</a> which describes implementing
+a full text search using the <a href="https://rubygems.org/gems/pg_search">pg_search</a> gem using Postgres <code class="language-plaintext highlighter-rouge">ts_vector</code>
+type.</p>
+
+<p>Here I will show how to use the same approach for searching in JSONB columns.</p>
+
+<p>The generated <code class="language-plaintext highlighter-rouge">searchable</code> column can give weights to JSONB values. The <code class="language-plaintext highlighter-rouge">to_tsvector</code>
+function can receive a JSONB object:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">packages</span>
+<span class="k">ADD</span> <span class="k">COLUMN</span> <span class="n">searchable</span> <span class="n">tsvector</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Round names</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Theme names</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>This example shows how to add deeply nested values to the index
+by using JSON paths.</p>
+
+<p>And the <code class="language-plaintext highlighter-rouge">pg_search</code> config stays the same:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
+  
+  <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># not used if tsvector_column is specified</span>
+    <span class="ss">using: </span><span class="p">{</span>
+      <span class="ss">tsearch: </span><span class="p">{</span>
+        <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
+        <span class="ss">tsvector_column: </span><span class="s1">'searchable'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>In this article we discussed such topics as:</p>
+<ul>
+  <li>Heroku Postgres free tier limitations and how to overcome them</li>
+  <li>Denormalizing a DB using JSONB</li>
+  <li>Building an inverted index based on JSONB values</li>
+  <li>Implementing full-text search for strings stored in JSONB objects</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[How to optimize a relational database schema to fit Heroku Postgres free tier limitations with a real-world example of SIBrowser.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="ru">
+      
+		  <title>React-i18next в Rails: кеширование через файлопровод</title>
+		  <link href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4" rel="alternate" type="text/html" title="React-i18next в Rails: кеширование через файлопровод"/>
+      <published>2021-01-25T00:00:00+00:00</published>
+      
+      <updated>2021-01-25T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4">
+        <![CDATA[<p>Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного
+кеширования файлов перевода.</p>
+
+<p>Здесь мы рассмотрим простейший способ интернационализации <code class="language-plaintext highlighter-rouge">react-rails</code> приложения,
+потом мы обсудим проблемы с кешированием этого подхода, и, наконец,
+мы подключим файлопровод (Asset Pipeline) решения этих проблем.</p>
+
+<h2 id="использование-react-i18next">Использование react-i18next</h2>
+<p>В этой секции мы добавим <code class="language-plaintext highlighter-rouge">react-i18next</code> в приложение и сделаем файлы переводов
+доступными из папки <code class="language-plaintext highlighter-rouge">public</code>.</p>
+
+<p>Сначала добавим необходимые зависимости</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p>Инициализируем <code class="language-plaintext highlighter-rouge">i18next</code> в необходимых точках входа (например, <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>):</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend">Плагин <code class="language-plaintext highlighter-rouge">i18next-http-backend</code></a> отвечает за скачивание
+необходимых файлов перевода для выбранного языка, а <code class="language-plaintext highlighter-rouge">react-i18next</code> даёт доступ к
+<code class="language-plaintext highlighter-rouge">i18next</code> из самого React приложения.</p>
+
+<p>Сейчас мы можем реализовать интернационализированную версию страницы «Здравствуй, мир!»
+с возможностью переключения языка:</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Русский
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Если вы посмотрите на получившуюся страничку, то вы увидите строку «helloWorld»
+потому, что мы ещё не предоставили сами переводы для ключа <code class="language-plaintext highlighter-rouge">helloWorld</code>, а
+<code class="language-plaintext highlighter-rouge">i18next</code> в таких случаях по умолчанию отображает сам ключ вместо перевода.</p>
+
+<p>По умолчанию <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> ожидает, что файлы переводов доступны
+по адресу <code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code>
+(см. <a href="https://github.com/i18next/i18next-http-backend#backend-options">опцию <code class="language-plaintext highlighter-rouge">loadPath</code></a>), где <code class="language-plaintext highlighter-rouge">{{lng}}</code>
+— это код языка, а <code class="language-plaintext highlighter-rouge">{{ns}}</code> — это пространство имён. Стандартное
+пространство имён называется <code class="language-plaintext highlighter-rouge">translation</code>
+(см. <a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources">опцию <code class="language-plaintext highlighter-rouge">defaultNS</code></a>).</p>
+
+<p>Так, в нашем примере сервер должен обрабатывать два пути: <code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>
+для русской версии и <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code> для татарской. Мы можем
+создать JSON файлы переводов в папке <code class="language-plaintext highlighter-rouge">public</code> и они будут доступны по этим путям.</p>
+
+<p>Файлы переводов для русского языка будут находится в файле <code class="language-plaintext highlighter-rouge">public/locales/ru/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Файлы переводов для татарского языка будут находиться в файле <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>После создания этих файлов можно перезагрузить страницу и убедиться, что
+переключение языков работает. Но у такого подхода есть одна проблема, подробнее
+о ней в следующей секции.</p>
+
+<h2 id="проблемы-связанные-с-кешированием">Проблемы, связанные с кешированием</h2>
+<p>Вы можете заметить, что после развёртывания новой версии приложения на сервере,
+в браузере выполняется свежая версия JavaScript кода, но иногда
+всё ещё используются старые версии файлов перевода, из-за чего
+отображаются ключи вместо самих переводов.</p>
+
+<p>Это может случаться потому, что старые версии файлов переводов могут
+быть закешированы в браузере.</p>
+
+<p>Как вариант, можно полностью отключить кеширование этих файлов через
+настройки на сервере, или через опцию <code class="language-plaintext highlighter-rouge">requestOptions</code> в <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>,
+или даже через дописывание текущего времени к URL-у для загрузки файлов
+как в <a href="https://stackoverflow.com/a/43499557/8559107">этом ответе на StackOverflow</a>
+(адаптировано для <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Однако, отключать кеш — не оптимально потому, что с каждой перезагрузкой страницы,
+файлы переводов будут скачаны снова.</p>
+
+<p>Лучшим подходом будет правильная настройка кеширования для этих файлов.
+Это можно сделать несколькими способами, здесь мы рассмотрим способ,
+который обычно используется в Rails, а именно — файлопровод.</p>
+
+<h2 id="использование-файлопровода-для-кеширования-файлов-перевода-i18next">Использование файлопровода для кеширования файлов перевода i18next</h2>
+<p>В этой секции мы обсудим использование файлопровода Ruby on Rails для
+<a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Кэширование#Обновление_статических_ресурсов_Revved_resources">оборачивания</a> имён файлов (<a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">filename revving</a>).</p>
+
+<p>Файлопровод <a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">добавляет</a> хеш содержимого файла
+к его имени, поэтому клиенты могут закешировать файл с таким именем навсегда,
+а если появится новая версия этого файла, то у него уже будет другое имя и
+клиенты смогут скачать новую версию по новому имени файла.</p>
+
+<p>Сейчас мы рассмотрим как пустить файлы переводов по файлопроводу, а затем
+настроим <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> чтобы он брал файлы из файлопровода.</p>
+
+<h3 id="перемещение-файлов-переводов-в-файлопровод">Перемещение файлов переводов в файлопровод</h3>
+<p>Чтобы файлы переводов оказались в файлопроводе, нам нужно всего лишь
+переместить их из директории <code class="language-plaintext highlighter-rouge">public</code> в директорию <code class="language-plaintext highlighter-rouge">app/assets</code>. В нашем случае
+у нас получится два файла:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/ru/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+</ul>
+
+<p>Проверьте, что файлопровод увидел файлы переводов, используя консоль (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'ru/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/ru/translation-1516916289b1be2609ec39a8f887f301260d6a7db6e5b39aa7da3b0f0ff2dd14.json" 
+</span></code></pre></div></div>
+
+<p>Если вместо этого вы получаете ошибку <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code>:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'ru/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (ru/translation.json)
+</span></code></pre></div></div>
+
+<p>То, возможно, вы используете Sprockets 4. В таком случае вам нужно
+обновить файл манифеста ассетов.</p>
+
+<h4 id="обновление-файлов-манифеста-для-sprockets-4">Обновление файлов манифеста для Sprockets 4</h4>
+<p>В зависимости от версии гема <code class="language-plaintext highlighter-rouge">sprockets</code> вам может быть нужно или не нужно
+обновлять файл манифеста ассетов. Вы можете проверить версию командой:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>Если у вас в проекте Sprockets версии 4, то вам нужно включить директорию
+с локалям в файле <code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code>:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>Это требование было <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">добавлено в Sprockets 4</a>
+(перевод и акцентирование — от меня):</p>
+<blockquote>
+  <p>Если вы используете sprockets старее, чем 4.0, то Rails будет компилировать
+<code class="language-plaintext highlighter-rouge">application.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>, и <strong>любые</strong> файлы в ваших директориях
+ассетов, которые не распознаны как JS или CSS, но у которых есть расширение
+в имени файла.</p>
+
+  <p>…</p>
+
+  <p>Если вы используете Sprockets 4, то Rails будет использовать другую логику для
+определения входных точек компиляции: будет использоваться <strong>только</strong> файл
+<code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> для определения начальных файлов.</p>
+</blockquote>
+
+<h3 id="получение-путей-файлов-после-файлопровода-из-javascript">Получение путей файлов после файлопровода из JavaScript</h3>
+<p>После перемещения файлов переводов в файлопровод, их больше нельзя получить
+просто по их именам (<code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>). Теперь в их именах
+должны присутствовать хеши (<code class="language-plaintext highlighter-rouge">/assets/ru/translations-151...d14.json</code>).</p>
+
+<p>Эти новые имена можно получить в Ruby из помощника <code class="language-plaintext highlighter-rouge">asset_path</code>, но их
+нельзя получить напрямую в JavaScript. Вместо этого, мы можем использовать
+Erb шаблоны чтобы подставилять значения, вычисленные в Ruby, в JavaScript код.</p>
+
+<p>Добавьте поддержку Erb в <code class="language-plaintext highlighter-rouge">webpacker</code> по <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">оффициальным инструкциям</a>.</p>
+
+<p>Опция <code class="language-plaintext highlighter-rouge">loadPath</code> библиотеки <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> может принимать и функцию
+<code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>. Хоть аргументы <code class="language-plaintext highlighter-rouge">languages</code> и <code class="language-plaintext highlighter-rouge">namespaces</code>
+должны быть массивами, они <a href="https://github.com/i18next/i18next-http-backend/pull/35">будут содержать по одному элементу</a>
+если опция <code class="language-plaintext highlighter-rouge">allowMultiLoading</code> выставлена в значение <code class="language-plaintext highlighter-rouge">false</code> (по умолчанию это так).</p>
+
+<p>Напишем нашу функцию <code class="language-plaintext highlighter-rouge">loadPath</code> в файле <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code>:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>И передадим её в <code class="language-plaintext highlighter-rouge">i18next</code> в файле <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Сейчас вы можете обновить страницу и увидеть, что кнопки снова работают.</p>
+
+<p>Вот и всё. Желаю вам счастливой интернационализации!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного кеширования файлов перевода.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="tt">
+      
+		  <title>React-i18next Rails-та: файлүткәргеч аша кәшләү</title>
+		  <link href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF" rel="alternate" type="text/html" title="React-i18next Rails-та: файлүткәргеч аша кәшләү"/>
+      <published>2021-01-25T00:00:00+00:00</published>
+      
+      <updated>2021-02-15T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF">
+        <![CDATA[<p>Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.</p>
+
+<p>Монда без <code class="language-plaintext highlighter-rouge">react-rails</code> кушымтаны иң җиңел интернациональләштерү ысулыны
+карап чыгарарбыз, аннары без бу ысулын кәш белән бәйләнгән проблемнарны
+күрербез, һәм ахырда без бу проблемнарны файлүткәргеч (Asset Pipeline) белән
+чишәрбез.</p>
+
+<h2 id="react-i18next-ны-куллану">React-i18next-ны куллану</h2>
+<p>Бу бүлектә без кушымтабызга <code class="language-plaintext highlighter-rouge">react-i18next</code>-ны өстибез һәм тәрҗемә файлларны
+<code class="language-plaintext highlighter-rouge">public</code> директорийдан укуга мөмкин ясыйбыз.</p>
+
+<p>Баштан без кирәкле пакетларны өстибез.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">i18next</code>-ны кирәкле керү нокталарда (мәсәлән, <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>)
+инициализациялибез:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend"><code class="language-plaintext highlighter-rouge">i18next-http-backend</code> плагины</a> сайланган телнең
+тәрҗемә файлларны йөкли, ә <code class="language-plaintext highlighter-rouge">react-i18next</code> React кушымтаны <code class="language-plaintext highlighter-rouge">i18next</code> белән
+бәйләнә.</p>
+
+<p>Хәзер без «Сәлам, дөнья!» битне тел сайлау төймәләр белән ясый алабыз.</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Русский
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Хәзер бу биткә карасагыз сез «helloWorld» юлны гына күрә аласыз чөнки без <code class="language-plaintext highlighter-rouge">helloWorld</code>
+ачкыч өчен бернинди тәрҗемәне бирмәдек әле һәм шундый вакыйгаларда <code class="language-plaintext highlighter-rouge">i18next</code>
+тәрҗемәнең урында ачкычны күрсәтә.</p>
+
+<p>Килешенгәнчә <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> тәрҗемә файлларны
+<code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> адрестан ала
+(<a href="https://github.com/i18next/i18next-http-backend#backend-options"><code class="language-plaintext highlighter-rouge">loadPath</code> көйләүне</a> кара). Адреста
+<code class="language-plaintext highlighter-rouge">{{lng}}</code> — тел коды, ә <code class="language-plaintext highlighter-rouge">{{ns}}</code> —
+исемнәр киңлеге. Килешенгән исемнәр киңлеге <code class="language-plaintext highlighter-rouge">translation</code> дип аталган
+(<a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources"><code class="language-plaintext highlighter-rouge">defaultNS</code> көйләүне</a> кара).</p>
+
+<p>Шулай, сервер бу ике юлны тәэмин итергә тиеш: берсе — <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
+татарча тәрҗемә бирергә тиеш, икенчесе — <code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>
+русча тәрҗемә бирергә тиеш. Бу JSON тәрҗемә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийга
+куйсабыз, Rails шундый кирәкле юлларны тәэмин ителер.</p>
+
+<p>Татарча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code> файлга язабыз:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Русча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/ru/translation.json</code> файлга язабыз:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Тәрҗемә файлларны ясагач соң без битне браузерда яңарта алабыз. Шуннан соң
+биттә тел сайлавы эшләргә тиеш. Ләкин, бу ысулда бер проблем бар, бу проблем
+турында — киләсе бүлектә.</p>
+
+<h2 id="кәшкә-бәйле-проблемнар">Кәшкә бәйле проблемнар</h2>
+<p>Әйтик, без кушымтаның яңа версияне серверга урнаштык һәм браузерда яңа
+JavaScript эшли,  ләкин иске тәрҗемә файллар куланыла (шуңа күрә
+иске тәрҗемәләр яисә тәрҗемә ачкычлары күрәнелә).</p>
+
+<p>Моның бер сәбәбе кәш булырга мөмкин: иске тәрҗемә файллар браузерда кәшләнгән
+булсалар, браузер иске файлларны кулланырга мөмкин.</p>
+
+<p>Бер чишелеш буларак без тәрҗемә файллар кәшләүне тулысынча тыерга алабыз.
+Моны сервер көйләүләр белән дә, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">requestOptions</code>
+көйләве белән дә, хәтта хәзерге вакытны тәрҗемә файлның йөкләү URL-га
+кушып та була. Соңгы ысулны <a href="https://stackoverflow.com/a/43499557/8559107">бу StackOverflow җаваптан</a> алып
+<code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-та шулай ясап була:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ләкин, кәшләүне тыю — яхшы бер чишелеш түгел чөнки битнең һәр йөкләве
+белән тәрҗемә файллар яңадан йөклиячәкләр.</p>
+
+<p>Иң яхшы чишелеш ул кәшләүне дөрес көйләргә. Моны да берничә рәвештә
+дә ясап була һәм бу язмышта без Rails-ның гадәти коралны кулланачакбыз.
+Аның исеме файлүткәргеч.</p>
+
+<h2 id="файлүткәргечне-i18next-тәрҗемә-файллар-кәшләү-өчен-куллану">Файлүткәргечне <code class="language-plaintext highlighter-rouge">i18next</code> тәрҗемә файллар кәшләү өчен куллану</h2>
+<p>Бу бүлектә Ruby on Rails-ның файлүткәргеч белән файл исемнәрне әйләндерү
+(<a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">filename revving</a>) каралачак.</p>
+
+<p>Файлүткәргеч файл исемгә аның эчтәлекнең һәшне <a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">куша</a>,
+шуңа күрә клиентлар шундый һәшле исемле файлларны мәңгегә кәшли алалар.
+Әгәр файлның яңа бер версия килеп чыгачак, аның башка исеме булачак һәм
+клиентлар бу башка исеме белән яңа версияне йөклиячәкләр.</p>
+
+<p>Хәзер без файлларны ничек файлүткәргечкә җибәрергә һәм аларны ничек
+<code class="language-plaintext highlighter-rouge">i18next-http-backend</code> белән файлүткәргечтән алырга карачакбыз.</p>
+
+<h3 id="файлларны-файлүткәргечке-җибәрү">Файлларны файлүткәргечке җибәрү</h3>
+<p>Файлүткәргеч файлларны <code class="language-plaintext highlighter-rouge">app/assets</code> директорийдан ала, шуңа күрә
+безгә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийдан <code class="language-plaintext highlighter-rouge">app/assets/</code> директорийга күчерергә
+кирәк. Ягъни безнең бу ике файл булачак:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/ru/translation.json</code></li>
+</ul>
+
+<p>Файлүткәргеч файлларны күрәме-юкмы икәнен, консольда тикшерегез (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/tt/translation-8abc3942c062c7f43a1409665fcea91711a8864e4c03adfbf28ccd4ded8d99f8.json"
+</span></code></pre></div></div>
+
+<p>Әгәр сез файл исемен урында <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code> хатаны күрсәгез:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (tt/translation.json)
+</span></code></pre></div></div>
+
+<p>Алайса бәлки сез Sprockets 4-ны кулланасыз һәм сезгә әссет манифест файлны
+үзгәртергә кирәк.</p>
+
+<h4 id="sprockets-4-өчен-әссет-манифест-файлны-үзгәртү">Sprockets 4 өчен әссет манифест файлны үзгәртү</h4>
+<p><code class="language-plaintext highlighter-rouge">sprockets</code> гемнең версиягә карап, сезгә киләсе адымны ясарга кирәк яки кирәкми.
+Гемнең версияне бу боерык белән карап була:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>Проектыгызда Sprockets-ның 4-нче версиясе булса, сезгә локаль директорийны
+<code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> манифест файлга кушырга кирәк:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>Бу <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">Sprockets 4-тән башлап</a> кирәк
+(тәрҗемәсе һәм басымнар — миннән):</p>
+<blockquote>
+  <p>Әгәр сез sprockets 4.0-дан искерәк версияне куллансагыз, Rails
+<code class="language-plaintext highlighter-rouge">applications.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>, һәм әссет директорийдагы <strong>һәр</strong> 
+JS я CSS булмаган, файл исеме өстәмәле файлларны компиляцияләчәк.</p>
+
+  <p>…</p>
+
+  <p>Әгәр сез Sprockets 4 куллансагыз, Rails башка компиляцияләү керү нокталар
+табу алгоритмны кулланачак: <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> файлдагы <strong>гына</strong>
+керү нокталар кулланачаклар.</p>
+</blockquote>
+
+<h3 id="javascript-та-файлүткәргечтән-файлларны-алу">JavaScript-та файлүткәргечтән файлларны алу</h3>
+<p>Тәрҗемә файлларны файлүткәргечкә күчерүдән соң аларны төп исемнәр белән
+(<code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>) ала булмый. Күчерүдән соң аларның исемләргә
+һәшне кушырга кирәк (<code class="language-plaintext highlighter-rouge">/assets/tt/translations-8ab...9f8.json</code>).</p>
+
+<p>Шундый һәшле исемнәрне Ruby-да <code class="language-plaintext highlighter-rouge">asset_path</code> ярдәмче белән алырга мөмкин, ләкин
+JavaScript-та аларны турыдан-туры алырга мөмкин түгел. Шулай ук, без Erb
+өлгеләрне кулланып Ruby-да саналган кыйммәтләрне JavaScript кодка кыстыра алабыз.</p>
+
+<p>Erb куллану тәэмин итү <code class="language-plaintext highlighter-rouge">webpacker</code>-га <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">рәсми күрсәтмәләр буенча</a> өстәгез.</p>
+
+<p><code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">loadPath</code> көйләү кыйммәте <code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>
+функция дә булырга мөмкин. Шундый функциянең <code class="language-plaintext highlighter-rouge">languages</code> һәм <code class="language-plaintext highlighter-rouge">namespaces</code> көйләүләре
+массивлар булса да, <a href="https://github.com/i18next/i18next-http-backend/pull/35">аларның берәр элемент гына булачак</a>
+(<code class="language-plaintext highlighter-rouge">allowMultiLoading</code> көйләве <code class="language-plaintext highlighter-rouge">false</code> булса, килешекәнчә ул шулай).</p>
+
+<p>Үзебезнең <code class="language-plaintext highlighter-rouge">loadPath</code> функцияне <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code> файлда языйк:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Һәм функцияне <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code> файлда <code class="language-plaintext highlighter-rouge">i18next</code>-ка бирик:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Хәзер сез браузерда битне яңадан яңарттыра аласыз һәм тел сайлау төймәләрне
+куллана аласыз.</p>
+
+<p>Нәкъ менә шулай. Интернациональләштерүдә бәхетле булуы телим!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>React-i18next in Rails: caching with Asset Pipeline</title>
+		  <link href="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching" rel="alternate" type="text/html" title="React-i18next in Rails: caching with Asset Pipeline"/>
+      <published>2020-12-03T00:00:00+00:00</published>
+      
+      <updated>2020-12-16T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching">
+        <![CDATA[<p>How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.</p>
+
+<p>Here we will cover the simplest way of internationalizing
+a <code class="language-plaintext highlighter-rouge">react-rails</code> application, then we will
+discuss the caching problem of this approach,
+and finally we will use the Asset Pipeline to achieve efficient caching
+of the translation files.</p>
+
+<h2 id="adding-react-i18next">Adding react-i18next</h2>
+<p>In this section we will add <code class="language-plaintext highlighter-rouge">react-i18next</code> and serve
+the translation files from the <code class="language-plaintext highlighter-rouge">public</code> directory.</p>
+
+<p>First, let’s add the required dependencies:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p>Initialize <code class="language-plaintext highlighter-rouge">i18next</code> in the required pack files (e.g. <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>):</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend">The <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> plugin</a> is responsible
+for downloading the needed translation files for the current language and
+<code class="language-plaintext highlighter-rouge">react-i18next</code> makes <code class="language-plaintext highlighter-rouge">i18next</code> available to the React application itself.</p>
+
+<p>Now we can implement an internationalized version of a “Hello, world!”
+page with an option to switch the language:</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">en</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        English
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If you look at the resulting page, you will see the string “helloWorld”
+because we have not yet provided the translations for the <code class="language-plaintext highlighter-rouge">helloWorld</code> key and
+<code class="language-plaintext highlighter-rouge">i18next</code> falls back to the key if the translation is not found.</p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> expects translation files to be available
+at <code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> path
+(see <a href="https://github.com/i18next/i18next-http-backend#backend-options">the <code class="language-plaintext highlighter-rouge">loadPath</code> option</a>),
+where <code class="language-plaintext highlighter-rouge">{{lng}}</code> is the language code
+and <code class="language-plaintext highlighter-rouge">{{ns}}</code> is the namespace. The default namespace
+is called <code class="language-plaintext highlighter-rouge">translation</code> (see <a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources">the <code class="language-plaintext highlighter-rouge">defaultNS</code> option</a>).</p>
+
+<p>So, in our case the server needs to provide two paths:
+<code class="language-plaintext highlighter-rouge">/locales/en/translation.json</code> for the English version and <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
+for the Tatar version. We can create the translation JSON files in the <code class="language-plaintext highlighter-rouge">public</code> directory and
+they will be available at the required paths.</p>
+
+<p>The English translations will be located in <code class="language-plaintext highlighter-rouge">public/locales/en/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello, world!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The Tatar translations will be located in <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>With these files in place, you can refresh the page and observe the buttons working.
+But there is a catch! Read further to see where this solution can break.</p>
+
+<h2 id="problems-due-to-caching">Problems due to caching</h2>
+<p>You may notice that if you deploy a new version of your application,
+browser runs the new version of your code, but sometimes
+the old version of the translations are used, which results in
+displaying the translation keys instead of the translations themselves.</p>
+
+<p>This can be because of the old version of translation files being
+cached.</p>
+
+<p>One solution to this problem is disabling caching completely with server configurations,
+disabling caching with the <code class="language-plaintext highlighter-rouge">requestOptions</code> option of <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>,
+or even appending the current date to the download URL like
+<a href="https://stackoverflow.com/a/43499557/8559107">in this StackOverflow answer</a> (adapted to <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>However, it is not optimal to disable caching
+as on each refresh the translation files will be downloaded once again.</p>
+
+<p>A better approach is to properly configure caching for the translation files.
+This can be done in several ways and here we will talk about using
+the default approach used in Rails for such tasks, the Asset Pipeline.</p>
+
+<h2 id="using-asset-pipeline-for-caching-i18next-translation-files">Using Asset Pipeline for caching i18next translation files</h2>
+<p>In this section we will see how to use Rails Asset Pipeline to <a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">rev</a> the
+translation file paths.</p>
+
+<p>Asset Pipeline
+<a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">appends</a> a hash of the file
+contents to the file name, this way clients can cache such files forever and
+when the new version will be released, it will have a different name and
+clients will be able to download the new version by its new name.</p>
+
+<p>Now we will pipe the translation files through the Asset Pipeline
+and then configure <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> to load files from the Asset Pipeline.</p>
+
+<h3 id="including-the-translation-files-in-the-asset-pipeline">Including the translation files in the Asset Pipeline</h3>
+<p>For translations JSON files to appear in the Asset Pipeline we just need
+to move them from the <code class="language-plaintext highlighter-rouge">public</code> directory to <code class="language-plaintext highlighter-rouge">app/assets</code>. In our example,
+these should result in two files located in these locations:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/en/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+</ul>
+
+<p>You can check that the translation files are recognized by the Asset Pipeline
+in the Rails console (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'en/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/en/translation-6804b48978898b3301e60a2df30ae539fcf7d2370c47fe9ca3f440879163a0f9.json"
+</span></code></pre></div></div>
+
+<p>If instead you get the error <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code>:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'en/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (en/translation.json)
+</span></code></pre></div></div>
+
+<p>Then maybe you are using Sprockets 4, in this case you need to update
+the manifest file.</p>
+
+<h4 id="updating-the-asset-manifest-file-for-sprockets-4">Updating the asset manifest file for Sprockets 4</h4>
+<p>Depending on the <code class="language-plaintext highlighter-rouge">sprockets</code> gem version you might or might not
+need to update the assets manifest file. You can check the version by running:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>If you are using Sprockets 4, then you must reference the locales directory in
+the assets manifest file <code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> like this:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>This is a change <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">introduced in Sprockets 4</a> (emphasis by me):</p>
+<blockquote>
+  <p>If you are using sprockets prior to 4.0, Rails will compile <code class="language-plaintext highlighter-rouge">application.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>;
+and <strong>any</strong> files found in your assets directory(ies) that are not recognized as JS or CSS,
+but do have a filename extension.</p>
+
+  <p>…</p>
+
+  <p>If you are using Sprockets 4, Rails changes its default logic for determining top-level targets.
+It will now use <strong>only</strong> a file at <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> for specifying top-level targets;</p>
+</blockquote>
+
+<h3 id="getting-asset-pipeline-paths-in-javascript">Getting Asset Pipeline paths in JavaScript</h3>
+<p>After moving the translations to Asset Pipeline, they are not available by
+their original filenames like <code class="language-plaintext highlighter-rouge">/locales/en/translation.json</code> but should be
+accessed by their new names which include hashes like <code class="language-plaintext highlighter-rouge">/assets/en/translations-680...0f9.json</code>.</p>
+
+<p>These new file names are available in Ruby using the <code class="language-plaintext highlighter-rouge">asset_path</code> helper
+but they are not available directly in JavaScript. Instead, we can use Erb templates
+to substitute values computed by Ruby into JavaScript code.</p>
+
+<p>Add Erb support to <code class="language-plaintext highlighter-rouge">webpacker</code> by following the <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">official instructions</a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">loadPath</code> configuration option of <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> accepts a function
+<code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>. While both <code class="language-plaintext highlighter-rouge">languages</code> and <code class="language-plaintext highlighter-rouge">namespaces</code>
+are arrays, they <a href="https://github.com/i18next/i18next-http-backend/pull/35">should contain only one element each</a> when 
+the <code class="language-plaintext highlighter-rouge">allowMultiLoading</code> option is set to <code class="language-plaintext highlighter-rouge">false</code> (it is so by default).</p>
+
+<p>Implement this custom <code class="language-plaintext highlighter-rouge">loadPath</code> function in <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code>:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">en</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"en/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>And pass it to <code class="language-plaintext highlighter-rouge">i18next</code> in your <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Now you can refresh the page and observe that the buttons work once again.</p>
+
+<p>And that’s it. Happy internationalization!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+</feed>

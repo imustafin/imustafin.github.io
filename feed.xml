@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+	<title>Posts in English | imustafin.tatar</title>
+	<link href="https://imustafin.tatar/feed.xml" rel="self" type="application/atom+xml" />
+	<link href="https://imustafin.tatar" />
+	<id>https://imustafin.tatar/feed.xml</id>
+	<updated>2024-09-12T08:44:42+00:00</updated>
+
+  
+  
+  
+	  <entry xml:lang="en">
+      
+		  <title>PBDoom</title>
+		  <link href="https://imustafin.tatar/projects/pbdoom" rel="alternate" type="text/html" title="PBDoom"/>
+      <published>2023-02-26T00:00:00+00:00</published>
+      
+      <updated>2023-02-28T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/projects/pbdoom</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/projects/pbdoom">
+        <![CDATA[<p>PBDoom is a port of the Doom (1993) videogame for PocketBook eInk devices. Downloads
+are on <a href="https://pbdoom.imustafin.tatar/">the official website of PBDoom</a>.</p>
+
+<figure class="max-w-xs mx-auto">
+  <img src="/assets/pbdoom_inch_6_display.png" alt="PBDoom on a 6 inch display" />
+  <figcaption class="text-center">PBDoom on a 6" display</figcaption>
+</figure>
+
+<p>PBDoom is based on <a href="https://www.libsdl.org/projects/doom/">Sam Lantinga’s SDL Doom</a>. SDL drawing functions
+were replaced with PocketBook SDK’s <code class="language-plaintext highlighter-rouge">inkview</code> library functions. SDL sound functions
+were completely removed from the code for now (not many PocketBooks have speakers nowadays,
+headphones usually can be connected however).</p>
+
+<p>The development of PBDoom started in March of 2022. The first public release
+was published in January of 2023.</p>
+
+<p>Source code is <a href="https://github.com/imustafin/pbdoom">available on GitHub</a>.</p>
+
+<h2 id="why">Why?</h2>
+<p>This project serves several purposes:</p>
+<ol>
+  <li>Produce an example of an action game on an eInk reader device</li>
+  <li>One more custom application for PocketBook</li>
+  <li>Gather experience of using the <code class="language-plaintext highlighter-rouge">inkview</code> library</li>
+</ol>
+
+<p>Porting Doom was not a big project. SDL Doom runs on Linux and (some) PocketBooks
+run Linux. Reworking the main graphics output function to use <code class="language-plaintext highlighter-rouge">inkview</code>’s <code class="language-plaintext highlighter-rouge">FillArea</code>
+(fill a rectangle with a color) function instead of writing pixel data
+to an SDL surface is easy.</p>
+
+<p>However, due to some limitations of the eInk technology (low refresh rate,
+lack of color on some devices) some additional work needs to be done on the
+video output part. In this project we explore what needs to be done and what is possible.</p>
+
+<p>Also this project has introduced me to <a href="https://cmake.org/">CMake</a>.</p>
+
+<h2 id="can-pocketbook-run-doom">Can PocketBook run Doom?</h2>
+<p>Yes it can but this is not big news. The developers working on PocketBook
+released a video of Doom running on a PocketBook 360 Plus back in 2011.</p>
+<figure class="mx-auto">
+  <iframe class="aspect-video mx-auto w-full md:w-[600px]" src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+  <figcaption class="text-center">Doom 2 on PocketBook 360 Plus</figcaption>
+</figure>
+
+<p>This version was produced “during a lunch break” (<a href="https://www.the-ebook.org/forum/viewtopic.php?p=639725">original message</a>,
+<a href="https://web.archive.org/web/20110811143945/https://www.the-ebook.org/forum/viewtopic.php?p=639725">archived message</a>) and was (to my knowledge) never released to the public.</p>
+
+<p>So, PBDoom can finally close the gap and serve as a publicly available Doom
+for PocketBook, (some people) needed so much.</p>
+
+<h2 id="image-dithering-optimization-for-eink">Image dithering: optimization for eInk</h2>
+<p>As noted before, eInk displays have low refresh rate. This requires some workarounds
+for a comfortable playing experience.</p>
+
+<p>Some eInk displays have multiple update modes.
+In some modes the update time depends on the required changes to the
+displayed image. For example,
+replacing a full-white region with a full-black region can be faster than
+working with shades of grey.</p>
+
+<p>Using this quality, we can increase the game refresh rate while sacrificing some
+of the image quality.</p>
+
+<p>The official <code class="language-plaintext highlighter-rouge">inkview</code> documentation suggests dithering the image
+doen to only two color levels for quick updates (<a href="https://github.com/pocketbook-free/InkViewDoc/blob/master/PocketBookSDK.pdf">page 12</a>):</p>
+
+<blockquote>
+  <p>Call [<code class="language-plaintext highlighter-rouge">DitherArea</code>] with <code class="language-plaintext highlighter-rouge">levels=2</code> and <code class="language-plaintext highlighter-rouge">method=DITHER_THRESHOLD</code>
+to have image that can be quickly
+updated e.g. for menus, lists and selections.</p>
+</blockquote>
+
+<p>Formatting by me.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">inkview</code> library provides several functions to dither screen output
+(<code class="language-plaintext highlighter-rouge">DitherArea</code> and others).</p>
+
+<p>We also can manipulate the colors to change brightness, contrast and do
+gamma correction to fine tune the output, before dithering.</p>
+
+<h2 id="post-changelog">Post changelog</h2>
+<ul>
+  <li>28 February 2023 — add the missing word <em>never</em> to specify that
+the port by PocketBook was <em>never</em> released. Also cite <code class="language-plaintext highlighter-rouge">inkview</code> documentation
+for dithering tips.</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[PBDoom is a port of the Doom (1993) videogame for PocketBook eInk devices. Downloads are on the official website of PBDoom.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>EiffelStudio Assertions Setting</title>
+		  <link href="https://imustafin.tatar/blog/eiffelstudio-assertions-setting" rel="alternate" type="text/html" title="EiffelStudio Assertions Setting"/>
+      <published>2021-10-26T00:00:00+00:00</published>
+      
+      <updated>2021-10-26T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/eiffelstudio-assertions-setting</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/eiffelstudio-assertions-setting">
+        <![CDATA[<p>EiffelStudio allows to control which assertions will be evaluated.
+We build a cheatshseet listing
+which contracts are checked for each setting.</p>
+
+<h2 id="tldr">TLDR</h2>
+<p>Here is the cheatsheet:</p>
+
+<div class="overflow-x-auto">
+  <table>
+    <thead>
+      <tr>
+        <th> </th>
+        <th style="text-align: center">require</th>
+        <th style="text-align: center">check</th>
+        <th style="text-align: center">loop_invariant</th>
+        <th style="text-align: center">loop_variant</th>
+        <th style="text-align: center">ensure</th>
+        <th style="text-align: center">invariant</th>
+        <th style="text-align: center">other_library pre</th>
+        <th style="text-align: center">other_library check</th>
+        <th style="text-align: center">subcluster require</th>
+        <th style="text-align: center">subcluster check</th>
+        <th style="text-align: center">other_cluster pre</th>
+        <th style="text-align: center">other_cluster check</th>
+        <th style="text-align: center">indirect_cluster pre</th>
+        <th style="text-align: center">indirect_cluster check</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>All</strong></td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Require</strong></td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Ensure</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Check</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Invariant</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Loop</strong></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td><strong>Supplier Precondition</strong></td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center">X</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<p>Rows represent the types of assertions enabled. <em>All</em> has all assertions
+enabled. Other examples enable only one respective assertion.</p>
+
+<p>Columns represent different types of contracts added in different
+groups (clusters and libraries). The exact meanings of the column prefixes
+are described <a href="#class-diagram">in the following section</a>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">X</code> in a cell means that the respective assertion is evaluated.</p>
+
+<h2 id="discussion">Discussion</h2>
+
+<p>To me personally, the only surprising fact is that in the <em>Supplier Precondition</em>
+example, feature preconditions (<code class="language-plaintext highlighter-rouge">require</code>) are checked not only for methods from
+other groups, but also for features of the cluster itself.</p>
+
+<p>Other than that, everything seems to be clear.</p>
+<ul>
+  <li><strong>Require</strong> evaluates the preconditions</li>
+  <li><strong>Ensure</strong> evaluates the postconditions</li>
+  <li><strong>Check</strong> evaluates the <code class="language-plaintext highlighter-rouge">check ... end</code> instructions</li>
+  <li><strong>Invariant</strong> evaluates the class invariants</li>
+  <li><strong>Loop</strong> evaluates the loop variants and invariants</li>
+  <li><strong>Supplier Precondition</strong> evaluates the preconditions of features used
+directly by this cluster. That is:
+    <ul>
+      <li>Features of libraries (<em>other_library pre</em>)</li>
+      <li>Features of other clusters (<em>other_cluster pre</em>)</li>
+      <li>Features of this cluster (<em>require</em>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="setting-assertion-levels">Setting Assertion Levels</h2>
+<p>Assertion levels can be configured for each <em>target</em> and
+<em>clusters</em> and <em>libraries</em> can override the assertion levels set by their
+target.</p>
+
+<p>This can be done in the EiffelStudio GUI and through the <code class="language-plaintext highlighter-rouge">.ecf</code> file.</p>
+
+<h3 id="setting-assertions-manually-in-eiffelstudio">Setting Assertions Manually in EiffelStudio</h3>
+<p>Assertion levels can be configured in EiffelStudio GUI. The process is
+already documented on eiffel.org. There is a <a href="https://www.eiffel.org/doc/eiffelstudio/Setting_the_assertion_level">very short How To</a>.
+Basically, you need to:</p>
+<ol>
+  <li>Open the Project Settings dialog (<strong>Project &gt; Project Settings</strong>)</li>
+  <li>Set the default assertion level for a <em>target</em>
+in the <strong>Target &gt; Assertions</strong> section. This section is <a href="https://www.eiffel.org/doc/eiffelstudio/Assertion_Options">described separately
+on eiffel.org</a>.</li>
+  <li>Assertion levels can be overriden per cluster or library.
+    <ol>
+      <li>Navigate to
+the needed group
+        <ul>
+          <li><strong>Target &gt; Groups &gt; Clusters &gt; …</strong> for clusters</li>
+          <li><strong>Target &gt; Groups &gt; Libraries &gt; …</strong> for libraries</li>
+        </ul>
+      </li>
+      <li>Set the required assertion levels
+in the <strong>Assertions</strong> expandable section.</li>
+    </ol>
+  </li>
+  <li>After changing assertions settings you <em>must recompile</em> the system
+for settings to take effect.</li>
+</ol>
+
+<h3 id="setting-assertions-in-the-ecf-file">Setting Assertions in the ECF File</h3>
+<p>Assertion levels can be configured in the <code class="language-plaintext highlighter-rouge">.ecf</code> file as well.
+We will use this in the experiment
+<a href="#compiling-for-different-assertion-levels">later</a>
+for automated testing of the
+program with different assertion levels.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">.ecf</code> file is an XML file inside. Each <code class="language-plaintext highlighter-rouge">target</code>, <code class="language-plaintext highlighter-rouge">cluster</code> and <code class="language-plaintext highlighter-rouge">library</code>
+element can have the <code class="language-plaintext highlighter-rouge">option/assertions</code> element which can set or override
+the assertion levels:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;cluster</span> <span class="na">name=</span><span class="s">"other_cluster"</span> <span class="na">location=</span><span class="s">".\other_cluster\"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option&gt;</span>
+        <span class="nt">&lt;assertions</span>
+          <span class="na">postcondition=</span><span class="s">"true"</span>
+          <span class="na">check=</span><span class="s">"true"</span>
+          <span class="na">invariant=</span><span class="s">"true"</span>
+          <span class="na">loop=</span><span class="s">"true"</span>
+          <span class="na">supplier_precondition=</span><span class="s">"true"</span>
+        <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/cluster&gt;</span>
+</code></pre></div></div>
+
+<h2 id="the-experiment">The Experiment</h2>
+<p>To check which contracts are checked for each assertion level we can
+write a simple program which includes different types of contracts. Then
+we can switch different levels and observe which contracts are in fact evaluated.</p>
+
+<p>To speed up the process and because of the high number of possible settings
+combinations and types of contracts,
+we can write a program which runs the Eiffel program with different assertion
+levels. This program is <a href="https://github.com/imustafin/eiffel-studio-assertions">available on GitHub</a>.</p>
+
+<h3 id="class-diagram">Class Diagram</h3>
+<p>While one cluster and one class is enough to show the effects of
+the most of the settings, we need several clusters and a library to show
+the effects of the Supplier Precondition setting.</p>
+
+<p>The UML diagram shows the setup of the demo program.</p>
+
+<p><object data="/uml/de37070b986df7da64ab56ce3b450deb.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">APPLICATION</code> is the root class (depicted by the <code class="language-plaintext highlighter-rouge">&lt;&lt;root&gt;&gt;</code> stereotype).
+All types of contracts are implemented
+in the <code class="language-plaintext highlighter-rouge">DEMO</code> class. <code class="language-plaintext highlighter-rouge">APPLICATION</code> and <code class="language-plaintext highlighter-rouge">DEMO</code> are part of the <code class="language-plaintext highlighter-rouge">main</code> cluster
+which will have the assertions checking enabled (depicted by the blue
+color of the cluster). Additionally, <code class="language-plaintext highlighter-rouge">DEMO</code> uses classes from different
+clusters and libraries:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">OTHER_LIBRARY_DEMO</code> is a part of the <code class="language-plaintext highlighter-rouge">other_library</code> library (depicted by
+the <em>book</em> icon)</li>
+  <li><code class="language-plaintext highlighter-rouge">SUBCLUSTER_DEMO</code> is a part of the <code class="language-plaintext highlighter-rouge">subcluster</code> cluster. <code class="language-plaintext highlighter-rouge">subcluster</code> is
+a child of the <code class="language-plaintext highlighter-rouge">main</code> cluster.</li>
+  <li><code class="language-plaintext highlighter-rouge">OTHER_CLUSTER_DEMO</code> is a part of the <code class="language-plaintext highlighter-rouge">other_cluster</code> cluster. <code class="language-plaintext highlighter-rouge">other_cluster</code>
+is a sibling of the <code class="language-plaintext highlighter-rouge">main</code> cluster.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">OTHER_CLUSTER_DEMO</code> uses the <code class="language-plaintext highlighter-rouge">INDIRECT_CLUSTER_DEMO</code> class from the
+<code class="language-plaintext highlighter-rouge">indirect_cluster</code> cluster.</p>
+
+<p>All subclusters except <code class="language-plaintext highlighter-rouge">main</code> have all assertions disabled (depicted
+by the white color of the clusters).</p>
+
+<p>All those <code class="language-plaintext highlighter-rouge">*_DEMO</code> classes have only a precondition and a check in them. This
+is to check if preconditions and other contracts are checked.</p>
+
+<h3 id="listing-the-evaluated-contracts">Listing the Evaluated Contracts</h3>
+<p>We want the program to print a list of contracts it has checked. One way
+to do it is to fail each contract once, print its tag and then never fail
+it again. Contract violations raise an exception. We can catch this exception
+and set some flag to pass this contract next time, and then to retry the
+program to see if any other contract fails. This solution is based
+on <a href="https://stackoverflow.com/a/69351110">this StackOverflow answer by Alexander Kogtenkov</a>.</p>
+
+<p>Each contract will have a unique tag. We will have
+a <code class="language-plaintext highlighter-rouge">HASH_TABLE [BOOLEAN, STRING]</code> which will tell if the contract should be
+satisfied by its tag. The main algorithm is in the <code class="language-plaintext highlighter-rouge">APPLICATION</code> class:</p>
+<div class="language-eiffel highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span>
+    <span class="nc">APPLICATION</span>
+
+<span class="k">create</span>
+    <span class="n">make</span>
+
+<span class="k">feature</span> <span class="pi">{</span><span class="nc">NONE</span><span class="pi">}</span> <span class="c1">-- Initialization</span>
+
+    <span class="n">make</span>
+        <span class="k">do</span>
+            <span class="n">run_demo</span> <span class="pi">(</span><span class="k">create</span> <span class="pi">{</span><span class="nc">HASH_TABLE</span> <span class="pi">[</span><span class="nc">BOOLEAN</span><span class="pi">,</span> <span class="nc">STRING</span><span class="pi">]}.</span><span class="n">make</span> <span class="pi">(</span><span class="mi">0</span><span class="pi">))</span>
+        <span class="k">end</span>
+
+    <span class="n">run_demo</span> <span class="pi">(</span><span class="n">satisfy</span><span class="pi">:</span> <span class="nc">HASH_TABLE</span> <span class="pi">[</span><span class="nc">BOOLEAN</span><span class="pi">,</span> <span class="nc">STRING</span><span class="pi">])</span>
+        <span class="k">local</span>
+            <span class="n">demo</span><span class="pi">:</span> <span class="nc">DEMO</span>
+        <span class="k">do</span>
+            <span class="k">create</span> <span class="n">demo</span><span class="pi">.</span><span class="n">make</span> <span class="pi">(</span><span class="n">satisfy</span><span class="pi">)</span>
+        <span class="k">rescue</span>
+            <span class="k">check</span> <span class="k">attached</span> <span class="pi">{</span><span class="nc">EXCEPTIONS</span><span class="pi">}.</span><span class="n">tag_name</span> <span class="k">as</span> <span class="n">tag</span> <span class="k">then</span>
+                <span class="n">print</span> <span class="pi">(</span><span class="n">tag</span> <span class="o">+</span> <span class="s2">"%N"</span><span class="pi">)</span>
+                <span class="n">satisfy</span> <span class="pi">[</span><span class="n">tag</span><span class="pi">]</span> <span class="pi">:=</span> <span class="kc">True</span>
+                <span class="k">retry</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>And each contract will have the form</p>
+<div class="language-eiffel highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tag_</span><span class="pi">:</span> <span class="n">satisfy</span> <span class="pi">[</span><span class="s2">"tag_"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>When a contract is first met, <code class="language-plaintext highlighter-rouge">satisfy</code> will not have an entry
+for the tag and the <code class="language-plaintext highlighter-rouge">[]</code> feature will return <code class="language-plaintext highlighter-rouge">False</code>, failing the assertion.
+We will catch the exception, put a <code class="language-plaintext highlighter-rouge">True</code> for this tag and next time the
+contract will not fail.</p>
+
+<h3 id="compiling-for-different-assertion-levels">Compiling for Different Assertion Levels</h3>
+<p>As we <a href="#setting-assertion-levels">discussed previously</a>, it is possible
+to set the assertion levels both in the GUI and in the <code class="language-plaintext highlighter-rouge">.ecf</code> file.</p>
+
+<p>Trying to set many different combinations manually can take much time and is
+error-prone. Because of this, we will write a program which writes different
+settings into the <code class="language-plaintext highlighter-rouge">.ecf</code>, compile, run and collect the contracts checked.</p>
+
+<p>Another benefit of having a program is that this experiment becomes
+reproduceable.</p>
+
+<p>This program is written in Ruby and uses <a href="https://nokogiri.org/">Nokogiri</a> for working
+with XML. The code is available in <a href="https://github.com/imustafin/eiffel-studio-assertions">the same repository</a>, together
+with the demo Eiffel program.</p>
+
+<p>The program reads the original <code class="language-plaintext highlighter-rouge">.ecf</code> file, explicitly disables
+all assertions in the <code class="language-plaintext highlighter-rouge">other_library</code> and all clusters. Then it
+enables some assertions in the <code class="language-plaintext highlighter-rouge">main</code> cluster. The resulting XML
+is written as another <code class="language-plaintext highlighter-rouge">.ecf</code> file which is then compiled and the
+result is executed.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">doc</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="no">ORIGINAL_ECF</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">XML</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="n">other_library</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">at_xpath</span><span class="p">(</span><span class="s1">'//xmlns:library[@name="other_library"]'</span><span class="p">)</span>
+<span class="n">all_clusters</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">xpath</span><span class="p">(</span><span class="s1">'//xmlns:cluster'</span><span class="p">)</span>
+<span class="n">main_cluster</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">at_xpath</span><span class="p">(</span><span class="s1">'//xmlns:cluster[@name="main"]'</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">other_library</span><span class="p">,</span> <span class="o">*</span><span class="n">all_clusters</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">node</span><span class="o">|</span>
+  <span class="n">set_assertions</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">all_disabled</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">enabled_assertions</span><span class="p">.</span><span class="nf">to_h</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="kp">true</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">set_assertions</span><span class="p">(</span><span class="n">main_cluster</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+
+<span class="n">ecf_name</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="s2">/check_</span><span class="si">#{</span><span class="nb">name</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span><span class="si">}</span><span class="s2">.ecf"</span>
+
+<span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">ecf_name</span><span class="p">,</span> <span class="n">doc</span><span class="p">.</span><span class="nf">to_xml</span><span class="p">)</span>
+
+<span class="c1"># Compile</span>
+<span class="nb">system</span> <span class="o">&lt;&lt;-</span><span class="no">CMD</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="sh">
+    ec
+      -project_path "</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="sh">"
+      -config </span><span class="si">#{</span><span class="n">ecf_name</span><span class="si">}</span><span class="sh">
+      -clean
+      -c_compile
+      &gt;&amp;2
+</span><span class="no">CMD</span>
+
+<span class="c1"># Run</span>
+<span class="n">out</span> <span class="o">=</span> <span class="sb">`./</span><span class="si">#{</span><span class="no">PROJECT_PATH</span><span class="si">}</span><span class="sb">/EIFGENs/contract_variants/W_code/contract_variants`</span>
+
+<span class="c1"># Save results</span>
+<span class="n">results</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="p">.</span><span class="nf">strip</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Then the results are printed as a nice Markdown table, ready to be embedded
+into a blog-post.</p>
+
+<p>Note how we use the command line program <code class="language-plaintext highlighter-rouge">ec</code> to compile the workbench
+version of the executable. The <a href="https://www.eiffel.org/doc/eiffelstudio/EiffelStudio-_Using_command_line_options">documentation on eiffel.org</a>
+lists other command line options and usage examples.</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[EiffelStudio allows to control which assertions will be evaluated. We build a cheatshseet listing which contracts are checked for each setting.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>Optimizing Heroku Postgres for the Free Tier</title>
+		  <link href="https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier" rel="alternate" type="text/html" title="Optimizing Heroku Postgres for the Free Tier"/>
+      <published>2021-07-12T00:00:00+00:00</published>
+      
+      <updated>2021-09-01T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/optimizing-heroku-postgres-for-free-tier">
+        <![CDATA[<p>How to optimize a relational database schema to fit
+Heroku Postgres free tier limitations with a real-world
+example of SIBrowser.</p>
+
+<p><a href="https://www.sibrowser.ru">SIBrowser</a> is a website for browsing <a href="https://vladimirkhil.com/si/game">SIGame</a>
+packages. It is a project I’ve been working on recently.
+Me and my friends play SIGame from time
+to time and we frequently need to find good packages to play. To simplify this
+task for us I’ve made a website which collects packages from the internet
+and displays different statistic for them.</p>
+
+<p>The website is built using <a href="https://rubyonrails.org/">Ruby on Rails</a> and deployed on <a href="https://heroku.com">Heroku</a>.
+To optimize the costs, I am using <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a>
+which gives 10k rows and 1GB storage for free and <a href="https://elements.heroku.com/addons/heroku-redis">Heroku Redis</a>
+which gives 25MB storage for free.</p>
+
+<p>I am using <a href="https://sidekiq.org/">Sidekiq</a> for scraping and parsing packages in background
+with Heroku Redis as the queue storage. Heroku Redis’s free tier
+is enough for the current workload with &lt; 1MB used out of 25MB
+provided in the free tier.</p>
+
+<p>However, Heroku Postgres’s free tier limit of 10k rows is very noticeable
+in this project.</p>
+
+<h2 id="optimizing-the-database-for-cost">Optimizing the database for cost</h2>
+<p>Trying to fit the application into Heroku Postgres’s free tier requires some
+considerations to the database architecture. Let’s look at a very high level
+ER model for the project.</p>
+
+<p><object data="/uml/1f9889803cf445eb9d8c718f10a641e0.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>This diagram more or less represents the business domain of the application.
+Author can have zero or more packages. Package can have zero or more tags
+and rounds. Rounds can have zero or more themes. Themes can have zero
+or more questions.</p>
+
+<p>Ideally, we might want to have our database normalized to the third or fourth
+normal form. However, each normalization step will generate more and more
+rows.</p>
+
+<p>Depending on the specific queries which we want to support, we can denormalize
+some entities.</p>
+
+<h2 id="step-1-the-main-table">Step 1: the Main Table</h2>
+<p>Examining the ER diagram we see that <code class="language-plaintext highlighter-rouge">Package</code> seems to be the central entity.
+In fact, we can try to make all of the other entites to be attributes of <code class="language-plaintext highlighter-rouge">Package</code>.</p>
+
+<p>We can store tags and authors of a package simply as string arrays. The
+round-theme-question, called collectively as <code class="language-plaintext highlighter-rouge">structure</code>,
+can be also modeled using nested arrays or
+hashes.</p>
+
+<p>Storing objects in a database can be done using ActiveRecord’s <a href="https://api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html">serialize</a> method.
+The underlying fields in the table should be <code class="language-plaintext highlighter-rouge">text</code> or <code class="language-plaintext highlighter-rouge">string</code> type.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">serialize</span> <span class="ss">:authors</span><span class="p">,</span> <span class="no">Array</span>
+  <span class="n">serialize</span> <span class="ss">:structure</span><span class="p">,</span> <span class="no">Hash</span>
+  <span class="n">serialize</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Array</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This approach allows us to compress the whole ER model to just one table. However,
+the database is now in an unnormalized form but at least we have the primary key <code class="language-plaintext highlighter-rouge">id</code>
+for packages.</p>
+
+<p>In fact, this structure allows us to do several types of queries. We can show
+a list of packages, retrieve information about a specific package by id. We can
+even sort packages by authors using indices, given we always sort <code class="language-plaintext highlighter-rouge">authors</code>
+before writing to the database.</p>
+
+<h2 id="step-2-searching-by-authors-using-jsonb-indices">Step 2: Searching by Authors using JSONB indices</h2>
+<p>Since Heroku Postgres’s free tier doesn’t have a limit on the amount of indices,
+we can make an inverted index on the <code class="language-plaintext highlighter-rouge">authors</code> column for efficient searching,
+but first we need to convert these columns to JSONB.</p>
+
+<p>After the columns are converted to JSONB, we don’t need to explicitly tell AR
+to <code class="language-plaintext highlighter-rouge">serialize</code> the fields. They will be automatically converted to and from JSONB
+on access.</p>
+
+<p>We will use case insensitive search for searching packages by authors
+because often author names are using inconsistent capitalization in packages.</p>
+
+<p>First, we need to create the index:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">authors_icase_index</span>
+<span class="k">ON</span> <span class="n">packages</span>
+<span class="k">USING</span> <span class="n">gin</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In order to utilize this index, the query should use the same expression exactly:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'LOWER(authors::text)::jsonb @&gt; to_jsonb(LOWER(?)::text)'</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>You can check that the index is used using <code class="language-plaintext highlighter-rouge">EXPLAIN</code>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="nv">"packages"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"packages"</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="s1">'Timur'</span><span class="p">)::</span><span class="nb">text</span><span class="p">));</span>
+
+                                    <span class="n">QUERY</span> <span class="n">PLAN</span>                                    
+<span class="c1">----------------------------------------------------------------------------------</span>
+ <span class="n">Bitmap</span> <span class="n">Heap</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">packages</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">8</span><span class="p">.</span><span class="mi">08</span><span class="p">..</span><span class="mi">36</span><span class="p">.</span><span class="mi">14</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">677</span><span class="p">)</span>
+   <span class="k">Recheck</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+   <span class="o">-&gt;</span>  <span class="n">Bitmap</span> <span class="k">Index</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">authors_icase_index</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">8</span><span class="p">.</span><span class="mi">07</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+         <span class="k">Index</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>However, we do not have a numeric id for the author. Authors are identified only
+by their lowercase names. In this case, to implement the author page with a list
+of packages authored by the specific author, we can put the author’s name
+directly in the path.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="n">resources</span> <span class="ss">:authors</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">],</span> <span class="ss">constraints: </span><span class="p">{</span> <span class="ss">id: </span><span class="sr">/.+/</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">constraints</code> parameter will allow Rails to understand author names with
+spaces and slashes in the name. For example, there is an author named <code class="language-plaintext highlighter-rouge">https://vk.com/sigamepack</code>
+and the respective author page is
+<a href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack">https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a>.</p>
+
+<h2 id="step-3-full-text-search-on-jsonb-columns">Step 3: Full Text Search on JSONB columns</h2>
+<p>Additionally, we can do a full text search on JSONB columns. There is <a href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres">a good article
+by Leigh Halliday</a> which describes implementing
+a full text search using the <a href="https://rubygems.org/gems/pg_search">pg_search</a> gem using Postgres <code class="language-plaintext highlighter-rouge">ts_vector</code>
+type.</p>
+
+<p>Here I will show how to use the same approach for searching in JSONB columns.</p>
+
+<p>The generated <code class="language-plaintext highlighter-rouge">searchable</code> column can give weights to JSONB values. The <code class="language-plaintext highlighter-rouge">to_tsvector</code>
+function can receive a JSONB object:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">packages</span>
+<span class="k">ADD</span> <span class="k">COLUMN</span> <span class="n">searchable</span> <span class="n">tsvector</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Round names</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Theme names</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>This example shows how to add deeply nested values to the index
+by using JSON paths.</p>
+
+<p>And the <code class="language-plaintext highlighter-rouge">pg_search</code> config stays the same:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
+  
+  <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># not used if tsvector_column is specified</span>
+    <span class="ss">using: </span><span class="p">{</span>
+      <span class="ss">tsearch: </span><span class="p">{</span>
+        <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
+        <span class="ss">tsvector_column: </span><span class="s1">'searchable'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>In this article we discussed such topics as:</p>
+<ul>
+  <li>Heroku Postgres free tier limitations and how to overcome them</li>
+  <li>Denormalizing a DB using JSONB</li>
+  <li>Building an inverted index based on JSONB values</li>
+  <li>Implementing full-text search for strings stored in JSONB objects</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[How to optimize a relational database schema to fit Heroku Postgres free tier limitations with a real-world example of SIBrowser.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>React-i18next in Rails: caching with Asset Pipeline</title>
+		  <link href="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching" rel="alternate" type="text/html" title="React-i18next in Rails: caching with Asset Pipeline"/>
+      <published>2020-12-03T00:00:00+00:00</published>
+      
+      <updated>2020-12-16T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching">
+        <![CDATA[<p>How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.</p>
+
+<p>Here we will cover the simplest way of internationalizing
+a <code class="language-plaintext highlighter-rouge">react-rails</code> application, then we will
+discuss the caching problem of this approach,
+and finally we will use the Asset Pipeline to achieve efficient caching
+of the translation files.</p>
+
+<h2 id="adding-react-i18next">Adding react-i18next</h2>
+<p>In this section we will add <code class="language-plaintext highlighter-rouge">react-i18next</code> and serve
+the translation files from the <code class="language-plaintext highlighter-rouge">public</code> directory.</p>
+
+<p>First, let’s add the required dependencies:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p>Initialize <code class="language-plaintext highlighter-rouge">i18next</code> in the required pack files (e.g. <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>):</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend">The <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> plugin</a> is responsible
+for downloading the needed translation files for the current language and
+<code class="language-plaintext highlighter-rouge">react-i18next</code> makes <code class="language-plaintext highlighter-rouge">i18next</code> available to the React application itself.</p>
+
+<p>Now we can implement an internationalized version of a “Hello, world!”
+page with an option to switch the language:</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">en</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        English
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If you look at the resulting page, you will see the string “helloWorld”
+because we have not yet provided the translations for the <code class="language-plaintext highlighter-rouge">helloWorld</code> key and
+<code class="language-plaintext highlighter-rouge">i18next</code> falls back to the key if the translation is not found.</p>
+
+<p>By default, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> expects translation files to be available
+at <code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> path
+(see <a href="https://github.com/i18next/i18next-http-backend#backend-options">the <code class="language-plaintext highlighter-rouge">loadPath</code> option</a>),
+where <code class="language-plaintext highlighter-rouge">{{lng}}</code> is the language code
+and <code class="language-plaintext highlighter-rouge">{{ns}}</code> is the namespace. The default namespace
+is called <code class="language-plaintext highlighter-rouge">translation</code> (see <a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources">the <code class="language-plaintext highlighter-rouge">defaultNS</code> option</a>).</p>
+
+<p>So, in our case the server needs to provide two paths:
+<code class="language-plaintext highlighter-rouge">/locales/en/translation.json</code> for the English version and <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
+for the Tatar version. We can create the translation JSON files in the <code class="language-plaintext highlighter-rouge">public</code> directory and
+they will be available at the required paths.</p>
+
+<p>The English translations will be located in <code class="language-plaintext highlighter-rouge">public/locales/en/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello, world!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The Tatar translations will be located in <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>With these files in place, you can refresh the page and observe the buttons working.
+But there is a catch! Read further to see where this solution can break.</p>
+
+<h2 id="problems-due-to-caching">Problems due to caching</h2>
+<p>You may notice that if you deploy a new version of your application,
+browser runs the new version of your code, but sometimes
+the old version of the translations are used, which results in
+displaying the translation keys instead of the translations themselves.</p>
+
+<p>This can be because of the old version of translation files being
+cached.</p>
+
+<p>One solution to this problem is disabling caching completely with server configurations,
+disabling caching with the <code class="language-plaintext highlighter-rouge">requestOptions</code> option of <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>,
+or even appending the current date to the download URL like
+<a href="https://stackoverflow.com/a/43499557/8559107">in this StackOverflow answer</a> (adapted to <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>However, it is not optimal to disable caching
+as on each refresh the translation files will be downloaded once again.</p>
+
+<p>A better approach is to properly configure caching for the translation files.
+This can be done in several ways and here we will talk about using
+the default approach used in Rails for such tasks, the Asset Pipeline.</p>
+
+<h2 id="using-asset-pipeline-for-caching-i18next-translation-files">Using Asset Pipeline for caching i18next translation files</h2>
+<p>In this section we will see how to use Rails Asset Pipeline to <a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">rev</a> the
+translation file paths.</p>
+
+<p>Asset Pipeline
+<a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">appends</a> a hash of the file
+contents to the file name, this way clients can cache such files forever and
+when the new version will be released, it will have a different name and
+clients will be able to download the new version by its new name.</p>
+
+<p>Now we will pipe the translation files through the Asset Pipeline
+and then configure <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> to load files from the Asset Pipeline.</p>
+
+<h3 id="including-the-translation-files-in-the-asset-pipeline">Including the translation files in the Asset Pipeline</h3>
+<p>For translations JSON files to appear in the Asset Pipeline we just need
+to move them from the <code class="language-plaintext highlighter-rouge">public</code> directory to <code class="language-plaintext highlighter-rouge">app/assets</code>. In our example,
+these should result in two files located in these locations:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/en/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+</ul>
+
+<p>You can check that the translation files are recognized by the Asset Pipeline
+in the Rails console (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'en/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/en/translation-6804b48978898b3301e60a2df30ae539fcf7d2370c47fe9ca3f440879163a0f9.json"
+</span></code></pre></div></div>
+
+<p>If instead you get the error <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code>:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'en/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (en/translation.json)
+</span></code></pre></div></div>
+
+<p>Then maybe you are using Sprockets 4, in this case you need to update
+the manifest file.</p>
+
+<h4 id="updating-the-asset-manifest-file-for-sprockets-4">Updating the asset manifest file for Sprockets 4</h4>
+<p>Depending on the <code class="language-plaintext highlighter-rouge">sprockets</code> gem version you might or might not
+need to update the assets manifest file. You can check the version by running:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>If you are using Sprockets 4, then you must reference the locales directory in
+the assets manifest file <code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> like this:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>This is a change <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">introduced in Sprockets 4</a> (emphasis by me):</p>
+<blockquote>
+  <p>If you are using sprockets prior to 4.0, Rails will compile <code class="language-plaintext highlighter-rouge">application.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>;
+and <strong>any</strong> files found in your assets directory(ies) that are not recognized as JS or CSS,
+but do have a filename extension.</p>
+
+  <p>…</p>
+
+  <p>If you are using Sprockets 4, Rails changes its default logic for determining top-level targets.
+It will now use <strong>only</strong> a file at <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> for specifying top-level targets;</p>
+</blockquote>
+
+<h3 id="getting-asset-pipeline-paths-in-javascript">Getting Asset Pipeline paths in JavaScript</h3>
+<p>After moving the translations to Asset Pipeline, they are not available by
+their original filenames like <code class="language-plaintext highlighter-rouge">/locales/en/translation.json</code> but should be
+accessed by their new names which include hashes like <code class="language-plaintext highlighter-rouge">/assets/en/translations-680...0f9.json</code>.</p>
+
+<p>These new file names are available in Ruby using the <code class="language-plaintext highlighter-rouge">asset_path</code> helper
+but they are not available directly in JavaScript. Instead, we can use Erb templates
+to substitute values computed by Ruby into JavaScript code.</p>
+
+<p>Add Erb support to <code class="language-plaintext highlighter-rouge">webpacker</code> by following the <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">official instructions</a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">loadPath</code> configuration option of <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> accepts a function
+<code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>. While both <code class="language-plaintext highlighter-rouge">languages</code> and <code class="language-plaintext highlighter-rouge">namespaces</code>
+are arrays, they <a href="https://github.com/i18next/i18next-http-backend/pull/35">should contain only one element each</a> when 
+the <code class="language-plaintext highlighter-rouge">allowMultiLoading</code> option is set to <code class="language-plaintext highlighter-rouge">false</code> (it is so by default).</p>
+
+<p>Implement this custom <code class="language-plaintext highlighter-rouge">loadPath</code> function in <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code>:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">en</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"en/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>And pass it to <code class="language-plaintext highlighter-rouge">i18next</code> in your <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Now you can refresh the page and observe that the buttons work once again.</p>
+
+<p>And that’s it. Happy internationalization!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="en">
+      
+		  <title>Rails React Ant Direct File Upload with GraphQL</title>
+		  <link href="https://imustafin.tatar/blog/react-ant-rails-graphql-direct-upload" rel="alternate" type="text/html" title="Rails React Ant Direct File Upload with GraphQL"/>
+      <published>2020-11-09T00:00:00+00:00</published>
+      
+      <updated>2020-12-03T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/react-ant-rails-graphql-direct-upload</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/react-ant-rails-graphql-direct-upload">
+        <![CDATA[<p>An implementation of direct file uploads
+to Ruby on Rails Active Storage from a React TypeScript application using
+Ant Design with a GraphQL API.</p>
+
+<h2 id="problem">Problem</h2>
+<p>On one hand, Ant Design provides a nice Upload component for choosing and
+uploading files. Usually it is very is easy to use, just provide the upload URL
+and Ant will make a POST request with the file attached.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Upload</span><span class="p">,</span> <span class="nx">Button</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">Test</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Upload</span>
+    <span class="na">name</span><span class="p">=</span><span class="s">'avatar'</span>
+    <span class="na">action</span><span class="p">=</span><span class="s">'https://example.com/avatar'</span>
+  <span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>On the other hand, Ruby on Rails (Rails) suggests adding the file field in a Rails view
+and handling the form submission with a Rails controller which will automatically
+handle the uploaded file.</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">file_field</span> <span class="ss">:avatar</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>We were not using Rails views in this project before and the layout was rendered
+only by React, because of this we needed some other way to upload files.</p>
+
+<h2 id="solution">Solution</h2>
+<p>The solution is based on articles
+<a href="https://evilmartians.com/chronicles/active-storage-meets-graphql-direct-uploads">Active Storage meets GraphQL: Direct Uploads</a>,
+<a href="https://cameronbothner.com/activestorage-beyond-rails-views/">How to Use ActiveStorage Outside of a Rails View</a>
+and <a href="https://cameronbothner.com/activestorage-beyond-rails-views/">this StackOverflow answer</a>.</p>
+
+<p>An Active Storage direct upload happens in several steps:</p>
+<ol>
+  <li>Client extracts the file’s metadata</li>
+  <li>Client sends the metadata to the Server</li>
+  <li>Server prepares an upload with the Service</li>
+  <li>Server sends the upload url and required headers to the Client</li>
+  <li>Client uploads the file to the Service using url and headers from the Server</li>
+</ol>
+
+<p>In this example we are using a GraphQL API, so steps 2, 3, 4 will be implemented
+as a GraphQL mutation.</p>
+
+<h3 id="server-side">Server-side</h3>
+
+<p>The parameters of the direct upload depend on these metadata of the file:</p>
+<ul>
+  <li>File name</li>
+  <li>Content type</li>
+  <li>Checksum (more on this <a href="#client-side">below</a>)</li>
+  <li>File size</li>
+</ul>
+
+<p>We will use a GraphQL mutation to pass these values to backend. The results
+of the mutation will include the options needed for an upload.</p>
+
+<p>We will pass these values to the mutation and result of the mutation
+will have the values required for an upload (URL and headers) as well as
+the blob ids.</p>
+
+<p>We are using the <a href="https://graphql-ruby.org/"><code class="language-plaintext highlighter-rouge">graphql</code> gem</a> as our implementation
+of the GraphQL controller in Rails.</p>
+
+<p>As we said before, we will have a mutation which takes the file’s meta information
+and gives the data required for an upload:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Mutations</span>
+  <span class="k">class</span> <span class="nc">CreateDirectUpload</span> <span class="o">&lt;</span> <span class="no">BaseMutation</span>
+    <span class="n">argument</span> <span class="ss">:filename</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:byte_size</span><span class="p">,</span> <span class="no">Int</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:checksum</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:content_type</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+
+    <span class="n">field</span> <span class="ss">:url</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:headers</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="s1">'JSON of required HTTP headers'</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:blob_id</span><span class="p">,</span> <span class="no">ID</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:signed_blob_id</span><span class="p">,</span> <span class="no">ID</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">resolve</code> method will create the blob and return the parameters needed for
+the upload:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Mutations</span>
+  <span class="k">class</span> <span class="nc">CreateDirectUpload</span> <span class="o">&lt;</span> <span class="no">BaseMutation</span>
+    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="n">filename</span><span class="p">:,</span> <span class="n">byte_size</span><span class="p">:,</span> <span class="n">checksum</span><span class="p">:,</span> <span class="n">content_type</span><span class="p">:)</span>
+      <span class="n">blob</span> <span class="o">=</span> <span class="no">ActiveStorage</span><span class="o">::</span><span class="no">Blob</span><span class="p">.</span><span class="nf">create_before_direct_upload!</span><span class="p">(</span>
+        <span class="ss">filename: </span><span class="n">filename</span><span class="p">,</span>
+        <span class="ss">byte_size: </span><span class="n">byte_size</span><span class="p">,</span>
+        <span class="ss">checksum: </span><span class="n">checksum</span><span class="p">,</span>
+        <span class="ss">content_type: </span><span class="n">content_type</span>
+      <span class="p">)</span>
+
+      <span class="p">{</span>
+        <span class="ss">url: </span><span class="n">blob</span><span class="p">.</span><span class="nf">service_url_for_direct_upload</span><span class="p">,</span>
+        <span class="ss">headers: </span><span class="n">blob</span><span class="p">.</span><span class="nf">service_headers_for_direct_upload</span><span class="p">.</span><span class="nf">to_json</span><span class="p">,</span>
+        <span class="ss">blob_id: </span><span class="n">blob</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+        <span class="ss">signed_blob_id: </span><span class="n">blob</span><span class="p">.</span><span class="nf">signed_id</span>
+      <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Now the client can use this mutation to prepare a direct upload.</p>
+
+<h3 id="client-side">Client-side</h3>
+<p>Mutation’s arguments are self-explanatory except the the <code class="language-plaintext highlighter-rouge">checksum</code> argument.
+The checksum string should be computed with a specific algorithm which is
+provided in the <a href="https://www.npmjs.com/package/@rails/activestorage"><code class="language-plaintext highlighter-rouge">@rails/activestorage</code> package</a>.</p>
+
+<p><strong>Bonus!</strong> TypeScript typings are available with
+the <a href="https://www.npmjs.com/package/@types/rails__activestorage"><code class="language-plaintext highlighter-rouge">@types/rails__activestorage</code> package</a>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">FileChecksum</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/file_checksum</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">calculateChecksum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">File</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="nx">FileChecksum</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">checksum</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nf">resolve</span><span class="p">(</span><span class="nx">checksum</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">))</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Ant Upload takes a <code class="language-plaintext highlighter-rouge">beforeUpload</code> function which we will use to get the upload
+parameters. In this example we will assume that a single file is uploaded.
+As an example, we will store the results of the mutation in the state and
+use it later.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcFile</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">RcFile</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// createDirectUploadMutation is a placeholder for your GraphQL request method</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">createDirectUploadMutation</span><span class="p">({</span>
+      <span class="na">checksum</span><span class="p">:</span> <span class="k">await</span> <span class="nf">calculateChecksum</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+      <span class="na">filename</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span>
+      <span class="na">contentType</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="kd">type</span><span class="p">,</span>
+      <span class="na">byteSize</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">size</span>
+    <span class="p">});</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">headers</span><span class="p">)</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now we are ready to implement a function which will do the direct upload XHR:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcCustomRequestOptions</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload/interface</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BlobUpload</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/blob_upload</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">:</span> <span class="nx">RcCustomRequestOptions</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BlobUpload</span><span class="p">({</span>
+      <span class="nx">file</span><span class="p">,</span>
+      <span class="na">directUploadData</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span> <span class="kd">as </span><span class="nb">Record</span><span class="o">&lt;</span><span class="kr">string</span><span class="p">,</span> <span class="kr">string</span><span class="o">&gt;</span><span class="p">;</span>
+        <span class="nl">url</span><span class="p">:</span> <span class="nx">action</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">upload</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">progress</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">percent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="nx">options</span><span class="p">.</span><span class="nf">onProgress</span><span class="p">({</span> <span class="nx">percent</span> <span class="p">},</span> <span class="nx">file</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">upload</span><span class="p">.</span><span class="nf">create</span><span class="p">((</span><span class="na">error</span><span class="p">:</span> <span class="nb">Error</span><span class="p">,</span> <span class="na">response</span><span class="p">:</span> <span class="nx">object</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">file</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With <code class="language-plaintext highlighter-rouge">beforeUpload</code> and <code class="language-plaintext highlighter-rouge">customRequest</code> defined, we can use them in
+Upload’s hooks:</p>
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nc">Upload</span>
+        <span class="na">method</span><span class="p">=</span><span class="s">'put'</span> <span class="c1">// important!</span>
+        <span class="na">multiple</span><span class="p">=</span><span class="si">{</span><span class="kc">false</span><span class="si">}</span>
+        <span class="na">beforeUpload</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">file</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">action</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">url</span><span class="si">}</span>
+        <span class="na">customRequest</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">options</span><span class="p">):</span> <span class="k">void</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload!<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Don’t forget to update the Rails routes. If you have a wildcard rule
+to redirect all requests to React like this:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match</span> <span class="s1">'*path'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'react#index'</span><span class="p">,</span> <span class="ss">via: :all</span>
+</code></pre></div></div>
+
+<p>Then you can exclude the Active Storage paths from this rule like this:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match</span> <span class="s1">'*path'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'react#index'</span><span class="p">,</span> <span class="ss">via: :all</span><span class="p">,</span>
+  <span class="ss">constraints: </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">exclude?</span> <span class="s1">'rails/active_storage'</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>And that’s it. Happy direct uploading!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[An implementation of direct file uploads to Ruby on Rails Active Storage from a React TypeScript application using Ant Design with a GraphQL API.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+</feed>

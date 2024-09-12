@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tt">
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+	<title>Татарча язмалар | imustafin.tatar</title>
+	<link href="https://imustafin.tatar/tt/feed.xml" rel="self" type="application/atom+xml" />
+	<link href="https://imustafin.tatar" />
+	<id>https://imustafin.tatar/tt/feed.xml</id>
+	<updated>2024-09-12T08:44:42+00:00</updated>
+
+  
+  
+  
+	  <entry xml:lang="tt">
+      
+		  <title>PBDoom</title>
+		  <link href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom" rel="alternate" type="text/html" title="PBDoom"/>
+      <published>2023-02-26T00:00:00+00:00</published>
+      
+      <updated>2023-02-26T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/pbdoom">
+        <![CDATA[<p>PBDoom — PocketBook электрон кәгазьле җайланмалар өчен Doom уеның порты.
+Йөкләүләр <a href="https://pbdoom.imustafin.tatar/">PBDoom рәсми сайтында</a> табыла.</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[PBDoom — PocketBook электрон кәгазьле җайланмалар өчен Doom уеның порты. Йөкләүләр PBDoom рәсми сайтында табыла.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="tt">
+      
+		  <title>Heroku Postgres БН бушлай куллану өчен оптимальләштерү</title>
+		  <link href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF" rel="alternate" type="text/html" title="Heroku Postgres БН бушлай куллану өчен оптимальләштерү"/>
+      <published>2021-09-01T00:00:00+00:00</published>
+      
+      <updated>2021-09-01T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/heroku-postgres-%D0%B1%D0%BD-%D0%B1%D1%83%D1%88%D0%BB%D0%B0%D0%B9-%D0%BA%D1%83%D0%BB%D0%BB%D0%B0%D0%BD%D1%83-%D3%A9%D1%87%D0%B5%D0%BD-%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B0%D0%BB%D1%8C%D0%BB%D3%99%D1%88%D1%82%D0%B5%D1%80%D2%AF">
+        <![CDATA[<p>Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә
+куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.</p>
+
+<p><a href="https://www.sibrowser.ru">SIBrowser</a> — <a href="https://vladimirkhil.com/si/game">Своя игра (SIGame)</a> пакетлар эзләү сайты.
+Соңгы вакытта мин бу сайтны ясый идем.
+Без дуслар белән еш уйныйбыз һәм безгә һәрвакыт яхшы пактларны эзләргә кирәк.
+Эзләүне гадиләштерү өчен мин интернеттан пакет җыю һәм пакет статистика
+күрсәтү системаны төзи башладым.</p>
+
+<p>Сайт <a href="https://rubyonrails.org/">Ruby on Rails</a> нигезендә төзелгән һәм <a href="https://heroku.com">Heroku</a>
+платформасында җәелә. Акча саклану өчен Heroku-ның бушлай БН дәрәҗәләрне
+кулланам. <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a> бушлай дәрәҗәдә 
+1ГБ саклагыч урыны һәм 10к БН рәт бирелә. <a href="https://elements.heroku.com/addons/heroku-redis">Heroku Redis</a> бушлай
+дәрәҗәдә 25МБ хәтер бирелә.</p>
+
+<p>Фонда пакет җыю өчкн мин <a href="https://sidekiq.org/">Sidekiq</a>-ны кулланам. Sidekiq бирем чиратны
+Heroku Redis-та саклый. Моның өчен Heroku Redis-ның бушлай дәрәҗәсе җитә:
+хәзер 25МБ-тан &lt; 1МБ кулланыла.</p>
+
+<p>Ләкин, Heroku Postgres-ның рәт чикләмәләре бу проектта зур йогынты ясый.</p>
+
+<h2 id="бирелмәләр-нигезне-акча-саклау-өчен-оптимальләштерү">Бирелмәләр нигезне акча саклау өчен оптимальләштерү</h2>
+<p>Heroku Postgres бушлай дәрәҗәдә куллану өчен, без БН архитектурада берничә
+үзгәреш ясый алабыз. Проектның ER-модельгә карыйк:</p>
+
+<p><object data="/uml/15b31463dd82ea6518f3d79110e13a22.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>Ясаучының ноль я күбрәк пакет бар. Пакетның ноль я күбрәк тәг һәм раунд бар.
+Раундның ноль я күбрәк тема бар. Теманың ноль я күбрәк сорау бар.</p>
+
+<p>Өченче я дүртенче нормаль формага нормальләшкән БН белән эшләргә яхшы булыр иде.
+Ләкин, һәр нормальләштерү адымы рәт саны күбәйәчәк.</p>
+
+<p>Системада кирәкле БН таләпләргә карап, без кайбер объектларны
+денормальләштерергә
+алабыз.</p>
+
+<h2 id="адым-1-төп-таблица">Адым 1: төп таблица</h2>
+<p>ER-диаграммага караганда, <code class="language-plaintext highlighter-rouge">Пакет</code> төп объект булуны күрәбез.
+Чыннан да, башка объектларны <code class="language-plaintext highlighter-rouge">Пакет</code>-ның атрибутлары кебек сакла алабыз.</p>
+
+<p>Тәгләр һәм ясаучылар юл массивы формасында сакла алабыз. Раунд-тема-сорау
+чылбырны <em>структура</em> дип атыйк һәм кертелгән массивлар я һәшләр формасында
+сакла алабыз да.</p>
+
+<p>Шундый объект саклау өчен, Active Record-ның <a href="serialize">serialize</a> ысулы
+белән саклаячакбыз. Моның өчен БН кырлары <code class="language-plaintext highlighter-rouge">text</code> яисә <code class="language-plaintext highlighter-rouge">string</code> типлы булырга
+тиеш.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">serialize</span> <span class="ss">:authors</span><span class="p">,</span> <span class="no">Array</span>
+  <span class="n">serialize</span> <span class="ss">:structure</span><span class="p">,</span> <span class="no">Hash</span>
+  <span class="n">serialize</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Array</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Шулай итеп, барлык ER-модельне бер генә таблицада сакланыла, әмма БН
+нормаль формасыны югалта. Пакетлар гына үзе санлы беренчел ачкычы бар.</p>
+
+<p>Соңрак без моның бик начар булмавыны күрсәтәчәкбез. БН-дән без берничә
+таләп ясый алабыз әле: барлык пакет исемлекне укый алабыз, кирәкле
+пакетның мәгълүматны ачкыч белән укый алабыз да.</p>
+
+<h2 id="адым-2-jsonb-индекс-белән-ясаучы-буенча-эзләү">Адым 2: JSONB индекс белән ясаучы буенча эзләү</h2>
+<p>Heroku Postgres бушлай дәрәҗәдә индекс саны чикләнмәгән һәм без берничә
+индекс ясачакбыз. Ясаучы буенча эзләү тизләтү өчен, <code class="language-plaintext highlighter-rouge">author</code> атрибуты нигезендә
+инвертләнгән индекс төзи алабыз, әмма баштан безгә бу атрибутның тибы JSONB-га
+өйләнергә кирәк.</p>
+
+<p>JSONB өйләнүдән соң, <code class="language-plaintext highlighter-rouge">serialize</code> ысулы безгә кирәкми чөнки кыйммәтләр автоматик
+рәвештә JSONB-дан һәм JSONB-га өйләнәчәкләр.</p>
+
+<p>Без хәреф регистр бәйләнмәгән эзләүне ясаячакбыз, чөнки ясаучы исемнәре
+төрле пакетларда төрлечә язылалар.</p>
+
+<p>Баштан индексны төзибез:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">authors_icase_index</span>
+<span class="k">ON</span> <span class="n">packages</span>
+<span class="k">USING</span> <span class="n">gin</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Эзләүдә индекс кулланыр өчен, нәкъ шундый таләпне кулланырга кирәк:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'LOWER(authors::text)::jsonb @&gt; to_jsonb(LOWER(?)::text)'</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Индекс кулланувын <code class="language-plaintext highlighter-rouge">EXPLAIN</code>-да күрәбез:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="nv">"packages"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"packages"</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="s1">'Timur'</span><span class="p">)::</span><span class="nb">text</span><span class="p">));</span>
+
+                                    <span class="n">QUERY</span> <span class="n">PLAN</span>                                    
+<span class="c1">----------------------------------------------------------------------------------</span>
+ <span class="n">Bitmap</span> <span class="n">Heap</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">packages</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">8</span><span class="p">.</span><span class="mi">08</span><span class="p">..</span><span class="mi">36</span><span class="p">.</span><span class="mi">14</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">677</span><span class="p">)</span>
+   <span class="k">Recheck</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+   <span class="o">-&gt;</span>  <span class="n">Bitmap</span> <span class="k">Index</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">authors_icase_index</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">8</span><span class="p">.</span><span class="mi">07</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+         <span class="k">Index</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Ләкин, ясаучының санлы беренчел ачкычы юк. Ясаучыларны аларның аскы регистрлы
+исемләре нигезендә аңлыйбыз. Бу очракта, ясаучының исеме адрес эчендә булырга
+тиеш:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="n">resources</span> <span class="ss">:authors</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">],</span> <span class="ss">constraints: </span><span class="p">{</span> <span class="ss">id: </span><span class="sr">/.+/</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Шундый <code class="language-plaintext highlighter-rouge">constraints</code> көйләве Rails-ка буш аралы һәм авыш сызыклы исемнәрне
+аңларга әйтә. Мәсәлән, системада <code class="language-plaintext highlighter-rouge">https://vk.com/sigamepack</code> исемле
+ясаучы бар һәм аның бите 
+<a href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack">https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a>
+адреста урнашкан.</p>
+
+<h2 id="адым-3-jsonb-атрибут-бунча-тулы-текст-эзләү">Адым 3: JSONB атрибут бунча тулы текст эзләү</h2>
+<p>JSONB атрбутларда тулы текст эзләүне ясый алабыз да.</p>
+
+<p><a href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres">Ли Һаллидейнның мәкәләсе</a> тулы текст эзләүне
+<a href="https://rubygems.org/gems/pg_search">pg_search</a> гемы һәм <code class="language-plaintext highlighter-rouge">ts_vector</code> тибы нигезендә төзүне тасвирлый.</p>
+
+<p>Монда мин JSONB атрибут өчендә эзләү өчен охшаш ысулы күрсәтәм.</p>
+
+<p>Исәпләнүче <code class="language-plaintext highlighter-rouge">searchable</code> баганасы JSONB элементларга үзе дәрәҗәләрне бирә ала.
+<code class="language-plaintext highlighter-rouge">to_tsvector</code> функциясе икенче аргумент урында JSONB типны да аңлый.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">packages</span>
+<span class="k">ADD</span> <span class="k">COLUMN</span> <span class="n">searchable</span> <span class="n">tsvector</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Раунд исемләре</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Тема исемләре</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Бу үрнәктә JSONB-да ерак кертелгән кыйммәтне, JSON юллары кулланып, индекска кую
+күрсәтелгән.</p>
+
+<p><code class="language-plaintext highlighter-rouge">pg_search</code> көйләве шундый ук кала:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
+  
+  <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># tsvector_column булганда куллынмый</span>
+    <span class="ss">using: </span><span class="p">{</span>
+      <span class="ss">tsearch: </span><span class="p">{</span>
+        <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
+        <span class="ss">tsvector_column: </span><span class="s1">'searchable'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="йомгаклау">Йомгаклау</h2>
+<p>Бу мәкаләдә без берничә мәсьәлә карап чыктык:</p>
+<ul>
+  <li>Heroku Postgres бушлай дәрәҗәнең чикләмәләр һәм алар белән эшләү</li>
+  <li>JSONB белән БН денормальләштерү</li>
+  <li>JSONB өчен инвертләштереләгән индекс төзү</li>
+  <li>JSONB объектларга кертелгән юлларда тулы текст эзләү</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Реляцион бирелмәләр нигезне (БН) Heroku Postgres бушлай дәрәҗәдә куллану өчен SIBrowser кушымтасы мисалында оптимальләштерү.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="tt">
+      
+		  <title>React-i18next Rails-та: файлүткәргеч аша кәшләү</title>
+		  <link href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF" rel="alternate" type="text/html" title="React-i18next Rails-та: файлүткәргеч аша кәшләү"/>
+      <published>2021-01-25T00:00:00+00:00</published>
+      
+      <updated>2021-02-15T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF">
+        <![CDATA[<p>Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.</p>
+
+<p>Монда без <code class="language-plaintext highlighter-rouge">react-rails</code> кушымтаны иң җиңел интернациональләштерү ысулыны
+карап чыгарарбыз, аннары без бу ысулын кәш белән бәйләнгән проблемнарны
+күрербез, һәм ахырда без бу проблемнарны файлүткәргеч (Asset Pipeline) белән
+чишәрбез.</p>
+
+<h2 id="react-i18next-ны-куллану">React-i18next-ны куллану</h2>
+<p>Бу бүлектә без кушымтабызга <code class="language-plaintext highlighter-rouge">react-i18next</code>-ны өстибез һәм тәрҗемә файлларны
+<code class="language-plaintext highlighter-rouge">public</code> директорийдан укуга мөмкин ясыйбыз.</p>
+
+<p>Баштан без кирәкле пакетларны өстибез.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">i18next</code>-ны кирәкле керү нокталарда (мәсәлән, <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>)
+инициализациялибез:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend"><code class="language-plaintext highlighter-rouge">i18next-http-backend</code> плагины</a> сайланган телнең
+тәрҗемә файлларны йөкли, ә <code class="language-plaintext highlighter-rouge">react-i18next</code> React кушымтаны <code class="language-plaintext highlighter-rouge">i18next</code> белән
+бәйләнә.</p>
+
+<p>Хәзер без «Сәлам, дөнья!» битне тел сайлау төймәләр белән ясый алабыз.</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Русский
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Хәзер бу биткә карасагыз сез «helloWorld» юлны гына күрә аласыз чөнки без <code class="language-plaintext highlighter-rouge">helloWorld</code>
+ачкыч өчен бернинди тәрҗемәне бирмәдек әле һәм шундый вакыйгаларда <code class="language-plaintext highlighter-rouge">i18next</code>
+тәрҗемәнең урында ачкычны күрсәтә.</p>
+
+<p>Килешенгәнчә <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> тәрҗемә файлларны
+<code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> адрестан ала
+(<a href="https://github.com/i18next/i18next-http-backend#backend-options"><code class="language-plaintext highlighter-rouge">loadPath</code> көйләүне</a> кара). Адреста
+<code class="language-plaintext highlighter-rouge">{{lng}}</code> — тел коды, ә <code class="language-plaintext highlighter-rouge">{{ns}}</code> —
+исемнәр киңлеге. Килешенгән исемнәр киңлеге <code class="language-plaintext highlighter-rouge">translation</code> дип аталган
+(<a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources"><code class="language-plaintext highlighter-rouge">defaultNS</code> көйләүне</a> кара).</p>
+
+<p>Шулай, сервер бу ике юлны тәэмин итергә тиеш: берсе — <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
+татарча тәрҗемә бирергә тиеш, икенчесе — <code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>
+русча тәрҗемә бирергә тиеш. Бу JSON тәрҗемә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийга
+куйсабыз, Rails шундый кирәкле юлларны тәэмин ителер.</p>
+
+<p>Татарча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code> файлга язабыз:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Русча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/ru/translation.json</code> файлга язабыз:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Тәрҗемә файлларны ясагач соң без битне браузерда яңарта алабыз. Шуннан соң
+биттә тел сайлавы эшләргә тиеш. Ләкин, бу ысулда бер проблем бар, бу проблем
+турында — киләсе бүлектә.</p>
+
+<h2 id="кәшкә-бәйле-проблемнар">Кәшкә бәйле проблемнар</h2>
+<p>Әйтик, без кушымтаның яңа версияне серверга урнаштык һәм браузерда яңа
+JavaScript эшли,  ләкин иске тәрҗемә файллар куланыла (шуңа күрә
+иске тәрҗемәләр яисә тәрҗемә ачкычлары күрәнелә).</p>
+
+<p>Моның бер сәбәбе кәш булырга мөмкин: иске тәрҗемә файллар браузерда кәшләнгән
+булсалар, браузер иске файлларны кулланырга мөмкин.</p>
+
+<p>Бер чишелеш буларак без тәрҗемә файллар кәшләүне тулысынча тыерга алабыз.
+Моны сервер көйләүләр белән дә, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">requestOptions</code>
+көйләве белән дә, хәтта хәзерге вакытны тәрҗемә файлның йөкләү URL-га
+кушып та була. Соңгы ысулны <a href="https://stackoverflow.com/a/43499557/8559107">бу StackOverflow җаваптан</a> алып
+<code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-та шулай ясап була:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ләкин, кәшләүне тыю — яхшы бер чишелеш түгел чөнки битнең һәр йөкләве
+белән тәрҗемә файллар яңадан йөклиячәкләр.</p>
+
+<p>Иң яхшы чишелеш ул кәшләүне дөрес көйләргә. Моны да берничә рәвештә
+дә ясап була һәм бу язмышта без Rails-ның гадәти коралны кулланачакбыз.
+Аның исеме файлүткәргеч.</p>
+
+<h2 id="файлүткәргечне-i18next-тәрҗемә-файллар-кәшләү-өчен-куллану">Файлүткәргечне <code class="language-plaintext highlighter-rouge">i18next</code> тәрҗемә файллар кәшләү өчен куллану</h2>
+<p>Бу бүлектә Ruby on Rails-ның файлүткәргеч белән файл исемнәрне әйләндерү
+(<a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">filename revving</a>) каралачак.</p>
+
+<p>Файлүткәргеч файл исемгә аның эчтәлекнең һәшне <a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">куша</a>,
+шуңа күрә клиентлар шундый һәшле исемле файлларны мәңгегә кәшли алалар.
+Әгәр файлның яңа бер версия килеп чыгачак, аның башка исеме булачак һәм
+клиентлар бу башка исеме белән яңа версияне йөклиячәкләр.</p>
+
+<p>Хәзер без файлларны ничек файлүткәргечкә җибәрергә һәм аларны ничек
+<code class="language-plaintext highlighter-rouge">i18next-http-backend</code> белән файлүткәргечтән алырга карачакбыз.</p>
+
+<h3 id="файлларны-файлүткәргечке-җибәрү">Файлларны файлүткәргечке җибәрү</h3>
+<p>Файлүткәргеч файлларны <code class="language-plaintext highlighter-rouge">app/assets</code> директорийдан ала, шуңа күрә
+безгә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийдан <code class="language-plaintext highlighter-rouge">app/assets/</code> директорийга күчерергә
+кирәк. Ягъни безнең бу ике файл булачак:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/ru/translation.json</code></li>
+</ul>
+
+<p>Файлүткәргеч файлларны күрәме-юкмы икәнен, консольда тикшерегез (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/tt/translation-8abc3942c062c7f43a1409665fcea91711a8864e4c03adfbf28ccd4ded8d99f8.json"
+</span></code></pre></div></div>
+
+<p>Әгәр сез файл исемен урында <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code> хатаны күрсәгез:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (tt/translation.json)
+</span></code></pre></div></div>
+
+<p>Алайса бәлки сез Sprockets 4-ны кулланасыз һәм сезгә әссет манифест файлны
+үзгәртергә кирәк.</p>
+
+<h4 id="sprockets-4-өчен-әссет-манифест-файлны-үзгәртү">Sprockets 4 өчен әссет манифест файлны үзгәртү</h4>
+<p><code class="language-plaintext highlighter-rouge">sprockets</code> гемнең версиягә карап, сезгә киләсе адымны ясарга кирәк яки кирәкми.
+Гемнең версияне бу боерык белән карап була:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>Проектыгызда Sprockets-ның 4-нче версиясе булса, сезгә локаль директорийны
+<code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> манифест файлга кушырга кирәк:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>Бу <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">Sprockets 4-тән башлап</a> кирәк
+(тәрҗемәсе һәм басымнар — миннән):</p>
+<blockquote>
+  <p>Әгәр сез sprockets 4.0-дан искерәк версияне куллансагыз, Rails
+<code class="language-plaintext highlighter-rouge">applications.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>, һәм әссет директорийдагы <strong>һәр</strong> 
+JS я CSS булмаган, файл исеме өстәмәле файлларны компиляцияләчәк.</p>
+
+  <p>…</p>
+
+  <p>Әгәр сез Sprockets 4 куллансагыз, Rails башка компиляцияләү керү нокталар
+табу алгоритмны кулланачак: <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> файлдагы <strong>гына</strong>
+керү нокталар кулланачаклар.</p>
+</blockquote>
+
+<h3 id="javascript-та-файлүткәргечтән-файлларны-алу">JavaScript-та файлүткәргечтән файлларны алу</h3>
+<p>Тәрҗемә файлларны файлүткәргечкә күчерүдән соң аларны төп исемнәр белән
+(<code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>) ала булмый. Күчерүдән соң аларның исемләргә
+һәшне кушырга кирәк (<code class="language-plaintext highlighter-rouge">/assets/tt/translations-8ab...9f8.json</code>).</p>
+
+<p>Шундый һәшле исемнәрне Ruby-да <code class="language-plaintext highlighter-rouge">asset_path</code> ярдәмче белән алырга мөмкин, ләкин
+JavaScript-та аларны турыдан-туры алырга мөмкин түгел. Шулай ук, без Erb
+өлгеләрне кулланып Ruby-да саналган кыйммәтләрне JavaScript кодка кыстыра алабыз.</p>
+
+<p>Erb куллану тәэмин итү <code class="language-plaintext highlighter-rouge">webpacker</code>-га <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">рәсми күрсәтмәләр буенча</a> өстәгез.</p>
+
+<p><code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">loadPath</code> көйләү кыйммәте <code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>
+функция дә булырга мөмкин. Шундый функциянең <code class="language-plaintext highlighter-rouge">languages</code> һәм <code class="language-plaintext highlighter-rouge">namespaces</code> көйләүләре
+массивлар булса да, <a href="https://github.com/i18next/i18next-http-backend/pull/35">аларның берәр элемент гына булачак</a>
+(<code class="language-plaintext highlighter-rouge">allowMultiLoading</code> көйләве <code class="language-plaintext highlighter-rouge">false</code> булса, килешекәнчә ул шулай).</p>
+
+<p>Үзебезнең <code class="language-plaintext highlighter-rouge">loadPath</code> функцияне <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code> файлда языйк:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Һәм функцияне <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code> файлда <code class="language-plaintext highlighter-rouge">i18next</code>-ка бирик:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Хәзер сез браузерда битне яңадан яңарттыра аласыз һәм тел сайлау төймәләрне
+куллана аласыз.</p>
+
+<p>Нәкъ менә шулай. Интернациональләштерүдә бәхетле булуы телим!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="tt">
+      
+		  <title>Rails React Ant-та GraphQL аша туры файл йөкләү</title>
+		  <link href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-graphql-rails-%D1%82%D1%83%D1%80%D1%8B-%D0%B9%D3%A9%D0%BA%D0%BB%D3%99%D2%AF" rel="alternate" type="text/html" title="Rails React Ant-та GraphQL аша туры файл йөкләү"/>
+      <published>2020-11-15T00:00:00+00:00</published>
+      
+      <updated>2021-01-25T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-graphql-rails-%D1%82%D1%83%D1%80%D1%8B-%D0%B9%D3%A9%D0%BA%D0%BB%D3%99%D2%AF</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-graphql-rails-%D1%82%D1%83%D1%80%D1%8B-%D0%B9%D3%A9%D0%BA%D0%BB%D3%99%D2%AF">
+        <![CDATA[<p>Ruby on Rails һәм Active Storage
+серверга React TypeScript кушымтадан Ant Design һәм GraphQL API кулланып
+туры файл йөкләү ясавы.</p>
+
+<h2 id="проблема">Проблема</h2>
+<p>Бер яктан, Ant Design библиотекасының Upload компоненты файл сайлау һәм
+серверга йөкләү өчен кулланыла ала. Гадәттә, бу компонентны куллану бик
+җиңел: компонентка йөкләү URL-ны бирсәгез, Ant үзе файл кушып POST таләбе ясаячак.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Upload</span><span class="p">,</span> <span class="nx">Button</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">Test</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Upload</span>
+    <span class="na">name</span><span class="p">=</span><span class="s">'avatar'</span>
+    <span class="na">action</span><span class="p">=</span><span class="s">'https://example.com/avatar'</span>
+  <span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Икенче яктан, Rails файл йөкләү кырыны күрсәтелештә ясарга тәкъдим итә:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">file_field</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="ss">direct_upload: </span><span class="kp">true</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>Проектыбызда без Rails күрсәтелешләрне кулланмадык һәм бөтен разметканы React-та
+гына ясадык. Шуңа күрә, безгә башка файл йөкләү ысулы кирәк.</p>
+
+<h2 id="чишелеш">Чишелеш</h2>
+<p>Чишелешебез 
+<a href="https://evilmartians.com/chronicles/active-storage-meets-graphql-direct-uploads">Active Storage meets GraphQL: Direct Uploads</a>,
+<a href="https://cameronbothner.com/activestorage-beyond-rails-views/">How to Use ActiveStorage Outside of a Rails View</a>
+мәкаләләргә һәм <a href="https://cameronbothner.com/activestorage-beyond-rails-views/">бу StackOverflow җавапка</a>
+нигезләнә.</p>
+
+<p>Active Storage-ның туры файл йөкләү берничә адымдан тора:</p>
+<ol>
+  <li>Клиент файлдан метамәгълүматны ала</li>
+  <li>Клиент метамәгълүматны серверга җибәрә</li>
+  <li>Сервер Сервис белән файл йөкләүне әзерли</li>
+  <li>Сервер Клиентка йөкләү URL-ны һәм кирәкле башламаларны җибәрә</li>
+  <li>Клиент йөкләү URL-ны һәм башламаларны кулланып Сервиска файлны йөкли</li>
+</ol>
+
+<p>Бу үрнәктә без GraphQL-ны кулланабыз, шуңа күрә адымнар 2, 3, 4 GraphQL мутацияне
+кулланачаклар.</p>
+
+<h3 id="сервер-ягы">Сервер ягы</h3>
+<p>Йөкләү көйләүләре файл метамагълүматларга бәйле:</p>
+<ul>
+  <li>Файл исеме</li>
+  <li>Мәгълүмат тибы</li>
+  <li>Контроль суммасы (моның турында <a href="#клиент-ягы">түбәндә карагыз</a>)</li>
+  <li>Файл зурлыгы</li>
+</ul>
+
+<p>Rails GraphQL контроллер ясау өчен без <a href="https://graphql-ruby.org"><code class="language-plaintext highlighter-rouge">graphql</code> гемны</a>
+кулланабыз.</p>
+
+<p>Алдарак әйтелгәнчә, безнең бер мутациябез булачак һәм ул кирәкле файл метамәгълүматны алып,
+кирәкле йөкләү көйләүләрне бирәчәк:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Mutations</span>
+  <span class="k">class</span> <span class="nc">CreateDirectUpload</span> <span class="o">&lt;</span> <span class="no">BaseMutation</span>
+    <span class="n">argument</span> <span class="ss">:filename</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:byte_size</span><span class="p">,</span> <span class="no">Int</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:checksum</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:content_type</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+
+    <span class="n">field</span> <span class="ss">:url</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:headers</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="s1">'JSON of required HTTP headers'</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:blob_id</span><span class="p">,</span> <span class="no">ID</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:signed_blob_id</span><span class="p">,</span> <span class="no">ID</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">resolve</code> ысулы блобны төзәчәк һәм йөкләү көйләүләрне кайтарачак:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Mutations</span>
+  <span class="k">class</span> <span class="nc">CreateDirectUpload</span> <span class="o">&lt;</span> <span class="no">BaseMutation</span>
+    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="n">filename</span><span class="p">:,</span> <span class="n">byte_size</span><span class="p">:,</span> <span class="n">checksum</span><span class="p">:,</span> <span class="n">content_type</span><span class="p">:)</span>
+      <span class="n">blob</span> <span class="o">=</span> <span class="no">ActiveStorage</span><span class="o">::</span><span class="no">Blob</span><span class="p">.</span><span class="nf">create_before_direct_upload!</span><span class="p">(</span>
+        <span class="ss">filename: </span><span class="n">filename</span><span class="p">,</span>
+        <span class="ss">byte_size: </span><span class="n">byte_size</span><span class="p">,</span>
+        <span class="ss">checksum: </span><span class="n">checksum</span><span class="p">,</span>
+        <span class="ss">content_type: </span><span class="n">content_type</span>
+      <span class="p">)</span>
+
+      <span class="p">{</span>
+        <span class="ss">url: </span><span class="n">blob</span><span class="p">.</span><span class="nf">service_url_for_direct_upload</span><span class="p">,</span>
+        <span class="ss">headers: </span><span class="n">blob</span><span class="p">.</span><span class="nf">service_headers_for_direct_upload</span><span class="p">.</span><span class="nf">to_json</span><span class="p">,</span>
+        <span class="ss">blob_id: </span><span class="n">blob</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+        <span class="ss">signed_blob_id: </span><span class="n">blob</span><span class="p">.</span><span class="nf">signed_id</span>
+      <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Хәзер клиент бу мутацияне кулланып туры йөкләүне әзерли ала.</p>
+
+<h3 id="клиент-ягы">Клиент ягы</h3>
+<p>Мутациянең <code class="language-plaintext highlighter-rouge">checksum</code>-дан бөтен параметрларның мәгънәсе ачык күренелә.
+Контроль сумма юлы махсус ысулда төзеләргә тиеш. Бу ысул <a href="https://www.npmjs.com/package/@rails/activestorage"><code class="language-plaintext highlighter-rouge">@rails/activestorage</code>
+пакетында</a> урнашкан.</p>
+
+<p><strong>Бонус!</strong> TypeScript өчен тип билгеләмәләр
+<a href="https://www.npmjs.com/package/@types/rails__activestorage"><code class="language-plaintext highlighter-rouge">@types/rails__activestorage</code> пакетында</a>
+торалар.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">FileChecksum</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/file_checksum</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">calculateChecksum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">File</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="nx">FileChecksum</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">checksum</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nf">resolve</span><span class="p">(</span><span class="nx">checksum</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">))</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Ant библиотекасындагы Upload компоненты <code class="language-plaintext highlighter-rouge">beforeUpload</code> функцияне ала, һәм без
+бу функциядә сервердан йөкләү көйләүләрне алачакбыз. Бу үрнәктә без бер файл гына
+йөклибез һәм көйләүләрне компонентның халәттә саклыйбыз.</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcFile</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">RcFile</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// createDirectUploadMutation is a placeholder for your GraphQL request method</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">createDirectUploadMutation</span><span class="p">({</span>
+      <span class="na">checksum</span><span class="p">:</span> <span class="k">await</span> <span class="nf">calculateChecksum</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+      <span class="na">filename</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span>
+      <span class="na">contentType</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="kd">type</span><span class="p">,</span>
+      <span class="na">byteSize</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">size</span>
+    <span class="p">});</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">headers</span><span class="p">)</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Хәзер без туры йөкләү XHR таләп итә торган функцияне ясый алабыз:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcCustomRequestOptions</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload/interface</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BlobUpload</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/blob_upload</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">:</span> <span class="nx">RcCustomRequestOptions</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BlobUpload</span><span class="p">({</span>
+      <span class="nx">file</span><span class="p">,</span>
+      <span class="na">directUploadData</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span> <span class="kd">as </span><span class="nb">Record</span><span class="o">&lt;</span><span class="kr">string</span><span class="p">,</span> <span class="kr">string</span><span class="o">&gt;</span><span class="p">;</span>
+        <span class="nl">url</span><span class="p">:</span> <span class="nx">action</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">upload</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">progress</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">percent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="nx">options</span><span class="p">.</span><span class="nf">onProgress</span><span class="p">({</span> <span class="nx">percent</span> <span class="p">},</span> <span class="nx">file</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">upload</span><span class="p">.</span><span class="nf">create</span><span class="p">((</span><span class="na">error</span><span class="p">:</span> <span class="nb">Error</span><span class="p">,</span> <span class="na">response</span><span class="p">:</span> <span class="nx">object</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">file</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Аннары без <code class="language-plaintext highlighter-rouge">beforeUpload</code> һәм <code class="language-plaintext highlighter-rouge">customRequest</code> функцияләрне Upload компонентның
+һукларында куллана алабыз:</p>
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nc">Upload</span>
+        <span class="na">method</span><span class="p">=</span><span class="s">'put'</span> <span class="c1">// important!</span>
+        <span class="na">multiple</span><span class="p">=</span><span class="si">{</span><span class="kc">false</span><span class="si">}</span>
+        <span class="na">beforeUpload</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">file</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">action</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">url</span><span class="si">}</span>
+        <span class="na">customRequest</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">options</span><span class="p">):</span> <span class="k">void</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload!<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Rails-ның юлларын яңартырга онытмагыз. Әгәр сез бөтен таләпләрне
+React-ка юнәлешсәгез:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match</span> <span class="s1">'*path'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'react#index'</span><span class="p">,</span> <span class="ss">via: :all</span>
+</code></pre></div></div>
+
+<p>Сез бу кагыйдән Active Storage юлларны шулай чыгара аласыз:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match</span> <span class="s1">'*path'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'react#index'</span><span class="p">,</span> <span class="ss">via: :all</span><span class="p">,</span>
+  <span class="ss">constraints: </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">exclude?</span> <span class="s1">'rails/active_storage'</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Нәкъ менә шулай. Туры йөкләүләрегездә бәхетле булуыгызны телим!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Ruby on Rails һәм Active Storage серверга React TypeScript кушымтадан Ant Design һәм GraphQL API кулланып туры файл йөкләү ясавы.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+</feed>

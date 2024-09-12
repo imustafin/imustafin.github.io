@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+	<title>Посты на русском | imustafin.tatar</title>
+	<link href="https://imustafin.tatar/ru/feed.xml" rel="self" type="application/atom+xml" />
+	<link href="https://imustafin.tatar" />
+	<id>https://imustafin.tatar/ru/feed.xml</id>
+	<updated>2024-09-12T08:44:42+00:00</updated>
+
+  
+  
+  
+	  <entry xml:lang="ru">
+      
+		  <title>PBDoom</title>
+		  <link href="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom" rel="alternate" type="text/html" title="PBDoom"/>
+      <published>2023-02-26T00:00:00+00:00</published>
+      
+      <updated>2023-02-28T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/pbdoom">
+        <![CDATA[<p>PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге.
+Загрузки находятся на <a href="https://pbdoom.imustafin.tatar/">официальном сайте PBDoom</a>.</p>
+
+<figure class="max-w-xs mx-auto">
+  <img src="/assets/pbdoom_inch_6_display.png" alt="PBDoom на 6 дюймовом экране" />
+  <figcaption class="text-center">PBDoom на 6" экране</figcaption>
+</figure>
+
+<p>PBDoom основан на <a href="https://www.libsdl.org/projects/doom/">SDL Doom Сэма Лантинги</a>. Функции SDL для отрисовки
+изображения на экране были заменены функциями из библиотеки <code class="language-plaintext highlighter-rouge">inkview</code> для PocketBook.
+Функции SDL для проигрывания звука были полностью удалены из кода на текущий момент
+(на многих устройствах PocketBook текущей линейки отсутвуют динамики,
+хотя всё ещё можно подключить наушники).</p>
+
+<p>Разработка PBDoom началась в марте 2022. Первый публичный релиз был опубликовна
+в январе 2023.</p>
+
+<p>Исходный код <a href="https://github.com/imustafin/pbdoom">доступен на GitHub</a>.</p>
+
+<h2 id="зачем">Зачем?</h2>
+<p>Этот проект преследует несколько целей:</p>
+<ol>
+  <li>Предоставить пример игры в жанре экшен для устройств с экранами на электронных чернилах</li>
+  <li>Создать ещё одно приложение для PocketBook</li>
+  <li>Получить опыт работы с библиотекой <code class="language-plaintext highlighter-rouge">inkview</code></li>
+</ol>
+
+<p>Само портирование игры Doom не было большим проектом. SDL Doom уже и так
+работает на Linux, и (некоторые) устройства PocketBook работают на Linux.
+Было достаточно легко заменить запись пикселей в область памяти поверхности SDL
+на вызовы функции <code class="language-plaintext highlighter-rouge">FillArea</code> из библиотеки <code class="language-plaintext highlighter-rouge">inkview</code>.</p>
+
+<p>Однако, из-за ограничений технологии электронной бумаги (низкая скорость обновления
+экрана, отсутвие цвета на некоторых устройствах), приходится немного дорабатывать
+процедуру вывода видео. В этом проекте мы исследуем что нужно сделать и что возможно
+сделать для этого.</p>
+
+<p>Также этот проект познакомил меня с <a href="https://cmake.org/">CMake</a>.</p>
+
+<h2 id="можно-ли-запустить-doom-на-pocketbook">Можно ли запустить Doom на PocketBook?</h2>
+<p>Да, можно. Но это не будет чем-то новым. Разработчики, работавшие над PocketBook,
+выпустили видео, где была показана игра Doom на PocketBook 360 Plus ещё в 2011 году.</p>
+<figure class="mx-auto">
+  <iframe class="aspect-video mx-auto w-full md:w-[600px]" src="https://www.youtube-nocookie.com/embed/QOPZrVsCEHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+  <figcaption class="text-center">Doom 2 на PocketBook 360 Plus</figcaption>
+</figure>
+
+<p>Эту версию разработчики сделали «коротая время за обедом» (<a href="https://www.the-ebook.org/forum/viewtopic.php?p=639725">оригинальное сообщение</a>, <a href="https://web.archive.org/web/20110811143945/https://www.the-ebook.org/forum/viewtopic.php?p=639725">архив</a>), но, насколько я знаю, так и не выпустили её
+в общий доступ.</p>
+
+<p>Таким образом, PBDoom может стать той самой публичной версией Doom для PocketBook,
+которой (кому-то) так не хватало.</p>
+
+<h2 id="дизеринг-изображений-оптимизация-для-электронной-бумаги">Дизеринг изображений: оптимизация для электронной бумаги</h2>
+<p>Как было отмечено выше, электронная бумага имеет низкую частоту обновления. Поэтому
+нам нужны обходные пути для комфортной игры.</p>
+
+<p>Некоторые дисплеи на электронной бумаге предоставляют несколько режимов обновления
+изображения. В некоторых режимах скорость обновления зависит от того, как именно
+изменяется изображение. Например, заменить чёрный регион на белый может быть
+быстрее, чем изменение региона с одного промежуточного оттенка серого на другой.</p>
+
+<p>Используя эту особенность, мы можем увеличить частоту обновления игры,
+теряя в качестве картинки.</p>
+
+<p>Официальная документация <code class="language-plaintext highlighter-rouge">inkview</code> рекомендует уменьшать количество цветов
+до двух для быстрых обновлений (<a href="https://github.com/pocketbook-free/InkViewDoc/blob/master/PocketBookSDK.pdf">страница 12</a>):</p>
+
+<blockquote>
+  <p>Вызывайте [<code class="language-plaintext highlighter-rouge">DitherArea</code>] с <code class="language-plaintext highlighter-rouge">levels=2</code> и <code class="language-plaintext highlighter-rouge">method=DITHER_THRESHOLD</code>
+для получения изображения,
+которое может быть быстро отображено (меню, списки и выделения)</p>
+</blockquote>
+
+<p>Перевод и форматирование от меня.</p>
+
+<p>В библиотеке <code class="language-plaintext highlighter-rouge">inkview</code> есть несколько функций для дизеринга изображения на экране
+(<code class="language-plaintext highlighter-rouge">DitherArea</code> и другие).</p>
+
+<p>Также мы можем поработать с цветом и изменить яркость, контраст
+и провести гамма-коррекцию изображения перед дизерингом, чтобы оптимизировать
+итоговую картинку.</p>
+
+<h2 id="история-изменений-записи">История изменений записи</h2>
+<ul>
+  <li>28 февраля 2023 — добавлена основная часть текста</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[PBDoom — это порт видеоигры Doom (1993) для устройств PocketBook на электронной бумаге. Загрузки находятся на официальном сайте PBDoom.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="ru">
+      
+		  <title>Оптимизация БД Heroku Postgres для бесплатного использования</title>
+		  <link href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" rel="alternate" type="text/html" title="Оптимизация БД Heroku Postgres для бесплатного использования"/>
+      <published>2021-07-13T00:00:00+00:00</published>
+      
+      <updated>2021-09-01T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B1%D0%B4-heroku-postgres-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F">
+        <![CDATA[<p>Оптимизация схемы реляционной базы данных для соответствия
+бесплатному уровню Heroku Postgres на примере приложения SIBrowser.</p>
+
+<p><a href="https://www.sibrowser.ru">SIBrowser</a> — это сайт, на котором можно удобно искать
+пакеты для <a href="https://vladimirkhil.com/si/game">Своей игры (SIGame)</a>.
+В последнее время я работал над этим проектом.
+Мы с друзьями часто играем в свою игру, и нам постоянно
+надо находить хорошие пакеты для вечера. Чтобы упростить эту задачу,
+я решил сделать сайт, который собирает пакеты из интернета и показывает
+различную статистику.</p>
+
+<p>Сайт сделан на <a href="https://rubyonrails.org/">Ruby on Rails</a> и разворачивается на <a href="https://heroku.com">Heroku</a>.
+Чтобы сэкономить, я использую бесплатный уровень <a href="https://elements.heroku.com/addons/heroku-postgresql">Heroku Postgres</a>,
+который даёт 10к строчек и 1ГБ хранилища и бесплатный уровень <a href="https://elements.heroku.com/addons/heroku-redis">Heroku Redis</a>,
+который даёт 25МБ хранилища.</p>
+
+<p>Для фонового сбора пакетов я использую <a href="https://sidekiq.org/">Sidekiq</a> с Heroku Redis-ом
+как хранилище состояния очереди. Для этой задачи пока вполне хватает
+бесплатного уровня Heroku Redis: сейчас используется &lt; 1МБ из 25МБ
+бесплатных.</p>
+
+<p>Однако, ограничение бесплатного уровня Heroku Postgres в 10к строк
+очень заметно в этом проекте.</p>
+
+<h2 id="оптимизация-базы-данных-по-стоимости">Оптимизация базы данных по стоимости</h2>
+<p>Чтобы уместить приложение в ограничения бесплатного уровня Heroku Postgres,
+можно произвести несколько изменений в архитектуру базы данных.
+Взглянем на высокоуровневую ER-модель проекта.</p>
+
+<p><object data="/uml/d9e5df1a93b34793c2c9489f1f85282f.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>Эта диаграмма более или менее представляет предметную область приложения.
+Автор имеет ноль или больше пакетов. Пакет может иметь ноль или больше тегов
+и раундов. Раунд может иметь ноль или больше тем. Тема может иметь ноль или
+больше вопросов.</p>
+
+<p>В идеале нам бы хотелось иметь нормализованную базу данных в третьей или
+четвёртой нормальной форме. Однако, каждый шаг нормализации будет пораждать
+всё больше и больше строк.</p>
+
+<p>В зависимости от того, какие запросы мы хотим поддерживать в нашей БД,
+мы можем денормализовать некоторые сущности.</p>
+
+<h2 id="шаг-1-главная-таблица">Шаг 1: главная таблица</h2>
+<p>Из ER-диаграммы мы видим, что <code class="language-plaintext highlighter-rouge">Пакет</code> является центральной сущностью.
+В самом деле, мы можем попробовать сделать все остальные сущности аттрибутами
+сущности <code class="language-plaintext highlighter-rouge">Пакет</code>.</p>
+
+<p>Мы можем хранить теги и авторов просто как массивы строк. Цепочка
+раунды-темы-вопросы, которую мы будем просто называть <em>структурой</em>, может
+быть представлена как вложенные массивы или хеши.</p>
+
+<p>Для сохранения объектов в базе данных мы можем использовать метод <a href="serialize">serialize</a>
+из Active Record. В этом случае типы полей в БД должны быть <code class="language-plaintext highlighter-rouge">text</code> или <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">serialize</span> <span class="ss">:authors</span><span class="p">,</span> <span class="no">Array</span>
+  <span class="n">serialize</span> <span class="ss">:structure</span><span class="p">,</span> <span class="no">Hash</span>
+  <span class="n">serialize</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Array</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Такой подход позволяет сжать всю ER-модель всего в одну таблицу. Однако,
+база данных становится ненормализованной, у нас остаётся только первичный
+ключ <code class="language-plaintext highlighter-rouge">id</code> для пакетов.</p>
+
+<p>Далее мы покажем, что это не страшно и мы можем реализовать несколько
+видов запросов. Мы всё ещё можем получить список всех пакетов или информацию
+о конкретном пакете по его ключу. Мы даже можем упорядочивать пакеты по авторам,
+если массив авторов всегда будет сортироваться перед записью в БД.</p>
+
+<h2 id="шаг-2-поиск-по-авторам-используя-индексы-по-jsonb">Шаг 2: Поиск по авторам, используя индексы по JSONB</h2>
+<p>Так как бесплатный уровень Heroku Postgres не ограничивает количество индексов,
+мы можем построить инвертированный индекс по столбцы <code class="language-plaintext highlighter-rouge">authors</code> для эффективного
+поиска, но сначала нам нужно изменить тип столбца на JSONB.</p>
+
+<p>После того, как столбцы были превращены в JSONB, нам не нужно явно указывать
+AR, что эти поля нужно сериализовывать методом <code class="language-plaintext highlighter-rouge">serialize</code>. Значения и так
+будут автоматически превращаться в и из JSONB.</p>
+
+<p>Мы будем делать регистронезависимый поиск по авторам, потому что 
+авторы часто используют заглавные буквы по-разному в разных пакетах.</p>
+
+<p>Сначала нам нужно построить индекс:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">authors_icase_index</span>
+<span class="k">ON</span> <span class="n">packages</span>
+<span class="k">USING</span> <span class="n">gin</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Чтобы этот индекс использовался, запросы должны использовать точно такое же
+выражение:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">scope</span> <span class="ss">:by_author</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">where</span><span class="p">(</span><span class="s1">'LOWER(authors::text)::jsonb @&gt; to_jsonb(LOWER(?)::text)'</span><span class="p">,</span> <span class="n">author</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Мы можем проверить, что индекс используется с помощью <code class="language-plaintext highlighter-rouge">EXPLAIN</code>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="nv">"packages"</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="nv">"packages"</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="n">authors</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="k">LOWER</span><span class="p">(</span><span class="s1">'Timur'</span><span class="p">)::</span><span class="nb">text</span><span class="p">));</span>
+
+                                    <span class="n">QUERY</span> <span class="n">PLAN</span>                                    
+<span class="c1">----------------------------------------------------------------------------------</span>
+ <span class="n">Bitmap</span> <span class="n">Heap</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">packages</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">8</span><span class="p">.</span><span class="mi">08</span><span class="p">..</span><span class="mi">36</span><span class="p">.</span><span class="mi">14</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">677</span><span class="p">)</span>
+   <span class="k">Recheck</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+   <span class="o">-&gt;</span>  <span class="n">Bitmap</span> <span class="k">Index</span> <span class="n">Scan</span> <span class="k">on</span> <span class="n">authors_icase_index</span>  <span class="p">(</span><span class="n">cost</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="p">..</span><span class="mi">8</span><span class="p">.</span><span class="mi">07</span> <span class="k">rows</span><span class="o">=</span><span class="mi">9</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+         <span class="k">Index</span> <span class="n">Cond</span><span class="p">:</span> <span class="p">((</span><span class="k">lower</span><span class="p">((</span><span class="n">authors</span><span class="p">)::</span><span class="nb">text</span><span class="p">))::</span><span class="n">jsonb</span> <span class="o">@&gt;</span> <span class="n">to_jsonb</span><span class="p">(</span><span class="s1">'timur'</span><span class="p">::</span><span class="nb">text</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Однако, у нас нет численного первичного ключа для автора. Авторы определяются
+только по их имени в нижнем регистре. В таком случае, чтобы реализовать страницу автора,
+на которой будут отображаться пакеты этого автора, мы можем вставить имя
+автора прямо в путь к странице.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># routes.rb</span>
+<span class="n">resources</span> <span class="ss">:authors</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">],</span> <span class="ss">constraints: </span><span class="p">{</span> <span class="ss">id: </span><span class="sr">/.+/</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Параметр <code class="language-plaintext highlighter-rouge">constraints</code> позволит Rails понимать авторов с пробелами и
+косыми чертами в имени. Например, в системе есть автор <code class="language-plaintext highlighter-rouge">https://vk.com/sigamepack</code>,
+а страница этого автора доступна по адресу
+<a href="https://www.sibrowser.ru/authors/https:%2F%2Fvk.com%2Fsigamepack">https://www.sibrowser.ru/authors/https://vk.com/sigamepack</a>.</p>
+
+<h2 id="шаг-3-полнотекстовый-поиск-по-jsonb-столбцам">Шаг 3: Полнотекстовый поиск по JSONB столбцам</h2>
+<p>Также мы можем производить полнотекстовый поиск по столбцам с типом JSONB.
+Есть <a href="https://pganalyze.com/blog/full-text-search-ruby-rails-postgres">хорошая статья Ли Халлидея</a>, которая описывает реализацию
+полнотекстового поиска с использованием гема <a href="https://rubygems.org/gems/pg_search">pg_search</a> и типа <code class="language-plaintext highlighter-rouge">ts_vector</code>
+в Postgres.</p>
+
+<p>Здесь я покажу как можно использовать такой же подход для поиска по JSONB столбцам.</p>
+
+<p>Генерируемый столбец <code class="language-plaintext highlighter-rouge">searchable</code> может давать веса значениям типа JSONB. Функция
+<code class="language-plaintext highlighter-rouge">to_tsvector</code> может принимать JSONB объект:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">packages</span>
+<span class="k">ADD</span> <span class="k">COLUMN</span> <span class="n">searchable</span> <span class="n">tsvector</span> <span class="k">GENERATED</span> <span class="n">ALWAYS</span> <span class="k">AS</span> <span class="p">(</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">''</span><span class="p">)),</span> <span class="s1">'A'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Названия раундов</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span> <span class="o">||</span>
+  <span class="c1">-- Названия тем</span>
+  <span class="n">setweight</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">'russian'</span><span class="p">,</span> <span class="n">coalesce</span><span class="p">(</span><span class="n">jsonb_path_query_array</span><span class="p">(</span><span class="k">structure</span><span class="p">,</span> <span class="s1">'$[*].themes[*].name'</span><span class="p">),</span> <span class="s1">'{}'</span><span class="p">)),</span> <span class="s1">'B'</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">STORED</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Этот пример показывает как добавить глубоко вложенные значения в индекс, используя
+JSON пути.</p>
+
+<p>Настройки <code class="language-plaintext highlighter-rouge">pg_search</code> остаются такими же:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Package</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="kp">include</span> <span class="no">PgSearch</span><span class="o">::</span><span class="no">Model</span>
+  
+  <span class="n">pg_search_scope</span> <span class="ss">:search_freetext</span><span class="p">,</span>
+    <span class="ss">against: :searchable</span><span class="p">,</span> <span class="c1"># не используется если указан tsvector_column</span>
+    <span class="ss">using: </span><span class="p">{</span>
+      <span class="ss">tsearch: </span><span class="p">{</span>
+        <span class="ss">dictionary: </span><span class="s1">'russian'</span><span class="p">,</span>
+        <span class="ss">tsvector_column: </span><span class="s1">'searchable'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="заключение">Заключение</h2>
+<p>В этой статье мы рассмотрели такие темы, как:</p>
+<ul>
+  <li>Ограничения в бесплатном уровне Heroku Postgres и как c ними работать</li>
+  <li>Денормализация БД c помощью JSONB</li>
+  <li>Построение инвертированного индекса по значениям JSONB</li>
+  <li>Полнотекстовый поиск по строкам, вложенным в JSONB объекты</li>
+</ul>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Оптимизация схемы реляционной базы данных для соответствия бесплатному уровню Heroku Postgres на примере приложения SIBrowser.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="ru">
+      
+		  <title>React-i18next в Rails: кеширование через файлопровод</title>
+		  <link href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4" rel="alternate" type="text/html" title="React-i18next в Rails: кеширование через файлопровод"/>
+      <published>2021-01-25T00:00:00+00:00</published>
+      
+      <updated>2021-01-25T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4">
+        <![CDATA[<p>Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного
+кеширования файлов перевода.</p>
+
+<p>Здесь мы рассмотрим простейший способ интернационализации <code class="language-plaintext highlighter-rouge">react-rails</code> приложения,
+потом мы обсудим проблемы с кешированием этого подхода, и, наконец,
+мы подключим файлопровод (Asset Pipeline) решения этих проблем.</p>
+
+<h2 id="использование-react-i18next">Использование react-i18next</h2>
+<p>В этой секции мы добавим <code class="language-plaintext highlighter-rouge">react-i18next</code> в приложение и сделаем файлы переводов
+доступными из папки <code class="language-plaintext highlighter-rouge">public</code>.</p>
+
+<p>Сначала добавим необходимые зависимости</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
+</code></pre></div></div>
+
+<p>Инициализируем <code class="language-plaintext highlighter-rouge">i18next</code> в необходимых точках входа (например, <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>):</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/i18next/i18next-http-backend">Плагин <code class="language-plaintext highlighter-rouge">i18next-http-backend</code></a> отвечает за скачивание
+необходимых файлов перевода для выбранного языка, а <code class="language-plaintext highlighter-rouge">react-i18next</code> даёт доступ к
+<code class="language-plaintext highlighter-rouge">i18next</code> из самого React приложения.</p>
+
+<p>Сейчас мы можем реализовать интернационализированную версию страницы «Здравствуй, мир!»
+с возможностью переключения языка:</p>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
+  
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Русский
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Татарча
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+<span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Если вы посмотрите на получившуюся страничку, то вы увидите строку «helloWorld»
+потому, что мы ещё не предоставили сами переводы для ключа <code class="language-plaintext highlighter-rouge">helloWorld</code>, а
+<code class="language-plaintext highlighter-rouge">i18next</code> в таких случаях по умолчанию отображает сам ключ вместо перевода.</p>
+
+<p>По умолчанию <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> ожидает, что файлы переводов доступны
+по адресу <code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code>
+(см. <a href="https://github.com/i18next/i18next-http-backend#backend-options">опцию <code class="language-plaintext highlighter-rouge">loadPath</code></a>), где <code class="language-plaintext highlighter-rouge">{{lng}}</code>
+— это код языка, а <code class="language-plaintext highlighter-rouge">{{ns}}</code> — это пространство имён. Стандартное
+пространство имён называется <code class="language-plaintext highlighter-rouge">translation</code>
+(см. <a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources">опцию <code class="language-plaintext highlighter-rouge">defaultNS</code></a>).</p>
+
+<p>Так, в нашем примере сервер должен обрабатывать два пути: <code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>
+для русской версии и <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code> для татарской. Мы можем
+создать JSON файлы переводов в папке <code class="language-plaintext highlighter-rouge">public</code> и они будут доступны по этим путям.</p>
+
+<p>Файлы переводов для русского языка будут находится в файле <code class="language-plaintext highlighter-rouge">public/locales/ru/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Файлы переводов для татарского языка будут находиться в файле <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code>:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>После создания этих файлов можно перезагрузить страницу и убедиться, что
+переключение языков работает. Но у такого подхода есть одна проблема, подробнее
+о ней в следующей секции.</p>
+
+<h2 id="проблемы-связанные-с-кешированием">Проблемы, связанные с кешированием</h2>
+<p>Вы можете заметить, что после развёртывания новой версии приложения на сервере,
+в браузере выполняется свежая версия JavaScript кода, но иногда
+всё ещё используются старые версии файлов перевода, из-за чего
+отображаются ключи вместо самих переводов.</p>
+
+<p>Это может случаться потому, что старые версии файлов переводов могут
+быть закешированы в браузере.</p>
+
+<p>Как вариант, можно полностью отключить кеширование этих файлов через
+настройки на сервере, или через опцию <code class="language-plaintext highlighter-rouge">requestOptions</code> в <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>,
+или даже через дописывание текущего времени к URL-у для загрузки файлов
+как в <a href="https://stackoverflow.com/a/43499557/8559107">этом ответе на StackOverflow</a>
+(адаптировано для <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Однако, отключать кеш — не оптимально потому, что с каждой перезагрузкой страницы,
+файлы переводов будут скачаны снова.</p>
+
+<p>Лучшим подходом будет правильная настройка кеширования для этих файлов.
+Это можно сделать несколькими способами, здесь мы рассмотрим способ,
+который обычно используется в Rails, а именно — файлопровод.</p>
+
+<h2 id="использование-файлопровода-для-кеширования-файлов-перевода-i18next">Использование файлопровода для кеширования файлов перевода i18next</h2>
+<p>В этой секции мы обсудим использование файлопровода Ruby on Rails для
+<a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Кэширование#Обновление_статических_ресурсов_Revved_resources">оборачивания</a> имён файлов (<a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">filename revving</a>).</p>
+
+<p>Файлопровод <a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">добавляет</a> хеш содержимого файла
+к его имени, поэтому клиенты могут закешировать файл с таким именем навсегда,
+а если появится новая версия этого файла, то у него уже будет другое имя и
+клиенты смогут скачать новую версию по новому имени файла.</p>
+
+<p>Сейчас мы рассмотрим как пустить файлы переводов по файлопроводу, а затем
+настроим <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> чтобы он брал файлы из файлопровода.</p>
+
+<h3 id="перемещение-файлов-переводов-в-файлопровод">Перемещение файлов переводов в файлопровод</h3>
+<p>Чтобы файлы переводов оказались в файлопроводе, нам нужно всего лишь
+переместить их из директории <code class="language-plaintext highlighter-rouge">public</code> в директорию <code class="language-plaintext highlighter-rouge">app/assets</code>. В нашем случае
+у нас получится два файла:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/ru/translation.json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
+</ul>
+
+<p>Проверьте, что файлопровод увидел файлы переводов, используя консоль (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'ru/translation.json'</span><span class="p">)</span>
+<span class="go">"/assets/ru/translation-1516916289b1be2609ec39a8f887f301260d6a7db6e5b39aa7da3b0f0ff2dd14.json" 
+</span></code></pre></div></div>
+
+<p>Если вместо этого вы получаете ошибку <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code>:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'ru/translation.json'</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):
+        1: from (irb):1
+Sprockets::Rails::Helper::AssetNotPrecompiled (ru/translation.json)
+</span></code></pre></div></div>
+
+<p>То, возможно, вы используете Sprockets 4. В таком случае вам нужно
+обновить файл манифеста ассетов.</p>
+
+<h4 id="обновление-файлов-манифеста-для-sprockets-4">Обновление файлов манифеста для Sprockets 4</h4>
+<p>В зависимости от версии гема <code class="language-plaintext highlighter-rouge">sprockets</code> вам может быть нужно или не нужно
+обновлять файл манифеста ассетов. Вы можете проверить версию командой:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
+</code></pre></div></div>
+
+<p>Если у вас в проекте Sprockets версии 4, то вам нужно включить директорию
+с локалям в файле <code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code>:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
+</code></pre></div></div>
+
+<p>Это требование было <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">добавлено в Sprockets 4</a>
+(перевод и акцентирование — от меня):</p>
+<blockquote>
+  <p>Если вы используете sprockets старее, чем 4.0, то Rails будет компилировать
+<code class="language-plaintext highlighter-rouge">application.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>, и <strong>любые</strong> файлы в ваших директориях
+ассетов, которые не распознаны как JS или CSS, но у которых есть расширение
+в имени файла.</p>
+
+  <p>…</p>
+
+  <p>Если вы используете Sprockets 4, то Rails будет использовать другую логику для
+определения входных точек компиляции: будет использоваться <strong>только</strong> файл
+<code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> для определения начальных файлов.</p>
+</blockquote>
+
+<h3 id="получение-путей-файлов-после-файлопровода-из-javascript">Получение путей файлов после файлопровода из JavaScript</h3>
+<p>После перемещения файлов переводов в файлопровод, их больше нельзя получить
+просто по их именам (<code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>). Теперь в их именах
+должны присутствовать хеши (<code class="language-plaintext highlighter-rouge">/assets/ru/translations-151...d14.json</code>).</p>
+
+<p>Эти новые имена можно получить в Ruby из помощника <code class="language-plaintext highlighter-rouge">asset_path</code>, но их
+нельзя получить напрямую в JavaScript. Вместо этого, мы можем использовать
+Erb шаблоны чтобы подставилять значения, вычисленные в Ruby, в JavaScript код.</p>
+
+<p>Добавьте поддержку Erb в <code class="language-plaintext highlighter-rouge">webpacker</code> по <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">оффициальным инструкциям</a>.</p>
+
+<p>Опция <code class="language-plaintext highlighter-rouge">loadPath</code> библиотеки <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> может принимать и функцию
+<code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>. Хоть аргументы <code class="language-plaintext highlighter-rouge">languages</code> и <code class="language-plaintext highlighter-rouge">namespaces</code>
+должны быть массивами, они <a href="https://github.com/i18next/i18next-http-backend/pull/35">будут содержать по одному элементу</a>
+если опция <code class="language-plaintext highlighter-rouge">allowMultiLoading</code> выставлена в значение <code class="language-plaintext highlighter-rouge">false</code> (по умолчанию это так).</p>
+
+<p>Напишем нашу функцию <code class="language-plaintext highlighter-rouge">loadPath</code> в файле <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code>:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>И передадим её в <code class="language-plaintext highlighter-rouge">i18next</code> в файле <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">i18n</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">loadPath</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Сейчас вы можете обновить страницу и увидеть, что кнопки снова работают.</p>
+
+<p>Вот и всё. Желаю вам счастливой интернационализации!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного кеширования файлов перевода.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+	  <entry xml:lang="ru">
+      
+		  <title>Прямая загрузка файлов в Rails React Ant через GraphQL</title>
+		  <link href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-rails-graphql-%D0%BF%D1%80%D1%8F%D0%BC%D0%B0%D1%8F-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0" rel="alternate" type="text/html" title="Прямая загрузка файлов в Rails React Ant через GraphQL"/>
+      <published>2020-11-09T00:00:00+00:00</published>
+      
+      <updated>2020-12-03T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-rails-graphql-%D0%BF%D1%80%D1%8F%D0%BC%D0%B0%D1%8F-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/react-ant-rails-graphql-%D0%BF%D1%80%D1%8F%D0%BC%D0%B0%D1%8F-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0">
+        <![CDATA[<p>Реализация прямой загрузки
+файлов в Ruby on Rails Active Storage из React TypeScript приложения,
+используя Ant Design и GraphQL API.</p>
+
+<h2 id="проблема">Проблема</h2>
+<p>С одной стороны, компонент Upload библиотеки Ant Design позволяет выбирать и загружать файлы
+на сервер. Обычно, использовать этот компонент очень легко: нужно всего лишь
+указать URL для загрузки, и Ant сделает POST запрос с прикреплённым файлом.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Upload</span><span class="p">,</span> <span class="nx">Button</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">Test</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">Upload</span>
+    <span class="na">name</span><span class="p">=</span><span class="s">'avatar'</span>
+    <span class="na">action</span><span class="p">=</span><span class="s">'https://example.com/avatar'</span>
+  <span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>С другой стороны, Rails предлагает создавать поле для загрузки файлов в представлении:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">file_field</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="ss">direct_upload: </span><span class="kp">true</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>В нашем проекте мы использовали представления Rails, а вся разметка создавалась
+только внутри React. Поэтому нам нужно было найти другой способ для загрузки файлов.</p>
+
+<h2 id="решение">Решение</h2>
+<p>Наше решение основано на статьях
+<a href="https://evilmartians.com/chronicles/active-storage-meets-graphql-direct-uploads">Active Storage meets GraphQL: Direct Uploads</a>,
+<a href="https://cameronbothner.com/activestorage-beyond-rails-views/">How to Use ActiveStorage Outside of a Rails View</a>
+и <a href="https://cameronbothner.com/activestorage-beyond-rails-views/">этом ответе со StackOverflow</a>.</p>
+
+<p>Прямая загрузка в Acitve Storage происходит в несколько этапов:</p>
+<ol>
+  <li>Клиент извлекает метаданные файла</li>
+  <li>Клиент отправляет метаданные на Сервер</li>
+  <li>Сервер подготавливает загрузку вместе с Сервисом</li>
+  <li>Сервер отправляет URL для загрузки и необходимые заголовки Клиенту</li>
+  <li>Клиент загружает файл на Сервис, используя URL и заголовки, полученные с Сервера</li>
+</ol>
+
+<p>В этом примере мы используем GraphQL, поэтому шаги 2, 3, 4 будут реализованны
+через GraphQL мутацию.</p>
+
+<h3 id="серверная-часть">Серверная часть</h3>
+
+<p>Параметры для прямой загрузки зависят от этих метаданных файла:</p>
+<ul>
+  <li>Имя файла</li>
+  <li>Тип данных</li>
+  <li>Контрольная сумма (подробнее о ней <a href="#клиентская-часть">ниже</a>)</li>
+  <li>Размер файла</li>
+</ul>
+
+<p>Мы будем передавать эти данные в мутацию, а клиент в ответ будет получать
+конкретные параметры для загрузки (URL и заголовки), а также идентификаторы
+блоба.</p>
+
+<p>Мы используем <a href="https://graphql-ruby.org">гем <code class="language-plaintext highlighter-rouge">graphql</code></a> для реализации GraphQL
+контроллера в Rails.</p>
+
+<p>Как мы уже говорили раньше, у нас будет мутация, которая берёт необходимые
+метаданные файла и даёт данные, необходимые для загрузки:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Mutations</span>
+  <span class="k">class</span> <span class="nc">CreateDirectUpload</span> <span class="o">&lt;</span> <span class="no">BaseMutation</span>
+    <span class="n">argument</span> <span class="ss">:filename</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:byte_size</span><span class="p">,</span> <span class="no">Int</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:checksum</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+    <span class="n">argument</span> <span class="ss">:content_type</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">required: </span><span class="kp">true</span>
+
+    <span class="n">field</span> <span class="ss">:url</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:headers</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="s1">'JSON of required HTTP headers'</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:blob_id</span><span class="p">,</span> <span class="no">ID</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">field</span> <span class="ss">:signed_blob_id</span><span class="p">,</span> <span class="no">ID</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Метод <code class="language-plaintext highlighter-rouge">resolve</code> будет создавать блоб и возвращать необходимые для загрузки данные:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Mutations</span>
+  <span class="k">class</span> <span class="nc">CreateDirectUpload</span> <span class="o">&lt;</span> <span class="no">BaseMutation</span>
+    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="n">filename</span><span class="p">:,</span> <span class="n">byte_size</span><span class="p">:,</span> <span class="n">checksum</span><span class="p">:,</span> <span class="n">content_type</span><span class="p">:)</span>
+      <span class="n">blob</span> <span class="o">=</span> <span class="no">ActiveStorage</span><span class="o">::</span><span class="no">Blob</span><span class="p">.</span><span class="nf">create_before_direct_upload!</span><span class="p">(</span>
+        <span class="ss">filename: </span><span class="n">filename</span><span class="p">,</span>
+        <span class="ss">byte_size: </span><span class="n">byte_size</span><span class="p">,</span>
+        <span class="ss">checksum: </span><span class="n">checksum</span><span class="p">,</span>
+        <span class="ss">content_type: </span><span class="n">content_type</span>
+      <span class="p">)</span>
+
+      <span class="p">{</span>
+        <span class="ss">url: </span><span class="n">blob</span><span class="p">.</span><span class="nf">service_url_for_direct_upload</span><span class="p">,</span>
+        <span class="ss">headers: </span><span class="n">blob</span><span class="p">.</span><span class="nf">service_headers_for_direct_upload</span><span class="p">.</span><span class="nf">to_json</span><span class="p">,</span>
+        <span class="ss">blob_id: </span><span class="n">blob</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
+        <span class="ss">signed_blob_id: </span><span class="n">blob</span><span class="p">.</span><span class="nf">signed_id</span>
+      <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Теперь клиент сможет использовать эту мутацию чтобы подготовить прямую загрузку.</p>
+
+<h3 id="клиентская-часть">Клиентская часть</h3>
+<p>Все параметры мутации не требуют пояснений, за исключением параметра <code class="language-plaintext highlighter-rouge">checksum</code>.
+Строка контрольной суммы должна вычисляться по особому алгоритму, который
+доступен в <a href="https://www.npmjs.com/package/@rails/activestorage">пакете <code class="language-plaintext highlighter-rouge">@rails/activestorage</code></a>.</p>
+
+<p><strong>Бонус!</strong> Объявления типов для TypeScript доступны в
+<a href="https://www.npmjs.com/package/@types/rails__activestorage">пакете <code class="language-plaintext highlighter-rouge">@types/rails__activestorage</code></a>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">FileChecksum</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/file_checksum</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">calculateChecksum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">File</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="nx">FileChecksum</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">checksum</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nf">resolve</span><span class="p">(</span><span class="nx">checksum</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">))</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Компонент Upload библиотеки Ant принимает функцию <code class="language-plaintext highlighter-rouge">beforeUpload</code>, в которой
+мы и будем получать параметры для загрузки с сервера. В этом примере мы
+будем загружать один файл и будем сохранять необходимые параметры в состоянии
+компонента чтобы использовать их чуть позже.</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcFile</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">:</span> <span class="nx">RcFile</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// createDirectUploadMutation is a placeholder for your GraphQL request method</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">createDirectUploadMutation</span><span class="p">({</span>
+      <span class="na">checksum</span><span class="p">:</span> <span class="k">await</span> <span class="nf">calculateChecksum</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+      <span class="na">filename</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span>
+      <span class="na">contentType</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="kd">type</span><span class="p">,</span>
+      <span class="na">byteSize</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">size</span>
+    <span class="p">});</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span> <span class="nx">url</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">headers</span><span class="p">)</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Сейчас мы можем реализовать функцию, которая выполнит XHR для прямой загрузки:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">RcCustomRequestOptions</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">antd/lib/upload/interface</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BlobUpload</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@rails/activestorage/src/blob_upload</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">:</span> <span class="nx">RcCustomRequestOptions</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">headers</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BlobUpload</span><span class="p">({</span>
+      <span class="nx">file</span><span class="p">,</span>
+      <span class="na">directUploadData</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span> <span class="kd">as </span><span class="nb">Record</span><span class="o">&lt;</span><span class="kr">string</span><span class="p">,</span> <span class="kr">string</span><span class="o">&gt;</span><span class="p">;</span>
+        <span class="nl">url</span><span class="p">:</span> <span class="nx">action</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">upload</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">progress</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">percent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="nx">options</span><span class="p">.</span><span class="nf">onProgress</span><span class="p">({</span> <span class="nx">percent</span> <span class="p">},</span> <span class="nx">file</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">upload</span><span class="p">.</span><span class="nf">create</span><span class="p">((</span><span class="na">error</span><span class="p">:</span> <span class="nb">Error</span><span class="p">,</span> <span class="na">response</span><span class="p">:</span> <span class="nx">object</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onError</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nf">onSuccess</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">file</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Далее, когда у нас есть функции <code class="language-plaintext highlighter-rouge">beforeUpload</code> и <code class="language-plaintext highlighter-rouge">customRequest</code>, мы
+можем использовать их в хуках компонента Upload:</p>
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nc">Upload</span>
+        <span class="na">method</span><span class="p">=</span><span class="s">'put'</span> <span class="c1">// important!</span>
+        <span class="na">multiple</span><span class="p">=</span><span class="si">{</span><span class="kc">false</span><span class="si">}</span>
+        <span class="na">beforeUpload</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">file</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">beforeUpload</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">action</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">url</span><span class="si">}</span>
+        <span class="na">customRequest</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">options</span><span class="p">):</span> <span class="k">void</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">customRequest</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Button</span><span class="p">&gt;</span>Click to Upload!<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Upload</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Не забудьтье обновить маршруты Rails. Если вы перенаправляете все запросы
+в React:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match</span> <span class="s1">'*path'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'react#index'</span><span class="p">,</span> <span class="ss">via: :all</span>
+</code></pre></div></div>
+
+<p>То вы можете исключить маршруты для Active Storage из этого правила:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match</span> <span class="s1">'*path'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'react#index'</span><span class="p">,</span> <span class="ss">via: :all</span><span class="p">,</span>
+  <span class="ss">constraints: </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="p">{</span> <span class="n">req</span><span class="p">.</span><span class="nf">path</span><span class="p">.</span><span class="nf">exclude?</span> <span class="s1">'rails/active_storage'</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Вот и всё. Желаю вам счастливых прямых загрузок!</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Реализация прямой загрузки файлов в Ruby on Rails Active Storage из React TypeScript приложения, используя Ant Design и GraphQL API.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
+  
+</feed>
