@@ -14,6 +14,7 @@ group :jekyll_plugins do
   gem 'jekyll-plantuml', '~> 1.4', '>= 1.4.2'
   gem 'jekyll-node-module', '~> 0.1.3'
   gem 'jekyll_picture_tag', '~> 2.1'
+  gem 'jekyll-inline-svg', '~> 1.1', '>= 1.1.5'
 end
 
 # Tests

@@ -16,6 +16,10 @@ plugins:
   - jekyll-plantuml
   - jekyll-postcss
   - jekyll-node-module
+  - jekyll-inline-svg
+
+svg:
+  optimize: true
 
 node_modules:
   copy:

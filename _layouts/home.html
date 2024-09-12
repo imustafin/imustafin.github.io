@@ -47,6 +47,12 @@ layout: with-header-footer
           {{ site.data.i18n.home.all-posts[page.lang] }}
         </a>
       </div>
+
+      {% assign feed_posts = site.pages | where: "ref", "feed-posts" | where: "lang", page.lang | first %}
+      <a href="{{ feed_posts.url | absolute_url }}" class="inline-block vlink no-underline mt-4">
+        {% svg feed-icon.svg class="inline h-4 w-4" width=16 height=16 %}
+        <span class="underline">{{ site.data.i18n.home.subscribe-posts | t }}</span>
+      </a>
     </section>
 
     <section class="flex-1 min-w-[30ch]">

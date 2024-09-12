@@ -19,7 +19,6 @@ object.plantuml {
     .vlink {
         @apply visited:text-[revert];
         @apply underline;
-        @apply hover:underline;
         @apply text-clink;
     }
 }

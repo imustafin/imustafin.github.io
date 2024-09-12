@@ -4,7 +4,12 @@ layout: default
 
 <div class="prose">
   <h1>{{ site.data.i18n.blog.posts[page.lang] }}</h1>
-  <span></span>
 </div>
+
+{% assign feed_posts = site.pages | where: "ref", "feed-posts" | where: "lang", page.lang | first %}
+<a href="{{ feed_posts.url | absolute_url }}" class="inline-block vlink no-underline my-4">
+  {% svg feed-icon.svg class="inline h-4 w-4" width=16 height=16%}
+  <span class="underline">{{ site.data.i18n.home.subscribe-posts | t }}</span>
+</a>
 
 {% include posts.html limit=nil hlevel=2 %}
