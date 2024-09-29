@@ -5,13 +5,7 @@ let fontsSerif = '"Roboto Slab", Rockwell, "Rockwell Nova", '
 module.exports = {
   darkMode: 'class',
   content: [
-    './**/_drafts/**/*.html',
-    './**/_includes/**/*.html',
-    './**/_layouts/**/*.html',
-    './**/_posts/**/*.md',
-    './*.md',
-    './*.html',
-    '_config.yml',
+    '_site/**.html',
   ],
   theme: {
     extend: {

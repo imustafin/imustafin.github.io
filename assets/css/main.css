@@ -1,5 +1,6 @@
 ---
 include_in_sitemap: false
+rewrite_post_write: 1
 ---
 @import "@fontsource-variable/roboto-slab";
 
@@ -20,5 +21,9 @@ object.plantuml {
         @apply visited:text-[revert];
         @apply underline;
         @apply text-clink;
+    }
+
+    .before-slash:before {
+        content: "/";
     }
 }
