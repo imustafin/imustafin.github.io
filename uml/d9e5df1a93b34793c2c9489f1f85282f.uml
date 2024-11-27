@@ -1,0 +1,31 @@
+@startuml
+
+!define Table(name) class name as "name"
+!define primary_key(x) <b>x</b>
+!define unique(x) <color:green>x</color>
+!define not_null(x) <u>x</u>
+hide methods
+hide stereotypes
+hide circle
+hide empty members
+skinparam linetype ortho
+
+Table(Пакет) 
+
+Table(Автор)
+
+Table(Тег)
+
+Table(Раунд)
+
+Table(Тема)
+
+Table(Вопрос)
+
+Автор }|--o{ Пакет
+Пакет }|--o{ Тег
+Пакет ||-r-o{ Раунд
+Раунд ||-r-o{ Тема
+Тема ||-r-o{ Вопрос
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+
+skinparam linetype ortho
+hide empty members
+hide circle
+
+namespace main #becee4 {
+  class APPLICATION <<root>> {
+  
+  }
+  
+  class DEMO {
+  
+  }
+  
+  namespace subcluster #FFFFFF {
+    class SUBCLUSTER_DEMO
+  }
+}
+
+namespace "<&book> other_library" as other_library {
+  class OTHER_LIBRARY_DEMO
+}
+
+
+namespace other_cluster {
+  class OTHER_CLUSTER_DEMO
+}
+
+namespace indirect_cluster {
+  class INDIRECT_CLUSTER_DEMO
+}
+
+main.APPLICATION .d.> main.DEMO
+main.DEMO .d.> other_cluster.OTHER_CLUSTER_DEMO
+other_cluster.OTHER_CLUSTER_DEMO .r.> indirect_cluster.INDIRECT_CLUSTER_DEMO
+main.DEMO .r.> main.subcluster.SUBCLUSTER_DEMO
+main.DEMO .l.> other_library.OTHER_LIBRARY_DEMO
+
+@enduml
