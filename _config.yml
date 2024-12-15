@@ -14,17 +14,11 @@ markdown: kramdown
 plugins:
   - jekyll-redirect-from
   - jekyll-plantuml
-  - jekyll-postcss
-  - jekyll-node-module
   - jekyll-inline-svg
+  - jekyll-tailwindcss
 
 svg:
   optimize: true
-
-node_modules:
-  copy:
-    - source: '@fontsource-variable/roboto-slab/files'
-      target: 'assets/css/files'
 
 postcss:
   cache: false
@@ -45,20 +39,19 @@ breadcrumbs:
 exclude:
   - Gemfile
   - Gemfile.lock
-  - node_modules
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
   - README.md
   - favicon/
-  - yarn.lock
   - tailwind.config.js
   - postcss.config.js
-  - package.json
   - dev.sh
   - test/
   - Rakefile
+  - assets/fonts/roboto-slab/LICENSE.txt
+  - assets/fonts/roboto-slab/README.txt
 
 defaults:
   - scope:

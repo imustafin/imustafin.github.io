@@ -2,9 +2,15 @@
 include_in_sitemap: false
 rewrite_post_write: 1
 ---
-@import "@fontsource-variable/roboto-slab";
-
 @import "assets/css/rouge-github.css";
+
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Slab Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/assets/fonts/roboto-slab/RobotoSlab-VariableFont_wght.ttf');
+}
 
 object.plantuml {
 		@apply max-w-full;

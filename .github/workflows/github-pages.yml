@@ -15,14 +15,6 @@ jobs:
         with:
           ruby-version: '3.2'
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 22.2
-
-      - name: yarn install
-        run: |
-          yarn install --frozen-lockfile
-
       - name: Install PlantUML and libvips
         env:
           PLANTUML_JAR: https://github.com/plantuml/plantuml/releases/download/v1.2023.13/plantuml-1.2023.13.jar
