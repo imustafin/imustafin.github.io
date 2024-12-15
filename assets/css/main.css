@@ -1,6 +1,5 @@
 ---
 include_in_sitemap: false
-rewrite_post_write: 1
 ---
 @import "assets/css/rouge-github.css";
 
