@@ -36,15 +36,19 @@ about:
   personal-website:
     en: Personal website
     ru: Личный сайт
-    tt: Шәхси сайты
+    tt: Шәхси сайт
   github:
-    en: GitHub profile
-    ru: GitHub профиль
-    tt: GitHub профиле
+    en: GitHub
+    ru: GitHub
+    tt: GitHub
   linkedin:
-    en: LinkedIn profile
-    ru: LinkedIn профиль
-    tt: LinkedIn профиле
+    en: LinkedIn
+    ru: LinkedIn
+    tt: LinkedIn
+  cicse:
+    en: Chair of SE at CIT
+    ru: Кафедра SE в CIT
+    tt: CIT SE кафедрасы
 
 site:
   title:

@@ -49,6 +49,7 @@ class StructuredDataTest < Minitest::Test
       https://orcid.org/0009-0007-0476-5966
       https://github.com/imustafin
       https://www.linkedin.com/in/imustafin/
+      https://se.constructor.ch/people/ilgiz-mustafin.html
     ].map { |x| RDF::URI.new(x) }.to_set,
       links.to_set
     )
