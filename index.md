@@ -10,7 +10,7 @@ date: 2020-11-06
 title: "Ilgiz Mustafin: PhD Student in Software Engineering"
 redirect_from:
   - /en/
-crumbtitle: Main
+crumbtitle: Home
 ---
 # Hi! My name is Ilgiz.
 
