@@ -30,12 +30,6 @@ jobs:
           enable_cache: true
           format_output: true
 
-      - name: Build site again for tailwind
-        uses: limjh16/jekyll-action-ts@v2
-        with:
-          enable_cache: true
-          format_output: true
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
