@@ -1,6 +1,52 @@
 ---
 include_in_sitemap: false
 ---
+@import "tailwindcss";
+@plugin "@tailwindcss/typography" {
+  target: "legacy";
+}
+
+@theme {
+  --color-clink: #1e6bb8;
+  --color-tcolor: #374151;
+  --color-ghaze-50: #f0fdf6;
+  --color-ghaze-100: #dcfceb;
+  --color-ghaze-200: #bbf7d8;
+  --color-ghaze-300: #86efba;
+  --color-ghaze-400: #4ade93;
+  --color-ghaze-500: #22c573;
+  --color-ghaze-600: #159957;
+  --color-ghaze-700: #15804b;
+  --color-ghaze-800: #16653e;
+  --color-ghaze-900: #145335;
+  --color-ghaze-950: #052e1b;
+
+  --font-sans: "Noto Sans", Optima, Candara, source-sans-pro, sans-serif;
+  --font-serif: "Roboto Slab", Rockwell, "Rockwell Nova", "Roboto Slab Variable", serif;
+}
+
+@utility prose {
+  @apply prose-headings:text-ghaze-600;
+  @apply prose-headings:font-serif;
+  @apply prose-a:vlink;
+  @apply prose-a:font-normal;
+  @apply prose-pre:bg-[#f3f6fa];
+  @apply prose-pre:text-[#567482];
+  @apply prose-pre:leading-[131%];
+  @apply prose-code:before:content-[''];
+  @apply prose-code:after:content-[''];
+
+  blockquote {
+    /* Disable adding quote marks to block-quotes: https://github.com/tailwindlabs/tailwindcss-typography/issues/66 */
+    p {
+        &:first-of-type::before,
+        &:last-of-type::after {
+          content: none;
+        }
+      }
+  }
+}
+
 @font-face {
   font-display: swap;
   font-family: 'Roboto Slab Variable';
@@ -15,20 +61,10 @@ object.plantuml {
 		@apply h-auto;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-    .vlink {
-        @apply visited:text-[revert];
-        @apply underline;
-        @apply text-clink;
-    }
-
-    .before-slash:before {
-        content: "/";
-    }
+@utility vlink {
+  @apply visited:text-[revert];
+  @apply underline;
+  @apply text-clink;
 }
 
 /* Rouge github theme */
@@ -237,7 +273,4 @@ object.plantuml {
 }
 .highlight .w {
   color: #bbbbbb;
-}
-.highlight {
-  background-color: #f8f8f8;
 }

@@ -11,7 +11,7 @@ layout: with-header-footer
       {% assign about=site.pages | where: "ref", "about" | where: "lang", page.lang | first %}
       <a
         href="{{ about.url }}"
-        class="mt-4 vlink font-semibold inline-block"
+        class="mt-4 vlink inline-block"
       >
         {{ site.data.i18n.home.more-about[page.lang] }}
       </a>
@@ -42,7 +42,7 @@ layout: with-header-footer
       <div class="mt-4">
         <a
           href="{{ blog.url }}"
-          class="vlink font-semibold inline-block"
+          class="vlink inline-block"
         >
           {{ site.data.i18n.home.all-posts[page.lang] }}
         </a>
