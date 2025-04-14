@@ -13,7 +13,7 @@ group :jekyll_plugins do
   gem 'jekyll-plantuml', '~> 1.4', '>= 1.4.2'
   gem 'jekyll_picture_tag', '~> 2.1'
   gem 'jekyll-inline-svg', '~> 1.1', '>= 1.1.5'
-  gem 'jekyll-tailwindcss', '~> 0.6.2'
+  gem 'jekyll-tailwindcss', '~> 0.7.0'
 end
 
 # Tests
