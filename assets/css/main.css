@@ -22,7 +22,7 @@ include_in_sitemap: false
   --color-ghaze-950: #052e1b;
 
   --font-sans: "Noto Sans", Optima, Candara, source-sans-pro, sans-serif;
-  --font-serif: "Roboto Slab", Rockwell, "Rockwell Nova", "Roboto Slab Variable", serif;
+  --font-serif: "Roboto Slab", "Roboto Slab Variable", serif;
 }
 
 @utility prose {
