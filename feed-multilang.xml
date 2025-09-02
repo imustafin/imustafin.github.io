@@ -6,10 +6,90 @@
 	<link href="https://imustafin.tatar/feed-multilang.xml" rel="self" type="application/atom+xml" />
 	<link href="https://imustafin.tatar" />
 	<id>https://imustafin.tatar/feed-multilang.xml</id>
-	<updated>2025-03-05T09:22:30+00:00</updated>
+	<updated>2025-09-02T16:57:32+00:00</updated>
 
   
   
+  
+	  <entry xml:lang="en">
+      
+		  <title>My Experience at CIT</title>
+		  <link href="https://imustafin.tatar/blog/experience-at-cit" rel="alternate" type="text/html" title="My Experience at CIT"/>
+      <published>2025-09-02T00:00:00+00:00</published>
+      
+      <updated>2025-09-02T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/blog/experience-at-cit</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/blog/experience-at-cit">
+        <![CDATA[<p>Constructor Institute of Technology (CIT) is an institute
+in Schaffhausen, Switzerland where I did two years
+of my PhD on software verification with Eiffel.
+Unfortunately, it was <a href="https://institute.constructor.org/news/constructor-institute-technology-plans-cease-operations-schaffhausen-switzerland-refocusing">decided to close CIT in 2025</a>.
+In this post I want to preserve links to some of the projects that we worked
+on.</p>
+
+<p>I was part of the <a href="https://se.constructor.ch/">Chair of Software Engineering</a>
+lead by <a href="https://bertrandmeyer.com/">Bertrand Meyer</a>. At my time there were
+several PhD students besides me: <a href="https://huangl223.github.io/li/">Li Huang</a>
+(she graduated and got her degree, congratulations!), <a href="https://se.constructor.ch/people/alessandro-schena">Alessandro Schena</a>
+and <a href="https://retoweber.info/">Reto Weber</a>. Our research and teaching was supported
+by <a href="https://se.constructor.ch/people/marco-piccioni">Marco Piccioni</a>.</p>
+
+<h2 id="static-verification-with-autoproof">Static verification with AutoProof</h2>
+<p>Our research covered various fields of software engineering with
+a focus on static verification. Our main product in this field
+is <a href="https://se.constructor.ch/reif-site/autoproof/">AutoProof</a>,
+which is a part of <a href="https://se.constructor.ch/reif-site/">Reif</a>, the Research Eiffel environment. AutoProof
+is a static program verifier for Eiffel programs. It means that
+AutoProof can check if the implementation of procedures is consistent
+with the contracts.</p>
+
+<p>The majority of my code contribution was connected with 
+implementing and expanding the approach described
+in the paper <a href="https://se.constructor.ch/publications/concept-of-class-invariant-in-oop">“The concept of class invariant in object-oriented programming”</a>
+of our Chair. Unfortunately, our work was interrupted by the closing
+of the Institute.</p>
+
+<h2 id="do-llms-help-fixing-verified-software">Do LLMs help fixing verified software?</h2>
+<p>One of the latest researches we did at the Institute studied how well
+LLM chats can help with fixing bugs when programmers have access to a verifier.
+The report is called <a href="https://se.constructor.ch/publications/do-ai-models-help-produce-verified-fixes">“Do AI models help produce verified bug fixes?”</a>.</p>
+
+<p>I think that software verification can tackle the randomness of LLM answers.
+Verifier can check if a fix is really “correct” and not just “statistically
+looks suitable”.</p>
+
+<p>25 software engineers were asked to fix bugs in programs. Some were allowed
+to use a chat-bot and a verifier, some were allowed to work only with the verifier.</p>
+
+<p>The results show that LLMs are most useful for complete novices
+(produce at least something) and experts (quickly implement what was planned).
+Developers of the medium expertise had less success with LLMs.</p>
+
+<p>I <a href="https://se.constructor.ch/2025/07/25/ai-models-verified-bug-fixes">wrote more</a> about the experiment on the Chair’s blog. Of course,
+the paper provides more details.</p>
+
+<h2 id="future-plans">Future plans</h2>
+<p>There are more projects that we did at the Constructor Institute of Technology
+which I would like to highlight, but I will leave them for the next posts.
+Subscribe to the <a href="/feed.xml">RSS feed</a> in order not to miss them!</p>
+
+<p>Overall, I am happy that I had an opportunity to work on advanced
+software engineering topics in a skilled team lead by Bertrand Meyer.
+The work conditions were excellent and allowed us to focus on the research.
+Personally, I find it sad that our work was interrupted so abruptly.</p>
+
+<p>I hope that there will be an opportunity to connect with the team
+and continue where we left off.</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Constructor Institute of Technology (CIT) is an institute in Schaffhausen, Switzerland where I did two years of my PhD on software verification with Eiffel. Unfortunately, it was decided to close CIT in 2025. In this post I want to preserve links to some of the projects that we worked on.]]>
+      </summary>
+      <author>
+        <name>Ilgiz Mustafin</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
   
 	  <entry xml:lang="en">
       
@@ -1728,255 +1808,6 @@ JavaScript-та аларны турыдан-туры алырга мөмкин �
       </summary>
       <author>
         <name>Ильгиз Мустафин</name>
-        <uri>https://imustafin.tatar/</uri>
-      </author>
-    </entry>
-  
-	  <entry xml:lang="en">
-      
-		  <title>React-i18next in Rails: caching with Asset Pipeline</title>
-		  <link href="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching" rel="alternate" type="text/html" title="React-i18next in Rails: caching with Asset Pipeline"/>
-      <published>2020-12-03T00:00:00+00:00</published>
-      
-      <updated>2020-12-16T00:00:00+00:00</updated>
-		  <id>https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching</id>
-
-		  <content type="html" xml:base="https://imustafin.tatar/blog/rails-react-i18next-asset-pipeline-caching">
-        <![CDATA[<p>How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.</p>
-
-<p>Here we will cover the simplest way of internationalizing
-a <code class="language-plaintext highlighter-rouge">react-rails</code> application, then we will
-discuss the caching problem of this approach,
-and finally we will use the Asset Pipeline to achieve efficient caching
-of the translation files.</p>
-
-<h2 id="adding-react-i18next">Adding react-i18next</h2>
-<p>In this section we will add <code class="language-plaintext highlighter-rouge">react-i18next</code> and serve
-the translation files from the <code class="language-plaintext highlighter-rouge">public</code> directory.</p>
-
-<p>First, let’s add the required dependencies:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
-</code></pre></div></div>
-
-<p>Initialize <code class="language-plaintext highlighter-rouge">i18next</code> in the required pack files (e.g. <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>):</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="nx">i18n</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
-</code></pre></div></div>
-
-<p><a href="https://github.com/i18next/i18next-http-backend">The <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> plugin</a> is responsible
-for downloading the needed translation files for the current language and
-<code class="language-plaintext highlighter-rouge">react-i18next</code> makes <code class="language-plaintext highlighter-rouge">i18next</code> available to the React application itself.</p>
-
-<p>Now we can implement an internationalized version of a “Hello, world!”
-page with an option to switch the language:</p>
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
-  
-  <span class="k">return </span><span class="p">(</span>
-    <span class="p">&lt;&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">en</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
-        English
-      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
-        Татарча
-      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/&gt;</span>
-  <span class="p">);</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
-<span class="p">);</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>If you look at the resulting page, you will see the string “helloWorld”
-because we have not yet provided the translations for the <code class="language-plaintext highlighter-rouge">helloWorld</code> key and
-<code class="language-plaintext highlighter-rouge">i18next</code> falls back to the key if the translation is not found.</p>
-
-<p>By default, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> expects translation files to be available
-at <code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> path
-(see <a href="https://github.com/i18next/i18next-http-backend#backend-options">the <code class="language-plaintext highlighter-rouge">loadPath</code> option</a>),
-where <code class="language-plaintext highlighter-rouge">{{lng}}</code> is the language code
-and <code class="language-plaintext highlighter-rouge">{{ns}}</code> is the namespace. The default namespace
-is called <code class="language-plaintext highlighter-rouge">translation</code> (see <a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources">the <code class="language-plaintext highlighter-rouge">defaultNS</code> option</a>).</p>
-
-<p>So, in our case the server needs to provide two paths:
-<code class="language-plaintext highlighter-rouge">/locales/en/translation.json</code> for the English version and <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
-for the Tatar version. We can create the translation JSON files in the <code class="language-plaintext highlighter-rouge">public</code> directory and
-they will be available at the required paths.</p>
-
-<p>The English translations will be located in <code class="language-plaintext highlighter-rouge">public/locales/en/translation.json</code>:</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello, world!"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>The Tatar translations will be located in <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code>:</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>With these files in place, you can refresh the page and observe the buttons working.
-But there is a catch! Read further to see where this solution can break.</p>
-
-<h2 id="problems-due-to-caching">Problems due to caching</h2>
-<p>You may notice that if you deploy a new version of your application,
-browser runs the new version of your code, but sometimes
-the old version of the translations are used, which results in
-displaying the translation keys instead of the translations themselves.</p>
-
-<p>This can be because of the old version of translation files being
-cached.</p>
-
-<p>One solution to this problem is disabling caching completely with server configurations,
-disabling caching with the <code class="language-plaintext highlighter-rouge">requestOptions</code> option of <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>,
-or even appending the current date to the download URL like
-<a href="https://stackoverflow.com/a/43499557/8559107">in this StackOverflow answer</a> (adapted to <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>):</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>However, it is not optimal to disable caching
-as on each refresh the translation files will be downloaded once again.</p>
-
-<p>A better approach is to properly configure caching for the translation files.
-This can be done in several ways and here we will talk about using
-the default approach used in Rails for such tasks, the Asset Pipeline.</p>
-
-<h2 id="using-asset-pipeline-for-caching-i18next-translation-files">Using Asset Pipeline for caching i18next translation files</h2>
-<p>In this section we will see how to use Rails Asset Pipeline to <a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">rev</a> the
-translation file paths.</p>
-
-<p>Asset Pipeline
-<a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">appends</a> a hash of the file
-contents to the file name, this way clients can cache such files forever and
-when the new version will be released, it will have a different name and
-clients will be able to download the new version by its new name.</p>
-
-<p>Now we will pipe the translation files through the Asset Pipeline
-and then configure <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> to load files from the Asset Pipeline.</p>
-
-<h3 id="including-the-translation-files-in-the-asset-pipeline">Including the translation files in the Asset Pipeline</h3>
-<p>For translations JSON files to appear in the Asset Pipeline we just need
-to move them from the <code class="language-plaintext highlighter-rouge">public</code> directory to <code class="language-plaintext highlighter-rouge">app/assets</code>. In our example,
-these should result in two files located in these locations:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/en/translation.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
-</ul>
-
-<p>You can check that the translation files are recognized by the Asset Pipeline
-in the Rails console (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'en/translation.json'</span><span class="p">)</span>
-<span class="go">"/assets/en/translation-6804b48978898b3301e60a2df30ae539fcf7d2370c47fe9ca3f440879163a0f9.json"
-</span></code></pre></div></div>
-
-<p>If instead you get the error <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code>:</p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'en/translation.json'</span><span class="p">)</span>
-<span class="go">Traceback (most recent call last):
-        1: from (irb):1
-Sprockets::Rails::Helper::AssetNotPrecompiled (en/translation.json)
-</span></code></pre></div></div>
-
-<p>Then maybe you are using Sprockets 4, in this case you need to update
-the manifest file.</p>
-
-<h4 id="updating-the-asset-manifest-file-for-sprockets-4">Updating the asset manifest file for Sprockets 4</h4>
-<p>Depending on the <code class="language-plaintext highlighter-rouge">sprockets</code> gem version you might or might not
-need to update the assets manifest file. You can check the version by running:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
-</code></pre></div></div>
-
-<p>If you are using Sprockets 4, then you must reference the locales directory in
-the assets manifest file <code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> like this:</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
-</code></pre></div></div>
-
-<p>This is a change <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">introduced in Sprockets 4</a> (emphasis by me):</p>
-<blockquote>
-  <p>If you are using sprockets prior to 4.0, Rails will compile <code class="language-plaintext highlighter-rouge">application.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>;
-and <strong>any</strong> files found in your assets directory(ies) that are not recognized as JS or CSS,
-but do have a filename extension.</p>
-
-  <p>…</p>
-
-  <p>If you are using Sprockets 4, Rails changes its default logic for determining top-level targets.
-It will now use <strong>only</strong> a file at <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> for specifying top-level targets;</p>
-</blockquote>
-
-<h3 id="getting-asset-pipeline-paths-in-javascript">Getting Asset Pipeline paths in JavaScript</h3>
-<p>After moving the translations to Asset Pipeline, they are not available by
-their original filenames like <code class="language-plaintext highlighter-rouge">/locales/en/translation.json</code> but should be
-accessed by their new names which include hashes like <code class="language-plaintext highlighter-rouge">/assets/en/translations-680...0f9.json</code>.</p>
-
-<p>These new file names are available in Ruby using the <code class="language-plaintext highlighter-rouge">asset_path</code> helper
-but they are not available directly in JavaScript. Instead, we can use Erb templates
-to substitute values computed by Ruby into JavaScript code.</p>
-
-<p>Add Erb support to <code class="language-plaintext highlighter-rouge">webpacker</code> by following the <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">official instructions</a>.</p>
-
-<p>The <code class="language-plaintext highlighter-rouge">loadPath</code> configuration option of <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> accepts a function
-<code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>. While both <code class="language-plaintext highlighter-rouge">languages</code> and <code class="language-plaintext highlighter-rouge">namespaces</code>
-are arrays, they <a href="https://github.com/i18next/i18next-http-backend/pull/35">should contain only one element each</a> when 
-the <code class="language-plaintext highlighter-rouge">allowMultiLoading</code> option is set to <code class="language-plaintext highlighter-rouge">false</code> (it is so by default).</p>
-
-<p>Implement this custom <code class="language-plaintext highlighter-rouge">loadPath</code> function in <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code>:</p>
-<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">en</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"en/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>And pass it to <code class="language-plaintext highlighter-rouge">i18next</code> in your <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>:</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="nx">i18n</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
-    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nx">loadPath</span><span class="p">,</span>
-    <span class="p">},</span>
-  <span class="p">});</span>
-</code></pre></div></div>
-
-<p>Now you can refresh the page and observe that the buttons work once again.</p>
-
-<p>And that’s it. Happy internationalization!</p>]]>
-      </content>
-      <summary type="html">
-        <![CDATA[How to use Ruby on Rails Asset Pipeline to efficiently cache translation files.]]>
-      </summary>
-      <author>
-        <name>Ilgiz Mustafin</name>
         <uri>https://imustafin.tatar/</uri>
       </author>
     </entry>
