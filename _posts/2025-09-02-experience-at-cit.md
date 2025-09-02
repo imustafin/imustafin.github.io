@@ -12,7 +12,7 @@ In this post I want to preserve links to some of the projects that we worked
 on. 
 
 I was part of the [Chair of Software Engineering][se]
-lead by [Bertrand Meyer][bm]. At my time there were
+led by [Bertrand Meyer][bm]. At my time there were
 several PhD students besides me: [Li Huang][lh]
 (she graduated and got her degree, congratulations!), [Alessandro Schena][as]
 and [Reto Weber][rw]. Our research and teaching was supported
@@ -34,7 +34,7 @@ of our Chair. Unfortunately, our work was interrupted by the closing
 of the Institute.
 
 ## Do LLMs help fixing verified software?
-One of the latest researches we did at the Institute studied how well
+The latest research we did at the Institute studied how well
 LLM chats can help with fixing bugs when programmers have access to a verifier.
 The report is called ["Do AI models help produce verified bug fixes?"][llm].
 
@@ -53,12 +53,12 @@ I [wrote more][llm-blog] about the experiment on the Chair's blog. Of course,
 the paper provides more details.
 
 ## Future plans
-There are more projects that we did at the Constructor Institute of Technology
+There are more projects that we did at Constructor Institute of Technology
 which I would like to highlight, but I will leave them for the next posts.
 Subscribe to the [RSS feed][feed] in order not to miss them!
 
 Overall, I am happy that I had an opportunity to work on advanced
-software engineering topics in a skilled team lead by Bertrand Meyer.
+software engineering topics in a skilled team led by Bertrand Meyer.
 The work conditions were excellent and allowed us to focus on the research.
 Personally, I find it sad that our work was interrupted so abruptly.
 
