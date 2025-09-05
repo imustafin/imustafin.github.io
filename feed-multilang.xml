@@ -6,10 +6,93 @@
 	<link href="https://imustafin.tatar/feed-multilang.xml" rel="self" type="application/atom+xml" />
 	<link href="https://imustafin.tatar" />
 	<id>https://imustafin.tatar/feed-multilang.xml</id>
-	<updated>2025-09-02T19:11:15+00:00</updated>
+	<updated>2025-09-05T18:38:36+00:00</updated>
 
   
   
+  
+	  <entry xml:lang="ru">
+      
+		  <title>Моя учёба в CIT</title>
+		  <link href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D1%83%D1%87%D1%91%D0%B1%D0%B0-%D0%B2-cit" rel="alternate" type="text/html" title="Моя учёба в CIT"/>
+      <published>2025-09-05T00:00:00+00:00</published>
+      
+      <updated>2025-09-05T00:00:00+00:00</updated>
+		  <id>https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D1%83%D1%87%D1%91%D0%B1%D0%B0-%D0%B2-cit</id>
+
+		  <content type="html" xml:base="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/%D1%83%D1%87%D1%91%D0%B1%D0%B0-%D0%B2-cit">
+        <![CDATA[<p>Constructor Institute of Technology (CIT) — это
+институт в Шаффхаузене, Швейцария, в котором я
+провёл два года моей аспирантуре в области верификации программного
+обеспечения на Эйфеле. К сожалению, <a href="https://institute.constructor.org/news/constructor-institute-technology-plans-cease-operations-schaffhausen-switzerland-refocusing">СIT было решено закрыть в 2025</a>.
+В этом посте я хочу сохранить ссылки на некоторые проекты,
+над которыми мы работали.</p>
+
+<p>Я работал на <a href="https://se.constructor.ch/">кафедре программной инженерии</a>
+под руководством <a href="https://bertrandmeyer.com/">Бертрана Мейера</a>. В моё время
+на кафедре было ещё несколько аспирантов: <a href="https://huangl223.github.io/li/">Ли Хуан</a>
+(она успела защититься и получила степень, поздравляю!),
+<a href="https://se.constructor.ch/people/alessandro-schena">Алессандро Скена</a> и <a href="https://retoweber.info/">Рето Вебер</a>. Нашу научную и преподавательскую
+деятельность поддерживал <a href="https://se.constructor.ch/people/marco-piccioni">Марко Пиччони</a>.</p>
+
+<h2 id="статическая-верификация-в-autoproof">Статическая верификация в AutoProof</h2>
+<p>Наша работа охватывала различные области программной инженерии.
+Особое внимание уделялось статической верификации. Главным продуктом
+команды в этой сфере является <a href="https://se.constructor.ch/reif-site/autoproof/">AutoProof</a>,
+который является частью научного окружения <a href="https://se.constructor.ch/reif-site/">Reif</a>.
+AutoProof — это статический верификатор для программ на Эйфеле.
+С его помощью можно автоматически проверить согласуется ли
+тело процедуры с контрактами.</p>
+
+<p>Основная часть моего вклада в код верификатора заключается
+в реализации и расширении подхода, описанного в статье нашей кафедры
+<a href="https://se.constructor.ch/publications/concept-of-class-invariant-in-oop">“The concept of class invariant in object-oriented programming”</a>.
+К сожалению, наша работа была прервана закрытием института.</p>
+
+<h2 id="могут-ли-llm-помочь-с-исправлением-верифицированного-по">Могут ли LLM помочь с исправлением верифицированного ПО?</h2>
+<p>Наше последнее исследование в институте рассматривало насколько
+чаты с LLM могут помочь в исправлении багов, когда у программистов
+есть доступ к верификтору. Отчёт об этом исследовании называется
+<a href="https://se.constructor.ch/publications/do-ai-models-help-produce-verified-fixes">“Do AI models help produce verified bug fixes?”</a>.</p>
+
+<p>Я считаю, что верификация ПО может взять
+случайность в ответах больших языковых моделей под контроль. Верификатор
+может подтвердить, что исправление в самом деле “правильно”, а не просто
+“статистически выглядит подходящим”.</p>
+
+<p>Мы попросили 25 программистов исправить баги в программах.
+Некоторым был доступен чат-бот и верификатор, некоторым было разрешено
+работать только с верификатором.</p>
+
+<p>Результаты показали, что LLM наиболее полезны начинающим пользователям
+(чтобы добиться хоть какого-то результата) и экспертам (быстро реализовать
+самостоятельно придуманное решение). Разработчики со средним уровнем знаний
+получают меньше пользы от LLM.</p>
+
+<p>Я <a href="https://se.constructor.ch/2025/07/25/ai-models-verified-bug-fixes">писал больше</a> об эксперименте в блоге кафедры. Конечно,
+в самой статье можно получить ещё больше информации.</p>
+
+<h2 id="планы-на-будущее">Планы на будущее</h2>
+<p>У меня есть ещё несколько проектов из Constructor Institute of Technology,
+которые я бы хотел подсветить, но я оставлю их для будущих постов.
+Подпишитесь на <a href="/ru/feed.xml">RSS ленту</a>, чтобы их не пропустить!</p>
+
+<p>В общем, я рад, что у меня была возможность для работы над продвинутыми
+темами программной инженерии в умелой команде, возглавляемой Бертраном Мейером.
+Условия работы были великолепными и позволили нам сконцентрироваться на
+науке. Лично мне грустно, что наша работа прервалась так резко.</p>
+
+<p>Я надеюсь, что у нас ещё будет возможность собраться командой и
+продолжить нашу работу.</p>]]>
+      </content>
+      <summary type="html">
+        <![CDATA[Constructor Institute of Technology (CIT) — это институт в Шаффхаузене, Швейцария, в котором я провёл два года моей аспирантуре в области верификации программного обеспечения на Эйфеле. К сожалению, СIT было решено закрыть в 2025. В этом посте я хочу сохранить ссылки на некоторые проекты, над которыми мы работали.]]>
+      </summary>
+      <author>
+        <name>Ильгиз Мустафин</name>
+        <uri>https://imustafin.tatar/</uri>
+      </author>
+    </entry>
   
 	  <entry xml:lang="en">
       
@@ -72,7 +155,7 @@ the paper provides more details.</p>
 <h2 id="future-plans">Future plans</h2>
 <p>There are more projects that we did at Constructor Institute of Technology
 which I would like to highlight, but I will leave them for the next posts.
-Subscribe to the <a href="/feed.xml">RSS feed</a> in order not to miss them!</p>
+Subscribe to the <a href="/ru/feed.xml">RSS feed</a> in order not to miss them!</p>
 
 <p>Overall, I am happy that I had an opportunity to work on advanced
 software engineering topics in a skilled team led by Bertrand Meyer.
@@ -1555,256 +1638,6 @@ Erb шаблоны чтобы подставилять значения, выч�
       </content>
       <summary type="html">
         <![CDATA[Как использовать файлопровод (Asset Pipeline) в Ruby on Rails для эффективного кеширования файлов перевода.]]>
-      </summary>
-      <author>
-        <name>Ильгиз Мустафин</name>
-        <uri>https://imustafin.tatar/</uri>
-      </author>
-    </entry>
-  
-	  <entry xml:lang="tt">
-      
-		  <title>React-i18next Rails-та: файлүткәргеч аша кәшләү</title>
-		  <link href="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF" rel="alternate" type="text/html" title="React-i18next Rails-та: файлүткәргеч аша кәшләү"/>
-      <published>2021-01-25T00:00:00+00:00</published>
-      
-      <updated>2021-02-15T00:00:00+00:00</updated>
-		  <id>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF</id>
-
-		  <content type="html" xml:base="https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/rails-react-i18next-%D1%84%D0%B0%D0%B9%D0%BB%D2%AF%D1%82%D0%BA%D3%99%D1%80%D0%B3%D0%B5%D1%87-%D0%B0%D1%88%D0%B0-%D0%BA%D3%99%D1%88%D0%BB%D3%99%D2%AF">
-        <![CDATA[<p>Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.</p>
-
-<p>Монда без <code class="language-plaintext highlighter-rouge">react-rails</code> кушымтаны иң җиңел интернациональләштерү ысулыны
-карап чыгарарбыз, аннары без бу ысулын кәш белән бәйләнгән проблемнарны
-күрербез, һәм ахырда без бу проблемнарны файлүткәргеч (Asset Pipeline) белән
-чишәрбез.</p>
-
-<h2 id="react-i18next-ны-куллану">React-i18next-ны куллану</h2>
-<p>Бу бүлектә без кушымтабызга <code class="language-plaintext highlighter-rouge">react-i18next</code>-ны өстибез һәм тәрҗемә файлларны
-<code class="language-plaintext highlighter-rouge">public</code> директорийдан укуга мөмкин ясыйбыз.</p>
-
-<p>Баштан без кирәкле пакетларны өстибез.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add i18next i18next-http-backend react-i18next
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">i18next</code>-ны кирәкле керү нокталарда (мәсәлән, <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>)
-инициализациялибез:</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">i18n</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">I18nextHttpBackend</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">i18next-http-backend</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">initReactI18next</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="nx">i18n</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">init</span><span class="p">();</span>
-</code></pre></div></div>
-
-<p><a href="https://github.com/i18next/i18next-http-backend"><code class="language-plaintext highlighter-rouge">i18next-http-backend</code> плагины</a> сайланган телнең
-тәрҗемә файлларны йөкли, ә <code class="language-plaintext highlighter-rouge">react-i18next</code> React кушымтаны <code class="language-plaintext highlighter-rouge">i18next</code> белән
-бәйләнә.</p>
-
-<p>Хәзер без «Сәлам, дөнья!» битне тел сайлау төймәләр белән ясый алабыз.</p>
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Suspense</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">useTranslation</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-i18next</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">TranslatedHelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">useTranslation</span><span class="p">();</span>
-  
-  <span class="k">return </span><span class="p">(</span>
-    <span class="p">&lt;&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="si">{</span><span class="nf">t</span><span class="p">(</span><span class="dl">'</span><span class="s1">helloWorld</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
-        Татарча
-      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nf">changeLanguage</span><span class="p">(</span><span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
-        Русский
-      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/&gt;</span>
-  <span class="p">);</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">loading</span><span class="p">=</span><span class="s">'...'</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nc">TranslatedHelloWorld</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
-<span class="p">);</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>Хәзер бу биткә карасагыз сез «helloWorld» юлны гына күрә аласыз чөнки без <code class="language-plaintext highlighter-rouge">helloWorld</code>
-ачкыч өчен бернинди тәрҗемәне бирмәдек әле һәм шундый вакыйгаларда <code class="language-plaintext highlighter-rouge">i18next</code>
-тәрҗемәнең урында ачкычны күрсәтә.</p>
-
-<p>Килешенгәнчә <code class="language-plaintext highlighter-rouge">i18next-http-backend</code> тәрҗемә файлларны
-<code class="language-plaintext highlighter-rouge">/locales/{{lng}}/{{ns}}.json</code> адрестан ала
-(<a href="https://github.com/i18next/i18next-http-backend#backend-options"><code class="language-plaintext highlighter-rouge">loadPath</code> көйләүне</a> кара). Адреста
-<code class="language-plaintext highlighter-rouge">{{lng}}</code> — тел коды, ә <code class="language-plaintext highlighter-rouge">{{ns}}</code> —
-исемнәр киңлеге. Килешенгән исемнәр киңлеге <code class="language-plaintext highlighter-rouge">translation</code> дип аталган
-(<a href="https://www.i18next.com/overview/configuration-options#languages-namespaces-resources"><code class="language-plaintext highlighter-rouge">defaultNS</code> көйләүне</a> кара).</p>
-
-<p>Шулай, сервер бу ике юлны тәэмин итергә тиеш: берсе — <code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>
-татарча тәрҗемә бирергә тиеш, икенчесе — <code class="language-plaintext highlighter-rouge">/locales/ru/translation.json</code>
-русча тәрҗемә бирергә тиеш. Бу JSON тәрҗемә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийга
-куйсабыз, Rails шундый кирәкле юлларны тәэмин ителер.</p>
-
-<p>Татарча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/tt/translation.json</code> файлга язабыз:</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Сәлам, дөнья!"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>Русча тәрҗемәне <code class="language-plaintext highlighter-rouge">public/locales/ru/translation.json</code> файлга язабыз:</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"helloWorld"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Здравствуй, мир!"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>Тәрҗемә файлларны ясагач соң без битне браузерда яңарта алабыз. Шуннан соң
-биттә тел сайлавы эшләргә тиеш. Ләкин, бу ысулда бер проблем бар, бу проблем
-турында — киләсе бүлектә.</p>
-
-<h2 id="кәшкә-бәйле-проблемнар">Кәшкә бәйле проблемнар</h2>
-<p>Әйтик, без кушымтаның яңа версияне серверга урнаштык һәм браузерда яңа
-JavaScript эшли,  ләкин иске тәрҗемә файллар куланыла (шуңа күрә
-иске тәрҗемәләр яисә тәрҗемә ачкычлары күрәнелә).</p>
-
-<p>Моның бер сәбәбе кәш булырга мөмкин: иске тәрҗемә файллар браузерда кәшләнгән
-булсалар, браузер иске файлларны кулланырга мөмкин.</p>
-
-<p>Бер чишелеш буларак без тәрҗемә файллар кәшләүне тулысынча тыерга алабыз.
-Моны сервер көйләүләр белән дә, <code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">requestOptions</code>
-көйләве белән дә, хәтта хәзерге вакытны тәрҗемә файлның йөкләү URL-га
-кушып та була. Соңгы ысулны <a href="https://stackoverflow.com/a/43499557/8559107">бу StackOverflow җаваптан</a> алып
-<code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-та шулай ясап була:</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">loadPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/locales/{{lng}}/{{ns}}.json?cb=</span><span class="dl">'</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getTime</span><span class="p">(),</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>Ләкин, кәшләүне тыю — яхшы бер чишелеш түгел чөнки битнең һәр йөкләве
-белән тәрҗемә файллар яңадан йөклиячәкләр.</p>
-
-<p>Иң яхшы чишелеш ул кәшләүне дөрес көйләргә. Моны да берничә рәвештә
-дә ясап була һәм бу язмышта без Rails-ның гадәти коралны кулланачакбыз.
-Аның исеме файлүткәргеч.</p>
-
-<h2 id="файлүткәргечне-i18next-тәрҗемә-файллар-кәшләү-өчен-куллану">Файлүткәргечне <code class="language-plaintext highlighter-rouge">i18next</code> тәрҗемә файллар кәшләү өчен куллану</h2>
-<p>Бу бүлектә Ruby on Rails-ның файлүткәргеч белән файл исемнәрне әйләндерү
-(<a href="https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">filename revving</a>) каралачак.</p>
-
-<p>Файлүткәргеч файл исемгә аның эчтәлекнең һәшне <a href="https://guides.rubyonrails.org/asset_pipeline.html#what-is-fingerprinting-and-why-should-i-care-questionmark">куша</a>,
-шуңа күрә клиентлар шундый һәшле исемле файлларны мәңгегә кәшли алалар.
-Әгәр файлның яңа бер версия килеп чыгачак, аның башка исеме булачак һәм
-клиентлар бу башка исеме белән яңа версияне йөклиячәкләр.</p>
-
-<p>Хәзер без файлларны ничек файлүткәргечкә җибәрергә һәм аларны ничек
-<code class="language-plaintext highlighter-rouge">i18next-http-backend</code> белән файлүткәргечтән алырга карачакбыз.</p>
-
-<h3 id="файлларны-файлүткәргечке-җибәрү">Файлларны файлүткәргечке җибәрү</h3>
-<p>Файлүткәргеч файлларны <code class="language-plaintext highlighter-rouge">app/assets</code> директорийдан ала, шуңа күрә
-безгә файлларны <code class="language-plaintext highlighter-rouge">public</code> директорийдан <code class="language-plaintext highlighter-rouge">app/assets/</code> директорийга күчерергә
-кирәк. Ягъни безнең бу ике файл булачак:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/tt/translation.json</code></li>
-  <li><code class="language-plaintext highlighter-rouge">app/assets/locales/ru/translation.json</code></li>
-</ul>
-
-<p>Файлүткәргеч файлларны күрәме-юкмы икәнен, консольда тикшерегез (<code class="language-plaintext highlighter-rouge">bundle exec rails c</code>):</p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
-<span class="go">"/assets/tt/translation-8abc3942c062c7f43a1409665fcea91711a8864e4c03adfbf28ccd4ded8d99f8.json"
-</span></code></pre></div></div>
-
-<p>Әгәр сез файл исемен урында <code class="language-plaintext highlighter-rouge">Sprockets::Rails::Helper::AssetNotPrecompiled</code> хатаны күрсәгез:</p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">&gt;</span><span class="w"> </span><span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s1">'tt/translation.json'</span><span class="p">)</span>
-<span class="go">Traceback (most recent call last):
-        1: from (irb):1
-Sprockets::Rails::Helper::AssetNotPrecompiled (tt/translation.json)
-</span></code></pre></div></div>
-
-<p>Алайса бәлки сез Sprockets 4-ны кулланасыз һәм сезгә әссет манифест файлны
-үзгәртергә кирәк.</p>
-
-<h4 id="sprockets-4-өчен-әссет-манифест-файлны-үзгәртү">Sprockets 4 өчен әссет манифест файлны үзгәртү</h4>
-<p><code class="language-plaintext highlighter-rouge">sprockets</code> гемнең версиягә карап, сезгә киләсе адымны ясарга кирәк яки кирәкми.
-Гемнең версияне бу боерык белән карап була:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle info sprockets
-</code></pre></div></div>
-
-<p>Проектыгызда Sprockets-ның 4-нче версиясе булса, сезгә локаль директорийны
-<code class="language-plaintext highlighter-rouge">app/assets/config/manifest.js</code> манифест файлга кушырга кирәк:</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//= link_tree ../locales</span>
-</code></pre></div></div>
-
-<p>Бу <a href="https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs">Sprockets 4-тән башлап</a> кирәк
-(тәрҗемәсе һәм басымнар — миннән):</p>
-<blockquote>
-  <p>Әгәр сез sprockets 4.0-дан искерәк версияне куллансагыз, Rails
-<code class="language-plaintext highlighter-rouge">applications.css</code>, <code class="language-plaintext highlighter-rouge">application.js</code>, һәм әссет директорийдагы <strong>һәр</strong> 
-JS я CSS булмаган, файл исеме өстәмәле файлларны компиляцияләчәк.</p>
-
-  <p>…</p>
-
-  <p>Әгәр сез Sprockets 4 куллансагыз, Rails башка компиляцияләү керү нокталар
-табу алгоритмны кулланачак: <code class="language-plaintext highlighter-rouge">./app/assets/config/manifest.js</code> файлдагы <strong>гына</strong>
-керү нокталар кулланачаклар.</p>
-</blockquote>
-
-<h3 id="javascript-та-файлүткәргечтән-файлларны-алу">JavaScript-та файлүткәргечтән файлларны алу</h3>
-<p>Тәрҗемә файлларны файлүткәргечкә күчерүдән соң аларны төп исемнәр белән
-(<code class="language-plaintext highlighter-rouge">/locales/tt/translation.json</code>) ала булмый. Күчерүдән соң аларның исемләргә
-һәшне кушырга кирәк (<code class="language-plaintext highlighter-rouge">/assets/tt/translations-8ab...9f8.json</code>).</p>
-
-<p>Шундый һәшле исемнәрне Ruby-да <code class="language-plaintext highlighter-rouge">asset_path</code> ярдәмче белән алырга мөмкин, ләкин
-JavaScript-та аларны турыдан-туры алырга мөмкин түгел. Шулай ук, без Erb
-өлгеләрне кулланып Ruby-да саналган кыйммәтләрне JavaScript кодка кыстыра алабыз.</p>
-
-<p>Erb куллану тәэмин итү <code class="language-plaintext highlighter-rouge">webpacker</code>-га <a href="https://github.com/rails/webpacker/blob/master/docs/integrations.md#erb">рәсми күрсәтмәләр буенча</a> өстәгез.</p>
-
-<p><code class="language-plaintext highlighter-rouge">i18next-http-backend</code>-ның <code class="language-plaintext highlighter-rouge">loadPath</code> көйләү кыйммәте <code class="language-plaintext highlighter-rouge">(languages, namespaces) =&gt; loadPath</code>
-функция дә булырга мөмкин. Шундый функциянең <code class="language-plaintext highlighter-rouge">languages</code> һәм <code class="language-plaintext highlighter-rouge">namespaces</code> көйләүләре
-массивлар булса да, <a href="https://github.com/i18next/i18next-http-backend/pull/35">аларның берәр элемент гына булачак</a>
-(<code class="language-plaintext highlighter-rouge">allowMultiLoading</code> көйләве <code class="language-plaintext highlighter-rouge">false</code> булса, килешекәнчә ул шулай).</p>
-
-<p>Үзебезнең <code class="language-plaintext highlighter-rouge">loadPath</code> функцияне <code class="language-plaintext highlighter-rouge">app/javascript/loadPath.js.erb</code> файлда языйк:</p>
-<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadPath</span> <span class="o">=</span> <span class="p">(</span><span class="nx">languages</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">tt</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"tt/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="k">if </span><span class="p">(</span><span class="nx">languages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">ru</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="dl">'</span><span class="cp">&lt;%=</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">helpers</span><span class="p">.</span><span class="nf">asset_path</span><span class="p">(</span><span class="s2">"ru/translation.json"</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="dl">'</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">loadPath</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>Һәм функцияне <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code> файлда <code class="language-plaintext highlighter-rouge">i18next</code>-ка бирик:</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">loadPath</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">loadPath.js.erb</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="nx">i18n</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">I18nextHttpBackend</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="nx">initReactI18next</span><span class="p">)</span>
-  <span class="p">.</span><span class="nf">init</span><span class="p">({</span>
-    <span class="na">backend</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nx">loadPath</span><span class="p">,</span>
-    <span class="p">},</span>
-  <span class="p">});</span>
-</code></pre></div></div>
-
-<p>Хәзер сез браузерда битне яңадан яңарттыра аласыз һәм тел сайлау төймәләрне
-куллана аласыз.</p>
-
-<p>Нәкъ менә шулай. Интернациональләштерүдә бәхетле булуы телим!</p>]]>
-      </content>
-      <summary type="html">
-        <![CDATA[Тәрҗемә файлларны эффектив рәвештә Ruby on Rails файлүткәргеч белән кәшләү.]]>
       </summary>
       <author>
         <name>Ильгиз Мустафин</name>
