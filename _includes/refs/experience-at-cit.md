@@ -13,3 +13,4 @@
 [llm]: https://se.constructor.ch/publications/do-ai-models-help-produce-verified-fixes
 [llm-blog]: https://se.constructor.ch/2025/07/25/ai-models-verified-bug-fixes
 [feed]: {% link feed.xml %}
+[feed]: {% link ru/feed.xml %}
