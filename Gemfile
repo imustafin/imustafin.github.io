@@ -19,4 +19,4 @@ end
 # Tests
 gem 'rdf-microdata', '~> 3.3'
 gem 'rdf-vocab', '~> 3.3'
-gem 'minitest', '~> 5.25'
+gem 'minitest', '~> 5.26'
