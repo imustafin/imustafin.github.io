@@ -89,7 +89,7 @@ GEM
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0819)
-    minitest (5.25.5)
+    minitest (5.26.0)
     nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
     objective_elements (1.1.2)
@@ -164,7 +164,7 @@ DEPENDENCIES
   jekyll-seo-tag!
   jekyll-tailwindcss (~> 0.7)
   jekyll_picture_tag (~> 2.1)
-  minitest (~> 5.25)
+  minitest (~> 5.26)
   rdf-microdata (~> 3.3)
   rdf-vocab (~> 3.3)
 
