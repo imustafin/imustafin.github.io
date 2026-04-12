@@ -5,18 +5,25 @@ seo:
   type: WebSite
   links:
     - https://github.com/imustafin
-description: Ilgiz Mustafin's personal website and blog
+description: Ilgiz Mustafin's personal website
 date: 2020-11-06
-title: "Ilgiz Mustafin: PhD Student in Software Engineering"
+title: "Ilgiz Mustafin: software engineering & formal verification"
 redirect_from:
   - /en/
 crumbtitle: Home
 ---
 {% include refs/index.md %}
 # Hi! My name is Ilgiz.
+I'm a software engineer with 10+ years of industry experience
+a strong academic background.
 
-I am a PhD student at the [Chair of Software Engineering][chair]
-of Constructor Institute of Technology in Schaffhausen, Switzerland.
+In my free time, I work on formal verification,
+combining static analysis with modern AI techniques
+to make formal verification more approachable in the day-to-day work.
 
-I do research in Software Verification. I work on AutoProof
-and other tools using formal methods for the Eiffel programming language.
+I was a PhD student at the
+[Chair of Software Engineering][chair], Constructor Institute of Technology (Schaffhausen, Switzerland).
+
+I hold a BSc and MSc from [Innopolis University][inno_en] (Innopolis, Tatarstan, Russia).
+
+By day I work in Ruby; for my research side projects I use Eiffel.
