@@ -10,7 +10,7 @@ See it live at <https://imustafin.tatar/>!
 ## Development
 This is a normal Jekyll app. To start, run:
 ```
-bundle exec jekyll serve
+./dev.sh
 ```
 
 ### Info for `jekyll_picture_tag`

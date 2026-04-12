@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app:cached
+      - bundle:/bundle:cached
+    command: /bin/bash
+    ports:
+      - 127.0.0.1:4000:4000
+      - 127.0.0.1:35729:35729
+
+volumes:
+  bundle:

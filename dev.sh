@@ -1,1 +1,2 @@
-bundle exec jekyll serve --verbose --trace --config _config.yml --livereload --host 0.0.0.0
+bundle exec jekyll serve --livereload --host 0.0.0.0 \
+    --livereload-port 35729 --port 4000
