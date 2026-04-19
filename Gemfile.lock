@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/imustafin/jekyll-seo-tag.git
-  revision: f1a0a2cd326f8a5cac1a77208fab72a1dec6243d
+  revision: bfa390c1e2bbc539865c62e6e7e53094c36bfa95
+  ref: bfa390c
   specs:
     jekyll-seo-tag (2.8.0)
       jekyll (>= 3.8, < 5.0)
