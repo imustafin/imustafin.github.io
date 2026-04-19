@@ -11,6 +11,7 @@ title: "Ilgiz Mustafin: software engineering & formal verification"
 redirect_from:
   - /en/
 crumbtitle: Home
+homepage_or_about: true
 ---
 {% include refs/index.md %}
 # Hi! My name is Ilgiz.

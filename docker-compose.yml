@@ -7,9 +7,10 @@ services:
     volumes:
       - .:/app:cached
       - bundle:/bundle:cached
+      # - ../jekyll-seo-tag:/jekyll-seo-tag # uncomment for local jekyll-seo-tag
     command: /bin/bash
     ports:
-      - 127.0.0.1:4000:4000
+      - 127.0.0.1:3000:3000
       - 127.0.0.1:35729:35729
 
 volumes:

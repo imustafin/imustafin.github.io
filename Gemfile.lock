@@ -90,7 +90,7 @@ GEM
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0819)
     minitest (5.25.5)
-    nokogiri (1.18.9-x86_64-linux-gnu)
+    nokogiri (1.19.2-x86_64-linux-gnu)
       racc (~> 1.4)
     objective_elements (1.1.2)
     ostruct (0.6.3)
@@ -165,6 +165,7 @@ DEPENDENCIES
   jekyll-tailwindcss (~> 0.7)
   jekyll_picture_tag (~> 2.1)
   minitest (~> 5.25)
+  nokogiri (~> 1.19, >= 1.19.2)
   rdf-microdata (~> 3.3)
   rdf-vocab (~> 3.3)
 

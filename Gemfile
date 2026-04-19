@@ -7,7 +7,7 @@ gem 'jekyll', '~> 4.4'
 group :jekyll_plugins do
   gem 'jekyll-seo-tag',
     github: 'imustafin/jekyll-seo-tag'
-  # path: '/home/ilgiz/jekyll-seo-tag'
+    # path: '/jekyll-seo-tag'
 
   gem 'jekyll-redirect-from', '~> 0.16.0'
   gem 'jekyll-plantuml', '~> 1.4', '>= 1.4.2'
@@ -17,6 +17,7 @@ group :jekyll_plugins do
 end
 
 # Tests
+gem 'nokogiri', '~> 1.19', '>= 1.19.2'
 gem 'rdf-microdata', '~> 3.3'
 gem 'rdf-vocab', '~> 3.3'
 gem 'minitest', '~> 5.25'

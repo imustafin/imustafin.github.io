@@ -7,8 +7,9 @@ seo:
     - https://github.com/imustafin
 description: Личный сайт Мустафина Ильгиза
 date: 2020-11-06
-title: "Мустафин Ильгиз: разработка ПО и формальная верификация"
+title: "Мустафин Ильгиз: разработка и формальная верификация ПО"
 crumbtitle: Главная
+homepage_or_about: true
 ---
 {% include refs/index.md %}
 # Привет! Меня зовут Ильгиз.

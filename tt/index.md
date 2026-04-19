@@ -9,6 +9,7 @@ description: Мустафин Ильгизнең шәхси сайты
 date: 2021-01-25
 title: "Мустафин Ильгиз: программа төзү һәм формаль верификация"
 crumbtitle: Баш
+homepage_or_about: true
 ---
 {% include refs/index.md %}
 # Сәлам! Минем исемем Ильгиз.
