@@ -533,39 +533,6 @@
     </url>
   
     <url>
-      <loc>https://imustafin.tatar/projects/</loc>
-      
-        <lastmod>2022-02-26T00:00:00+00:00</lastmod>
-      
-      
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="en"
-            
-            href="https://imustafin.tatar/projects/"
-        />
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="tt"
-            
-            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
-        />
-      
-        <xhtml:link
-            rel="alternate"
-            
-              hreflang="ru"
-            
-            href="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
-        />
-      
-    </url>
-  
-    <url>
       <loc>https://imustafin.tatar/tt/%D0%B1%D0%BB%D0%BE%D0%B3/</loc>
       
         <lastmod>2021-02-07T00:00:00+00:00</lastmod>
@@ -608,17 +575,17 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/projects/"
+            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
         />
       
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
+            href="https://imustafin.tatar/projects/"
         />
       
         <xhtml:link
@@ -665,7 +632,7 @@
     </url>
   
     <url>
-      <loc>https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/</loc>
+      <loc>https://imustafin.tatar/projects/</loc>
       
         <lastmod>2022-02-26T00:00:00+00:00</lastmod>
       
@@ -674,17 +641,17 @@
         <xhtml:link
             rel="alternate"
             
-              hreflang="en"
+              hreflang="tt"
             
-            href="https://imustafin.tatar/projects/"
+            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
         />
       
         <xhtml:link
             rel="alternate"
             
-              hreflang="tt"
+              hreflang="en"
             
-            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
+            href="https://imustafin.tatar/projects/"
         />
       
         <xhtml:link
@@ -726,6 +693,39 @@
               hreflang="ru"
             
             href="https://imustafin.tatar/ru/%D0%B1%D0%BB%D0%BE%D0%B3/"
+        />
+      
+    </url>
+  
+    <url>
+      <loc>https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/</loc>
+      
+        <lastmod>2022-02-26T00:00:00+00:00</lastmod>
+      
+      
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="tt"
+            
+            href="https://imustafin.tatar/tt/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BB%D0%B0%D1%80/"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="en"
+            
+            href="https://imustafin.tatar/projects/"
+        />
+      
+        <xhtml:link
+            rel="alternate"
+            
+              hreflang="ru"
+            
+            href="https://imustafin.tatar/ru/%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/"
         />
       
     </url>
