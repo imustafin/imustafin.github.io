@@ -6,7 +6,7 @@ gem 'jekyll', '~> 4.4'
 
 group :jekyll_plugins do
   gem 'jekyll-seo-tag',
-    github: 'imustafin/jekyll-seo-tag', ref: 'bfa390c'
+    github: 'imustafin/jekyll-seo-tag', ref: '86d40841cc3dd4771053768fb26812aced5082e6'
     # path: '/jekyll-seo-tag'
 
   gem 'jekyll-redirect-from', '~> 0.16.0'
