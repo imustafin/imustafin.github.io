@@ -9,7 +9,7 @@ class IndexTest < Minitest::Test
   end
 
   def title(p)
-    p.at('title').content
+    p.at('title').content.strip
   end
   
   def test_en_index
